@@ -71,7 +71,7 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
 
         if (id == R.id.nav_list) {
 
-            NTDMainFragment fragment = new NTDMainFragment();
+            NTDPostRecruitmentFragment fragment = new NTDPostRecruitmentFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();

@@ -8,12 +8,13 @@ import android.view.ViewGroup;
 
 import com.spkt.nguyenducnguu.jobstore.R;
 
-public class NTDMainFragment extends Fragment {
+public class NTDPostRecruitmentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.ntd_main_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.ntd_post_recruitment_fragment, container, false);
 
         return rootView;
     }
+
 }

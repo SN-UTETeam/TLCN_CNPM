@@ -19,8 +19,8 @@ public class Recruiter {
     private String DeviceToken;
     private Long LastLogin;
     private int Status;
-    List<Notification> Notifications;
-    List<Follow> Follows;
+    private List<Notification> Notifications;
+    private List<Follow> Follows;
 
     public Recruiter(String email, String fullName, Long birthDay, int gender, String companyName,
                      String description, String phone, String website, String address, String avatar,
