@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" android:id="@+id/Menu_1">
+        <item android:id="@+id/nav_list" android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Đăng tin" />
+
+        <item android:id="@+id/nav_search" android:icon="@android:drawable/ic_search_category_default"
+            android:title="Lọc và tìm kiếm" />
+        <item android:id="@+id/nav_manage" android:icon="@android:drawable/ic_menu_manage"
+            android:title="Quản lý thông tin tuyển dụng" />
+    </group>
+
+    <item android:title="Thông tin chi tiết" android:id="@+id/Menu_2">
+        <menu>
+            <item android:id="@+id/nav_record" android:icon="@android:drawable/ic_menu_always_landscape_portrait"
+                android:title="Quản lý hồ sơ" />
+            <item android:id="@+id/nav_logout" android:icon="@android:drawable/ic_lock_power_off"
+                android:title="Đăng xuất" />
+        </menu>
+    </item>
+
+</menu>

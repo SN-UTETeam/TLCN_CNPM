@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "78239291489",
+    "firebase_url": "https://jobstore-5491.firebaseio.com",
+    "project_id": "jobstore-5491",
+    "storage_bucket": "jobstore-5491.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78239291489:android:ab8eab71bf64a061",
+        "android_client_info": {
+          "package_name": "com.spkt.nguyenducnguu.jobstore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78239291489-l1hp0kl4djvbeerr7bbg16kvf0qrn354.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7BIm1NOFseP5vBT0_MkUQOzlKrpEJfLE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
