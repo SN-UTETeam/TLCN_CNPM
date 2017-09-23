@@ -20,12 +20,17 @@
         <item>Nhân viên</item>
     </string-array>
 
+    <string-array name="levels">
+        <item>Đại học</item>
+        <item>Cao đẳng</item>
+    </string-array>
+
     <string-array name="country_arrays">
         <item>TP HCM</item>
         <item>Hà Nội</item>
     </string-array>
 
-    <string-array name="levels">
+    <string-array name="careers">
         <item>CNTT</item>
         <item>Kế toán</item>
     </string-array>
