@@ -251,7 +251,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/edt_custom"
-                            android:focusable="false"
                             android:inputType="textCapWords"
                             android:textSize="15dp" />
                     </LinearLayout>
@@ -365,7 +364,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/edt_custom"
-                            android:focusable="false"
                             android:inputType="textCapWords"
                             android:textSize="15dp" />
                     </LinearLayout>

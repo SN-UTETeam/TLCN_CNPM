@@ -1,6 +1,7 @@
 package com.spkt.nguyenducnguu.jobstore.NTD;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ public class NTDPostRecruitmentFragment extends Fragment {
 
     Calendar cal = Calendar.getInstance();
     Button btnDangTai;
+    EditText edtWorkType;
     TextView edtExpirationTime;
 
     @Override
@@ -30,13 +32,15 @@ public class NTDPostRecruitmentFragment extends Fragment {
 
 
         edtExpirationTime = (EditText) rootView.findViewById(R.id.edt_ExpirationTime);
+        edtWorkType = (EditText) rootView.findViewById(R.id.edt_Worktype);
+
          addEvent();
         /*btn = (Button) rootView.findViewById(R.id.buttonNext);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(getContext() , NTDPostRecruitmentActivity.class);
+                Intent myIntent = new Intent(getContext() , NTDSelectWorkTypeActivity.class);
                 startActivity(myIntent);
             }
         });*/
@@ -48,6 +52,14 @@ public class NTDPostRecruitmentFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog();
+            }
+        });
+
+        edtWorkType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), NTDSelectWorkTypeActivity.class);
+                startActivity(intent);
             }
         });
     }
