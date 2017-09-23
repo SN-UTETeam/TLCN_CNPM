@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.spkt.nguyenducnguu.jobstore.NTD.NTDMainFragment"
     android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list_uv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:paddingTop="?attr/actionBarSize"
+        android:clipToPadding="false">
+
+    </android.support.v7.widget.RecyclerView>
+
     <LinearLayout
+        android:id="@+id/ln_filter"
         android:layout_width="match_parent"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
@@ -23,6 +35,7 @@
                 android:hint="Tìm nhanh"
                 android:drawableLeft="@android:drawable/ic_menu_search"
                 android:background="@null"
+                android:cursorVisible="false"
                 android:textColorHighlight="@color/appcolor"
                 android:drawablePadding="15dp"
                 android:textSize="15sp"
@@ -39,11 +52,4 @@
         </LinearLayout>
 
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list_uv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical">
-
-    </android.support.v7.widget.RecyclerView>
-</LinearLayout>
+</FrameLayout>
