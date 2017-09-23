@@ -66,7 +66,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tv_ForgotPassword.setOnClickListener(this);
         tv_Register.setOnClickListener(this);
     }
-
     private void updateUI(FirebaseUser user)
     {
         //Đã xác thực tài khoản
@@ -113,7 +112,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             });
         }
     }
-
     private boolean ValidateInputData()
     {
         if(txt_Email.getText().toString().trim().length() == 0)
