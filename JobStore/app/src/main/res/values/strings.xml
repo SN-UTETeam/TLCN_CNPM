@@ -34,4 +34,11 @@
         <item>CNTT</item>
         <item>Kế toán</item>
     </string-array>
+
+    <string-array name="workexps">
+        <item>Lĩnh vực</item>
+        <item>Kinh nghiệm</item>
+        <item>Chức vụ</item>
+        <item>Công ty</item>
+    </string-array>
 </resources>

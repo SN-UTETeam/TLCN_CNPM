@@ -47,7 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
-            txtUserName = (TextView) itemView.findViewById(R.id.user_name);
+            txtUserName = (TextView) itemView.findViewById(R.id.tv_username);
         }
     }
 }
