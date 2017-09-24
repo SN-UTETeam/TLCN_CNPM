@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             DatabaseReference rolesRef = FirebaseDatabase.getInstance().getReference("Roles");
             Query query = rolesRef.orderByChild("email").equalTo(user.getEmail());
 
-            Toast.makeText(LoginActivity.this, user.getDisplayName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, user.getEmail(), Toast.LENGTH_SHORT).show();
 
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
