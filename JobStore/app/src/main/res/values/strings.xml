@@ -26,6 +26,8 @@
     <string name="fa_badge">&#xf2c1;</string>
 
     <string name="fa_star">&#xf005;</string>
+
+    <string name="fa_plus">&#xf067;</string>
     <string-array name="work_types">
         <item>Thực tập</item>
         <item>Nhân viên</item>

@@ -37,5 +37,7 @@ dependencies {
     compile 'com.google.firebase:firebase-database:11.2.2'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     testCompile 'junit:junit:4.12'
+
+    compile 'com.github.mabbas007:TagsEditText:1.0.5' ////TagsEditText
 }
 apply plugin: 'com.google.gms.google-services'

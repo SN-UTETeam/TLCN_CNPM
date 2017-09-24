@@ -4,12 +4,14 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
     android:orientation="vertical">
+    //Họ tên, tiêu đề, số năm kinh nghiệm, địa điểm làm việc
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginLeft="5dp">
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -21,7 +23,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:src="@color/black"/>
+                android:src="@color/black" />
         </LinearLayout>
 
 
@@ -41,7 +43,7 @@
                     android:id="@+id/tv_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ABC"
+                    android:text="Trần Anh Sơn"
                     android:textColor="@color/appcolor"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -55,11 +57,34 @@
                     android:id="@+id/tv_position"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ABC"
+                    android:text="Android Developer"
                     android:textColor="@color/appcolor"
                     android:textSize="15sp" />
             </LinearLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="Dưới 1 năm"
+                    android:textColor="@color/appcolor"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:text="TP. HCM"
+                    android:textColor="@color/appcolor"
+                    android:textSize="15sp" />
+            </RelativeLayout>
 
         </LinearLayout>
     </LinearLayout>
@@ -69,7 +94,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
-        android:background="@color/appcolor">
-    </View>
+        android:background="@color/appcolor"></View>
 
 </LinearLayout>

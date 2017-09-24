@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.spkt.nguyenducnguu.jobstore.Adaper.WorkTypeListAdapter;
+import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkType;
 import com.spkt.nguyenducnguu.jobstore.R;
 
@@ -105,4 +106,5 @@ public class SelectWorkTypeActivity extends AppCompatActivity {
             }
         });
     }
+
 }

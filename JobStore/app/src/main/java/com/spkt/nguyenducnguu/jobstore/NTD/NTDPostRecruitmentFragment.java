@@ -12,18 +12,22 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import mabbas007.tagsedittext.TagsEditText;
+
 public class NTDPostRecruitmentFragment extends Fragment {
 
     Calendar cal = Calendar.getInstance();
     Button btn_Complete;
-    EditText txt_WorkType;
+    TagsEditText txt_WorkType;
     TextView txt_ExpirationTime;
+    Button btn_AddWorkType;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,13 +36,15 @@ public class NTDPostRecruitmentFragment extends Fragment {
 
         addView(rootView);
         addEvent();
-
+        setIcon();
         return rootView;
     }
     private void addView(View rootView)
     {
         txt_ExpirationTime = (EditText) rootView.findViewById(R.id.txt_ExpirationTime);
-        txt_WorkType = (EditText) rootView.findViewById(R.id.txt_WorkType);
+        txt_WorkType = (TagsEditText) rootView.findViewById(R.id.txt_WorkType);
+
+        btn_AddWorkType = (Button) rootView.findViewById(R.id.btn_AddWorkType);
     }
     private void addEvent()
     {
@@ -49,7 +55,7 @@ public class NTDPostRecruitmentFragment extends Fragment {
             }
         });
 
-        txt_WorkType.setOnClickListener(new View.OnClickListener() {
+        btn_AddWorkType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectWorkTypeActivity.class);
@@ -94,9 +100,12 @@ public class NTDPostRecruitmentFragment extends Fragment {
         {
             if(data != null) {
                 String message = data.getStringExtra("lstWorkType");
-                txt_WorkType.setText(message);
+                txt_WorkType.setTags(message.split(","));
             }
         }
+    }
+    private void setIcon(){
+        btn_AddWorkType.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
     }
 }
 
