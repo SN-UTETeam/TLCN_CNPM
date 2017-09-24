@@ -1,5 +1,7 @@
 package com.spkt.nguyenducnguu.jobstore.NTD;
 
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,8 +13,10 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.spkt.nguyenducnguu.jobstore.Adaper.RecyclerViewAdapter;
+import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.R;
 
 import java.util.ArrayList;
@@ -22,10 +26,12 @@ public class NTDSearchFilterFragment extends Fragment {
     private static final int HIDE_THRESHOLD = 20;
     private int scrolledDistance = 0;
     private boolean controlsVisible = true;
+
     LinearLayout linearLayout;
     RecyclerView mRecyclerView;
     ScrollView scrollView;
     RecyclerViewAdapter mRcvAdapter;
+    TextView txt_Filter;
     List<String> data;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,17 +39,28 @@ public class NTDSearchFilterFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.ntd_search_filer_fragment, container, false);
 
         //Method để sử dụng font awesome trong fragment
-        /*Typeface iconFont = FontManager.getTypeface(getContext(), FontManager.FONTAWESOME);
-        FontManager.markAsIconContainer(rootView.findViewById(R.id.Main), iconFont);*/
+        Typeface iconFont = FontManager.getTypeface(getContext(), FontManager.FONTAWESOME);
+        FontManager.markAsIconContainer(rootView.findViewById(R.id.txt_Filter), iconFont);
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_list_uv);
-
         linearLayout = (LinearLayout) rootView.findViewById(R.id.ln_filter);
+        txt_Filter = (TextView) rootView.findViewById(R.id.txt_Filter);
+
         addOnScrolled();
         addData();
+        addEvent();
         setmRecyclerView();
 
         return rootView;
+    }
+    private void addEvent(){
+        txt_Filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(getActivity(), NTDFilterActivity.class);
+                startActivity(myIntent);
+            }
+        });
     }
     private void addOnScrolled(){
 

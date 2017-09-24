@@ -15,6 +15,17 @@
 
     <string name="fa_arrow_left">&#xf060;</string>
 
+    <string name="fa_filter">&#xf0b0;</string>
+
+    <string name="fa_group">&#xf0c0;</string>
+
+    <string name="fa_briefcase">&#xf0b1;</string>
+
+    <string name="fa_university">&#xf19c;</string>
+
+    <string name="fa_badge">&#xf2c1;</string>
+
+    <string name="fa_star">&#xf005;</string>
     <string-array name="work_types">
         <item>Thực tập</item>
         <item>Nhân viên</item>
@@ -36,9 +47,10 @@
     </string-array>
 
     <string-array name="workexps">
-        <item>Lĩnh vực</item>
+        <item>Ngành nghề</item>
+        <item>Loại hình</item>
         <item>Kinh nghiệm</item>
-        <item>Chức vụ</item>
-        <item>Công ty</item>
+        <item>Trình độ</item>
+        <item>Nơi làm việc</item>
     </string-array>
 </resources>
