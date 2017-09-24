@@ -21,45 +21,39 @@ import java.util.Date;
 public class NTDPostRecruitmentFragment extends Fragment {
 
     Calendar cal = Calendar.getInstance();
-    Button btnDangTai;
-    EditText edtWorkType;
-    TextView edtExpirationTime;
+    Button btn_Complete;
+    EditText txt_WorkType;
+    TextView txt_ExpirationTime;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.ntd_post_recruitment_fragment, container, false);
 
+        addView(rootView);
+        addEvent();
 
-        edtExpirationTime = (EditText) rootView.findViewById(R.id.edt_ExpirationTime);
-        edtWorkType = (EditText) rootView.findViewById(R.id.edt_Worktype);
-
-         addEvent();
-        /*btn = (Button) rootView.findViewById(R.id.buttonNext);
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(getContext() , NTDSelectWorkTypeActivity.class);
-                startActivity(myIntent);
-            }
-        });*/
         return rootView;
+    }
+    private void addView(View rootView)
+    {
+        txt_ExpirationTime = (EditText) rootView.findViewById(R.id.txt_ExpirationTime);
+        txt_WorkType = (EditText) rootView.findViewById(R.id.txt_WorkType);
     }
     private void addEvent()
     {
-        edtExpirationTime.setOnClickListener(new View.OnClickListener() {
+        txt_ExpirationTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog();
             }
         });
 
-        edtWorkType.setOnClickListener(new View.OnClickListener() {
+        txt_WorkType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), NTDSelectWorkTypeActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(getActivity(), SelectWorkTypeActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
     }
@@ -69,18 +63,18 @@ public class NTDPostRecruitmentFragment extends Fragment {
                                   int monthOfYear,
                                   int dayOfMonth) {
                 //Mỗi lần thay đổi ngày tháng năm thì cập nhật lại TextView
-                edtExpirationTime.setText((dayOfMonth) + "/" + (monthOfYear + 1) + "/" + year);
+                txt_ExpirationTime.setText((dayOfMonth) + "/" + (monthOfYear + 1) + "/" + year);
                 //Lưu vết lại biến ngày hoàn thành
                 cal.set(year, monthOfYear, dayOfMonth);
             }
         };
         //các lệnh dưới này xử lý ngày giờ trong DatePickerDialog
         //sẽ giống với trên TextView khi mở nó lên
-        if (edtExpirationTime.getText().length() == 0) {
+        if (txt_ExpirationTime.getText().length() == 0) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            edtExpirationTime.setText(sdf.format(new Date()));
+            txt_ExpirationTime.setText(sdf.format(new Date()));
         }
-        String s = edtExpirationTime.getText() + "";
+        String s = txt_ExpirationTime.getText() + "";
         String strArrtmp[] = s.split("/");
         int ngay = Integer.parseInt(strArrtmp[0]);
         int thang = Integer.parseInt(strArrtmp[1]) - 1;
@@ -90,6 +84,19 @@ public class NTDPostRecruitmentFragment extends Fragment {
                 callback, nam, thang, ngay);
         pic.setTitle("Chọn ngày hết hạn");
         pic.show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1)
+        {
+            if(data != null) {
+                String message = data.getStringExtra("lstWorkType");
+                txt_WorkType.setText(message);
+            }
+        }
     }
 }
 
