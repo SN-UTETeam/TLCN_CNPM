@@ -10,56 +10,46 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.spkt.nguyenducnguu.jobstore.Adaper.WorkTypeListAdapter;
-import com.spkt.nguyenducnguu.jobstore.Models.WorkType;
+import com.spkt.nguyenducnguu.jobstore.Adaper.CareerListAdapter;
+import com.spkt.nguyenducnguu.jobstore.Models.Career;
 import com.spkt.nguyenducnguu.jobstore.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class SelectWorkTypeActivity extends AppCompatActivity {
-
+public class SelectCarrerActivity extends AppCompatActivity {
     Button btn_Finish;
-    ListView lv_WorkType;
+    ListView lv_Career;
     ImageView imgv_Back;
-    List<WorkType> lstWorkType = new ArrayList<WorkType>();
-    List<String> lstWorkTypeSelected = new ArrayList<String>();
+    List<Career> lstCareer = new ArrayList<Career>();
     private int index = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_worktype);
+        setContentView(R.layout.activity_select_carrer);
 
         addView();
         addEvent();
 
-        Intent intent = getIntent();
-        if(intent != null){
-            if(intent.getStringExtra("lstWorkTypeSelected") != null)
-                lstWorkTypeSelected = Arrays.asList(intent.getStringExtra("lstWorkTypeSelected").split(","));
-        }
-        Toast.makeText(SelectWorkTypeActivity.this, intent.getStringExtra("lstWorkTypeSelected"), Toast.LENGTH_SHORT).show();
-        lv_WorkType.setAdapter(new WorkTypeListAdapter(this, lstWorkType, lstWorkTypeSelected));
+        lv_Career.setAdapter(new CareerListAdapter(this, lstCareer));
 
         loadData();
     }
 
     private void loadData() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.getReference("WorkTypes").addChildEventListener(new ChildEventListener() {
+        database.getReference("Careers").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                WorkType workType = dataSnapshot.getValue(WorkType.class);
-                lstWorkType.add(workType);
-                ((BaseAdapter) lv_WorkType.getAdapter()).notifyDataSetChanged();
+                Career career = dataSnapshot.getValue(Career.class);
+                lstCareer.add(career);
+                ((BaseAdapter) lv_Career.getAdapter()).notifyDataSetChanged();
             }
 
             @Override
@@ -86,7 +76,7 @@ public class SelectWorkTypeActivity extends AppCompatActivity {
 
     private void addView() {
         btn_Finish = (Button) findViewById(R.id.btn_Finish);
-        lv_WorkType = (ListView) findViewById(R.id.lv_WorkType);
+        lv_Career = (ListView) findViewById(R.id.lv_Career);
         imgv_Back = (ImageView) findViewById(R.id.imgv_Back);
     }
 
@@ -102,19 +92,18 @@ public class SelectWorkTypeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String data = "";
-                for (int i = 0; i < lv_WorkType.getChildCount(); i++) {
-                    CheckBox cb = (CheckBox) lv_WorkType.getChildAt(i).findViewById(R.id.cb_Check);
-                    TextView tv = (TextView) lv_WorkType.getChildAt(i).findViewById(R.id.txt_Name);
+                for (int i = 0; i < lv_Career.getChildCount(); i++) {
+                    CheckBox cb = (CheckBox) lv_Career.getChildAt(i).findViewById(R.id.cb_Check);
+                    TextView tv = (TextView) lv_Career.getChildAt(i).findViewById(R.id.txt_Name);
                     if (cb.isChecked()) data += tv.getText() + ",";
                 }
                 if (data != "") data = data.substring(0, data.length() - 1);
                 Intent intent = new Intent();
-                intent.putExtra("lstWorkType", data);
-                setResult(1, intent);
+                intent.putExtra("lstCareer", data);
+                setResult(2, intent);
 
                 finish();
             }
         });
     }
-
 }

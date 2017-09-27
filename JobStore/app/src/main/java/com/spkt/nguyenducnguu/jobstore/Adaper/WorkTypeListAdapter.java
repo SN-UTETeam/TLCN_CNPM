@@ -15,12 +15,14 @@ import java.util.List;
 
 public class WorkTypeListAdapter extends BaseAdapter {
     private List<WorkType> listData;
+    private List<String> listDataSelected;
     private LayoutInflater layoutInflater;
     private Context context;
 
-    public WorkTypeListAdapter(Context aContext,  List<WorkType> listData) {
+    public WorkTypeListAdapter(Context aContext,  List<WorkType> listData,  List<String> listDataSelected) {
         this.context = aContext;
         this.listData = listData;
+        this.listDataSelected = listDataSelected;
         layoutInflater = LayoutInflater.from(aContext);
     }
 
@@ -51,6 +53,9 @@ public class WorkTypeListAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         holder.txt_Name.setText(this.listData.get(position).getName());
+        if(listDataSelected.indexOf(this.listData.get(position).getName()) != -1){
+            holder.cb_Check.setChecked(true);
+        }
         return convertView;
     }
 

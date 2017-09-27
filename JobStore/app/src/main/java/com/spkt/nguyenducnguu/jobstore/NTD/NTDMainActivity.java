@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.spkt.nguyenducnguu.jobstore.LoginActivity;
 import com.spkt.nguyenducnguu.jobstore.R;
 
@@ -105,6 +106,8 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
             toolbar.setTitle("Quản lý hồ sơ");
 
         } else if (id == R.id.nav_logout) {
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            firebaseAuth.signOut();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();

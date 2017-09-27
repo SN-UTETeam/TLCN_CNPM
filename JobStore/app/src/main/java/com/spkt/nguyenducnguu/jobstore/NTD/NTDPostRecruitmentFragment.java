@@ -26,8 +26,9 @@ public class NTDPostRecruitmentFragment extends Fragment {
     Calendar cal = Calendar.getInstance();
     Button btn_Complete;
     TagsEditText txt_WorkType;
+    TagsEditText txt_Career;
     TextView txt_ExpirationTime;
-    Button btn_AddWorkType;
+    Button btn_AddWorkType, btn_AddCareer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,8 +44,9 @@ public class NTDPostRecruitmentFragment extends Fragment {
     {
         txt_ExpirationTime = (EditText) rootView.findViewById(R.id.txt_ExpirationTime);
         txt_WorkType = (TagsEditText) rootView.findViewById(R.id.txt_WorkType);
-
+        txt_Career= (TagsEditText) rootView.findViewById(R.id.txt_Career);
         btn_AddWorkType = (Button) rootView.findViewById(R.id.btn_AddWorkType);
+        btn_AddCareer = (Button) rootView.findViewById(R.id.btn_AddCareer);
     }
     private void addEvent()
     {
@@ -59,7 +61,21 @@ public class NTDPostRecruitmentFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectWorkTypeActivity.class);
+                String data = "";
+                for(int i = 0; i < txt_WorkType.getTags().size(); i++)
+                {
+                    data += txt_WorkType.getTags().get(i) + ",";
+                }
+                if(data.length() > 0) data = data.substring(0, data.length() - 1);
+                intent.putExtra("lstWorkTypeSelected", data);
                 startActivityForResult(intent, 1);
+            }
+        });
+        btn_AddCareer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SelectCarrerActivity.class);
+                startActivityForResult(intent,2);
             }
         });
     }
@@ -96,16 +112,22 @@ public class NTDPostRecruitmentFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 1)
-        {
+        if(requestCode == 1){
             if(data != null) {
                 String message = data.getStringExtra("lstWorkType");
                 txt_WorkType.setTags(message.split(","));
             }
         }
+        else if(requestCode == 2){
+            if(data != null) {
+                String message = data.getStringExtra("lstCareer");
+                txt_Career.setTags(message.split(","));
+            }
+        }
     }
     private void setIcon(){
         btn_AddWorkType.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
+        btn_AddCareer.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
     }
 }
 
