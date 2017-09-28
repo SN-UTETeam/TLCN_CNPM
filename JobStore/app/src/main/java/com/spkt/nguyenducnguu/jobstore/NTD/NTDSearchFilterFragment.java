@@ -42,16 +42,18 @@ public class NTDSearchFilterFragment extends Fragment {
         Typeface iconFont = FontManager.getTypeface(getContext(), FontManager.FONTAWESOME);
         FontManager.markAsIconContainer(rootView.findViewById(R.id.txt_Filter), iconFont);
 
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_list_uv);
-        linearLayout = (LinearLayout) rootView.findViewById(R.id.ln_filter);
-        txt_Filter = (TextView) rootView.findViewById(R.id.txt_Filter);
-
+        addView(rootView);
         addOnScrolled();
         addData();
         addEvent();
         setmRecyclerView();
 
         return rootView;
+    }
+    private void addView(View rootView){
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_list_uv);
+        linearLayout = (LinearLayout) rootView.findViewById(R.id.ln_filter);
+        txt_Filter = (TextView) rootView.findViewById(R.id.txt_Filter);
     }
     private void addEvent(){
         txt_Filter.setOnClickListener(new View.OnClickListener() {

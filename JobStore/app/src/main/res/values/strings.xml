@@ -3,7 +3,12 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
+    </style>
+    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
     //icon_fontawesome
     <string name="fa_list">&#xf03a;</string>
 
@@ -28,6 +33,17 @@
     <string name="fa_star">&#xf005;</string>
 
     <string name="fa_plus">&#xf067;</string>
+
+    <string name="fa_gender">&#xf224;</string>
+
+    <string name="fa_phone">&#xf10b;</string>
+
+    <string name="fa_info">&#xf05a;</string>
+
+    <string name="fa_camera">&#xf030;</string>
+
+    <string name="fa_pen">&#xf044;</string>
+
     <string-array name="work_types">
         <item>Thực tập</item>
         <item>Nhân viên</item>
