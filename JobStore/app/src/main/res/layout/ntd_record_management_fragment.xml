@@ -5,10 +5,11 @@
     android:orientation="vertical">
 
     <ScrollView
-        android:layout_above="@+id/bottom_panel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:id="@+id/ln_profile"
@@ -47,11 +48,27 @@
                             android:layout_marginRight="10dp">
 
                             <Button
-                                android:id="@+id/btn_UpCoverPhoto"
+                                android:id="@+id/btn_ChangeProfile"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/btn_plus"
                                 android:text="@string/fa_pencil"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginTop="80dp"
+                            android:layout_marginLeft="10dp">
+
+                            <Button
+                                android:id="@+id/btn_UpLoadImage"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/btn_plus"
+                                android:text="@string/fa_camera"
                                 android:textColor="@color/white" />
                         </LinearLayout>
 
@@ -100,7 +117,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_weight="2"
                 android:orientation="vertical"
-                android:weightSum="5">
+                android:weightSum="7">
 
                 <View
                     android:layout_width="match_parent"
@@ -114,7 +131,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txt_icon6"
+                        android:id="@+id/txt_icon1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -145,7 +162,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txt_icon1"
+                        android:id="@+id/txt_icon2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -176,7 +193,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txt_icon2"
+                        android:id="@+id/txt_icon3"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -208,7 +225,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txt_icon7"
+                        android:id="@+id/txt_icon4"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -235,15 +252,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txt_icon3"
+                        android:id="@+id/txt_icon5"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="center|top"
                         android:text="@string/fa_info"
                         android:textColor="@color/appcolor"
                         android:textSize="20dp" />
@@ -252,7 +269,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="4"
-                        android:gravity="center|left"
+                        android:gravity="center|left|top"
                         android:text="Giới thiệu công ty"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -269,74 +286,4 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/dark"></View>
-    <LinearLayout
-        android:id="@+id/bottom_panel"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:id="@+id/ln_uploadAvatar"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txt_icon4"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
-                android:gravity="center|bottom"
-                android:text="@string/fa_camera"
-                android:textColor="@color/appcolor"
-                android:textSize="30dp" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Tải ảnh đại diện"
-                android:textColor="@color/appcolor"
-                android:textSize="15dp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/dark"></View>
-
-        <LinearLayout
-            android:id="@+id/ln_changeProfile"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txt_icon5"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
-                android:gravity="center|bottom"
-                android:text="@string/fa_pen"
-                android:textColor="@color/appcolor"
-                android:textSize="30dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Chính sửa thông tin"
-                android:textColor="@color/appcolor"
-                android:textSize="15dp" />
-        </LinearLayout>
-    </LinearLayout>
 </RelativeLayout>

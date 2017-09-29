@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
@@ -20,8 +19,7 @@ import com.spkt.nguyenducnguu.jobstore.R;
 
 public class NTDRecordManagementFragment extends Fragment {
     ImageView img_CoverPhoto;
-    Button btn_UpCoverPhoto;
-    LinearLayout ln_changeProfile;
+    Button btn_ChangeProfile, btn_UpLoadImage;
     TextView txt_icon1,txt_icon2,txt_icon3,txt_icon4,txt_icon5, txt_icon6, txt_icon7;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,8 +34,8 @@ public class NTDRecordManagementFragment extends Fragment {
 
     private void addView(View rootView){
         img_CoverPhoto = (ImageView) rootView.findViewById(R.id.img_CoverPhoto);
-        btn_UpCoverPhoto = (Button) rootView.findViewById(R.id.btn_UpCoverPhoto);
-        ln_changeProfile = (LinearLayout) rootView.findViewById(R.id.ln_changeProfile);
+        btn_ChangeProfile = (Button) rootView.findViewById(R.id.btn_ChangeProfile);
+        btn_UpLoadImage = (Button) rootView.findViewById(R.id.btn_UpLoadImage);
         txt_icon1 = (TextView) rootView.findViewById(R.id.txt_icon1);
         txt_icon2 = (TextView) rootView.findViewById(R.id.txt_icon2);
         txt_icon3 = (TextView) rootView.findViewById(R.id.txt_icon3);
@@ -49,7 +47,7 @@ public class NTDRecordManagementFragment extends Fragment {
     }
     private void addEvent()
     {
-        ln_changeProfile.setOnClickListener(new View.OnClickListener() {
+        btn_ChangeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myItent = new Intent(getActivity(), NTDChangeProfile.class);
@@ -63,8 +61,7 @@ public class NTDRecordManagementFragment extends Fragment {
         txt_icon3.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
         txt_icon4.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
         txt_icon5.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
-        txt_icon6.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
-        txt_icon7.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
-        btn_UpCoverPhoto.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
+        btn_ChangeProfile.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
+        btn_UpLoadImage.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
     }
 }

@@ -52,6 +52,10 @@
 
     <string name="fa_pencil">&#xf040;</string>
 
+    <string name="fa_address">&#xf2bc;</string>
+
+    <string name="fa_company">&#xf19c;</string>
+
     <string-array name="work_types">
         <item>Thực tập</item>
         <item>Nhân viên</item>
