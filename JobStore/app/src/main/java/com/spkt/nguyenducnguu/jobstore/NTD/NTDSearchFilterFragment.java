@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.spkt.nguyenducnguu.jobstore.Adaper.RecyclerViewAdapter;
+import com.spkt.nguyenducnguu.jobstore.Adaper.RecyclerViewSearchListAdapter;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.R;
 
@@ -30,7 +30,7 @@ public class NTDSearchFilterFragment extends Fragment {
     LinearLayout linearLayout;
     RecyclerView mRecyclerView;
     ScrollView scrollView;
-    RecyclerViewAdapter mRcvAdapter;
+    RecyclerViewSearchListAdapter mRcvAdapter;
     TextView txt_Filter;
     List<String> data;
     @Override
@@ -109,7 +109,7 @@ public class NTDSearchFilterFragment extends Fragment {
         data.add("Trần Minh Hải");
         data.add("Trần Minh Hải");
 
-        mRcvAdapter = new RecyclerViewAdapter(data);
+        mRcvAdapter = new RecyclerViewSearchListAdapter(data);
     }
     private void setmRecyclerView(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());

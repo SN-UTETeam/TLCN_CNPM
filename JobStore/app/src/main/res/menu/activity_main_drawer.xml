@@ -13,6 +13,8 @@
 
     <item android:title="Thông tin chi tiết" android:id="@+id/Menu_2">
         <menu>
+            <item android:id="@+id/nav_notification" android:icon="@drawable/ic_notifications_none_black_24dp"
+                android:title="Thông báo" />
             <item android:id="@+id/nav_record" android:icon="@android:drawable/ic_menu_always_landscape_portrait"
                 android:title="Quản lý hồ sơ" />
             <item android:id="@+id/nav_logout" android:icon="@android:drawable/ic_lock_power_off"

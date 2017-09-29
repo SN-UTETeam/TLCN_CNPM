@@ -56,6 +56,8 @@
 
     <string name="fa_company">&#xf19c;</string>
 
+    <string name="fa_bell">&#xf0a2;</string>
+
     <string-array name="work_types">
         <item>Thực tập</item>
         <item>Nhân viên</item>

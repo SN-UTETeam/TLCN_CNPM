@@ -97,6 +97,14 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
 
             toolbar.setTitle("Quản lý thông tin tuyển dụng");
 
+        }else if (id == R.id.nav_notification) {
+            NTDNotificationFragment fragment = new NTDNotificationFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+
+            toolbar.setTitle("Thông báo");
+
         } else if (id == R.id.nav_record) {
             NTDRecordManagementFragment fragment = new NTDRecordManagementFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
