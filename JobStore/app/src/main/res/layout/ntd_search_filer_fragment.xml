@@ -35,7 +35,6 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@null"
                 android:cursorVisible="false"
                 android:drawableLeft="@android:drawable/ic_menu_search"
                 android:drawablePadding="15dp"
@@ -43,6 +42,7 @@
                 android:textColorHint="@color/white"
                 android:textColor="@color/white"
                 android:lines="1"
+                android:background="@null"
                 android:textColorHighlight="@color/appcolor"
                 android:textSize="15sp" />
         </LinearLayout>

@@ -83,7 +83,9 @@
                 android:layout_weight="4"
                 android:gravity="center|left"
                 android:hint="Trần Anh Sơn"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:lines="1"
+                android:background="@null"/>
         </LinearLayout>
 
         <View
@@ -114,7 +116,9 @@
                 android:layout_weight="4"
                 android:gravity="center|left"
                 android:hint="Nam"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:lines="1"
+                android:background="@null"/>
         </LinearLayout>
 
         <View
@@ -132,7 +136,7 @@
                 android:id="@+id/txt_icon3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.90"
                 android:gravity="center"
                 android:text="@string/fa_address"
                 android:textColor="@color/appcolor"
@@ -145,8 +149,16 @@
                 android:layout_weight="4"
                 android:gravity="center|left"
                 android:hint="HBB Solution"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:lines="1"
+                android:background="@null"/>
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark"></View>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -170,8 +182,16 @@
                 android:layout_weight="4"
                 android:gravity="center|left"
                 android:hint="244 Cống Quỳnh, Phường Phạm Ngũ Lão, Quận 1, TP HCM"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:lines="1"
+                android:background="@null"/>
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark"></View>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -186,7 +206,7 @@
                 android:gravity="center"
                 android:text="@string/fa_phone"
                 android:textColor="@color/appcolor"
-                android:textSize="20dp" />
+                android:textSize="23dp" />
 
             <EditText
                 android:id="@+id/edt_Phone"
@@ -195,14 +215,15 @@
                 android:layout_weight="4"
                 android:gravity="center|left"
                 android:hint="01694043472"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:lines="1"
+                android:background="@null"/>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/dark"></View>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -227,7 +248,9 @@
                 android:layout_weight="4"
                 android:gravity="center|left"
                 android:hint="https://hbbsolution.com"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:lines="1"
+                android:background="@null"/>
         </LinearLayout>
 
         <View
@@ -239,6 +262,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3.5"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -258,7 +282,9 @@
                 android:layout_weight="4"
                 android:gravity="center|left|top"
                 android:hint="Giới thiệu công ty"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:lines="5"
+                android:background="@null"/>
         </LinearLayout>
 
         <View
