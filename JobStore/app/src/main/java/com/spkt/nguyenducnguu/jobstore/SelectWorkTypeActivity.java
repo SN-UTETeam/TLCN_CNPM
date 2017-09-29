@@ -32,6 +32,8 @@ public class SelectWorkTypeActivity extends AppCompatActivity {
     List<WorkType> lstWorkType = new ArrayList<WorkType>();
     List<String> lstWorkTypeSelected = new ArrayList<String>();
     private int countItemSelected = 0;
+    private static final int MAX_SELECT = 3;
+    private static final String TITLE = "Chọn loại hình công việc";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,7 @@ public class SelectWorkTypeActivity extends AppCompatActivity {
             {
                 lstWorkTypeSelected = Arrays.asList(intent.getStringExtra("lstWorkTypeSelected").split(", "));
                 countItemSelected = lstWorkTypeSelected.size();
-                txt_Title.setText("(" + countItemSelected + "/3) Chọn loại hình công việc");
+                txt_Title.setText("(" + countItemSelected + "/" + MAX_SELECT + ") " + TITLE);
             }
         }
         Toast.makeText(SelectWorkTypeActivity.this, "'" + intent.getStringExtra("lstWorkTypeSelected") + "'", Toast.LENGTH_SHORT).show();
@@ -109,12 +111,12 @@ public class SelectWorkTypeActivity extends AppCompatActivity {
                 if(img.getVisibility() == View.VISIBLE)
                 {
                     img.setVisibility(View.INVISIBLE);
-                    txt_Title.setText("(" + (--countItemSelected) + "/3) Chọn loại hình công việc");
+                    txt_Title.setText("(" + (--countItemSelected) + "/" + MAX_SELECT + ") " + TITLE);
                 }
                 else if(countItemSelected < 3)
                 {
                     img.setVisibility(View.VISIBLE);
-                    txt_Title.setText("(" + (++countItemSelected) + "/3) Chọn loại hình công việc");
+                    txt_Title.setText("(" + (++countItemSelected) + "/" + MAX_SELECT + ") " + TITLE);
                 }
             }
         });
