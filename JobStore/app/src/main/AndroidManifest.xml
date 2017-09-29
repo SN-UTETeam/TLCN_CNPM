@@ -25,9 +25,10 @@
         <activity android:name=".ADMIN.AdminMainActivity" />
         <activity android:name=".ResultRegisterActivity" />
         <activity android:name=".NTD.NTDFilterActivity" />
-        <activity android:name=".NTD.SelectWorkTypeActivity" />
-        <activity android:name=".NTD.SelectCarrerActivity" />
         <activity android:name=".NTD.NTDChangeProfile"></activity>
+
+        <activity android:name=".SelectWorkTypeActivity" />
+        <activity android:name=".SelectCarrerActivity"></activity>
     </application>
 
 </manifest>

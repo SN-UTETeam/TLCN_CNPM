@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.R;
+import com.spkt.nguyenducnguu.jobstore.SelectCarrerActivity;
+import com.spkt.nguyenducnguu.jobstore.SelectWorkTypeActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -61,12 +63,7 @@ public class NTDPostRecruitmentFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectWorkTypeActivity.class);
-                String data = "";
-                for(int i = 0; i < txt_WorkType.getTags().size(); i++)
-                {
-                    data += txt_WorkType.getTags().get(i) + ",";
-                }
-                if(data.length() > 0) data = data.substring(0, data.length() - 1);
+                String data = txt_WorkType.getTags().toString().substring(1, txt_WorkType.getTags().toString().length() - 1);
                 intent.putExtra("lstWorkTypeSelected", data);
                 startActivityForResult(intent, 1);
             }
@@ -75,6 +72,8 @@ public class NTDPostRecruitmentFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectCarrerActivity.class);
+                String data = txt_Career.getTags().toString().substring(1, txt_Career.getTags().toString().length() - 1);
+                intent.putExtra("lstCareerSelected", data);
                 startActivityForResult(intent,2);
             }
         });

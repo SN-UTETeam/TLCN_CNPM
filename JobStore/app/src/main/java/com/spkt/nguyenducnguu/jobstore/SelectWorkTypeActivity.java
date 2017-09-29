@@ -1,12 +1,12 @@
-package com.spkt.nguyenducnguu.jobstore.NTD;
+package com.spkt.nguyenducnguu.jobstore;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,7 +18,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.spkt.nguyenducnguu.jobstore.Adaper.WorkTypeListAdapter;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkType;
-import com.spkt.nguyenducnguu.jobstore.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,9 +28,10 @@ public class SelectWorkTypeActivity extends AppCompatActivity {
     Button btn_Finish;
     ListView lv_WorkType;
     ImageView imgv_Back;
+    TextView txt_Title;
     List<WorkType> lstWorkType = new ArrayList<WorkType>();
     List<String> lstWorkTypeSelected = new ArrayList<String>();
-    private int index = 0;
+    private int countItemSelected = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +43,14 @@ public class SelectWorkTypeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if(intent != null){
-            if(intent.getStringExtra("lstWorkTypeSelected") != null)
-                lstWorkTypeSelected = Arrays.asList(intent.getStringExtra("lstWorkTypeSelected").split(","));
+            if(!intent.getStringExtra("lstWorkTypeSelected").isEmpty())
+            {
+                lstWorkTypeSelected = Arrays.asList(intent.getStringExtra("lstWorkTypeSelected").split(", "));
+                countItemSelected = lstWorkTypeSelected.size();
+                txt_Title.setText("(" + countItemSelected + "/3) Chọn loại hình công việc");
+            }
         }
-        Toast.makeText(SelectWorkTypeActivity.this, intent.getStringExtra("lstWorkTypeSelected"), Toast.LENGTH_SHORT).show();
+        Toast.makeText(SelectWorkTypeActivity.this, "'" + intent.getStringExtra("lstWorkTypeSelected") + "'", Toast.LENGTH_SHORT).show();
         lv_WorkType.setAdapter(new WorkTypeListAdapter(this, lstWorkType, lstWorkTypeSelected));
 
         loadData();
@@ -88,6 +92,7 @@ public class SelectWorkTypeActivity extends AppCompatActivity {
         btn_Finish = (Button) findViewById(R.id.btn_Finish);
         lv_WorkType = (ListView) findViewById(R.id.lv_WorkType);
         imgv_Back = (ImageView) findViewById(R.id.imgv_Back);
+        txt_Title = (TextView) findViewById(R.id.txt_Title);
     }
 
     private void addEvent() {
@@ -97,15 +102,30 @@ public class SelectWorkTypeActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        lv_WorkType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ImageView img = (ImageView) view.findViewById(R.id.img_Check);
+                if(img.getVisibility() == View.VISIBLE)
+                {
+                    img.setVisibility(View.INVISIBLE);
+                    txt_Title.setText("(" + (--countItemSelected) + "/3) Chọn loại hình công việc");
+                }
+                else if(countItemSelected < 3)
+                {
+                    img.setVisibility(View.VISIBLE);
+                    txt_Title.setText("(" + (++countItemSelected) + "/3) Chọn loại hình công việc");
+                }
+            }
+        });
         btn_Finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String data = "";
                 for (int i = 0; i < lv_WorkType.getChildCount(); i++) {
-                    CheckBox cb = (CheckBox) lv_WorkType.getChildAt(i).findViewById(R.id.cb_Check);
+                    ImageView img = (ImageView) lv_WorkType.getChildAt(i).findViewById(R.id.img_Check);
                     TextView tv = (TextView) lv_WorkType.getChildAt(i).findViewById(R.id.txt_Name);
-                    if (cb.isChecked()) data += tv.getText() + ",";
+                    if (img.getVisibility() == View.VISIBLE) data += tv.getText() + ",";
                 }
                 if (data != "") data = data.substring(0, data.length() - 1);
                 Intent intent = new Intent();

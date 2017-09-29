@@ -1,12 +1,12 @@
-package com.spkt.nguyenducnguu.jobstore.NTD;
+package com.spkt.nguyenducnguu.jobstore;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,17 +17,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.spkt.nguyenducnguu.jobstore.Adaper.CareerListAdapter;
 import com.spkt.nguyenducnguu.jobstore.Models.Career;
-import com.spkt.nguyenducnguu.jobstore.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SelectCarrerActivity extends AppCompatActivity {
     Button btn_Finish;
     ListView lv_Career;
     ImageView imgv_Back;
+    TextView txt_Title;
     List<Career> lstCareer = new ArrayList<Career>();
-    private int index = 0;
+    List<String> lstCareerSelected = new ArrayList<String>();
+    private int countItemSelected = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,17 @@ public class SelectCarrerActivity extends AppCompatActivity {
         addView();
         addEvent();
 
-        lv_Career.setAdapter(new CareerListAdapter(this, lstCareer));
+        Intent intent = getIntent();
+        if(intent != null){
+            if(!intent.getStringExtra("lstCareerSelected").isEmpty())
+            {
+                lstCareerSelected = Arrays.asList(intent.getStringExtra("lstCareerSelected").split(", "));
+                countItemSelected = lstCareerSelected.size();
+                txt_Title.setText("(" + countItemSelected + "/3) Chọn ngành nghề");
+            }
+        }
+
+        lv_Career.setAdapter(new CareerListAdapter(this, lstCareer, lstCareerSelected));
 
         loadData();
     }
@@ -78,6 +90,7 @@ public class SelectCarrerActivity extends AppCompatActivity {
         btn_Finish = (Button) findViewById(R.id.btn_Finish);
         lv_Career = (ListView) findViewById(R.id.lv_Career);
         imgv_Back = (ImageView) findViewById(R.id.imgv_Back);
+        txt_Title = (TextView) findViewById(R.id.txt_Title);
     }
 
     private void addEvent() {
@@ -88,14 +101,30 @@ public class SelectCarrerActivity extends AppCompatActivity {
             }
         });
 
+        lv_Career.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ImageView img = (ImageView) view.findViewById(R.id.img_Check);
+                if(img.getVisibility() == View.VISIBLE)
+                {
+                    img.setVisibility(View.INVISIBLE);
+                    txt_Title.setText("(" + (--countItemSelected) + "/3) Chọn ngành nghề");
+                }
+                else if(countItemSelected < 3)
+                {
+                    img.setVisibility(View.VISIBLE);
+                    txt_Title.setText("(" + (++countItemSelected) + "/3) Chọn ngành nghề");
+                }
+            }
+        });
         btn_Finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String data = "";
                 for (int i = 0; i < lv_Career.getChildCount(); i++) {
-                    CheckBox cb = (CheckBox) lv_Career.getChildAt(i).findViewById(R.id.cb_Check);
+                    ImageView img = (ImageView) lv_Career.getChildAt(i).findViewById(R.id.img_Check);
                     TextView tv = (TextView) lv_Career.getChildAt(i).findViewById(R.id.txt_Name);
-                    if (cb.isChecked()) data += tv.getText() + ",";
+                    if (img.getVisibility() == View.VISIBLE) data += tv.getText() + ",";
                 }
                 if (data != "") data = data.substring(0, data.length() - 1);
                 Intent intent = new Intent();
