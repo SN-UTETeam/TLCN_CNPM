@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.spkt.nguyenducnguu.jobstore.Models.WorkType;
@@ -46,7 +46,7 @@ public class WorkTypeListAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.list_item_worktype_layout, null);
             holder = new ViewHolder();
-            holder.cb_Check = (CheckBox) convertView.findViewById(R.id.cb_Check);
+            holder.img_Check = (ImageView) convertView.findViewById(R.id.img_Check);
             holder.txt_Name = (TextView) convertView.findViewById(R.id.txt_Name);
             convertView.setTag(holder);
         } else {
@@ -54,13 +54,13 @@ public class WorkTypeListAdapter extends BaseAdapter {
         }
         holder.txt_Name.setText(this.listData.get(position).getName());
         if(listDataSelected.indexOf(this.listData.get(position).getName()) != -1){
-            holder.cb_Check.setChecked(true);
+            holder.img_Check.setVisibility(View.VISIBLE);
         }
         return convertView;
     }
 
     static class ViewHolder {
-        CheckBox cb_Check;
+        ImageView img_Check;
         TextView txt_Name;
     }
 }
