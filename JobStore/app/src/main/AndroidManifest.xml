@@ -28,6 +28,9 @@
         <activity android:name=".NTD.NTDChangeProfile" />
         <activity android:name=".SelectWorkTypeActivity" />
         <activity android:name=".SelectCarrerActivity" />
+        <activity android:name=".SelectLevelActivity" />
+        <activity android:name=".SelectExperienceActivity" />
+        <activity android:name=".SelectSalaryActivity"></activity>
     </application>
 
 </manifest>

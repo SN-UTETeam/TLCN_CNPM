@@ -50,7 +50,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
-                        android:enabled="false"
                         android:textSize="15dp" />
                 </LinearLayout>
 
@@ -86,6 +85,7 @@
                     <TextView
                         android:id="@+id/txt_CompanyName"
                         android:layout_width="match_parent"
+                        android:text="VNG CORPORATION"
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
                         android:textSize="15dp" />
@@ -324,7 +324,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_margin="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
@@ -344,25 +344,43 @@
                         android:textSize="15sp" />
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="7">
 
-                    <EditText
+                    <mabbas007.tagsedittext.TagsEditText
                         android:id="@+id/txt_Level"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
-                        android:focusable="false"
-                        android:textSize="15dp" />
-                </LinearLayout>
+                        android:textSize="12sp"
+                        app:allowSpaceInTag="true"
+                        app:tagsBackground="@drawable/square"
+                        app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
+                        app:tagsCloseImageRight="@drawable/tag_close"
+                        app:tagsTextColor="@color/white"
+                        app:tagsTextSize="10sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
+
+                    <Button
+                        android:id="@+id/btn_AddLevel"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/btn_plus"
+                        android:text="@string/fa_plus"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_margin="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
@@ -382,19 +400,37 @@
                         android:textSize="15sp" />
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="7">
 
-                    <EditText
+                    <mabbas007.tagsedittext.TagsEditText
                         android:id="@+id/txt_Experience"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
-                        android:focusable="false"
-                        android:textSize="15dp" />
-                </LinearLayout>
+                        android:textSize="12sp"
+                        app:allowSpaceInTag="true"
+                        app:tagsBackground="@drawable/square"
+                        app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
+                        app:tagsCloseImageRight="@drawable/tag_close"
+                        app:tagsTextColor="@color/white"
+                        app:tagsTextSize="10sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
+
+                    <Button
+                        android:id="@+id/btn_AddExperience"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/btn_plus"
+                        android:text="@string/fa_plus"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
 
             </LinearLayout>
 
@@ -468,7 +504,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:textSize="15dp"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -505,7 +542,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
-                        android:inputType="textMultiLine" />
+                        android:inputType="textMultiLine"
+                        android:textSize="15dp"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -542,7 +580,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
-                        android:inputType="textMultiLine" />
+                        android:inputType="textMultiLine"
+                        android:textSize="15dp"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -579,14 +618,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
-                        android:inputType="textMultiLine" />
+                        android:inputType="textMultiLine"
+                        android:textSize="15dp"/>
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
@@ -607,18 +647,37 @@
                         android:textSize="15sp" />
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="7">
 
-                    <EditText
+                    <mabbas007.tagsedittext.TagsEditText
                         android:id="@+id/txt_Salary"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
-                        android:focusable="false" />
-                </LinearLayout>
+                        android:textSize="12sp"
+                        app:allowSpaceInTag="true"
+                        app:tagsBackground="@drawable/square"
+                        app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
+                        app:tagsCloseImageRight="@drawable/tag_close"
+                        app:tagsTextColor="@color/white"
+                        app:tagsTextSize="10sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
+
+                    <Button
+                        android:id="@+id/btn_AddSalary"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/btn_plus"
+                        android:text="@string/fa_plus"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
 
             </LinearLayout>
 
@@ -632,7 +691,8 @@
                     android:id="@+id/btn_Complete"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/appcolor"
+                    android:background="@drawable/btn_custom"
+                    android:layout_margin="5dp"
                     android:gravity="center"
                     android:text="Đăng tải"
                     android:textColor="@color/white"
