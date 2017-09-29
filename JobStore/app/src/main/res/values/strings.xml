@@ -3,9 +3,11 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
     </style>
+
     <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
     </style>
@@ -43,6 +45,12 @@
     <string name="fa_camera">&#xf030;</string>
 
     <string name="fa_pen">&#xf044;</string>
+
+    <string name="fa_user">&#xf007;</string>
+
+    <string name="fa_link">&#xf127;</string>
+
+    <string name="fa_pencil">&#xf040;</string>
 
     <string-array name="work_types">
         <item>Thực tập</item>
