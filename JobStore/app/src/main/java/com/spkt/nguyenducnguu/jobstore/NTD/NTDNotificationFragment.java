@@ -43,7 +43,7 @@ public class NTDNotificationFragment extends Fragment {
     {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         List<Notification> lst = new ArrayList<Notification>();
-        lst.add(new Notification("Ứng tuyển vị trí Android", ));
+        lst.add(new Notification("Ứng tuyển vị trí Android", "ABC", , 0));
 
         for(int i = 0; i < lst.size(); i++)
         {
