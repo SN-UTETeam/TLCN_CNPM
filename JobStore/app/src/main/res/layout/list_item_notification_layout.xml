@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center|left"
+        android:background="@color/blue_custom">
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp">
+            <ImageView
+                android:id="@+id/imgv_avatar_uv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/txt_Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ứng tuyển vào vị trí Fresher Android"
+                android:textColor="@color/black"
+                android:textSize="15sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:id="@+id/txt_Date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="1/10/2017"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -79,7 +79,17 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
 
             toolbar.setTitle("Đăng tin");
 
-        } else if (id == R.id.nav_search) {
+        }else if (id == R.id.nav_home) {
+
+            NTDMainFragment fragment = new NTDMainFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+
+            toolbar.setTitle("Trang chủ");
+
+        }
+        else if (id == R.id.nav_search) {
 
             NTDSearchFilterFragment fragment = new NTDSearchFilterFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
