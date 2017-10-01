@@ -22,10 +22,11 @@ import java.util.List;
 
 public class NTDNotificationFragment extends Fragment {
 
-    TextView txt_Title, txt_Content, txt_Date;
+    TextView txt_Title, txt_Content, txt_Date, btn_Login;
     List<Notification> lstNotification = new ArrayList<Notification>();
     RecycleViewNotifiAdapter mRcvAdapter;
     RecyclerView mRecyclerView;
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,24 +35,19 @@ public class NTDNotificationFragment extends Fragment {
 
         addView(rootView);
         setmRecyclerView();
-
         mRecyclerView.setAdapter(new RecycleViewNotifiAdapter(getActivity(), lstNotification));
+
         loadData();
         return rootView;
     }
-    /*private void addNotification()
-    {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        List<Notification> lst = new ArrayList<Notification>();
-        lst.add(new Notification("Ứng tuyển vị trí Android", "ABC", , 0));
 
-        for(int i = 0; i < lst.size(); i++)
-        {
-            database.getReference("Notifications").push().setValue(lst.get(i));
-        }
-    }*/
-    private void loadData()
-    {
+    private void addView(View rootView) {
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        txt_Title = (TextView) rootView.findViewById(R.id.txt_Title);
+        txt_Date = (TextView) rootView.findViewById(R.id.txt_Date);
+    }
+
+    private void loadData() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         database.getReference("Notifications").addChildEventListener(new ChildEventListener() {
             @Override
@@ -83,12 +79,8 @@ public class NTDNotificationFragment extends Fragment {
             }
         });
     }
-    private void addView(View rootView){
-        mRecyclerView=(RecyclerView)rootView.findViewById(R.id.recyclerView);
-        txt_Title = (TextView) rootView.findViewById(R.id.txt_Title);
-        txt_Date = (TextView) rootView.findViewById(R.id.txt_Content);
-    }
-   private void setmRecyclerView(){
+
+    private void setmRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
