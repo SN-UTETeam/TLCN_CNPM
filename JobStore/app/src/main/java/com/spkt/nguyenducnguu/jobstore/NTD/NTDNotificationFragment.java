@@ -9,10 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.spkt.nguyenducnguu.jobstore.Adaper.RecycleViewNotifiAdapter;
 import com.spkt.nguyenducnguu.jobstore.Models.Notification;
 import com.spkt.nguyenducnguu.jobstore.R;
@@ -42,35 +43,31 @@ public class NTDNotificationFragment extends Fragment {
     }
 
     private void addView(View rootView) {
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_Notification);
         txt_Title = (TextView) rootView.findViewById(R.id.txt_Title);
         txt_Date = (TextView) rootView.findViewById(R.id.txt_Date);
     }
 
-    private void loadData() {
+    private void loadData()
+    {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.getReference("Notifications").addChildEventListener(new ChildEventListener() {
+
+        Query query = database.getReference("Recruiters").orderByChild("email").equalTo("jobstore.ad@gmail.com");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Notification notification = dataSnapshot.getValue(Notification.class);
-                lstNotification.add(notification);
-                mRecyclerView.getAdapter().notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot recruiterData : dataSnapshot.getChildren()) {
+                        if(recruiterData.child("Notifications").getValue() != null)
+                        {
+                            for (DataSnapshot nData : recruiterData.child("Notifications").getChildren())
+                            {
+                                lstNotification.add(nData.getValue(Notification.class));
+                                mRecyclerView.getAdapter().notifyDataSetChanged();
+                            }
+                        }
+                    }
+                }
             }
 
             @Override

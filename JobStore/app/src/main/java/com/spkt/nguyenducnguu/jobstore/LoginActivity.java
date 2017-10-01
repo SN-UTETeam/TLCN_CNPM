@@ -159,7 +159,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             dialog.dismiss();
                         } else {
                             // If sign in fails
-                            Toast.makeText(LoginActivity.this, "     Authentication failed\nEmail or Password is wrong!!!",
+                            Toast.makeText(LoginActivity.this, "     Authentication failed!!!",
                                     Toast.LENGTH_LONG).show();
                             updateUI(null);
                             dialog.dismiss();

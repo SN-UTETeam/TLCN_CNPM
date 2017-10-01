@@ -12,11 +12,9 @@ import android.widget.TextView;
 import com.spkt.nguyenducnguu.jobstore.Models.Notification;
 import com.spkt.nguyenducnguu.jobstore.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-
-/**
- * Created by TranAnhSon on 9/29/2017.
- */
 
 public class RecycleViewNotifiAdapter extends RecyclerView.Adapter<RecycleViewNotifiAdapter.RecycleViewHolder>{
 
@@ -41,7 +39,9 @@ public class RecycleViewNotifiAdapter extends RecyclerView.Adapter<RecycleViewNo
     public void onBindViewHolder(final RecycleViewHolder holder, final int position) {
         Notification notification = listData.get(position);
         holder.txt_Title.setText(notification.getTitle());
-        holder.txt_Date.setText(notification.getSendTime().toString());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        String SendTime = sdf.format(new Date(notification.getSendTime()));
+        holder.txt_Date.setText(SendTime);
 
         holder.ln_notification.setOnClickListener(new View.OnClickListener() {
             @Override
