@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.R;
 
-public class NTDChangeProfile extends AppCompatActivity {
+public class NTDChangeProfileActivity extends AppCompatActivity {
     TextView txt_icon1, txt_icon2, txt_icon3, txt_icon4, txt_icon5, txt_icon6, txt_icon7;
     ImageView imgv_Back;
     @Override

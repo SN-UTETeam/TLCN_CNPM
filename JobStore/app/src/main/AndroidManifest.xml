@@ -25,13 +25,16 @@
         <activity android:name=".ADMIN.AdminMainActivity" />
         <activity android:name=".ResultRegisterActivity" />
         <activity android:name=".NTD.NTDFilterActivity" />
-        <activity android:name=".NTD.NTDChangeProfile" />
+        <activity android:name=".NTD.NTDChangeProfileActivity" />
         <activity android:name=".SelectWorkTypeActivity" />
         <activity android:name=".SelectCarrerActivity" />
         <activity android:name=".SelectLevelActivity" />
         <activity android:name=".SelectExperienceActivity" />
         <activity android:name=".SelectSalaryActivity" />
+<<<<<<< HEAD
         <activity android:name=".SelectWorkPlaceActivity"></activity>
+=======
+>>>>>>> bc9f5d634fb500000996f9f679db14614701b925
     </application>
 
 </manifest>
