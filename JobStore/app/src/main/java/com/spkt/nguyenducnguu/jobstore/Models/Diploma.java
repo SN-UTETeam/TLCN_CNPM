@@ -8,12 +8,12 @@ public class Diploma {
     private String Name;
     private Long Begin;
     private Long Finish;
-    private int Rating;
+    private String Rating;
 
     public Diploma() {
     }
 
-    public Diploma(String name, Long begin, Long finish, int rating) {
+    public Diploma(String name, Long begin, Long finish, String rating) {
         Name = name;
         Begin = begin;
         Finish = finish;
@@ -44,11 +44,11 @@ public class Diploma {
         Finish = finish;
     }
 
-    public int getRating() {
+    public String getRating() {
         return Rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(String rating) {
         Rating = rating;
     }
 }

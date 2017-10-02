@@ -1,6 +1,6 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * Created by TranAnhSon on 9/30/2017.
@@ -8,90 +8,113 @@ import java.util.List;
 
 public class CandidateDetail {
 
-    private String Title;
-    private Experience experience;
-    private Salary salary;
-    private Level level;
-    private WorkExp workExp;
-    private WorkPlace workPlace;
-    private WorkType workType;
-    private List<Career> Careers;
+    private String Tag;
+    private String WorkPlaces;
+    private String WorkTypes;
+    private String Careers;
+    private String Level;
+    private String Experience;
+    private String Salary;
+    private HashMap<String, WorkExp> WorkExps;
+    private HashMap<String, Diploma> Diplomas;
+    private String CV;
+
 
     public CandidateDetail() {
     }
 
-    public CandidateDetail(String title, Experience experience, Salary salary, Level level, WorkExp workExp, WorkPlace workPlace, WorkType workType, List<Career> careers) {
-        Title = title;
-        this.experience = experience;
-        this.salary = salary;
-        this.level = level;
-        this.workExp = workExp;
-        this.workPlace = workPlace;
-        this.workType = workType;
+    public CandidateDetail(String tag, String workPlaces, String workTypes, String careers,
+                           String level, String experience, String salary,
+                           HashMap<String, WorkExp> workExps, HashMap<String, Diploma> diplomas, String CV) {
+        Tag = tag;
+        WorkPlaces = workPlaces;
+        WorkTypes = workTypes;
         Careers = careers;
+        Level = level;
+        Experience = experience;
+        Salary = salary;
+        WorkExps = workExps;
+        Diplomas = diplomas;
+        this.CV = CV;
     }
 
-    public String getTitle() {
-        return Title;
+    public String getTag() {
+        return Tag;
     }
 
-    public void setTitle(String title) {
-        Title = title;
+    public void setTag(String tag) {
+        Tag = tag;
     }
 
-    public Experience getExperience() {
-        return experience;
+    public String getWorkPlaces() {
+        return WorkPlaces;
     }
 
-    public void setExperience(Experience experience) {
-        this.experience = experience;
+    public void setWorkPlaces(String workPlaces) {
+        WorkPlaces = workPlaces;
     }
 
-    public Salary getSalary() {
-        return salary;
+    public String getWorkTypes() {
+        return WorkTypes;
     }
 
-    public void setSalary(Salary salary) {
-        this.salary = salary;
+    public void setWorkTypes(String workTypes) {
+        WorkTypes = workTypes;
     }
 
-    public Level getLevel() {
-        return level;
-    }
-
-    public void setLevel(Level level) {
-        this.level = level;
-    }
-
-    public WorkExp getWorkExp() {
-        return workExp;
-    }
-
-    public void setWorkExp(WorkExp workExp) {
-        this.workExp = workExp;
-    }
-
-    public WorkPlace getWorkPlace() {
-        return workPlace;
-    }
-
-    public void setWorkPlace(WorkPlace workPlace) {
-        this.workPlace = workPlace;
-    }
-
-    public WorkType getWorkType() {
-        return workType;
-    }
-
-    public void setWorkType(WorkType workType) {
-        this.workType = workType;
-    }
-
-    public List<Career> getCareers() {
+    public String getCareers() {
         return Careers;
     }
 
-    public void setCareers(List<Career> careers) {
+    public void setCareers(String careers) {
         Careers = careers;
+    }
+
+    public String getLevel() {
+        return Level;
+    }
+
+    public void setLevel(String level) {
+        Level = level;
+    }
+
+    public String getExperience() {
+        return Experience;
+    }
+
+    public void setExperience(String experience) {
+        Experience = experience;
+    }
+
+    public String getSalary() {
+        return Salary;
+    }
+
+    public void setSalary(String salary) {
+        Salary = salary;
+    }
+
+    public HashMap<String, WorkExp> getWorkExps() {
+        return WorkExps;
+    }
+
+    public void setWorkExps(HashMap<String, WorkExp> workExps) {
+        WorkExps = workExps;
+    }
+
+    public HashMap<String, Diploma> getDiplomas() {
+        return Diplomas;
+    }
+
+    public void setDiplomas(HashMap<String, Diploma> diplomas) {
+        Diplomas = diplomas;
+    }
+
+    public String getCV() {
+        return CV;
+    }
+
+    public void setCV(String CV) {
+        this.CV = CV;
     }
 }

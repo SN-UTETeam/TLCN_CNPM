@@ -1,6 +1,7 @@
 package com.spkt.nguyenducnguu.jobstore.NTD;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
+import com.spkt.nguyenducnguu.jobstore.Models.WorkDetail;
+import com.spkt.nguyenducnguu.jobstore.Models.WorkInfo;
 import com.spkt.nguyenducnguu.jobstore.R;
 import com.spkt.nguyenducnguu.jobstore.SelectCarrerActivity;
 import com.spkt.nguyenducnguu.jobstore.SelectExperienceActivity;
@@ -119,7 +122,7 @@ public class NTDPostRecruitmentFragment extends Fragment {
             txt_ExpirationTime.requestFocus();
             return false;
         }
-        if(txt_WorkPlace.getTags().toString() == "[]")
+        if(txt_WorkPlace.getTags().size() == 0)
         {
             Toast.makeText(getActivity(),"Vui lòng chọn địa điểm làm việc!",Toast.LENGTH_SHORT).show();
             txt_WorkPlace.requestFocus();
@@ -131,25 +134,25 @@ public class NTDPostRecruitmentFragment extends Fragment {
             txt_Address.requestFocus();
             return false;
         }
-        if(txt_WorkType.getTags().toString() == "[]")
+        if(txt_WorkType.getTags().size() == 0)
         {
             Toast.makeText(getActivity(),"Vui lòng chọn loại hình công việc!",Toast.LENGTH_SHORT).show();
             txt_WorkType.requestFocus();
             return false;
         }
-        if(txt_Career.getTags().toString() == "[]")
+        if(txt_Career.getTags().size() == 0)
         {
             Toast.makeText(getActivity(),"Vui lòng chọn ngành nghề!",Toast.LENGTH_SHORT).show();
             txt_Career.requestFocus();
             return false;
         }
-        if(txt_Level.getTags().toString() == "[]")
+        if(txt_Level.getTags().size() == 0)
         {
             Toast.makeText(getActivity(),"Vui lòng chọn trình độ!",Toast.LENGTH_SHORT).show();
             txt_Level.requestFocus();
             return false;
         }
-        if(txt_Experience.getTags().toString() == "[]")
+        if(txt_Experience.getTags().size() == 0)
         {
             Toast.makeText(getActivity(),"Vui lòng chọn kinh nghiệm!",Toast.LENGTH_SHORT).show();
             txt_Experience.requestFocus();
@@ -179,7 +182,7 @@ public class NTDPostRecruitmentFragment extends Fragment {
             txt_JobRequired.requestFocus();
             return false;
         }
-        if(txt_Salary.getTags().toString() == "[]")
+        if(txt_Salary.getTags().size() == 0)
         {
             Toast.makeText(getActivity(),"Vui lòng chọn mức lương!",Toast.LENGTH_SHORT).show();
             txt_Salary.requestFocus();
@@ -189,20 +192,71 @@ public class NTDPostRecruitmentFragment extends Fragment {
     }
     private boolean addData()
     {
-        
-        return false;
+        try {
+            WorkInfo wf = new WorkInfo();
+            wf.setEmail(txt_Email.getText().toString());
+            wf.setCompanyName(txt_CompanyName.getText().toString());
+            wf.setTitlePost(txt_TitlePost.getText().toString());
+            wf.setViews(0);
+            wf.setPostTime((new Date()).getTime());
+            wf.setExpirationTime((new Date(txt_ExpirationTime.getText().toString()).getTime()));
+            wf.setWorkPlace(txt_WorkPlace.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1));
+            wf.setAddress(txt_Address.getText().toString());
+            wf.setStatus(0);
+
+            WorkDetail wd = new WorkDetail();
+            wd.setWorkTypes(txt_WorkType.getTags().toString().substring(1, txt_WorkType.getTags().toString().length() - 1));
+            wd.setCarrers(txt_Career.getTags().toString().substring(1, txt_Career.getTags().toString().length() - 1));
+            wd.setLevel(txt_Level.getTags().toString().substring(1, txt_Level.getTags().toString().length() - 1));
+            wd.setExperience(txt_Experience.getTags().toString().substring(1, txt_Experience.getTags().toString().length() - 1));
+            wd.setTitle(txt_Title.getText().toString());
+            try {
+                wd.setNumber(Integer.parseInt(txt_Number.getText().toString()));
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "Số lượng phải là số nguyên!", Toast.LENGTH_LONG).show();
+                txt_Number.requestFocus();
+                return false;
+            }
+            wd.setJobDescription(txt_JobDescription.getText().toString());
+            wd.setJobRequired(txt_JobRequired.getText().toString());
+            wd.setWelfare(txt_Welfare.getText().toString());
+            wd.setSalary(txt_Salary.getTags().toString().substring(1, txt_Salary.getTags().toString().length() - 1));
+
+            wf.setWorkDetail(wd);
+
+            FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
+            mdatabase.getReference("WorkInfos").push().setValue(wf);
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
     private void addEvent()
     {
         btn_Complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ProgressDialog dialog = ProgressDialog.show(getActivity(), "",
+                        "Please wait...", true);
                 if(checkValidation())
                 {
-                    //Add dữ liệu
-                    addData();
-                    //Chuyển màn hình
+                    if(addData())
+                    {
+                        dialog.dismiss();
+                        NTDManageRecruitFragment fragment = new NTDManageRecruitFragment();
+                        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, fragment);
+                        fragmentTransaction.commit();
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(), "Đã xảy ra lỗi trong quá trình đăng bài, hãy thử lại sau!", Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
+                    }
                 }
+                dialog.dismiss();
             }
         });
 

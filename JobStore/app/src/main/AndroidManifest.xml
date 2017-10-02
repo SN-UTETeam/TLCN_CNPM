@@ -31,10 +31,7 @@
         <activity android:name=".SelectLevelActivity" />
         <activity android:name=".SelectExperienceActivity" />
         <activity android:name=".SelectSalaryActivity" />
-<<<<<<< HEAD
         <activity android:name=".SelectWorkPlaceActivity"></activity>
-=======
->>>>>>> bc9f5d634fb500000996f9f679db14614701b925
     </application>
 
 </manifest>
