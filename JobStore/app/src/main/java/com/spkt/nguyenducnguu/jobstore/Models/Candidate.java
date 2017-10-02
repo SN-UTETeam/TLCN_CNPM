@@ -1,6 +1,6 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * Created by TranAnhSon on 9/30/2017.
@@ -23,13 +23,16 @@ public class Candidate {
     private Long LastLogin;
     private int Status;
     private CandidateDetail candidateDetail;
-    private List<Notification> Notifications;
-    private List<Follow> Follows;
+    private HashMap<String, Notification> Notifications;
+    private HashMap<String, Follow> Follows;
 
     public Candidate() {
     }
 
-    public Candidate(String email, String fullName, Long birthday, int gender, String phone, String facebookURL, String address, String description, String avatar, String coverPhoto, Long createAt, String deviceToken, Long lastLogin, int status, CandidateDetail candidateDetail, List<Notification> notifications, List<Follow> follows) {
+    public Candidate(String email, String fullName, Long birthday, int gender, String phone, String facebookURL,
+                     String address, String description, String avatar, String coverPhoto, Long createAt,
+                     String deviceToken, Long lastLogin, int status, CandidateDetail candidateDetail,
+                     HashMap<String, Notification> notifications, HashMap<String, Follow> follows) {
         Email = email;
         FullName = fullName;
         Birthday = birthday;
@@ -169,19 +172,19 @@ public class Candidate {
         this.candidateDetail = candidateDetail;
     }
 
-    public List<Notification> getNotifications() {
+    public HashMap<String, Notification> getNotifications() {
         return Notifications;
     }
 
-    public void setNotifications(List<Notification> notifications) {
+    public void setNotifications(HashMap<String, Notification> notifications) {
         Notifications = notifications;
     }
 
-    public List<Follow> getFollows() {
+    public HashMap<String, Follow> getFollows() {
         return Follows;
     }
 
-    public void setFollows(List<Follow> follows) {
+    public void setFollows(HashMap<String, Follow> follows) {
         Follows = follows;
     }
 }

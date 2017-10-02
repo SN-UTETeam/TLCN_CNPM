@@ -85,7 +85,6 @@
                     <TextView
                         android:id="@+id/txt_CompanyName"
                         android:layout_width="match_parent"
-                        android:text="VNG CORPORATION"
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
                         android:textSize="15dp" />
@@ -171,6 +170,64 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left|top"
+                        android:text="Khu vực:"
+                        android:textColor="@color/appcolor"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7">
+
+                    <mabbas007.tagsedittext.TagsEditText
+                        android:id="@+id/txt_WorkPlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/edt_custom"
+                        android:textSize="12sp"
+                        android:focusable="false"
+                        app:allowSpaceInTag="true"
+                        app:tagsBackground="@drawable/square"
+                        app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
+                        app:tagsCloseImageRight="@drawable/tag_close"
+                        app:tagsTextColor="@color/white"
+                        app:tagsTextSize="10sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
+
+                    <Button
+                        android:id="@+id/btn_AddWorkPlace"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/btn_plus"
+                        android:text="@string/fa_plus"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
                 android:layout_marginTop="10dp"
@@ -241,6 +298,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
                         android:textSize="12sp"
+                        android:focusable="false"
                         app:allowSpaceInTag="true"
                         app:tagsBackground="@drawable/square"
                         app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
@@ -298,6 +356,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
                         android:textSize="12sp"
+                        android:focusable="false"
                         app:allowSpaceInTag="true"
                         app:tagsBackground="@drawable/square"
                         app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
@@ -355,6 +414,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
                         android:textSize="12sp"
+                        android:focusable="false"
                         app:allowSpaceInTag="true"
                         app:tagsBackground="@drawable/square"
                         app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
@@ -411,6 +471,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
                         android:textSize="12sp"
+                        android:focusable="false"
                         app:allowSpaceInTag="true"
                         app:tagsBackground="@drawable/square"
                         app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
@@ -658,6 +719,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/edt_custom"
                         android:textSize="12sp"
+                        android:focusable="false"
                         app:allowSpaceInTag="true"
                         app:tagsBackground="@drawable/square"
                         app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"

@@ -1,7 +1,6 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class Recruiter {
     private String Email;
@@ -19,13 +18,13 @@ public class Recruiter {
     private String DeviceToken;
     private Long LastLogin;
     private int Status;
-    private List<Notification> Notifications;
-    private List<Follow> Follows;
+    private HashMap<String, Notification> Notifications;
+    private HashMap<String, Follow> Follows;
 
     public Recruiter(String email, String fullName, Long birthDay, int gender, String companyName,
                      String description, String phone, String website, String address, String avatar,
                      String coverPhoto, Long createAt, String deviceToken, Long lastLogin, int status,
-                     List<Notification> notifications, List<Follow> follows) {
+                     HashMap<String, Notification> notifications, HashMap<String, Follow> follows) {
         Email = email;
         FullName = fullName;
         BirthDay = birthDay;
@@ -46,8 +45,8 @@ public class Recruiter {
     }
 
     public Recruiter() {
-        Notifications = new ArrayList<Notification>();
-        Follows = new ArrayList<Follow>();
+        Notifications = new HashMap<>();
+        Follows = new HashMap<>();
     }
 
     public String getEmail() {
@@ -170,19 +169,19 @@ public class Recruiter {
         Status = status;
     }
 
-    public List<Notification> getNotifications() {
+    public HashMap<String, Notification> getNotifications() {
         return Notifications;
     }
 
-    public void setNotifications(List<Notification> notifications) {
+    public void setNotifications(HashMap<String, Notification> notifications) {
         Notifications = notifications;
     }
 
-    public List<Follow> getFollows() {
+    public HashMap<String, Follow> getFollows() {
         return Follows;
     }
 
-    public void setFollows(List<Follow> follows) {
+    public void setFollows(HashMap<String, Follow> follows) {
         Follows = follows;
     }
 }
