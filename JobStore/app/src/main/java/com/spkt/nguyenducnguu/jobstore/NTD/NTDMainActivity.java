@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.spkt.nguyenducnguu.jobstore.LoginActivity;
@@ -18,6 +19,7 @@ import com.spkt.nguyenducnguu.jobstore.R;
 public class NTDMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     NavigationView navigationView = null;
+    RelativeLayout rl_headerNav;
     Toolbar toolbar = null;
     Menu menu1, menu2;
 
@@ -47,13 +49,14 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+
     }
+
     //Thiet lap view trong layout
     public void setView(){
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
     }
-
 
     @Override
     public void onBackPressed() {

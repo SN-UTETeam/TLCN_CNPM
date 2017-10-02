@@ -50,7 +50,7 @@ public class NTDRecordManagementFragment extends Fragment {
         btn_ChangeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myItent = new Intent(getActivity(), NTDChangeProfile.class);
+                Intent myItent = new Intent(getActivity(), NTDChangeProfileActivity.class);
                 startActivity(myItent);
             }
         });

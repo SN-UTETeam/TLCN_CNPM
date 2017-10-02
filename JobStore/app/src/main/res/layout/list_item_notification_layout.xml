@@ -10,17 +10,12 @@
         android:layout_height="100dp"
         android:gravity="center|left"
         android:background="@color/blue_custom">
-        <LinearLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp">
-            <ImageView
-                android:id="@+id/imgv_avatar_uv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="vertical"
             android:gravity="center_vertical">
             <TextView
