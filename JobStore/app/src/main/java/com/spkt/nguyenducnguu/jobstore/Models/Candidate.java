@@ -14,7 +14,7 @@ public class Candidate {
     private int Gender;
     private String Phone;
     private String FacebookURL;
-    private String Address;
+    private Address Address;
     private String Description;
     private String Avatar;
     private String CoverPhoto;
@@ -30,7 +30,7 @@ public class Candidate {
     }
 
     public Candidate(String email, String fullName, Long birthday, int gender, String phone, String facebookURL,
-                     String address, String description, String avatar, String coverPhoto, Long createAt,
+                     Address address, String description, String avatar, String coverPhoto, Long createAt,
                      String deviceToken, Long lastLogin, int status, CandidateDetail candidateDetail,
                      HashMap<String, Notification> notifications, HashMap<String, Follow> follows) {
         Email = email;
@@ -100,11 +100,11 @@ public class Candidate {
         FacebookURL = facebookURL;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return Address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         Address = address;
     }
 

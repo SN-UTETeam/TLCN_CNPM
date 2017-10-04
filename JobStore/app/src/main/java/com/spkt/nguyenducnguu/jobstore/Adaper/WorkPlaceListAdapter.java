@@ -38,7 +38,7 @@ public class WorkPlaceListAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return listData.get(position).getId();
+        return position;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {

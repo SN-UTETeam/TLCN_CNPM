@@ -1,23 +1,13 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
 public class Experience {
-    private int Id;
     private String Name;
 
     public Experience() {
     }
 
-    public Experience(int id, String name) {
-        Id = id;
+    public Experience(String name) {
         Name = name;
-    }
-
-    public int getId() {
-        return Id;
-    }
-
-    public void setId(int id) {
-        Id = id;
     }
 
     public String getName() {
