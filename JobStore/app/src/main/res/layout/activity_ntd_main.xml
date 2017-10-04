@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/ntd_nav_header_main"
+
 
         app:itemIconTint="@color/appcolor"
         app:itemTextColor="@android:color/black"

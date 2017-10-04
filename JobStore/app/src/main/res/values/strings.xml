@@ -20,7 +20,7 @@
 
     <string name="fa_user_circle">&#xf2bd;</string>
 
-    <string name="fa_arrow_left">&#xf060;</string>
+    <string name="fa_arrow_left">&#xf104;</string>
 
     <string name="fa_filter">&#xf0b0;</string>
 
@@ -50,7 +50,7 @@
 
     <string name="fa_link">&#xf127;</string>
 
-    <string name="fa_pencil">&#xf040;</string>
+    <string name="fa_pencil">&#xf044;</string>
 
     <string name="fa_address">&#xf2bc;</string>
 
@@ -58,6 +58,7 @@
 
     <string name="fa_bell">&#xf0a2;</string>
 
+    <string name="fa_check">&#xf00c;</string>
     <string-array name="work_types">
         <item>Thực tập</item>
         <item>Nhân viên</item>

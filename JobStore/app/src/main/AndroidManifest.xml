@@ -31,7 +31,8 @@
         <activity android:name=".SelectLevelActivity" />
         <activity android:name=".SelectExperienceActivity" />
         <activity android:name=".SelectSalaryActivity" />
-        <activity android:name=".SelectWorkPlaceActivity"></activity>
+        <activity android:name=".SelectWorkPlaceActivity" />
+        <activity android:name=".NTD.NTDProfileActivity"></activity>
     </application>
 
 </manifest>

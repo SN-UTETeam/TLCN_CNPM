@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            app:tabTextColor="@color/appcolor"
+            app:tabTextColor="@color/black"
+            app:tabSelectedTextColor="@color/appcolor"
             app:tabIndicatorColor="@null"
             app:tabMode="fixed">
 
