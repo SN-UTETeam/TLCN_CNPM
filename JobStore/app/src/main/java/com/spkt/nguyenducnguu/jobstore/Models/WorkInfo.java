@@ -10,7 +10,7 @@ public class WorkInfo {
     private Long PostTime;
     private Long ExpirationTime;
     private String WorkPlace;
-    private String Address;
+    private Address Address;
     private WorkDetail WorkDetail;
     private HashMap<String, Apply> Applies;
     private HashMap<String, Share> Shares;
@@ -22,7 +22,7 @@ public class WorkInfo {
     }
 
     public WorkInfo(String email, String companyName, String titlePost, int views, Long postTime,
-                    Long expirationTime, String workPlace, String address,
+                    Long expirationTime, String workPlace, Address address,
                     com.spkt.nguyenducnguu.jobstore.Models.WorkDetail workDetail,
                     HashMap<String, Apply> applies, HashMap<String, Share> shares, int status) {
         Email = email;
@@ -95,11 +95,11 @@ public class WorkInfo {
         WorkPlace = workPlace;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return Address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         Address = address;
     }
 

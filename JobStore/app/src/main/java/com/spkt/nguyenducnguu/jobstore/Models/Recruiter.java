@@ -11,7 +11,7 @@ public class Recruiter {
     private String Description;
     private String Phone;
     private String Website;
-    private String Address;
+    private Address Address;
     private String Avatar;
     private String CoverPhoto;
     private Long CreateAt;
@@ -22,7 +22,7 @@ public class Recruiter {
     private HashMap<String, Follow> Follows;
 
     public Recruiter(String email, String fullName, Long birthDay, int gender, String companyName,
-                     String description, String phone, String website, String address, String avatar,
+                     String description, String phone, String website, Address address, String avatar,
                      String coverPhoto, Long createAt, String deviceToken, Long lastLogin, int status,
                      HashMap<String, Notification> notifications, HashMap<String, Follow> follows) {
         Email = email;
@@ -113,11 +113,11 @@ public class Recruiter {
         Website = website;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return Address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         Address = address;
     }
 

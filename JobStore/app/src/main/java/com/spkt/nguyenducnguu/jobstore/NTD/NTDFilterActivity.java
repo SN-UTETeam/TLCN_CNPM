@@ -21,11 +21,11 @@ public class NTDFilterActivity extends AppCompatActivity {
     private void addView(){
         txt_Back = (TextView) findViewById(R.id.txt_back);
         //5 textview set Icon
-        txt1 = (TextView) findViewById(R.id.ic_fa_group);
-        txt2 = (TextView) findViewById(R.id.ic_fa_badge);
-        txt3 = (TextView) findViewById(R.id.ic_fa_star);
-        txt4 = (TextView) findViewById(R.id.ic_fa_briefcase);
-        txt5 = (TextView) findViewById(R.id.ic_fa_university);
+        txt1 = (TextView) findViewById(R.id.txt_icon1);
+        txt2 = (TextView) findViewById(R.id.txt_icon2);
+        txt3 = (TextView) findViewById(R.id.txt_icon3);
+        txt4 = (TextView) findViewById(R.id.txt_icon4);
+        txt5 = (TextView) findViewById(R.id.txt_icon5);
 
     }
     private void setIcon(){

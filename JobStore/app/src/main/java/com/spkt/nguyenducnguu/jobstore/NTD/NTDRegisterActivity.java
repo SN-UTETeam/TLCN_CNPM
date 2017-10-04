@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.spkt.nguyenducnguu.jobstore.Models.Address;
 import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
 import com.spkt.nguyenducnguu.jobstore.Models.Roles;
 import com.spkt.nguyenducnguu.jobstore.R;
@@ -223,7 +224,7 @@ public class NTDRegisterActivity extends AppCompatActivity {
         r.setDescription(txt_Description.getText().toString());
         r.setPhone(txt_Phone.getText().toString());
         r.setWebsite(txt_Website.getText().toString());
-        r.setAddress(txt_Address.getText().toString());
+        r.setAddress(Address.getAddressFromLocationName(txt_Address.getText().toString(), this));
         r.setCreateAt((new Date()).getTime());
         r.setStatus(1);
 

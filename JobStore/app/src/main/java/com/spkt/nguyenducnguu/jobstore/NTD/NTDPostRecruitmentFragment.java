@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
+import com.spkt.nguyenducnguu.jobstore.Models.Address;
 import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkDetail;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkInfo;
@@ -201,7 +202,7 @@ public class NTDPostRecruitmentFragment extends Fragment {
             wf.setPostTime((new Date()).getTime());
             wf.setExpirationTime((new Date(txt_ExpirationTime.getText().toString()).getTime()));
             wf.setWorkPlace(txt_WorkPlace.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1));
-            wf.setAddress(txt_Address.getText().toString());
+            wf.setAddress(Address.getAddressFromLocationName(txt_Address.getText().toString(), getActivity()));
             wf.setStatus(0);
 
             WorkDetail wd = new WorkDetail();

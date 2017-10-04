@@ -1,5 +1,6 @@
 package com.spkt.nguyenducnguu.jobstore.NTD;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ public class NTDRecordManagementFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.ntd_record_management_fragment, container, false);
 
         addView(rootView);
@@ -51,8 +53,11 @@ public class NTDRecordManagementFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent myItent = new Intent(getActivity(), NTDChangeProfileActivity.class);
-                startActivity(myItent);
+                Bundle bndlanimation =
+                        ActivityOptions.makeCustomAnimation(getActivity(), R.anim.anim_slide_in_left,R.anim.anim_slide_out_left).toBundle();
+                startActivity(myItent,bndlanimation);
             }
+
         });
     }
     private void setIcon(){
