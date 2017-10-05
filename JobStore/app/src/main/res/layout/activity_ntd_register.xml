@@ -108,7 +108,7 @@
                     android:layout_weight="4"
                     android:background="@drawable/edt_custom"
                     android:hint="Nhập mật khẩu (> 5 ký tự)"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPassword"
                     android:textSize="15dp" />
             </LinearLayout>
             //Confirm password
@@ -129,7 +129,7 @@
                     android:layout_weight="4"
                     android:background="@drawable/edt_custom"
                     android:hint="Nhập lại mật khẩu (> 5 ký tự)"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPassword"
                     android:textSize="15dp" />
             </LinearLayout>
 

@@ -37,7 +37,7 @@ public class LevelListAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return listData.get(i).getId();
+        return i;
     }
 
     @Override
