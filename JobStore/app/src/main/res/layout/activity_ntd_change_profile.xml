@@ -20,10 +20,10 @@
             <LinearLayout
                 android:layout_width="50dp"
                 android:layout_height="35dp"
+                android:layout_alignParentLeft="true"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="50dp"
-                android:background="@drawable/bg_back"
-                android:layout_alignParentLeft="true">
+                android:background="@drawable/bg_back">
 
                 <TextView
                     android:id="@+id/txt_back"
@@ -74,7 +74,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
@@ -88,15 +88,20 @@
                     android:text="@string/fa_user"
                     android:textColor="@color/appcolor"
                     android:textSize="20dp" />
+
                 <EditText
                     android:id="@+id/edt_FullName"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="4"
                     android:background="@drawable/edt_custom"
+                    android:gravity="center|top|left"
                     android:hint="Trần Anh Sơn"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="2000"
+                    android:maxLines="1"
+                    android:scrollHorizontally="false"
                     android:textSize="15dp" />
             </LinearLayout>
 
@@ -108,7 +113,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
@@ -122,15 +127,20 @@
                     android:text="@string/fa_gender"
                     android:textColor="@color/appcolor"
                     android:textSize="20dp" />
+
                 <EditText
                     android:id="@+id/edt_Gender"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="4"
                     android:background="@drawable/edt_custom"
+                    android:gravity="center|top|left"
                     android:hint="Nam"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="2000"
+                    android:maxLines="1"
+                    android:scrollHorizontally="false"
                     android:textSize="15dp" />
             </LinearLayout>
 
@@ -142,7 +152,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
@@ -160,12 +170,16 @@
                 <EditText
                     android:id="@+id/txt_CompanyName"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="4"
                     android:background="@drawable/edt_custom"
+                    android:gravity="center|top|left"
                     android:hint="HBB Solution"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="2000"
+                    android:maxLines="2"
+                    android:scrollHorizontally="false"
                     android:textSize="15dp" />
             </LinearLayout>
 
@@ -177,7 +191,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
@@ -195,14 +209,17 @@
                 <EditText
                     android:id="@+id/edt_Address"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="4"
                     android:background="@drawable/edt_custom"
+                    android:gravity="center|top|left"
                     android:hint="244 Cống Quỳnh, Phường Phạm Ngũ Lão, Quận 1, TP HCM"
-                    android:inputType="textEmailAddress"
-                    android:textSize="15dp"
-                    android:lines="2"/>
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="2000"
+                    android:maxLines="5"
+                    android:scrollHorizontally="false"
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <View
@@ -213,7 +230,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
@@ -227,15 +244,20 @@
                     android:text="@string/fa_phone"
                     android:textColor="@color/appcolor"
                     android:textSize="20dp" />
+
                 <EditText
                     android:id="@+id/edt_Phone"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="4"
                     android:background="@drawable/edt_custom"
+                    android:gravity="center|top|left"
                     android:hint="01694043472"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="2000"
+                    android:maxLines="1"
+                    android:scrollHorizontally="false"
                     android:textSize="15dp" />
             </LinearLayout>
 
@@ -247,7 +269,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
@@ -261,21 +283,32 @@
                     android:text="@string/fa_link"
                     android:textColor="@color/appcolor"
                     android:textSize="20dp" />
+
                 <EditText
                     android:id="@+id/edt_Website"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="4"
                     android:background="@drawable/edt_custom"
+                    android:gravity="center|top|left"
                     android:hint="https://hbbsolution.com"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="2000"
+                    android:maxLines="5"
+                    android:scrollHorizontally="false"
                     android:textSize="15dp" />
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/dark"></View>
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
@@ -293,15 +326,17 @@
                 <EditText
                     android:id="@+id/edt_Decription"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="4"
-                    android:gravity="center|top|left"
                     android:background="@drawable/edt_custom"
+                    android:gravity="center|top|left"
                     android:hint="Giới thiệu công ty"
-                    android:inputType="textEmailAddress"
-                    android:textSize="15dp"
-                    android:lines="5"/>
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="2000"
+                    android:maxLines="10"
+                    android:scrollHorizontally="false"
+                    android:textSize="15dp" />
             </LinearLayout>
 
         </LinearLayout>

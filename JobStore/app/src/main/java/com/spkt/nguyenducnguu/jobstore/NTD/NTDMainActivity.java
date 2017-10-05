@@ -156,16 +156,6 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
 
             toolbar.setTitle("Thông báo");
 
-        } else if (id == R.id.nav_record) {
-            NTDRecordManagementFragment fragment = new NTDRecordManagementFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit );
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
-            toolbar.setTitle("Quản lý hồ sơ");
-
         } else if (id == R.id.nav_logout) {
             FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
             firebaseAuth.signOut();

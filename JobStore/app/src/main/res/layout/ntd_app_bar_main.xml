@@ -13,7 +13,7 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="45dp"
             android:background="@color/appcolor"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
@@ -23,7 +23,7 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp">
+        android:layout_marginTop="45dp">
     </FrameLayout>
 
 

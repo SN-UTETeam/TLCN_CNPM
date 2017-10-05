@@ -17,10 +17,8 @@
             android:title="Thông báo" />
     </group>
 
-    <item android:title="Thông tin chi tiết" android:id="@+id/Menu_2">
+    <item android:title="Đăng xuất" android:id="@+id/Menu_2">
         <menu>
-            <item android:id="@+id/nav_record" android:icon="@drawable/ic_assignment_ind_black_24dp"
-                android:title="Quản lý hồ sơ" />
             <item android:id="@+id/nav_logout" android:icon="@android:drawable/ic_lock_power_off"
                 android:title="Đăng xuất" />
         </menu>
