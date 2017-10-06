@@ -20,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
-import com.spkt.nguyenducnguu.jobstore.Models.Address;
 import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkDetail;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkInfo;
@@ -43,7 +42,7 @@ public class NTDPostRecruitmentFragment extends Fragment {
     Calendar cal = Calendar.getInstance();
     Button btn_Complete;
     TagsEditText txt_WorkType, txt_Career, txt_Level, txt_Experience, txt_Salary, txt_WorkPlace;
-    TextView txt_Email, txt_CompanyName, txt_ExpirationTime, txt_TitlePost, txt_Address,
+    TextView txt_Email, txt_CompanyName, txt_ExpirationTime, txt_TitlePost,
             txt_Title, txt_Number, txt_JobDescription, txt_JobRequired, txt_Welfare;
     Button btn_AddWorkType, btn_AddCareer, btn_AddLevel, btn_AddExperience, btn_AddSalary, btn_AddWorkPlace;
 
@@ -86,7 +85,6 @@ public class NTDPostRecruitmentFragment extends Fragment {
         txt_CompanyName = (TextView) rootView.findViewById(R.id.txt_CompanyName);
         txt_ExpirationTime = (TextView) rootView.findViewById(R.id.txt_ExpirationTime);
         txt_TitlePost = (TextView) rootView.findViewById(R.id.txt_TitlePost);
-        txt_Address = (TextView) rootView.findViewById(R.id.txt_Address);
         txt_Title = (TextView) rootView.findViewById(R.id.txt_Title);
         txt_Number = (TextView) rootView.findViewById(R.id.txt_Number);
         txt_JobDescription = (TextView) rootView.findViewById(R.id.txt_JobDescription);
@@ -127,12 +125,6 @@ public class NTDPostRecruitmentFragment extends Fragment {
         {
             Toast.makeText(getActivity(),"Vui lòng chọn địa điểm làm việc!",Toast.LENGTH_SHORT).show();
             txt_WorkPlace.requestFocus();
-            return false;
-        }
-        if(txt_Address.getText().toString().trim().isEmpty() || txt_Address.getText().toString().trim() == "")
-        {
-            Toast.makeText(getActivity(),"Vui lòng nhập địa chỉ làm việc!",Toast.LENGTH_SHORT).show();
-            txt_Address.requestFocus();
             return false;
         }
         if(txt_WorkType.getTags().size() == 0)
@@ -200,9 +192,8 @@ public class NTDPostRecruitmentFragment extends Fragment {
             wf.setTitlePost(txt_TitlePost.getText().toString());
             wf.setViews(0);
             wf.setPostTime((new Date()).getTime());
-            wf.setExpirationTime((new Date(txt_ExpirationTime.getText().toString()).getTime()));
+            wf.setExpirationTime(cal.getTime().getTime());
             wf.setWorkPlace(txt_WorkPlace.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1));
-            wf.setAddress(Address.getAddressFromLocationName(txt_Address.getText().toString(), getActivity()));
             wf.setStatus(0);
 
             WorkDetail wd = new WorkDetail();
@@ -246,7 +237,7 @@ public class NTDPostRecruitmentFragment extends Fragment {
                     if(addData())
                     {
                         dialog.dismiss();
-                        NTDManageRecruitFragment fragment = new NTDManageRecruitFragment();
+                        NTDPostManagerFragment fragment = new NTDPostManagerFragment();
                         android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.fragment_container, fragment);
                         fragmentTransaction.commit();

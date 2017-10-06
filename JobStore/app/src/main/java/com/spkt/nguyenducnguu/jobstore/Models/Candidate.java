@@ -2,10 +2,6 @@ package com.spkt.nguyenducnguu.jobstore.Models;
 
 import java.util.HashMap;
 
-/**
- * Created by TranAnhSon on 9/30/2017.
- */
-
 public class Candidate {
 
     private String Email;
@@ -22,34 +18,36 @@ public class Candidate {
     private String DeviceToken;
     private Long LastLogin;
     private int Status;
-    private CandidateDetail candidateDetail;
+    private CandidateDetail CandidateDetail;
     private HashMap<String, Notification> Notifications;
     private HashMap<String, Follow> Follows;
 
     public Candidate() {
+        Notifications = new HashMap<>();
+        Follows = new HashMap<>();
     }
 
     public Candidate(String email, String fullName, Long birthday, int gender, String phone, String facebookURL,
                      Address address, String description, String avatar, String coverPhoto, Long createAt,
                      String deviceToken, Long lastLogin, int status, CandidateDetail candidateDetail,
                      HashMap<String, Notification> notifications, HashMap<String, Follow> follows) {
-        Email = email;
-        FullName = fullName;
-        Birthday = birthday;
-        Gender = gender;
-        Phone = phone;
-        FacebookURL = facebookURL;
-        Address = address;
-        Description = description;
-        Avatar = avatar;
-        CoverPhoto = coverPhoto;
-        CreateAt = createAt;
-        DeviceToken = deviceToken;
-        LastLogin = lastLogin;
-        Status = status;
-        this.candidateDetail = candidateDetail;
-        Notifications = notifications;
-        Follows = follows;
+        this.Email = email;
+        this.FullName = fullName;
+        this.Birthday = birthday;
+        this.Gender = gender;
+        this.Phone = phone;
+        this.FacebookURL = facebookURL;
+        this.Address = address;
+        this.Description = description;
+        this.Avatar = avatar;
+        this.CoverPhoto = coverPhoto;
+        this.CreateAt = createAt;
+        this.DeviceToken = deviceToken;
+        this.LastLogin = lastLogin;
+        this.Status = status;
+        this.CandidateDetail = candidateDetail;
+        this.Notifications = notifications;
+        this.Follows = follows;
     }
 
     public String getEmail() {
@@ -100,11 +98,11 @@ public class Candidate {
         FacebookURL = facebookURL;
     }
 
-    public Address getAddress() {
+    public com.spkt.nguyenducnguu.jobstore.Models.Address getAddress() {
         return Address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(com.spkt.nguyenducnguu.jobstore.Models.Address address) {
         Address = address;
     }
 
@@ -164,12 +162,12 @@ public class Candidate {
         Status = status;
     }
 
-    public CandidateDetail getCandidateDetail() {
-        return candidateDetail;
+    public com.spkt.nguyenducnguu.jobstore.Models.CandidateDetail getCandidateDetail() {
+        return CandidateDetail;
     }
 
-    public void setCandidateDetail(CandidateDetail candidateDetail) {
-        this.candidateDetail = candidateDetail;
+    public void setCandidateDetail(com.spkt.nguyenducnguu.jobstore.Models.CandidateDetail candidateDetail) {
+        CandidateDetail = candidateDetail;
     }
 
     public HashMap<String, Notification> getNotifications() {

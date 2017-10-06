@@ -218,7 +218,7 @@ public class NTDRegisterActivity extends AppCompatActivity {
         final Recruiter r = new Recruiter();
         r.setEmail(txt_Email.getText().toString().trim());
         r.setFullName(txt_FullName.getText().toString().trim());
-        r.setBirthDay((new Date(txt_BirthDay.getText().toString())).getTime());
+        r.setBirthDay(cal.getTime().getTime());
         r.setGender(txt_Gender.getText().toString() == "Nam"? 0 : 1);
         r.setCompanyName(txt_CompanyName.getText().toString().trim());
         r.setDescription(txt_Description.getText().toString());

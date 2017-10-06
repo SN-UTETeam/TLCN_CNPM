@@ -2,9 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
     android:orientation="vertical">
-    //Họ tên, tiêu đề, số năm kinh nghiệm, địa điểm làm việc
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,17 +13,18 @@
         <LinearLayout
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:gravity="center"
             android:layout_marginTop="5dp">
 
             <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imgv_Avatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:src="@color/black" />
+                android:src="@drawable/img_avatar" />
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,7 +39,13 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/txt_username"
+                    android:id="@+id/txt_Email"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:textColor="@color/appcolor"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/txt_FullName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Trần Anh Sơn"
@@ -54,7 +59,7 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/txt_position"
+                    android:id="@+id/txt_Tag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Android Developer"
@@ -68,7 +73,7 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/txt_salary"
+                    android:id="@+id/txt_Experience"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -78,7 +83,7 @@
 
 
                 <TextView
-                    android:id="@+id/txt_location"
+                    android:id="@+id/txt_WorkPlace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

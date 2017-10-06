@@ -1,8 +1,11 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
+import android.support.annotation.NonNull;
+
 import java.util.HashMap;
 
-public class WorkInfo {
+public class WorkInfo implements Comparable<WorkInfo>{
+    private String Key = "";
     private String Email;
     private String CompanyName;
     private String TitlePost;
@@ -10,19 +13,18 @@ public class WorkInfo {
     private Long PostTime;
     private Long ExpirationTime;
     private String WorkPlace;
-    private Address Address;
     private WorkDetail WorkDetail;
     private HashMap<String, Apply> Applies;
     private HashMap<String, Share> Shares;
     private int Status;
 
-    public WorkInfo() {
+    public WorkInfo(){
         Applies = new HashMap<>();
         Shares = new HashMap<>();
     }
 
     public WorkInfo(String email, String companyName, String titlePost, int views, Long postTime,
-                    Long expirationTime, String workPlace, Address address,
+                    Long expirationTime, String workPlace,
                     com.spkt.nguyenducnguu.jobstore.Models.WorkDetail workDetail,
                     HashMap<String, Apply> applies, HashMap<String, Share> shares, int status) {
         Email = email;
@@ -32,7 +34,6 @@ public class WorkInfo {
         PostTime = postTime;
         ExpirationTime = expirationTime;
         WorkPlace = workPlace;
-        Address = address;
         WorkDetail = workDetail;
         Applies = applies;
         Shares = shares;
@@ -95,14 +96,6 @@ public class WorkInfo {
         WorkPlace = workPlace;
     }
 
-    public Address getAddress() {
-        return Address;
-    }
-
-    public void setAddress(Address address) {
-        Address = address;
-    }
-
     public com.spkt.nguyenducnguu.jobstore.Models.WorkDetail getWorkDetail() {
         return WorkDetail;
     }
@@ -133,5 +126,18 @@ public class WorkInfo {
 
     public void setStatus(int status) {
         Status = status;
+    }
+
+    public String getKey() {
+        return Key;
+    }
+
+    public void setKey(String key) {
+        Key = key;
+    }
+
+    @Override
+    public int compareTo(@NonNull WorkInfo workInfo) {
+        return workInfo.getExpirationTime().compareTo(this.ExpirationTime);
     }
 }

@@ -13,11 +13,7 @@ import android.view.ViewGroup;
 
 import com.spkt.nguyenducnguu.jobstore.R;
 
-/**
- * Created by TranAnhSon on 9/15/2017.
- */
-
-public class NTDManageRecruitFragment extends Fragment {
+public class NTDPostManagerFragment extends Fragment {
 
     TabLayout tabLayout;
     ViewPager viewPager;
@@ -25,7 +21,7 @@ public class NTDManageRecruitFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.ntd_recruit_management_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.ntd_post_manager_fragment, container, false);
 
         addView(rootView);
 
@@ -36,8 +32,10 @@ public class NTDManageRecruitFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
 
         addEvent();
+
         return rootView;
     }
+
     private void addView(View rootView){
         tabLayout = (TabLayout) rootView.findViewById(R.id.tab_layout);
         viewPager = (ViewPager) rootView.findViewById(R.id.view_Pager);
@@ -75,9 +73,9 @@ public class NTDManageRecruitFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position){
                 case 0:
-                    return new NTDResumesFragment();
+                    return new NTDPostFragment();
                 case 1:
-                    return new NTDResumesExpiredFragment();
+                    return new NTDPostExpiredFragment();
                 default:
                     return null;
             }

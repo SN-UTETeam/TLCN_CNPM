@@ -2,10 +2,6 @@ package com.spkt.nguyenducnguu.jobstore.Models;
 
 import java.util.HashMap;
 
-/**
- * Created by TranAnhSon on 9/30/2017.
- */
-
 public class CandidateDetail {
 
     private String Tag;
@@ -19,8 +15,9 @@ public class CandidateDetail {
     private HashMap<String, Diploma> Diplomas;
     private String CV;
 
-
     public CandidateDetail() {
+        WorkExps = new HashMap<>();
+        Diplomas = new HashMap<>();
     }
 
     public CandidateDetail(String tag, String workPlaces, String workTypes, String careers,

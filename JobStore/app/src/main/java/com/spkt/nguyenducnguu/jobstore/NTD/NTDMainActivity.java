@@ -107,7 +107,7 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit );
             fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.addToBackStack(null);
+            //fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
 
             toolbar.setTitle("Đăng tin");
@@ -118,7 +118,7 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit );
             fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.addToBackStack(null);
+            //fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
 
             toolbar.setTitle("Trang chủ");
@@ -130,18 +130,18 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit );
             fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.addToBackStack(null);
+           // fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
 
             toolbar.setTitle("Lọc và tìm kiếm");
 
         } else if (id == R.id.nav_manage) {
 
-            NTDManageRecruitFragment fragment = new NTDManageRecruitFragment();
+            NTDPostManagerFragment fragment = new NTDPostManagerFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit );
             fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.addToBackStack(null);
+           // fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
 
             toolbar.setTitle("Quản lý thông tin tuyển dụng");
@@ -151,7 +151,7 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit );
             fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.addToBackStack(null);
+            //fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
 
             toolbar.setTitle("Thông báo");

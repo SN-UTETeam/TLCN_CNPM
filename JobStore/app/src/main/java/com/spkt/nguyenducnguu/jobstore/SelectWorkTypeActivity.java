@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -52,7 +51,6 @@ public class SelectWorkTypeActivity extends AppCompatActivity {
                 txt_Title.setText("(" + countItemSelected + "/" + MAX_SELECT + ") " + TITLE);
             }
         }
-        Toast.makeText(SelectWorkTypeActivity.this, "'" + intent.getStringExtra("lstWorkTypeSelected") + "'", Toast.LENGTH_SHORT).show();
         lv_WorkType.setAdapter(new WorkTypeListAdapter(this, lstWorkType, lstWorkTypeSelected));
 
         loadData();

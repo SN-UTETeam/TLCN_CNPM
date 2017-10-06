@@ -26,13 +26,13 @@ public class RecyclerViewSearchListAdapter extends RecyclerView.Adapter<Recycler
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         //dùng để gán giao diện cho một phần tử của RecyclerView
-        View view = inflater.inflate(R.layout.listitem_search_filter_uv_layout, parent, false);
+        View view = inflater.inflate(R.layout.list_item_candidate_layout, parent, false);
         return new RecyclerViewHolder(view);
     }
     //Là phương thức để gán dữ liệu từ listData vào viewHolder
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-        holder.txt_UserName.setText(data.get(position));
+        holder.txt_FullName.setText(data.get(position));
     }
 
     //trả về số lượng phần tử
@@ -43,11 +43,11 @@ public class RecyclerViewSearchListAdapter extends RecyclerView.Adapter<Recycler
 
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-        TextView txt_UserName;
+        TextView txt_FullName;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
-            txt_UserName = (TextView) itemView.findViewById(R.id.txt_username);
+            txt_FullName = (TextView) itemView.findViewById(R.id.txt_FullName);
         }
     }
 }
