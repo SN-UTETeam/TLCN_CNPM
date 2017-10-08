@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.spkt.nguyenducnguu.jobstore.LoginActivity;
 import com.spkt.nguyenducnguu.jobstore.R;
 
@@ -56,10 +64,28 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
         rl_headerNav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(getApplicationContext(), NTDProfileActivity.class);
-                Bundle bndlanimation =
-                        ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.anim_slide_in_right,R.anim.anim_slide_out_right).toBundle();
-                startActivity(myIntent,bndlanimation);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                DatabaseReference rolesRef = FirebaseDatabase.getInstance().getReference("Recruiters");
+                Query query = rolesRef.orderByChild("email").equalTo(user.getEmail());
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot mdata : dataSnapshot.getChildren())
+                        {
+                            Log.d("Key", mdata.getKey());
+                            Intent myIntent = new Intent(NTDMainActivity.this, NTDProfileActivity.class);
+                            myIntent.putExtra("Key", mdata.getKey());
+                            Bundle bndlanimation =
+                                    ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.anim_slide_in_right,R.anim.anim_slide_out_right).toBundle();
+                            startActivity(myIntent,bndlanimation);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
     }
