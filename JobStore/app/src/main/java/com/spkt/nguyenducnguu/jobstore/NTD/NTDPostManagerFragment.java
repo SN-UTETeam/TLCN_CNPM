@@ -45,6 +45,8 @@ public class NTDPostManagerFragment extends Fragment {
         ViewPagerInFragmentAdapter adapter = new ViewPagerInFragmentAdapter(getActivity().getSupportFragmentManager());
         adapter.addFragment(new NTDPostFragment(), "Còn hạn");
         adapter.addFragment(new NTDPostExpiredFragment(), "Hết hạn");
+
+
         viewPager.setAdapter(adapter);
     }
 
