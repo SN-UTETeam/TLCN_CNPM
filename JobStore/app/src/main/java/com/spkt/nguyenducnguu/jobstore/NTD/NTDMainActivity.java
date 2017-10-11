@@ -129,78 +129,29 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_list:
-                trannsFragment(new NTDPostRecruitmentFragment(), "Dang tin");
+                trannsFragment(new NTDPostRecruitmentFragment(), "Đăng tin");
                 break;
             case R.id.nav_home:
+                trannsFragment(new NTDMainFragment(), "Trang chủ");
                 break;
-
+            case R.id.nav_search:
+                trannsFragment(new NTDSearchFilterFragment(), "Lọc và tìm kiếm");
+                break;
+            case R.id.nav_manage:
+                trannsFragment(new NTDPostManagerFragment(), "Quản lý thông tin tuyển dụng");
+                break;
+            case R.id.nav_notification:
+                trannsFragment(new NTDNotificationFragment(), "Thông báo");
+                break;
+            case R.id.nav_logout:
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                firebaseAuth.signOut();
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+                break;
         }
-
-        if (id == R.id.nav_list) {
-
-            NTDPostRecruitmentFragment fragment = new NTDPostRecruitmentFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit );
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            //fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
-            toolbar.setTitle("Đăng tin");
-
-        }else if (id == R.id.nav_home) {
-
-            NTDMainFragment fragment = new NTDMainFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit );
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            //fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
-            toolbar.setTitle("Trang chủ");
-
-        }
-        else if (id == R.id.nav_search) {
-
-            NTDSearchFilterFragment fragment = new NTDSearchFilterFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit );
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-           // fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
-            toolbar.setTitle("Lọc và tìm kiếm");
-
-        } else if (id == R.id.nav_manage) {
-
-            NTDPostManagerFragment fragment = new NTDPostManagerFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit );
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-           // fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
-            toolbar.setTitle("Quản lý thông tin tuyển dụng");
-
-        }else if (id == R.id.nav_notification) {
-            NTDNotificationFragment fragment = new NTDNotificationFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit );
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            //fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-
-            toolbar.setTitle("Thông báo");
-
-        } else if (id == R.id.nav_logout) {
-            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-            firebaseAuth.signOut();
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

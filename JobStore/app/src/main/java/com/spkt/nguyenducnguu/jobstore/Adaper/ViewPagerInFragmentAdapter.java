@@ -1,4 +1,4 @@
-package com.spkt.nguyenducnguu.jobstore;
+package com.spkt.nguyenducnguu.jobstore.Adaper;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -6,10 +6,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by buivu on 26/09/2017.
- */
 
 public class ViewPagerInFragmentAdapter extends FragmentStatePagerAdapter {
     private final List<Fragment> fragmentList = new ArrayList<Fragment>();

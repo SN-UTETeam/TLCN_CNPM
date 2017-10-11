@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.spkt.nguyenducnguu.jobstore.R;
-import com.spkt.nguyenducnguu.jobstore.ViewPagerInFragmentAdapter;
+import com.spkt.nguyenducnguu.jobstore.Adaper.ViewPagerInFragmentAdapter;
 
 public class NTDPostManagerFragment extends Fragment {
 
@@ -27,9 +27,6 @@ public class NTDPostManagerFragment extends Fragment {
 
         Log.d("POST", "POST");
 
-        //Method để sử dụng font awesome trong fragment
-       /* Typeface iconFont = FontManager.getTypeface(getContext(), FontManager.FONTAWESOME);
-        FontManager.markAsIconContainer(rootView.findViewById(R.id.Manage_Recruit), iconFont);*/
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
 
