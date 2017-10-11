@@ -3,6 +3,7 @@ package com.spkt.nguyenducnguu.jobstore.NTD;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,11 +31,12 @@ public class NTDPostFragment extends Fragment {
     LinearLayout ln_NonData;
     ListView lv_WorkInfo;
     List<WorkInfo> lstWorkInfo = new ArrayList<WorkInfo>();
+    private View rootView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.ntd_post_fragment, container, false);
+        rootView = inflater.inflate(R.layout.ntd_post_fragment, container, false);
+        Log.d("NTD", "POST");
 
         addView(rootView);
         addEvent();
@@ -49,25 +51,23 @@ public class NTDPostFragment extends Fragment {
         return rootView;
     }
 
-    private void loadData()
-    {
+    private void loadData() {
         FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
         Query query = mdatabase.getReference("WorkInfos");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 lstWorkInfo.clear();
-                for(DataSnapshot mdata : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot mdata : dataSnapshot.getChildren()) {
                     WorkInfo w = mdata.getValue(WorkInfo.class);
-                    if(w.getExpirationTime() < (new Date()).getTime())
+                    if (w.getExpirationTime() < (new Date()).getTime())
                         continue;
                     w.setKey(mdata.getKey());
                     lstWorkInfo.add(w);
                     Collections.sort(lstWorkInfo);
                     ((BaseAdapter) lv_WorkInfo.getAdapter()).notifyDataSetChanged();
                 }
-                if(lstWorkInfo.size() > 0) ln_NonData.setVisibility(View.GONE);
+                if (lstWorkInfo.size() > 0) ln_NonData.setVisibility(View.GONE);
                 else ln_NonData.setVisibility(View.VISIBLE);
             }
 
@@ -77,13 +77,14 @@ public class NTDPostFragment extends Fragment {
             }
         });
     }
-    private void addView(View rootView){
+
+    private void addView(View rootView) {
 
         ln_NonData = (LinearLayout) rootView.findViewById(R.id.ln_NonData);
         lv_WorkInfo = (ListView) rootView.findViewById(R.id.lv_WorkInfo);
     }
-    private void addEvent()
-    {
+
+    private void addEvent() {
         lv_WorkInfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

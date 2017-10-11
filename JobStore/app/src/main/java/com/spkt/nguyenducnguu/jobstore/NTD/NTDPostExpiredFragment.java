@@ -3,6 +3,7 @@ package com.spkt.nguyenducnguu.jobstore.NTD;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ public class NTDPostExpiredFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.ntd_post_expired_fragment, container, false);
-
+        Log.d("NTD", "EXPIRED");
         addView(rootView);
         addEvent();
         //Method để sử dụng font awesome trong fragment
