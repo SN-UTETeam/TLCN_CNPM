@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.Models.Notification;
 import com.spkt.nguyenducnguu.jobstore.R;
 
@@ -32,6 +33,7 @@ public class RecycleViewNotifiAdapter extends RecyclerView.Adapter<RecycleViewNo
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         //dùng để gán giao diện cho một phần tử của RecyclerView
         View view = inflater.inflate(R.layout.list_item_notification_layout, parent, false);
+
         return new RecycleViewHolder(view);
     }
 
@@ -41,7 +43,9 @@ public class RecycleViewNotifiAdapter extends RecyclerView.Adapter<RecycleViewNo
         holder.txt_Title.setText(notification.getTitle());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         String SendTime = sdf.format(new Date(notification.getSendTime()));
-        holder.txt_Date.setText(SendTime);
+        holder.txt_SendTime.setText(SendTime);
+
+        holder.txt_icon1.setTypeface(FontManager.getTypeface(context, FontManager.FONTAWESOME));
 
         holder.ln_notification.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,15 +65,16 @@ public class RecycleViewNotifiAdapter extends RecyclerView.Adapter<RecycleViewNo
     }
 
     public class RecycleViewHolder extends RecyclerView.ViewHolder{
-        //ImageView imgv_avatar_uv; //(Chua co models uv)
-        TextView txt_Title, txt_Date;
+        //ImageView imgv_avatar_uv;
+        TextView txt_Title, txt_SendTime, txt_icon1;
         LinearLayout ln_notification;
         public RecycleViewHolder(View itemView) {
             super(itemView);
 
-            //imgv_avatar_uv = (ImageView) itemView.findViewById(R.id.imgv_avatar_uv);  //(Chua co models uv)
+            //imgv_avatar_uv = (ImageView) itemView.findViewById(R.id.imgv_avatar_uv);
             txt_Title = (TextView) itemView.findViewById(R.id.txt_Title);
-            txt_Date = (TextView) itemView.findViewById(R.id.txt_Date);
+            txt_SendTime = (TextView) itemView.findViewById(R.id.txt_SendTime);
+            txt_icon1 = (TextView) itemView.findViewById(R.id.txt_icon1);
             ln_notification = (LinearLayout) itemView.findViewById(R.id.ln_notification);
         }
     }

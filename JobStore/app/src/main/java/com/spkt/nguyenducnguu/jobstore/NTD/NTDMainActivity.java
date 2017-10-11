@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -126,6 +127,14 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
     public boolean onNavigationItemSelected(MenuItem item) {
         // Bat su kien khi click vao item trong navigation view
         int id = item.getItemId();
+        switch (id) {
+            case R.id.nav_list:
+                trannsFragment(new NTDPostRecruitmentFragment(), "Dang tin");
+                break;
+            case R.id.nav_home:
+                break;
+
+        }
 
         if (id == R.id.nav_list) {
 
@@ -194,6 +203,16 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void trannsFragment(Fragment fragment,String title) {
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit );
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        //fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+        toolbar.setTitle(title);
     }
 
 }

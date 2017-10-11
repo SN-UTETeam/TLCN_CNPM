@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,7 +22,6 @@ import java.util.List;
 
 public class NTDNotificationFragment extends Fragment {
 
-    TextView txt_Title, txt_Content, txt_Date, btn_Login;
     List<Notification> lstNotification = new ArrayList<Notification>();
     RecycleViewNotifiAdapter mRcvAdapter;
     RecyclerView mRecyclerView;
@@ -44,8 +42,6 @@ public class NTDNotificationFragment extends Fragment {
 
     private void addView(View rootView) {
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_Notification);
-        txt_Title = (TextView) rootView.findViewById(R.id.txt_Title);
-        txt_Date = (TextView) rootView.findViewById(R.id.txt_Date);
     }
 
     private void loadData()

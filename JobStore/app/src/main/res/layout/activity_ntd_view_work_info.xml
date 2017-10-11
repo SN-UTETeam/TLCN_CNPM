@@ -78,7 +78,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="[VNG] Tuyển nhân viên Designer và iOS"
                     android:textColor="@color/appcolor"
                     android:textSize="20dp"
                     android:textStyle="bold" />
@@ -95,11 +94,14 @@
                         android:layout_weight="1"
                         android:gravity="center">
 
-                        <ImageView
+                        <TextView
+                            android:id="@+id/txt_icon1"
                             android:layout_width="20dp"
                             android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_eye" />
+                            android:gravity="center"
+                            android:text="@string/fa_eye"
+                            android:textColor="@color/black"/>
+
 
                         <TextView
                             android:id="@+id/txt_Views"
@@ -107,7 +109,6 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
                             android:gravity="center"
-                            android:text="10"
                             android:textColor="@color/appcolor" />
                     </LinearLayout>
 
@@ -117,11 +118,13 @@
                         android:layout_weight="1.5"
                         android:gravity="center">
 
-                        <ImageView
+                        <TextView
+                            android:id="@+id/txt_icon2"
                             android:layout_width="20dp"
                             android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_ungtuyen" />
+                            android:gravity="center"
+                            android:text="@string/fa_comments"
+                            android:textColor="@color/black"/>
 
                         <TextView
                             android:id="@+id/txt_NumberApply"
@@ -129,7 +132,6 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
                             android:gravity="center"
-                            android:text="9"
                             android:textColor="@color/appcolor" />
                     </LinearLayout>
 
@@ -139,11 +141,13 @@
                         android:layout_weight="1.5"
                         android:gravity="center">
 
-                        <ImageView
+                        <TextView
+                            android:id="@+id/txt_icon3"
                             android:layout_width="15dp"
                             android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_deadline" />
+                            android:gravity="center"
+                            android:text="@string/fa_clock"
+                            android:textColor="@color/black"/>
 
                         <TextView
                             android:id="@+id/txt_ExpirationTime"
@@ -151,7 +155,6 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
                             android:gravity="center"
-                            android:text="31/10/2017"
                             android:textColor="@color/appcolor" />
                     </LinearLayout>
                 </LinearLayout>
@@ -179,7 +182,6 @@
                     android:id="@+id/txt_WorkType"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Nhân viên chính thức, Nhân viên thời vụ, Bán thời gian"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -206,7 +208,6 @@
                     android:id="@+id/txt_Career"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="IT-Phần mềm"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -233,7 +234,6 @@
                     android:id="@+id/txt_WorkPlace"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="TP. HCM"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -260,7 +260,6 @@
                     android:id="@+id/txt_Title"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Thực tập sinh, Nhân viên"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -288,7 +287,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="- Phân tích các yêu cầu của khách hàng\n- Tham gia phát triển các dự án trên nền tảng iOS"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -316,7 +314,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="- Sinh viên tốt nghiệp chuyên ngành CNPM\n- Có kiến thức về iOS\n- Đã thực hiện một dự án thực tế là một lợi thế\n- Yêu thích mảng lập trình viên mobile và định hướng sẽ theo nhánh nghề nghiệp này"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -343,7 +340,6 @@
                     android:id="@+id/txt_Level"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Đại học"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -370,7 +366,6 @@
                     android:id="@+id/txt_Experience"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="1 - 2 năm"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -398,7 +393,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="- Thu nhập hấp dẫn &amp; hỗ trợ cơm trưa, trà, café miễn phí\n- Được đào tạo về chuyên môn, và làm việc thực tế với các dự án đầy thử thách, hàng chục triệu người dùng\n- ..."
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -425,7 +419,6 @@
                     android:id="@+id/txt_Salary"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Thỏa thuận"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -452,7 +445,6 @@
                     android:id="@+id/txt_Number"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="10 người"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
             </LinearLayout>
@@ -481,7 +473,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="VNG CORPORATION"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
 
@@ -490,7 +481,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Ông Nguyễn Đức Ngưu"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
 
@@ -499,7 +489,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="jobstore.ad@gmail.com"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
 
@@ -508,7 +497,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="0969741193"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
 
@@ -517,7 +505,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Số 1, Võ Văn Ngân, Thủ Đức, TP. HCM"
                     android:textColor="@color/appcolor"
                     android:textSize="15dp" />
             </LinearLayout>

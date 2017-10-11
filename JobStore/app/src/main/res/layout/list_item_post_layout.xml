@@ -56,11 +56,13 @@
                     android:layout_weight="1"
                     android:gravity="center">
 
-                    <ImageView
+                    <TextView
+                        android:id="@+id/txt_icon1"
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_eye" />
+                        android:gravity="center"
+                        android:text="@string/fa_eye"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/txt_Views"
@@ -78,11 +80,13 @@
                     android:layout_weight="1.5"
                     android:gravity="center">
 
-                    <ImageView
+                    <TextView
+                        android:id="@+id/txt_icon2"
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_ungtuyen" />
+                        android:gravity="center"
+                        android:text="@string/fa_comments"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/txt_NumberApply"
@@ -100,11 +104,13 @@
                     android:layout_weight="1.5"
                     android:gravity="center">
 
-                    <ImageView
+                    <TextView
+                        android:id="@+id/txt_icon3"
                         android:layout_width="15dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_deadline" />
+                        android:gravity="center"
+                        android:text="@string/fa_clock"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/txt_ExpirationTime"

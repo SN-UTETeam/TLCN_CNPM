@@ -59,6 +59,12 @@
     <string name="fa_bell">&#xf0a2;</string>
 
     <string name="fa_check">&#xf00c;</string>
+
+    <string name="fa_eye">&#xf06e;</string>
+
+    <string name="fa_comments">&#xf0e6;</string>
+
+    <string name="fa_clock">&#xf017;</string>
     <string-array name="work_types">
         <item>Thực tập</item>
         <item>Nhân viên</item>

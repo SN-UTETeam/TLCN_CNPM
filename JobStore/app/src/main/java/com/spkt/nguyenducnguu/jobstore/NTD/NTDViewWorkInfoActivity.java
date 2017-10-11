@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkInfo;
 import com.spkt.nguyenducnguu.jobstore.R;
@@ -32,6 +33,7 @@ public class NTDViewWorkInfoActivity extends AppCompatActivity {
     TextView txt_JobDescription, txt_JobRequired, txt_Level, txt_Experience, txt_Welfare, txt_Salary, txt_Number;
     TextView txt_CompanyName, txt_Name, txt_Email, txt_Phone, txt_Address;
     TextView txt_WorkType, txt_Career, txt_WorkPlace;
+    TextView txt_icon1,txt_icon2, txt_icon3;
     Button btn_ListCalidate, btn_Edit, btn_Delete;
     ImageView imgv_Back;
 
@@ -43,6 +45,7 @@ public class NTDViewWorkInfoActivity extends AppCompatActivity {
 
         addView();
         addEvent();
+        setIcon();
         loadData();
     }
     private String createTitleToolbar(String titlePost)
@@ -144,6 +147,10 @@ public class NTDViewWorkInfoActivity extends AppCompatActivity {
         txt_Career = (TextView) findViewById(R.id.txt_Career);
         txt_WorkPlace = (TextView) findViewById(R.id.txt_WorkPlace);
 
+        txt_icon1 = (TextView)findViewById(R.id.txt_icon1);
+        txt_icon2 = (TextView)findViewById(R.id.txt_icon2);
+        txt_icon3 = (TextView)findViewById(R.id.txt_icon3);
+
         btn_ListCalidate = (Button) findViewById(R.id.btn_ListCalidate);
         btn_Edit = (Button) findViewById(R.id.btn_Edit);
         btn_Delete = (Button) findViewById(R.id.btn_Delete);
@@ -211,5 +218,11 @@ public class NTDViewWorkInfoActivity extends AppCompatActivity {
                         }).create().show();
             }
         });
+    }
+    private void setIcon()
+    {
+        txt_icon1.setTypeface(FontManager.getTypeface(this, FontManager.FONTAWESOME));
+        txt_icon2.setTypeface(FontManager.getTypeface(this, FontManager.FONTAWESOME));
+        txt_icon3.setTypeface(FontManager.getTypeface(this, FontManager.FONTAWESOME));
     }
 }

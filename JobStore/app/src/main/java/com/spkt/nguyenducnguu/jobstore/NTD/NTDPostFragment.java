@@ -42,9 +42,9 @@ public class NTDPostFragment extends Fragment {
         //Method để sử dụng font awesome trong fragment
        /* Typeface iconFont = FontManager.getTypeface(getContext(), FontManager.FONTAWESOME);
         FontManager.markAsIconContainer(rootView.findViewById(R.id.Manage_Recruit), iconFont);*/
-
-        lv_WorkInfo.setAdapter(new WorkInfoListAdapter(getActivity(), lstWorkInfo));
         loadData();
+        lv_WorkInfo.setAdapter(new WorkInfoListAdapter(getActivity(), lstWorkInfo));
+
 
         return rootView;
     }
