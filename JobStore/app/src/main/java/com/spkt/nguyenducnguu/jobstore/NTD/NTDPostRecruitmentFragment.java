@@ -16,10 +16,11 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
+import com.spkt.nguyenducnguu.jobstore.Models.Parameter;
 import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkDetail;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkInfo;
@@ -57,30 +58,27 @@ public class NTDPostRecruitmentFragment extends Fragment {
         setIcon();
         return rootView;
     }
-    private void loadData()
-    {
+
+    private void loadData() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         txt_Email.setText(mAuth.getCurrentUser().getEmail());
 
-        FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
-        Query query = mdatabase.getReference("Recruiters").orderByChild("email").equalTo(mAuth.getCurrentUser().getEmail());
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        Database.getData(Node.RECRUITERS, new OnGetDataListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot mdata : dataSnapshot.getChildren())
-                {
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                for (DataSnapshot mdata : dataSnapshot.getChildren()) {
                     txt_CompanyName.setText(mdata.getValue(Recruiter.class).getCompanyName());
                 }
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onFailed(DatabaseError databaseError) {
 
             }
-        });
+        }, new Parameter("email", mAuth.getCurrentUser().getEmail()));
     }
-    private void addView(View rootView)
-    {
+
+    private void addView(View rootView) {
         txt_Email = (TextView) rootView.findViewById(R.id.txt_Email);
         txt_CompanyName = (TextView) rootView.findViewById(R.id.txt_CompanyName);
         txt_ExpirationTime = (TextView) rootView.findViewById(R.id.txt_ExpirationTime);
@@ -92,11 +90,11 @@ public class NTDPostRecruitmentFragment extends Fragment {
         txt_Welfare = (TextView) rootView.findViewById(R.id.txt_Welfare);
 
         txt_WorkType = (TagsEditText) rootView.findViewById(R.id.txt_WorkType);
-        txt_Career= (TagsEditText) rootView.findViewById(R.id.txt_Career);
-        txt_Level= (TagsEditText) rootView.findViewById(R.id.txt_Level);
-        txt_Experience= (TagsEditText) rootView.findViewById(R.id.txt_Experience);
-        txt_Salary= (TagsEditText) rootView.findViewById(R.id.txt_Salary);
-        txt_WorkPlace= (TagsEditText) rootView.findViewById(R.id.txt_WorkPlace);
+        txt_Career = (TagsEditText) rootView.findViewById(R.id.txt_Career);
+        txt_Level = (TagsEditText) rootView.findViewById(R.id.txt_Level);
+        txt_Experience = (TagsEditText) rootView.findViewById(R.id.txt_Experience);
+        txt_Salary = (TagsEditText) rootView.findViewById(R.id.txt_Salary);
+        txt_WorkPlace = (TagsEditText) rootView.findViewById(R.id.txt_WorkPlace);
 
         btn_AddWorkType = (Button) rootView.findViewById(R.id.btn_AddWorkType);
         btn_AddCareer = (Button) rootView.findViewById(R.id.btn_AddCareer);
@@ -107,146 +105,133 @@ public class NTDPostRecruitmentFragment extends Fragment {
 
         btn_Complete = (Button) rootView.findViewById(R.id.btn_Complete);
     }
-    private boolean checkValidation()
-    {
-        if(txt_TitlePost.getText().toString().trim().isEmpty() || txt_TitlePost.getText().toString().trim() == "")
-        {
-            Toast.makeText(getActivity(),"Vui lòng nhập tiêu đề!",Toast.LENGTH_SHORT).show();
+
+    private boolean checkValidation() {
+        if (txt_TitlePost.getText().toString().trim().isEmpty() || txt_TitlePost.getText().toString().trim() == "") {
+            Toast.makeText(getActivity(), "Vui lòng nhập tiêu đề!", Toast.LENGTH_SHORT).show();
             txt_TitlePost.requestFocus();
             return false;
         }
-        if(txt_ExpirationTime.getText().toString().trim().isEmpty())
-        {
-            Toast.makeText(getActivity(),"Vui lòng chọn ngày hết hạn!",Toast.LENGTH_SHORT).show();
+        if (txt_ExpirationTime.getText().toString().trim().isEmpty()) {
+            Toast.makeText(getActivity(), "Vui lòng chọn ngày hết hạn!", Toast.LENGTH_SHORT).show();
             txt_ExpirationTime.requestFocus();
             return false;
         }
-        if(txt_WorkPlace.getTags().size() == 0)
-        {
-            Toast.makeText(getActivity(),"Vui lòng chọn địa điểm làm việc!",Toast.LENGTH_SHORT).show();
+        if (txt_WorkPlace.getTags().size() == 0) {
+            Toast.makeText(getActivity(), "Vui lòng chọn địa điểm làm việc!", Toast.LENGTH_SHORT).show();
             txt_WorkPlace.requestFocus();
             return false;
         }
-        if(txt_WorkType.getTags().size() == 0)
-        {
-            Toast.makeText(getActivity(),"Vui lòng chọn loại hình công việc!",Toast.LENGTH_SHORT).show();
+        if (txt_WorkType.getTags().size() == 0) {
+            Toast.makeText(getActivity(), "Vui lòng chọn loại hình công việc!", Toast.LENGTH_SHORT).show();
             txt_WorkType.requestFocus();
             return false;
         }
-        if(txt_Career.getTags().size() == 0)
-        {
-            Toast.makeText(getActivity(),"Vui lòng chọn ngành nghề!",Toast.LENGTH_SHORT).show();
+        if (txt_Career.getTags().size() == 0) {
+            Toast.makeText(getActivity(), "Vui lòng chọn ngành nghề!", Toast.LENGTH_SHORT).show();
             txt_Career.requestFocus();
             return false;
         }
-        if(txt_Level.getTags().size() == 0)
-        {
-            Toast.makeText(getActivity(),"Vui lòng chọn trình độ!",Toast.LENGTH_SHORT).show();
+        if (txt_Level.getTags().size() == 0) {
+            Toast.makeText(getActivity(), "Vui lòng chọn trình độ!", Toast.LENGTH_SHORT).show();
             txt_Level.requestFocus();
             return false;
         }
-        if(txt_Experience.getTags().size() == 0)
-        {
-            Toast.makeText(getActivity(),"Vui lòng chọn kinh nghiệm!",Toast.LENGTH_SHORT).show();
+        if (txt_Experience.getTags().size() == 0) {
+            Toast.makeText(getActivity(), "Vui lòng chọn kinh nghiệm!", Toast.LENGTH_SHORT).show();
             txt_Experience.requestFocus();
             return false;
         }
-        if(txt_Title.getText().toString().trim().isEmpty() || txt_Title.getText().toString().trim() == "")
-        {
-            Toast.makeText(getActivity(),"Vui lòng nhập chức vụ!",Toast.LENGTH_SHORT).show();
+        if (txt_Title.getText().toString().trim().isEmpty() || txt_Title.getText().toString().trim() == "") {
+            Toast.makeText(getActivity(), "Vui lòng nhập chức vụ!", Toast.LENGTH_SHORT).show();
             txt_Title.requestFocus();
             return false;
         }
-        if(txt_Number.getText().toString().trim().isEmpty() || txt_Number.getText().toString().trim() == "")
-        {
-            Toast.makeText(getActivity(),"Vui lòng nhập số lượng cần tuyển!",Toast.LENGTH_SHORT).show();
+        if (txt_Number.getText().toString().trim().isEmpty() || txt_Number.getText().toString().trim() == "") {
+            Toast.makeText(getActivity(), "Vui lòng nhập số lượng cần tuyển!", Toast.LENGTH_SHORT).show();
             txt_Number.requestFocus();
             return false;
         }
-        if(txt_JobDescription.getText().toString().trim().isEmpty() || txt_JobDescription.getText().toString().trim() == "")
-        {
-            Toast.makeText(getActivity(),"Vui lòng nhập mô tả công việc!",Toast.LENGTH_SHORT).show();
+        if (txt_JobDescription.getText().toString().trim().isEmpty() || txt_JobDescription.getText().toString().trim() == "") {
+            Toast.makeText(getActivity(), "Vui lòng nhập mô tả công việc!", Toast.LENGTH_SHORT).show();
             txt_JobDescription.requestFocus();
             return false;
         }
-        if(txt_JobRequired.getText().toString().trim().isEmpty() || txt_JobRequired.getText().toString().trim() == "")
-        {
-            Toast.makeText(getActivity(),"Vui lòng nhập yêu cầu công việc!",Toast.LENGTH_SHORT).show();
+        if (txt_JobRequired.getText().toString().trim().isEmpty() || txt_JobRequired.getText().toString().trim() == "") {
+            Toast.makeText(getActivity(), "Vui lòng nhập yêu cầu công việc!", Toast.LENGTH_SHORT).show();
             txt_JobRequired.requestFocus();
             return false;
         }
-        if(txt_Salary.getTags().size() == 0)
-        {
-            Toast.makeText(getActivity(),"Vui lòng chọn mức lương!",Toast.LENGTH_SHORT).show();
+        if (txt_Salary.getTags().size() == 0) {
+            Toast.makeText(getActivity(), "Vui lòng chọn mức lương!", Toast.LENGTH_SHORT).show();
             txt_Salary.requestFocus();
             return false;
         }
         return true;
     }
-    private boolean addData()
-    {
+
+    private void addData() {
         try {
-            WorkInfo wf = new WorkInfo();
-            wf.setEmail(txt_Email.getText().toString());
-            wf.setCompanyName(txt_CompanyName.getText().toString());
-            wf.setTitlePost(txt_TitlePost.getText().toString());
-            wf.setViews(0);
-            wf.setPostTime((new Date()).getTime());
-            wf.setExpirationTime(cal.getTime().getTime());
-            wf.setWorkPlace(txt_WorkPlace.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1));
-            wf.setStatus(0);
+            Database.getData(Node.RECRUITERS, new OnGetDataListener() {
+                @Override
+                public void onSuccess(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot mdata : dataSnapshot.getChildren()) {
+                        WorkInfo wf = new WorkInfo();
 
-            WorkDetail wd = new WorkDetail();
-            wd.setWorkTypes(txt_WorkType.getTags().toString().substring(1, txt_WorkType.getTags().toString().length() - 1));
-            wd.setCarrers(txt_Career.getTags().toString().substring(1, txt_Career.getTags().toString().length() - 1));
-            wd.setLevel(txt_Level.getTags().toString().substring(1, txt_Level.getTags().toString().length() - 1));
-            wd.setExperience(txt_Experience.getTags().toString().substring(1, txt_Experience.getTags().toString().length() - 1));
-            wd.setTitle(txt_Title.getText().toString());
-            try {
-                wd.setNumber(Integer.parseInt(txt_Number.getText().toString()));
-            } catch (Exception e) {
-                Toast.makeText(getActivity(), "Số lượng phải là số nguyên!", Toast.LENGTH_LONG).show();
-                txt_Number.requestFocus();
-                return false;
-            }
-            wd.setJobDescription(txt_JobDescription.getText().toString());
-            wd.setJobRequired(txt_JobRequired.getText().toString());
-            wd.setWelfare(txt_Welfare.getText().toString());
-            wd.setSalary(txt_Salary.getTags().toString().substring(1, txt_Salary.getTags().toString().length() - 1));
+                        wf.setUserId(mdata.getKey());
+                        wf.setCompanyName(txt_CompanyName.getText().toString());
+                        wf.setTitlePost(txt_TitlePost.getText().toString());
+                        wf.setViews(0);
+                        wf.setPostTime((new Date()).getTime());
+                        wf.setExpirationTime(cal.getTime().getTime());
+                        wf.setWorkPlace(txt_WorkPlace.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1));
+                        wf.setStatus(0);
 
-            wf.setWorkDetail(wd);
+                        WorkDetail wd = new WorkDetail();
+                        wd.setWorkTypes(txt_WorkType.getTags().toString().substring(1, txt_WorkType.getTags().toString().length() - 1));
+                        wd.setCarrers(txt_Career.getTags().toString().substring(1, txt_Career.getTags().toString().length() - 1));
+                        wd.setLevel(txt_Level.getTags().toString().substring(1, txt_Level.getTags().toString().length() - 1));
+                        wd.setExperience(txt_Experience.getTags().toString().substring(1, txt_Experience.getTags().toString().length() - 1));
+                        wd.setTitle(txt_Title.getText().toString());
+                        try {
+                            wd.setNumber(Integer.parseInt(txt_Number.getText().toString()));
+                        } catch (Exception e) {
+                            Toast.makeText(getActivity(), "Số lượng phải là số nguyên!", Toast.LENGTH_LONG).show();
+                            txt_Number.requestFocus();
+                        }
+                        wd.setJobDescription(txt_JobDescription.getText().toString());
+                        wd.setJobRequired(txt_JobRequired.getText().toString());
+                        wd.setWelfare(txt_Welfare.getText().toString());
+                        wd.setSalary(txt_Salary.getTags().toString().substring(1, txt_Salary.getTags().toString().length() - 1));
 
-            FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
-            mdatabase.getReference("WorkInfos").push().setValue(wf);
-            return true;
-        }
-        catch (Exception e)
-        {
-            return false;
+                        wf.setWorkDetail(wd);
+
+                        Database.addData(Node.WORKINFOS, wf);
+                    }
+                }
+
+                @Override
+                public void onFailed(DatabaseError databaseError) {
+
+                }
+            }, new Parameter("email", FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+        } catch (Exception e) {
         }
     }
-    private void addEvent()
-    {
+
+    private void addEvent() {
         btn_Complete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ProgressDialog dialog = ProgressDialog.show(getActivity(), "",
                         "Please wait...", true);
-                if(checkValidation())
-                {
-                    if(addData())
-                    {
-                        dialog.dismiss();
-                        NTDPostManagerFragment fragment = new NTDPostManagerFragment();
-                        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment_container, fragment);
-                        fragmentTransaction.commit();
-                    }
-                    else
-                    {
-                        Toast.makeText(getActivity(), "Đã xảy ra lỗi trong quá trình đăng bài, hãy thử lại sau!", Toast.LENGTH_LONG).show();
-                        dialog.dismiss();
-                    }
+                if (checkValidation()) {
+                    addData();
+                    dialog.dismiss();
+                    NTDPostManagerFragment fragment = new NTDPostManagerFragment();
+                    android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, fragment);
+                    fragmentTransaction.commit();
                 }
                 dialog.dismiss();
             }
@@ -262,107 +247,101 @@ public class NTDPostRecruitmentFragment extends Fragment {
         btn_AddWorkType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SelectWorkTypeActivity.class);
-                String data = txt_WorkType.getTags().toString().substring(1, txt_WorkType.getTags().toString().length() - 1);
-                intent.putExtra("lstWorkTypeSelected", data);
-                startActivityForResult(intent, 1);
+                startActivitySelectForResult(SelectWorkTypeActivity.class, txt_WorkType, "lstWorkTypeSelected", 1);
             }
         });
         btn_AddCareer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SelectCarrerActivity.class);
-                String data = txt_Career.getTags().toString().substring(1, txt_Career.getTags().toString().length() - 1);
-                intent.putExtra("lstCareerSelected", data);
-                startActivityForResult(intent,2);
+                startActivitySelectForResult(SelectCarrerActivity.class, txt_Career, "lstCareerSelected", 2);
             }
         });
         btn_AddLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SelectLevelActivity.class);
-                String data = txt_Level.getTags().toString().substring(1, txt_Level.getTags().toString().length() - 1);
-                intent.putExtra("lstLevelSelected", data);
-                startActivityForResult(intent,3);
+                startActivitySelectForResult(SelectLevelActivity.class, txt_Level, "lstLevelSelected", 3);
             }
         });
         btn_AddExperience.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SelectExperienceActivity.class);
-                String data = txt_Experience.getTags().toString().substring(1, txt_Experience.getTags().toString().length() - 1);
-                intent.putExtra("lstExperienceSelected", data);
-                startActivityForResult(intent,4);
+                startActivitySelectForResult(SelectExperienceActivity.class, txt_Experience, "lstExperienceSelected", 4);
             }
         });
         btn_AddSalary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SelectSalaryActivity.class);
-                String data = txt_Salary.getTags().toString().substring(1, txt_Salary.getTags().toString().length() - 1);
-                intent.putExtra("lstSalarySelected", data);
-                startActivityForResult(intent,5);
+                startActivitySelectForResult(SelectSalaryActivity.class, txt_Salary, "lstSalarySelected", 5);
             }
         });
         btn_AddWorkPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SelectWorkPlaceActivity.class);
-                String data = txt_WorkPlace.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1);
-                intent.putExtra("lstWorkPlaceSelected", data);
-                startActivityForResult(intent,6);
+                startActivitySelectForResult(SelectWorkPlaceActivity.class, txt_WorkPlace, "lstWorkPlaceSelected", 6);
             }
         });
     }
+
+    private void startActivitySelectForResult(Class selectScreen, TagsEditText tags, String keyData, int requestCode) {
+        Intent intent = new Intent(getActivity(), selectScreen);
+        String data = tags.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1);
+        intent.putExtra(keyData, data);
+        startActivityForResult(intent, requestCode);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 1){
-            if(data != null) {
-                String message = data.getStringExtra("lstWorkType");
-                txt_WorkType.setTags(message.split(","));
-            }
-        }
-        else if(requestCode == 2){
-            if(data != null) {
-                String message = data.getStringExtra("lstCareer");
-                txt_Career.setTags(message.split(","));
-            }
-        }
-        else if(requestCode == 3){
-            if(data != null) {
-                String message = data.getStringExtra("lstLevel");
-                txt_Level.setTags(message.split(","));
-            }
-        }
-        else if(requestCode == 4){
-            if(data != null) {
-                String message = data.getStringExtra("lstExperience");
-                txt_Experience.setTags(message.split(","));
-            }
-        }
-        else if(requestCode == 5){
-            if(data != null) {
-                String message = data.getStringExtra("lstSalary");
-                txt_Salary.setTags(message.split(","));
-            }
-        }
-        else if(requestCode == 6){
-            if(data != null) {
-                String message = data.getStringExtra("lstWorkPlace");
-                txt_WorkPlace.setTags(message.split(","));
-            }
+        switch (requestCode) {
+            case 1:
+                if (data != null) {
+                    String message = data.getStringExtra("lstWorkType");
+                    txt_WorkType.setTags(message.split(","));
+                }
+                break;
+            case 2:
+                if (data != null) {
+                    String message = data.getStringExtra("lstCareer");
+                    txt_Career.setTags(message.split(","));
+                }
+                break;
+            case 3:
+                if (data != null) {
+                    String message = data.getStringExtra("lstLevel");
+                    txt_Level.setTags(message.split(","));
+                }
+                break;
+            case 4:
+                if (data != null) {
+                    String message = data.getStringExtra("lstExperience");
+                    txt_Experience.setTags(message.split(","));
+                }
+                break;
+            case 5:
+                if (data != null) {
+                    String message = data.getStringExtra("lstSalary");
+                    txt_Salary.setTags(message.split(","));
+                }
+                break;
+            case 6:
+                if (data != null) {
+                    String message = data.getStringExtra("lstWorkPlace");
+                    txt_WorkPlace.setTags(message.split(","));
+                }
+                break;
         }
     }
-    private void setIcon(){
-        btn_AddWorkType.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
-        btn_AddCareer.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
-        btn_AddLevel.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
-        btn_AddExperience.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
-        btn_AddSalary.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
-        btn_AddWorkPlace.setTypeface(FontManager.getTypeface(getActivity(),FontManager.FONTAWESOME));
+
+    private void setIcon() {
+        btn_AddWorkType.setTypeface(FontManager.getTypeface(getActivity(), FontManager.FONTAWESOME));
+        btn_AddCareer.setTypeface(FontManager.getTypeface(getActivity(), FontManager.FONTAWESOME));
+        btn_AddLevel.setTypeface(FontManager.getTypeface(getActivity(), FontManager.FONTAWESOME));
+        btn_AddExperience.setTypeface(FontManager.getTypeface(getActivity(), FontManager.FONTAWESOME));
+        btn_AddSalary.setTypeface(FontManager.getTypeface(getActivity(), FontManager.FONTAWESOME));
+        btn_AddWorkPlace.setTypeface(FontManager.getTypeface(getActivity(), FontManager.FONTAWESOME));
     }
+
     private void showDatePickerDialog() {
         DatePickerDialog.OnDateSetListener callback = new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker view, int year,

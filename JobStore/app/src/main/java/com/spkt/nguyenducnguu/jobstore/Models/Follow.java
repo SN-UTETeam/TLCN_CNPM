@@ -1,20 +1,20 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
 public class Follow {
-    private String Email;
+    private String UserId;
 
-    public Follow(String email) {
-        Email = email;
+    public Follow(String userId) {
+        UserId = userId;
     }
 
     public Follow() {
     }
 
     public String getEmail() {
-        return Email;
+        return UserId;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setEmail(String userId) {
+        UserId = userId;
     }
 }

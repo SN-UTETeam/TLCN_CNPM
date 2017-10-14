@@ -17,17 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.spkt.nguyenducnguu.jobstore.ADMIN.AdminMainActivity;
-import com.spkt.nguyenducnguu.jobstore.Models.Roles;
-import com.spkt.nguyenducnguu.jobstore.NTD.NTDMainActivity;
 import com.spkt.nguyenducnguu.jobstore.NTD.NTDRegisterActivity;
-import com.spkt.nguyenducnguu.jobstore.UV.UVMainActivity;
 import com.spkt.nguyenducnguu.jobstore.UV.UVRegisterActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
@@ -44,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        updateUI(mAuth.getCurrentUser());
+        UpdateUI.updateUI(this, mAuth.getCurrentUser());
 
         addView();
         addEvent();
@@ -65,52 +55,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btn_Login.setOnClickListener(this);
         tv_ForgotPassword.setOnClickListener(this);
         tv_Register.setOnClickListener(this);
-    }
-    private void updateUI(FirebaseUser user)
-    {
-        //Đã xác thực tài khoản
-        if(user != null)
-        {
-            //Kiểm tra quyền của tài khoản
-            DatabaseReference rolesRef = FirebaseDatabase.getInstance().getReference("Roles");
-            Query query = rolesRef.orderByChild("email").equalTo(user.getEmail());
-
-            Toast.makeText(LoginActivity.this, user.getEmail(), Toast.LENGTH_SHORT).show();
-
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        Intent intent = null;
-                        for (DataSnapshot mdata : dataSnapshot.getChildren()) {
-                            Roles role = mdata.getValue(Roles.class);
-
-                            if(role.getRole() == 0) { //NTD
-                                intent = new Intent(LoginActivity.this, NTDMainActivity.class);
-                                break;
-                            }
-                            else if(role.getRole() == 1) {//UV
-                                intent = new Intent(LoginActivity.this, UVMainActivity.class);
-                                break;
-                            }
-                            else { //Admin
-                                intent = new Intent(LoginActivity.this, AdminMainActivity.class);
-                                break;
-                            }
-                        }
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        finish();
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(LoginActivity.this, "Authentication role failed.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
     }
     private boolean ValidateInputData()
     {
@@ -155,13 +99,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (task.isSuccessful()) {
                             // Sign in success
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            UpdateUI.updateUI(LoginActivity.this, user);
                             dialog.dismiss();
                         } else {
                             // If sign in fails
                             Toast.makeText(LoginActivity.this, "     Authentication failed!!!",
                                     Toast.LENGTH_LONG).show();
-                            updateUI(null);
+                            UpdateUI.updateUI(LoginActivity.this, null);
                             dialog.dismiss();
                         }
                     }

@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class WorkInfo implements Comparable<WorkInfo>{
     private String Key = "";
-    private String Email;
+    private String UserId;
     private String CompanyName;
     private String TitlePost;
     private int Views;
@@ -23,11 +23,11 @@ public class WorkInfo implements Comparable<WorkInfo>{
         Shares = new HashMap<>();
     }
 
-    public WorkInfo(String email, String companyName, String titlePost, int views, Long postTime,
+    public WorkInfo(String userId, String companyName, String titlePost, int views, Long postTime,
                     Long expirationTime, String workPlace,
                     com.spkt.nguyenducnguu.jobstore.Models.WorkDetail workDetail,
                     HashMap<String, Apply> applies, HashMap<String, Share> shares, int status) {
-        Email = email;
+        UserId = userId;
         CompanyName = companyName;
         TitlePost = titlePost;
         Views = views;
@@ -40,12 +40,12 @@ public class WorkInfo implements Comparable<WorkInfo>{
         Status = status;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getUserId() {
+        return UserId;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setUserId(String userId) {
+        UserId = userId;
     }
 
     public String getCompanyName() {

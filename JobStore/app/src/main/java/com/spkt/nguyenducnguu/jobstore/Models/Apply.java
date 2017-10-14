@@ -1,23 +1,23 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
 public class Apply {
-    private String Email;
+    private String UserId;
     private Long Time;
 
     public Apply() {
     }
 
-    public Apply(String email, Long time) {
-        Email = email;
+    public Apply(String userId, Long time) {
+        UserId = userId;
         Time = time;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getUserId() {
+        return UserId;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setUserId(String userId) {
+        UserId = userId;
     }
 
     public Long getTime() {

@@ -12,11 +12,11 @@ public class Roles {
         Role = role;
     }
 
-    public String getEmail() {
+    public String getUserId() {
         return Email;
     }
 
-    public void setEmail(String email) {
+    public void setUserId(String email) {
         Email = email;
     }
 

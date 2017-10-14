@@ -13,12 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.spkt.nguyenducnguu.jobstore.Adaper.WorkInfoListAdapter;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
+import com.spkt.nguyenducnguu.jobstore.Models.Parameter;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkInfo;
 import com.spkt.nguyenducnguu.jobstore.R;
 
@@ -49,31 +51,42 @@ public class NTDPostExpiredFragment extends Fragment {
     }
     private void loadData()
     {
-        FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
-        Query query = mdatabase.getReference("WorkInfos");
-        query.addValueEventListener(new ValueEventListener() {
+        Database.getData(Node.RECRUITERS, new OnGetDataListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                lstWorkInfoExpired.clear();
-                for(DataSnapshot mdata : dataSnapshot.getChildren())
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                for (DataSnapshot mdata : dataSnapshot.getChildren())
                 {
-                    WorkInfo w = mdata.getValue(WorkInfo.class);
-                    if(w.getExpirationTime() > (new Date()).getTime())
-                        continue;
-                    w.setKey(mdata.getKey());
-                    lstWorkInfoExpired.add(w);
-                    Collections.sort(lstWorkInfoExpired);
-                    ((BaseAdapter) lv_WorkInfoExpired.getAdapter()).notifyDataSetChanged();
+                    Database.getData(Node.WORKINFOS, new OnGetDataListener() {
+                        @Override
+                        public void onSuccess(DataSnapshot dataSnapshot) {
+                            lstWorkInfoExpired.clear();
+                            for(DataSnapshot mdata : dataSnapshot.getChildren())
+                            {
+                                WorkInfo w = mdata.getValue(WorkInfo.class);
+                                if(w.getExpirationTime() > (new Date()).getTime())
+                                    continue;
+                                w.setKey(mdata.getKey());
+                                lstWorkInfoExpired.add(w);
+                                Collections.sort(lstWorkInfoExpired);
+                                ((BaseAdapter) lv_WorkInfoExpired.getAdapter()).notifyDataSetChanged();
+                            }
+                            if(lstWorkInfoExpired.size() > 0) ln_NonData.setVisibility(View.GONE);
+                            else ln_NonData.setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        public void onFailed(DatabaseError databaseError) {
+
+                        }
+                    }, new Parameter("userId", mdata.getKey()));
                 }
-                if(lstWorkInfoExpired.size() > 0) ln_NonData.setVisibility(View.GONE);
-                else ln_NonData.setVisibility(View.VISIBLE);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onFailed(DatabaseError databaseError) {
 
             }
-        });
+        }, new Parameter("email", FirebaseAuth.getInstance().getCurrentUser().getEmail()));
     }
     private void addView(View rootView){
 

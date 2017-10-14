@@ -33,7 +33,6 @@
         <activity android:name=".SelectSalaryActivity" />
         <activity android:name=".SelectWorkPlaceActivity" />
         <activity android:name=".NTD.NTDProfileActivity" />
-        <activity android:name=".Test" />
         <activity android:name=".NTD.NTDViewWorkInfoActivity" />
         <activity android:name=".NTD.NTDEditWorkInfoActivity" />
         <activity android:name=".NTD.NTDViewListApplyActivity" />

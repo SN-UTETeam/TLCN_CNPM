@@ -1,23 +1,23 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
 public class Share {
-    private String Email;
+    private String UserId;
     private Long Time;
 
     public Share() {
     }
 
-    public Share(String email, Long time) {
-        Email = email;
+    public Share(String userId, Long time) {
+        UserId = userId;
         Time = time;
     }
 
     public String getEmail() {
-        return Email;
+        return UserId;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setEmail(String userId) {
+        UserId = userId;
     }
 
     public Long getTime() {

@@ -22,11 +22,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.LoginActivity;
+import com.spkt.nguyenducnguu.jobstore.Models.Parameter;
 import com.spkt.nguyenducnguu.jobstore.R;
 
 public class NTDMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -66,11 +66,9 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
             @Override
             public void onClick(View view) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                DatabaseReference rolesRef = FirebaseDatabase.getInstance().getReference("Recruiters");
-                Query query = rolesRef.orderByChild("email").equalTo(user.getEmail());
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                Database.getData(Node.RECRUITERS, new OnGetDataListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    public void onSuccess(DataSnapshot dataSnapshot) {
                         for(DataSnapshot mdata : dataSnapshot.getChildren())
                         {
                             Log.d("Key", mdata.getKey());
@@ -83,10 +81,10 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                    public void onFailed(DatabaseError databaseError) {
 
                     }
-                });
+                }, new Parameter("email", user.getEmail()));
             }
         });
     }

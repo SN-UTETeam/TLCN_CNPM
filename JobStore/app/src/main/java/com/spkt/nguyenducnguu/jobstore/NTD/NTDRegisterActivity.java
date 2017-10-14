@@ -18,7 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.Models.Address;
 import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
 import com.spkt.nguyenducnguu.jobstore.Models.Roles;
@@ -32,7 +33,6 @@ import java.util.Date;
 public class NTDRegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
     Calendar cal = Calendar.getInstance();
     TextView txt_BirthDay, txt_Gender;
     TextView txt_Email, txt_Password, txt_ConfirmPassword, txt_FullName, txt_CompanyName,
@@ -234,10 +234,10 @@ public class NTDRegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //Thêm dữ liệu
-                            database.getReference("Recruiters").push().setValue(r);
+                            Database.addData(Node.RECRUITERS, r);
                             //Phân quyền
                             Roles role = new Roles(r.getEmail(), 0);
-                            database.getReference("Roles").push().setValue(role);
+                            Database.addData(Node.ROLES, role);
                             dialog.dismiss();
                             //Thông báo
                             Intent intent = new Intent(NTDRegisterActivity.this, ResultRegisterActivity.class);

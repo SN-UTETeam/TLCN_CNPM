@@ -10,10 +10,10 @@ import android.widget.TextView;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
 import com.spkt.nguyenducnguu.jobstore.R;
 
@@ -46,10 +46,9 @@ public class NTDProfileActivity extends AppCompatActivity {
             }
         }
         if (Key != "") {
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Recruiters/" + Key);
-            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            Database.getData(Node.RECRUITERS + "/" + Key, new OnGetDataListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onSuccess(DataSnapshot dataSnapshot) {
                     Recruiter r = dataSnapshot.getValue(Recruiter.class);
                     if (r == null) return;
 
@@ -64,7 +63,7 @@ public class NTDProfileActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
+                public void onFailed(DatabaseError databaseError) {
 
                 }
             });
