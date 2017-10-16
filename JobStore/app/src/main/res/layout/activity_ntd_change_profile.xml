@@ -75,268 +75,349 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/appcolor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text=" Thông tin đăng ký"
+                    android:textColor="@color/appcolor"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/appcolor" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="(Có thể bỏ trống nếu không đổi mật khẩu)"
+                    android:textColor="@color/appcolor"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txt_icon1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/fa_user"
-                    android:textColor="@color/appcolor"
-                    android:textSize="20dp" />
 
                 <EditText
-                    android:id="@+id/edt_FullName"
+                    android:id="@+id/txt_OldPassword"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="4"
                     android:background="@drawable/edt_custom"
-                    android:gravity="center|top|left"
-                    android:hint="Trần Anh Sơn"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:maxLength="2000"
-                    android:maxLines="1"
-                    android:scrollHorizontally="false"
+                    android:hint="Nhập mật khẩu cũ (> 5 ký tự)"
+                    android:inputType="textPassword"
                     android:textSize="15dp" />
             </LinearLayout>
 
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/dark"></View>
+                android:orientation="horizontal">
+
+
+                <EditText
+                    android:id="@+id/txt_Password"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/edt_custom"
+                    android:hint="Nhập mật khẩu mới (> 5 ký tự)"
+                    android:inputType="textPassword"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+
+                <EditText
+                    android:id="@+id/txt_ConfirmPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/edt_custom"
+                    android:hint="Nhập lại mật khẩu mới (> 5 ký tự)"
+                    android:inputType="textPassword"
+                    android:textSize="15dp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/appcolor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text=" Thông tin cá nhân"
+                    android:textColor="@color/appcolor"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/appcolor" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txt_icon2"
+                <EditText
+                    android:id="@+id/txt_FullName"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/fa_gender"
-                    android:textColor="@color/appcolor"
-                    android:textSize="20dp" />
-
-                <EditText
-                    android:id="@+id/edt_Gender"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="4"
                     android:background="@drawable/edt_custom"
-                    android:gravity="center|top|left"
-                    android:hint="Nam"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:maxLength="2000"
-                    android:maxLines="1"
-                    android:scrollHorizontally="false"
+                    android:hint="Nhập họ và tên"
+                    android:inputType="textCapWords"
                     android:textSize="15dp" />
             </LinearLayout>
 
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/dark"></View>
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/txt_BirthDay"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/edt_custom"
+                    android:focusable="false"
+                    android:hint="Ngày sinh"
+                    android:inputType="textCapWords"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/txt_Gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/edt_custom"
+                    android:focusable="false"
+                    android:hint="Giới tính"
+                    android:inputType="textCapWords"
+                    android:textSize="15dp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/appcolor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text=" Thông tin công ty"
+                    android:textColor="@color/appcolor"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/appcolor" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txt_icon3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/fa_company"
-                    android:textColor="@color/appcolor"
-                    android:textSize="20dp" />
 
                 <EditText
                     android:id="@+id/txt_CompanyName"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="4"
                     android:background="@drawable/edt_custom"
-                    android:gravity="center|top|left"
-                    android:hint="HBB Solution"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:maxLength="2000"
-                    android:maxLines="2"
-                    android:scrollHorizontally="false"
+                    android:hint="Nhập tên công ty"
+                    android:inputType="textCapWords"
                     android:textSize="15dp" />
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/dark"></View>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txt_icon4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/fa_address"
-                    android:textColor="@color/appcolor"
-                    android:textSize="20dp" />
+                android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/edt_Address"
-                    android:layout_width="0dp"
+                    android:id="@+id/txt_Description"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_weight="4"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/edt_custom"
+                    android:cursorVisible="false"
                     android:gravity="center|top|left"
-                    android:hint="244 Cống Quỳnh, Phường Phạm Ngũ Lão, Quận 1, TP HCM"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:maxLength="2000"
-                    android:maxLines="5"
-                    android:scrollHorizontally="false"
-                    android:textSize="15dp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/dark"></View>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txt_icon5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/fa_phone"
-                    android:textColor="@color/appcolor"
-                    android:textSize="20dp" />
-
-                <EditText
-                    android:id="@+id/edt_Phone"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="4"
-                    android:background="@drawable/edt_custom"
-                    android:gravity="center|top|left"
-                    android:hint="01694043472"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:maxLength="2000"
-                    android:maxLines="1"
-                    android:scrollHorizontally="false"
-                    android:textSize="15dp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/dark"></View>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txt_icon6"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/fa_link"
-                    android:textColor="@color/appcolor"
-                    android:textSize="20dp" />
-
-                <EditText
-                    android:id="@+id/edt_Website"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="4"
-                    android:background="@drawable/edt_custom"
-                    android:gravity="center|top|left"
-                    android:hint="https://hbbsolution.com"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:maxLength="2000"
-                    android:maxLines="5"
-                    android:scrollHorizontally="false"
-                    android:textSize="15dp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/dark"></View>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txt_icon7"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center|top"
-                    android:text="@string/fa_info"
-                    android:textColor="@color/appcolor"
-                    android:textSize="20dp" />
-
-                <EditText
-                    android:id="@+id/edt_Decription"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="4"
-                    android:background="@drawable/edt_custom"
-                    android:gravity="center|top|left"
-                    android:hint="Giới thiệu công ty"
+                    android:hint="Nhập mô tả"
                     android:inputType="textCapSentences|textMultiLine"
                     android:maxLength="2000"
                     android:maxLines="10"
                     android:scrollHorizontally="false"
+                    android:textSize="15dp" />/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/appcolor" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text=" Thông tin liên hệ"
+                    android:textColor="@color/appcolor"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/appcolor" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/txt_Phone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/edt_custom"
+                    android:hint="Nhập số điện thoại liên hệ"
+                    android:inputType="phone"
                     android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/txt_Website"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/edt_custom"
+                    android:hint="Nhập website"
+                    android:inputType="textUri"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/txt_Address"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="4"
+                    android:background="@drawable/edt_custom"
+                    android:hint="Địa chỉ công ty"
+                    android:inputType="textCapWords"
+                    android:textSize="15dp" />
+
             </LinearLayout>
 
         </LinearLayout>

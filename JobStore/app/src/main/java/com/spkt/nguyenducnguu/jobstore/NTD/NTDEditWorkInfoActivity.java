@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Const.RequestCode;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
@@ -89,11 +90,9 @@ public class NTDEditWorkInfoActivity extends AppCompatActivity {
                     Database.getData(Node.RECRUITERS + "/" + w.getUserId(), new OnGetDataListener() {
                         @Override
                         public void onSuccess(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot mdata : dataSnapshot.getChildren()) {
-                                Recruiter r = mdata.getValue(Recruiter.class);
-                                txt_Email.setText(r.getEmail());
-                                txt_CompanyName.setText(r.getCompanyName());
-                            }
+                            Recruiter r = dataSnapshot.getValue(Recruiter.class);
+                            txt_Email.setText(r.getEmail());
+                            txt_CompanyName.setText(r.getCompanyName());
                         }
 
                         @Override
@@ -211,7 +210,7 @@ public class NTDEditWorkInfoActivity extends AppCompatActivity {
             Database.getData(Node.WORKINFOS + "/" + Key, new OnGetDataListener() {
                 @Override
                 public void onSuccess(DataSnapshot dataSnapshot) {
-                    if(dataSnapshot == null) return;
+                    if (dataSnapshot == null) return;
 
                     WorkInfo wf = dataSnapshot.getValue(WorkInfo.class);
 
@@ -280,44 +279,44 @@ public class NTDEditWorkInfoActivity extends AppCompatActivity {
         btn_AddWorkType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivitySelectForResult(SelectWorkTypeActivity.class, txt_WorkType, "lstWorkTypeSelected", 1);
+                startActivitySelectForResult(SelectWorkTypeActivity.class, txt_WorkType, "lstWorkTypeSelected", RequestCode.SELECT_WORKTYPE);
             }
         });
         btn_AddCareer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivitySelectForResult(SelectCarrerActivity.class, txt_Career, "lstCareerSelected", 2);
+                startActivitySelectForResult(SelectCarrerActivity.class, txt_Career, "lstCareerSelected", RequestCode.SELECT_CAREER);
             }
         });
         btn_AddLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivitySelectForResult(SelectLevelActivity.class, txt_Level, "lstLevelSelected", 3);
+                startActivitySelectForResult(SelectLevelActivity.class, txt_Level, "lstLevelSelected", RequestCode.SELECT_LEVEL);
             }
         });
         btn_AddExperience.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivitySelectForResult(SelectExperienceActivity.class, txt_Experience, "lstExperienceSelected", 4);
+                startActivitySelectForResult(SelectExperienceActivity.class, txt_Experience, "lstExperienceSelected", RequestCode.SELECT_EXPERIENCE);
             }
         });
         btn_AddSalary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivitySelectForResult(SelectSalaryActivity.class, txt_Salary, "lstSalarySelected", 5);
+                startActivitySelectForResult(SelectSalaryActivity.class, txt_Salary, "lstSalarySelected", RequestCode.SELECT_SALARY);
             }
         });
         btn_AddWorkPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivitySelectForResult(SelectWorkPlaceActivity.class, txt_WorkPlace, "lstWorkPlaceSelected", 6);
+                startActivitySelectForResult(SelectWorkPlaceActivity.class, txt_WorkPlace, "lstWorkPlaceSelected", RequestCode.SELECT_WORKPLACE);
             }
         });
     }
 
     private void startActivitySelectForResult(Class selectScreen, TagsEditText tags, String keyData, int requestCode) {
         Intent intent = new Intent(this, selectScreen);
-        String data = tags.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1);
+        String data = tags.getTags().toString().substring(1, tags.getTags().toString().length() - 1);
         intent.putExtra(keyData, data);
         startActivityForResult(intent, requestCode);
     }

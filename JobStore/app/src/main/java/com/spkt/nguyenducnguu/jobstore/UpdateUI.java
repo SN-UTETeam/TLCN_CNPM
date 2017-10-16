@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.spkt.nguyenducnguu.jobstore.ADMIN.AdminMainActivity;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.Parameter;
@@ -17,13 +18,16 @@ import com.spkt.nguyenducnguu.jobstore.UV.UVMainActivity;
 
 public class UpdateUI {
 
-    public static void updateUI(final Activity context, FirebaseUser user)
+    public UpdateUI() {
+    }
+
+    public void updateUI(final Activity context, FirebaseUser user)
     {
         //Đã xác thực tài khoản
         if(user != null)
         {
             //Kiểm tra quyền của tài khoản
-            Database.getData("Roles", new OnGetDataListener() {
+            Database.getData(Node.ROLES, new OnGetDataListener() {
                 @Override
                 public void onSuccess(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -44,7 +48,6 @@ public class UpdateUI {
                                 break;
                             }
                         }
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.finish();
                         context.startActivity(intent);
                     }

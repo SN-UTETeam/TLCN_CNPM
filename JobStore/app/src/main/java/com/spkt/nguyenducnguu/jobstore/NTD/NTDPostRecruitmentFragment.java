@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Const.RequestCode;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
@@ -247,44 +248,44 @@ public class NTDPostRecruitmentFragment extends Fragment {
         btn_AddWorkType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivitySelectForResult(SelectWorkTypeActivity.class, txt_WorkType, "lstWorkTypeSelected", 1);
+                startActivitySelectForResult(SelectWorkTypeActivity.class, txt_WorkType, "lstWorkTypeSelected", RequestCode.SELECT_WORKTYPE);
             }
         });
         btn_AddCareer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivitySelectForResult(SelectCarrerActivity.class, txt_Career, "lstCareerSelected", 2);
+                startActivitySelectForResult(SelectCarrerActivity.class, txt_Career, "lstCareerSelected", RequestCode.SELECT_CAREER);
             }
         });
         btn_AddLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivitySelectForResult(SelectLevelActivity.class, txt_Level, "lstLevelSelected", 3);
+                startActivitySelectForResult(SelectLevelActivity.class, txt_Level, "lstLevelSelected", RequestCode.SELECT_LEVEL);
             }
         });
         btn_AddExperience.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivitySelectForResult(SelectExperienceActivity.class, txt_Experience, "lstExperienceSelected", 4);
+                startActivitySelectForResult(SelectExperienceActivity.class, txt_Experience, "lstExperienceSelected", RequestCode.SELECT_EXPERIENCE);
             }
         });
         btn_AddSalary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivitySelectForResult(SelectSalaryActivity.class, txt_Salary, "lstSalarySelected", 5);
+                startActivitySelectForResult(SelectSalaryActivity.class, txt_Salary, "lstSalarySelected", RequestCode.SELECT_SALARY);
             }
         });
         btn_AddWorkPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivitySelectForResult(SelectWorkPlaceActivity.class, txt_WorkPlace, "lstWorkPlaceSelected", 6);
+                startActivitySelectForResult(SelectWorkPlaceActivity.class, txt_WorkPlace, "lstWorkPlaceSelected", RequestCode.SELECT_WORKPLACE);
             }
         });
     }
 
     private void startActivitySelectForResult(Class selectScreen, TagsEditText tags, String keyData, int requestCode) {
         Intent intent = new Intent(getActivity(), selectScreen);
-        String data = tags.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1);
+        String data = tags.getTags().toString().substring(1, tags.getTags().toString().length() - 1);
         intent.putExtra(keyData, data);
         startActivityForResult(intent, requestCode);
     }
@@ -294,37 +295,37 @@ public class NTDPostRecruitmentFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
-            case 1:
+            case RequestCode.SELECT_WORKTYPE:
                 if (data != null) {
                     String message = data.getStringExtra("lstWorkType");
                     txt_WorkType.setTags(message.split(","));
                 }
                 break;
-            case 2:
+            case RequestCode.SELECT_CAREER:
                 if (data != null) {
                     String message = data.getStringExtra("lstCareer");
                     txt_Career.setTags(message.split(","));
                 }
                 break;
-            case 3:
+            case RequestCode.SELECT_LEVEL:
                 if (data != null) {
                     String message = data.getStringExtra("lstLevel");
                     txt_Level.setTags(message.split(","));
                 }
                 break;
-            case 4:
+            case RequestCode.SELECT_EXPERIENCE:
                 if (data != null) {
                     String message = data.getStringExtra("lstExperience");
                     txt_Experience.setTags(message.split(","));
                 }
                 break;
-            case 5:
+            case RequestCode.SELECT_SALARY:
                 if (data != null) {
                     String message = data.getStringExtra("lstSalary");
                     txt_Salary.setTags(message.split(","));
                 }
                 break;
-            case 6:
+            case RequestCode.SELECT_WORKPLACE:
                 if (data != null) {
                     String message = data.getStringExtra("lstWorkPlace");
                     txt_WorkPlace.setTags(message.split(","));

@@ -28,7 +28,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 try {
                     Thread.sleep(500);
                     FirebaseUser currentUser = mAuth.getCurrentUser();
-                    UpdateUI.updateUI(context, currentUser);
+                    (new UpdateUI()).updateUI(context, currentUser);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

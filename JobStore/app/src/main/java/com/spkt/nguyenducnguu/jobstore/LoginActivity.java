@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        UpdateUI.updateUI(this, mAuth.getCurrentUser());
 
         addView();
         addEvent();
@@ -99,13 +98,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (task.isSuccessful()) {
                             // Sign in success
                             FirebaseUser user = mAuth.getCurrentUser();
-                            UpdateUI.updateUI(LoginActivity.this, user);
+                            (new UpdateUI()).updateUI(LoginActivity.this, user);
                             dialog.dismiss();
                         } else {
                             // If sign in fails
                             Toast.makeText(LoginActivity.this, "     Authentication failed!!!",
                                     Toast.LENGTH_LONG).show();
-                            UpdateUI.updateUI(LoginActivity.this, null);
                             dialog.dismiss();
                         }
                     }

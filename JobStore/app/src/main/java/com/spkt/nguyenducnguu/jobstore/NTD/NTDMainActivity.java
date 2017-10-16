@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,13 +28,19 @@ import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.LoginActivity;
 import com.spkt.nguyenducnguu.jobstore.Models.Parameter;
+import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
 import com.spkt.nguyenducnguu.jobstore.R;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NTDMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     NavigationView navigationView = null;
     RelativeLayout rl_headerNav;
-    ImageView img_Avatar;
+    CircleImageView img_Avatar;
+    TextView txt_CompanyName, txt_Email;
+    ImageView img_CoverPhoto;
     Toolbar toolbar = null;
     View contentView;
 
@@ -44,7 +51,6 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         contentView = inflater.inflate(R.layout.ntd_nav_header_main, null);
-        rl_headerNav = (RelativeLayout) contentView.findViewById(R.id.rl_headerNav);
 
         //Thiet lap view trong layout
         addView();
@@ -61,7 +67,33 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
         navigationView.addHeaderView(contentView);
         navigationView.setNavigationItemSelectedListener(this);
     }
-    private void addEvent(){
+
+    private void loadData() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Database.getData(Node.RECRUITERS, new OnGetDataListener() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                for (DataSnapshot mdata : dataSnapshot.getChildren()) {
+                    Recruiter r = mdata.getValue(Recruiter.class);
+
+                    if (r == null) return;
+
+                    txt_CompanyName.setText(r.getCompanyName());
+                    txt_Email.setText(r.getEmail());
+
+                    Picasso.with(getBaseContext()).load(r.getAvatar()).into(img_Avatar);
+                    Picasso.with(getBaseContext()).load(r.getCoverPhoto()).into(img_CoverPhoto);
+                }
+            }
+
+            @Override
+            public void onFailed(DatabaseError databaseError) {
+
+            }
+        }, new Parameter("email", user.getEmail()));
+    }
+
+    private void addEvent() {
         rl_headerNav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,14 +101,13 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
                 Database.getData(Node.RECRUITERS, new OnGetDataListener() {
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
-                        for(DataSnapshot mdata : dataSnapshot.getChildren())
-                        {
+                        for (DataSnapshot mdata : dataSnapshot.getChildren()) {
                             Log.d("Key", mdata.getKey());
                             Intent myIntent = new Intent(NTDMainActivity.this, NTDProfileActivity.class);
                             myIntent.putExtra("Key", mdata.getKey());
                             Bundle bndlanimation =
-                                    ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.anim_slide_in_right,R.anim.anim_slide_out_right).toBundle();
-                            startActivity(myIntent,bndlanimation);
+                                    ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.anim_slide_in_right, R.anim.anim_slide_out_right).toBundle();
+                            startActivity(myIntent, bndlanimation);
                         }
                     }
 
@@ -88,11 +119,16 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
             }
         });
     }
+
     //Thiet lap view trong layout
-    public void addView(){
+    public void addView() {
+        rl_headerNav = (RelativeLayout) contentView.findViewById(R.id.rl_headerNav);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        img_Avatar = (ImageView) findViewById(R.id.img_Avatar);
+        img_Avatar = (CircleImageView) contentView.findViewById(R.id.img_Avatar);
+        img_CoverPhoto = (ImageView) contentView.findViewById(R.id.img_CoverPhoto);
+        txt_CompanyName = (TextView) contentView.findViewById(R.id.txt_CompanyName);
+        txt_Email = (TextView) contentView.findViewById(R.id.txt_Email);
     }
 
     @Override
@@ -104,7 +140,8 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
             super.onBackPressed();
         }
     }
-    public void setFragment(){
+
+    public void setFragment() {
         //Thiet lap fragment ban dau
         NTDMainFragment fragment = new NTDMainFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction =
@@ -113,14 +150,29 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
         fragmentTransaction.commit();
     }
 
-    public void setNavigationOpenClose(){
+    public void setNavigationOpenClose() {
         //Thiet lap drawer trong navigation khi dong, mo
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        {
+            public void onDrawerClosed(View view) {
+                getSupportActionBar().setTitle("JobStore");
+                // calling onPrepareOptionsMenu() to show action bar icons
+                invalidateOptionsMenu();
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                getSupportActionBar().setTitle("JobStore");
+                // calling onPrepareOptionsMenu() to hide action bar icons
+                loadData();
+                invalidateOptionsMenu();
+            }
+        };
         drawer.setDrawerListener(toggle);
         toggle.syncState();
     }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Bat su kien khi click vao item trong navigation view
@@ -154,9 +206,9 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
         return true;
     }
 
-    private void trannsFragment(Fragment fragment,String title) {
+    private void trannsFragment(Fragment fragment, String title) {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit );
+        fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         //fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
