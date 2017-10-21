@@ -15,10 +15,10 @@ import java.util.List;
  * Created by TranAnhSon on 9/16/2017.
  */
 
-public class RecyclerViewSearchListAdapter extends RecyclerView.Adapter<RecyclerViewSearchListAdapter.RecyclerViewHolder> {
+public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.RecyclerViewHolder> {
     private List<String> data = new ArrayList<>();
 
-    public RecyclerViewSearchListAdapter(List<String> data) {
+    public SearchListAdapter(List<String> data) {
         this.data = data;
     }
     //class này giúp kiểm soát các view tốt hơn

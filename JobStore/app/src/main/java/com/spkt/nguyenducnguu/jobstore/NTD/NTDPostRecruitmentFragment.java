@@ -51,7 +51,7 @@ public class NTDPostRecruitmentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.ntd_post_recruitment_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_ntd_post_recruitment, container, false);
 
         addView(rootView);
         loadData();

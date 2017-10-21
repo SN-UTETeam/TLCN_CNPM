@@ -11,20 +11,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".WelcomeActivity">
+
+        </activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".NTD.NTDRegisterActivity" />
+        <activity android:name=".UV.UVRegisterActivity" />
+        <activity android:name=".NTD.NTDMainActivity">
+
+        </activity>
+        <activity android:name=".UV.UVMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".NTD.NTDRegisterActivity" />
-        <activity android:name=".UV.UVRegisterActivity" />
-        <activity android:name=".NTD.NTDMainActivity" />
-        <activity android:name=".UV.UVMainActivity" />
         <activity android:name=".ADMIN.AdminMainActivity" />
         <activity android:name=".ResultRegisterActivity" />
-        <activity android:name=".NTD.NTDFilterActivity" />
+        <activity android:name=".NTD.NTDSelectFilterActivity" />
         <activity android:name=".NTD.NTDChangeProfileActivity" />
         <activity android:name=".SelectWorkTypeActivity" />
         <activity android:name=".SelectCarrerActivity" />

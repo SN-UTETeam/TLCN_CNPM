@@ -15,10 +15,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+<<<<<<< HEAD
 import com.spkt.nguyenducnguu.jobstore.Adaper.RecycleViewNotifiAdapter;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
+=======
+import com.spkt.nguyenducnguu.jobstore.Adaper.NotifiAdapter;
+>>>>>>> f2c81f992b4dbbd73a2c9fc80258214ca19ac435
 import com.spkt.nguyenducnguu.jobstore.Models.Notification;
 import com.spkt.nguyenducnguu.jobstore.Models.Parameter;
 import com.spkt.nguyenducnguu.jobstore.R;
@@ -30,17 +34,26 @@ import java.util.List;
 public class NTDNotificationFragment extends Fragment {
 
     List<Notification> lstNotification = new ArrayList<Notification>();
+<<<<<<< HEAD
     List<String> lstKey = new ArrayList<String>();
+=======
+    NotifiAdapter mRcvAdapter;
+>>>>>>> f2c81f992b4dbbd73a2c9fc80258214ca19ac435
     RecyclerView mRecyclerView;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.ntd_notification_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_ntd_notification, container, false);
 
         addView(rootView);
         setmRecyclerView();
+<<<<<<< HEAD
+=======
+        mRecyclerView.setAdapter(new NotifiAdapter(getActivity(), lstNotification));
+
+>>>>>>> f2c81f992b4dbbd73a2c9fc80258214ca19ac435
         loadData();
         return rootView;
     }

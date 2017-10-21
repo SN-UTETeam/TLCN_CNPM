@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.spkt.nguyenducnguu.jobstore.Adaper.RecyclerViewSearchListAdapter;
+import com.spkt.nguyenducnguu.jobstore.Adaper.SearchListAdapter;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.R;
 
@@ -30,13 +30,13 @@ public class NTDSearchFilterFragment extends Fragment {
     LinearLayout linearLayout;
     RecyclerView mRecyclerView;
     ScrollView scrollView;
-    RecyclerViewSearchListAdapter mRcvAdapter;
+    SearchListAdapter mRcvAdapter;
     TextView txt_Filter;
     List<String> data;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.ntd_search_filer_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_ntd_search_filer, container, false);
 
         //Method để sử dụng font awesome trong fragment
         Typeface iconFont = FontManager.getTypeface(getContext(), FontManager.FONTAWESOME);
@@ -59,7 +59,7 @@ public class NTDSearchFilterFragment extends Fragment {
         txt_Filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(getActivity(), NTDFilterActivity.class);
+                Intent myIntent = new Intent(getActivity(), NTDSelectFilterActivity.class);
                 startActivity(myIntent);
             }
         });
@@ -142,7 +142,7 @@ public class NTDSearchFilterFragment extends Fragment {
         data3.add(".....");
         data3.add(".....");*/
 
-        mRcvAdapter = new RecyclerViewSearchListAdapter(data);
+        mRcvAdapter = new SearchListAdapter(data);
     }
     private void setmRecyclerView(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());

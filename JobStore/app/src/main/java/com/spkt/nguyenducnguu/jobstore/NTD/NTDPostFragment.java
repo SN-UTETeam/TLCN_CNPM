@@ -29,8 +29,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import static com.spkt.nguyenducnguu.jobstore.R.id.lv_WorkInfoExpired;
-
 public class NTDPostFragment extends Fragment {
     LinearLayout ln_NonData;
     ListView lv_WorkInfo;
@@ -39,7 +37,7 @@ public class NTDPostFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.ntd_post_fragment, container, false);
+        rootView = inflater.inflate(R.layout.fragment_ntd_post, container, false);
         Log.d("NTD", "POST");
 
         addView(rootView);

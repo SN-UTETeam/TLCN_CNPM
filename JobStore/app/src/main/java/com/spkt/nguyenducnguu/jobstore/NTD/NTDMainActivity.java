@@ -50,7 +50,7 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
         setContentView(R.layout.activity_ntd_main);
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        contentView = inflater.inflate(R.layout.ntd_nav_header_main, null);
+        contentView = inflater.inflate(R.layout.activity_ntd_nav_header_main, null);
 
         //Thiet lap view trong layout
         addView();
@@ -120,7 +120,6 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
         });
     }
 
-    //Thiet lap view trong layout
     public void addView() {
         rl_headerNav = (RelativeLayout) contentView.findViewById(R.id.rl_headerNav);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -142,7 +141,7 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
     }
 
     public void setFragment() {
-        //Thiet lap fragment ban dau
+        //Thiet lap fragment ban dau //Framelayout
         NTDMainFragment fragment = new NTDMainFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction =
                 getSupportFragmentManager().beginTransaction();
@@ -157,7 +156,11 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         {
             public void onDrawerClosed(View view) {
+<<<<<<< HEAD
                 getSupportActionBar().setTitle(toolbar.getTitle());
+=======
+                //getSupportActionBar().setTitle("JobStore");
+>>>>>>> f2c81f992b4dbbd73a2c9fc80258214ca19ac435
                 // calling onPrepareOptionsMenu() to show action bar icons
                 invalidateOptionsMenu();
             }
@@ -178,11 +181,11 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
         // Bat su kien khi click vao item trong navigation view
         int id = item.getItemId();
         switch (id) {
-            case R.id.nav_list:
-                trannsFragment(new NTDPostRecruitmentFragment(), "Đăng tin");
-                break;
             case R.id.nav_home:
                 trannsFragment(new NTDMainFragment(), "Trang chủ");
+                break;
+            case R.id.nav_list:
+                trannsFragment(new NTDPostRecruitmentFragment(), "Đăng tin");
                 break;
             case R.id.nav_search:
                 trannsFragment(new NTDSearchFilterFragment(), "Lọc và tìm kiếm");

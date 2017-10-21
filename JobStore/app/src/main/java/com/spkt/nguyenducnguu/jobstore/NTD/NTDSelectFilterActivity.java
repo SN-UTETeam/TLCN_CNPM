@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.R;
 
-public class NTDFilterActivity extends AppCompatActivity {
+public class NTDSelectFilterActivity extends AppCompatActivity {
     TextView txt_Back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class NTDFilterActivity extends AppCompatActivity {
         txt_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NTDFilterActivity.this.overridePendingTransition(R.anim.anim_slide_out_right, R.anim.anim_slide_out_right);
+                NTDSelectFilterActivity.this.overridePendingTransition(R.anim.anim_slide_out_right, R.anim.anim_slide_out_right);
                 finish();
             }
         });
