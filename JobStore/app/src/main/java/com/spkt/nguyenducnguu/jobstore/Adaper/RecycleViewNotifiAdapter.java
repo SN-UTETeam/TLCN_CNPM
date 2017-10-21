@@ -37,23 +37,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-<<<<<<< HEAD:JobStore/app/src/main/java/com/spkt/nguyenducnguu/jobstore/Adaper/RecycleViewNotifiAdapter.java
 public class RecycleViewNotifiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-=======
-public class NotifiAdapter extends RecyclerView.Adapter<NotifiAdapter.RecycleViewHolder>{
->>>>>>> f2c81f992b4dbbd73a2c9fc80258214ca19ac435:JobStore/app/src/main/java/com/spkt/nguyenducnguu/jobstore/Adaper/NotifiAdapter.java
 
     private List<Notification> listData;
     private List<String> lstKey;
     private Context context;
-<<<<<<< HEAD:JobStore/app/src/main/java/com/spkt/nguyenducnguu/jobstore/Adaper/RecycleViewNotifiAdapter.java
 
     public RecycleViewNotifiAdapter(List<Notification> listData, List<String> lstKey){
-=======
-    public static int ROW_INDEX = -1;
-    public NotifiAdapter(Context context, List<Notification> listData){
-        this.context = context;
->>>>>>> f2c81f992b4dbbd73a2c9fc80258214ca19ac435:JobStore/app/src/main/java/com/spkt/nguyenducnguu/jobstore/Adaper/NotifiAdapter.java
         this.listData = listData;
         this.lstKey = lstKey;
     }

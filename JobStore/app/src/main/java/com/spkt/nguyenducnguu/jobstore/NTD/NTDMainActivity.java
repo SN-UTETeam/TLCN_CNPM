@@ -156,11 +156,8 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         {
             public void onDrawerClosed(View view) {
-<<<<<<< HEAD
                 getSupportActionBar().setTitle(toolbar.getTitle());
-=======
                 //getSupportActionBar().setTitle("JobStore");
->>>>>>> f2c81f992b4dbbd73a2c9fc80258214ca19ac435
                 // calling onPrepareOptionsMenu() to show action bar icons
                 invalidateOptionsMenu();
             }
