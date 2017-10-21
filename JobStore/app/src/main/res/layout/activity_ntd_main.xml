@@ -9,7 +9,7 @@
     tools:openDrawer="start">
 
     <include
-        layout="@layout/ntd_app_bar_main"
+        layout="@layout/activity_ntd_app_bar_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -23,6 +23,6 @@
 
         app:itemIconTint="@color/appcolor"
         app:itemTextColor="@android:color/black"
-        app:menu="@menu/activity_main_drawer"/>
+        app:menu="@menu/activity_ntn_main_drawer"/>
 
 </android.support.v4.widget.DrawerLayout>

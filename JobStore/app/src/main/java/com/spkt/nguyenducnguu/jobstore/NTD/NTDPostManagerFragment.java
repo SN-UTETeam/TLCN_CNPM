@@ -22,7 +22,7 @@ public class NTDPostManagerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        rootView = inflater.inflate(R.layout.ntd_post_manager_fragment, container, false);
+        rootView = inflater.inflate(R.layout.fragment_ntd_post_manager, container, false);
         addView(rootView);
 
         Log.d("POST", "POST");

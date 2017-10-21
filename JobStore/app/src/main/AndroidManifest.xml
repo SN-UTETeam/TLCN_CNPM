@@ -20,11 +20,15 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".NTD.NTDRegisterActivity" />
         <activity android:name=".UV.UVRegisterActivity" />
-        <activity android:name=".NTD.NTDMainActivity" />
-        <activity android:name=".UV.UVMainActivity" />
+        <activity android:name=".NTD.NTDMainActivity">
+
+        </activity>
+        <activity android:name=".UV.UVMainActivity">
+
+        </activity>
         <activity android:name=".ADMIN.AdminMainActivity" />
         <activity android:name=".ResultRegisterActivity" />
-        <activity android:name=".NTD.NTDFilterActivity" />
+        <activity android:name=".NTD.NTDSelectFilterActivity" />
         <activity android:name=".NTD.NTDChangeProfileActivity" />
         <activity android:name=".SelectWorkTypeActivity" />
         <activity android:name=".SelectCarrerActivity" />

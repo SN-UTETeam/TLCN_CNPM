@@ -17,13 +17,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class RecycleViewNotifiAdapter extends RecyclerView.Adapter<RecycleViewNotifiAdapter.RecycleViewHolder>{
+public class NotifiAdapter extends RecyclerView.Adapter<NotifiAdapter.RecycleViewHolder>{
 
     private List<Notification> listData;
     private LayoutInflater layoutInflater;
     private Context context;
     public static int ROW_INDEX = -1;
-    public RecycleViewNotifiAdapter(Context context, List<Notification> listData){
+    public NotifiAdapter(Context context, List<Notification> listData){
         this.context = context;
         this.listData = listData;
         layoutInflater = LayoutInflater.from(context);
