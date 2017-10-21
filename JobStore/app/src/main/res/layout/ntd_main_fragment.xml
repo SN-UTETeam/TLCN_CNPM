@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.spkt.nguyenducnguu.jobstore.NTD.NTDMainFragment"
-    android:background="@color/colorAccent">
+    android:background="@color/appcolor">
 
 
 </LinearLayout>

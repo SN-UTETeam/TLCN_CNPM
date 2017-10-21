@@ -4,26 +4,33 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.spkt.nguyenducnguu.jobstore.Adaper.RecycleViewNotifiAdapter;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.Notification;
+import com.spkt.nguyenducnguu.jobstore.Models.Parameter;
 import com.spkt.nguyenducnguu.jobstore.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class NTDNotificationFragment extends Fragment {
 
     List<Notification> lstNotification = new ArrayList<Notification>();
-    RecycleViewNotifiAdapter mRcvAdapter;
+    List<String> lstKey = new ArrayList<String>();
     RecyclerView mRecyclerView;
 
 
@@ -34,8 +41,6 @@ public class NTDNotificationFragment extends Fragment {
 
         addView(rootView);
         setmRecyclerView();
-        mRecyclerView.setAdapter(new RecycleViewNotifiAdapter(getActivity(), lstNotification));
-
         loadData();
         return rootView;
     }
@@ -46,18 +51,16 @@ public class NTDNotificationFragment extends Fragment {
 
     private void loadData()
     {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-        Query query = database.getReference("Recruiters").orderByChild("email").equalTo("jobstore.ad@gmail.com");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        Database.getData(Node.RECRUITERS, new OnGetDataListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onSuccess(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot recruiterData : dataSnapshot.getChildren()) {
-                        if(recruiterData.child("Notifications").getValue() != null)
+                        if(recruiterData.child("notifications").getValue() != null)
                         {
-                            for (DataSnapshot nData : recruiterData.child("Notifications").getChildren())
+                            for (DataSnapshot nData : recruiterData.child("notifications").getChildren())
                             {
+                                lstKey.add(nData.getKey());
                                 lstNotification.add(nData.getValue(Notification.class));
                                 mRecyclerView.getAdapter().notifyDataSetChanged();
                             }
@@ -67,10 +70,10 @@ public class NTDNotificationFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onFailed(DatabaseError databaseError) {
 
             }
-        });
+        }, new Parameter("email", FirebaseAuth.getInstance().getCurrentUser().getEmail()));
     }
 
     private void setmRecyclerView() {
@@ -80,6 +83,6 @@ public class NTDNotificationFragment extends Fragment {
         mRecyclerView.setLayoutManager(layoutManager);
         // ta sẽ set setHasFixedSize bằng True để tăng performance
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(mRcvAdapter);
+        mRecyclerView.setAdapter(new RecycleViewNotifiAdapter(lstNotification, lstKey));
     }
 }

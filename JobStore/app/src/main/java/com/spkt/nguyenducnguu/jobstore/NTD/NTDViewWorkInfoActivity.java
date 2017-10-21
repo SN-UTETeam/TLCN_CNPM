@@ -190,8 +190,7 @@ public class NTDViewWorkInfoActivity extends AppCompatActivity {
                                 try {
                                     final ProgressDialog deleteProcess = ProgressDialog.show(NTDViewWorkInfoActivity.this,
                                             "", "Please wait...", true);
-                                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("WorkInfos");
-                                    ref.child(Key).removeValue();
+                                    Database.deleteData(Node.WORKINFOS, Key);
                                     dialog.dismiss();
                                     finish();
                                 } catch (Exception e) {
