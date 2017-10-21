@@ -91,6 +91,7 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
         {
             public void onDrawerClosed(View view) {
                 //getSupportActionBar().setTitle("JobStore");
+                //abc
                 // calling onPrepareOptionsMenu() to show action bar icons
                 invalidateOptionsMenu();
             }
