@@ -9,4 +9,6 @@ public class RequestCode {
     public static final int SELECT_WORKPLACE = 6;
     public static final int PICK_AVATAR = 7;
     public static final int PICK_COVERPHOTO = 8;
+    public static final int ADD_WORKEXP = 9;
+    public static final int ADD_DIPLOMA = 10;
 }

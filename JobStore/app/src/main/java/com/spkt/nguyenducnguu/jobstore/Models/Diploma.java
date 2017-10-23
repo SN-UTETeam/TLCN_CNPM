@@ -1,23 +1,31 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
-/**
- * Created by TranAnhSon on 9/30/2017.
- */
-
 public class Diploma {
+    private Long Id;
     private String Name;
-    private Long Begin;
-    private Long Finish;
-    private String Rating;
+    private String IssuedBy;
+    private Long IssuedDate;
+    private float Scores;
+    private String Ranking;
 
     public Diploma() {
     }
 
-    public Diploma(String name, Long begin, Long finish, String rating) {
+    public Diploma(Long id, String name, String issuedBy, Long issuedDate, float scores, String ranking) {
+        Id = id;
         Name = name;
-        Begin = begin;
-        Finish = finish;
-        Rating = rating;
+        IssuedBy = issuedBy;
+        IssuedDate = issuedDate;
+        Scores = scores;
+        Ranking = ranking;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
     }
 
     public String getName() {
@@ -28,27 +36,35 @@ public class Diploma {
         Name = name;
     }
 
-    public Long getBegin() {
-        return Begin;
+    public String getIssuedBy() {
+        return IssuedBy;
     }
 
-    public void setBegin(Long begin) {
-        Begin = begin;
+    public void setIssuedBy(String issuedBy) {
+        IssuedBy = issuedBy;
     }
 
-    public Long getFinish() {
-        return Finish;
+    public Long getIssuedDate() {
+        return IssuedDate;
     }
 
-    public void setFinish(Long finish) {
-        Finish = finish;
+    public void setIssuedDate(Long issuedDate) {
+        IssuedDate = issuedDate;
     }
 
-    public String getRating() {
-        return Rating;
+    public float getScores() {
+        return Scores;
     }
 
-    public void setRating(String rating) {
-        Rating = rating;
+    public void setScores(float scores) {
+        Scores = scores;
+    }
+
+    public String getRanking() {
+        return Ranking;
+    }
+
+    public void setRanking(String ranking) {
+        Ranking = ranking;
     }
 }
