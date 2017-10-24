@@ -109,39 +109,6 @@ public class NTDSearchFilterFragment extends Fragment {
         data.add("Trần Minh Hải");
         data.add("Trần Minh Hải");
 
-        /*data1.add("Android Developer");
-        data1.add("Web Developer");
-        data1.add("IOS Developer");
-        data1.add("Design");
-        data1.add("HTML5/CSS");
-        data1.add(".....");
-        data1.add(".....");
-        data1.add(".....");
-        data1.add(".....");
-        data1.add(".....");
-
-        data2.add("Trên 1 năm");
-        data2.add("Dưới 1 năm");
-        data2.add("3 năm");
-        data2.add("3 - 5 năm");
-        data2.add("5 - 8 năm");
-        data2.add(".....");
-        data2.add(".....");
-        data2.add(".....i");
-        data2.add(".....");
-        data2.add(".....");
-
-        data3.add("Thanh Hóa");
-        data3.add("Nha Trang");
-        data3.add("Quảng Ngãi");
-        data3.add("Đăk Lắc");
-        data3.add("Huế");
-        data3.add(".....");
-        data3.add(".....");
-        data3.add(".....");
-        data3.add(".....");
-        data3.add(".....");*/
-
         mRcvAdapter = new SearchListAdapter(data);
     }
     private void setmRecyclerView(){

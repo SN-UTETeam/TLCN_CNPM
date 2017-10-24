@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,27 +11,22 @@ import android.view.ViewGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.spkt.nguyenducnguu.jobstore.Adaper.RecycleViewNotifiAdapter;
+import com.spkt.nguyenducnguu.jobstore.Adaper.RCVNotifiAdapter;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
-import com.spkt.nguyenducnguu.jobstore.Adaper.RecycleViewNotifiAdapter;
 import com.spkt.nguyenducnguu.jobstore.Models.Notification;
 import com.spkt.nguyenducnguu.jobstore.Models.Parameter;
 import com.spkt.nguyenducnguu.jobstore.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class NTDNotificationFragment extends Fragment {
 
     List<Notification> lstNotification = new ArrayList<Notification>();
     List<String> lstKey = new ArrayList<String>();
-    RecycleViewNotifiAdapter mRcvAdapter;
+    RCVNotifiAdapter mRcvAdapter;
     RecyclerView mRecyclerView;
 
 
@@ -44,7 +38,7 @@ public class NTDNotificationFragment extends Fragment {
         addView(rootView);
         setmRecyclerView();
 
-        mRecyclerView.setAdapter(new RecycleViewNotifiAdapter(lstNotification, lstKey));
+        mRecyclerView.setAdapter(new RCVNotifiAdapter(lstNotification, lstKey));
         loadData();
         return rootView;
     }
@@ -87,6 +81,6 @@ public class NTDNotificationFragment extends Fragment {
         mRecyclerView.setLayoutManager(layoutManager);
         // ta sẽ set setHasFixedSize bằng True để tăng performance
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(new RecycleViewNotifiAdapter(lstNotification, lstKey));
+        mRecyclerView.setAdapter(new RCVNotifiAdapter(lstNotification, lstKey));
     }
 }

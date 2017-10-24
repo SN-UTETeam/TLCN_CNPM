@@ -16,7 +16,7 @@
         android:layout_marginRight="5dp"
         android:clipToPadding="false"
         android:paddingTop="?attr/actionBarSize"
-        android:scrollbars="vertical">
+        android:scrollbars="none">
 
     </android.support.v7.widget.RecyclerView>
 

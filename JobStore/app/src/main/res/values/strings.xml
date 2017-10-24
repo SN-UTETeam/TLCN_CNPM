@@ -65,7 +65,11 @@
     <string name="fa_comments">&#xf0e6;</string>
 
     <string name="fa_clock">&#xf017;</string>
-    <string-array name="work_types">
+
+    <string name="fa_heart_selected">&#xf004;</string>
+    <string name="fa_heart_non_selected">&#xf08a;</string>
+
+        <string-array name="work_types">
         <item>Thực tập</item>
         <item>Nhân viên</item>
     </string-array>

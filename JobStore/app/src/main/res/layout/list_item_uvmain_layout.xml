@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/txt_Key"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+        <ImageView
+            android:id="@+id/img_Avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/img_avatar"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/txt_CompanyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VNG COOPARATION"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/txt_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[VNG] Tuyển dụng android, ios, web, abc ......"
+            android:textSize="14dp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/txt_WorkPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TPHCM"
+            android:textSize="14dp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/txt_Salary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thỏa thuận"
+            android:textSize="14dp"
+            android:textColor="@color/appcolor"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_weight="0.5">
+        <TextView
+            android:id="@+id/icon_favorite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/fa_heart_non_selected"
+            android:textColor="@color/red"
+            android:gravity="center"
+            android:textSize="20dp"/>
+    </LinearLayout>
+</LinearLayout>

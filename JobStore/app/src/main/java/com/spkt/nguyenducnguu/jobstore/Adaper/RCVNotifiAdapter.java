@@ -37,13 +37,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-public class RecycleViewNotifiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class RCVNotifiAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private List<Notification> listData;
     private List<String> lstKey;
     private Context context;
 
-    public RecycleViewNotifiAdapter(List<Notification> listData, List<String> lstKey){
+    public RCVNotifiAdapter(List<Notification> listData, List<String> lstKey){
         this.listData = listData;
         this.lstKey = lstKey;
     }
