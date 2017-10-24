@@ -1,23 +1,31 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
-/**
- * Created by TranAnhSon on 9/30/2017.
- */
-
 public class WorkExp {
+    private Long Id;
     private int YearNumber;
-    private String Fields;
+    private Long Begin;
+    private Long Finish;
     private String Title;
     private String CompanyName;
 
     public WorkExp() {
     }
 
-    public WorkExp(int yearNumber, String fields, String title, String companyName) {
+    public WorkExp(Long id, int yearNumber, Long begin, Long finish, String title, String companyName) {
+        Id = id;
         YearNumber = yearNumber;
-        Fields = fields;
+        Begin = begin;
+        Finish = finish;
         Title = title;
         CompanyName = companyName;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
     }
 
     public int getYearNumber() {
@@ -28,12 +36,20 @@ public class WorkExp {
         YearNumber = yearNumber;
     }
 
-    public String getFields() {
-        return Fields;
+    public Long getBegin() {
+        return Begin;
     }
 
-    public void setFields(String fields) {
-        Fields = fields;
+    public void setBegin(Long begin) {
+        Begin = begin;
+    }
+
+    public Long getFinish() {
+        return Finish;
+    }
+
+    public void setFinish(Long finish) {
+        Finish = finish;
     }
 
     public String getTitle() {
