@@ -40,9 +40,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".UV.UVViewProfileActivity"></activity>
-
-        <activity android:name=".UV.UVMainActivity" />
-        <activity android:name=".UV.UVViewProfileActivity" />
+        
         <activity android:name=".UV.UVWorkExpActivity" />
         <activity android:name=".UV.UVDiplomaActivity"></activity>
 
