@@ -1,5 +1,6 @@
 package com.spkt.nguyenducnguu.jobstore.UV;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UVMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     NavigationView navigationViewUV = null;
-    RelativeLayout rl_headerNavUV;
+    RelativeLayout rl_UV_headerNav;
     CircleImageView img_AvatarUV;
     TextView txt_NameUV, txt_EmailUV;
     ImageView img_CoverPhotoUV;
@@ -42,6 +43,7 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
         contentView = inflater.inflate(R.layout.activity_uv_nav_header_main, null);
 
         addView();
+        addEvent();
         //Thiet lap fragment ban dau
         setFragment();
 
@@ -55,13 +57,24 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
         navigationViewUV.setNavigationItemSelectedListener(this);
     }
     public void addView() {
-        rl_headerNavUV = (RelativeLayout) contentView.findViewById(R.id.rl_UV_headerNav);
+        rl_UV_headerNav = (RelativeLayout) contentView.findViewById(R.id.rl_UV_headerNav);
         toolbarUV = (Toolbar) findViewById(R.id.toolbarUV);
         navigationViewUV = (NavigationView) findViewById(R.id.nav_viewUV);
         img_AvatarUV = (CircleImageView) contentView.findViewById(R.id.img_AvatarUV);
         img_CoverPhotoUV = (ImageView) contentView.findViewById(R.id.img_CoverPhotoUV);
         txt_NameUV = (TextView) contentView.findViewById(R.id.txt_UVName);
         txt_EmailUV = (TextView) contentView.findViewById(R.id.txt_EmailUV);
+    }
+    private void addEvent() {
+        rl_UV_headerNav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(UVMainActivity.this, UVProfileActivity.class);
+                Bundle bndlanimation =
+                        ActivityOptions.makeCustomAnimation(UVMainActivity.this, R.anim.anim_slide_in_right, R.anim.anim_slide_out_right).toBundle();
+                startActivity(myIntent, bndlanimation);
+            }
+        });
     }
 
     @Override
