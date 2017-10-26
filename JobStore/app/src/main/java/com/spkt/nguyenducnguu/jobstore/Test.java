@@ -4,17 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.spkt.nguyenducnguu.jobstore.Database.Database;
-import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
-import com.spkt.nguyenducnguu.jobstore.Models.Parameter;
-import com.spkt.nguyenducnguu.jobstore.Models.WorkInfo;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * Created by TranAnhSon on 10/5/2017.
  */
@@ -25,8 +14,13 @@ public class Test extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test);
+        // sample code snippet to set the text content on the ExpandableTextView
+       /* ExpandableTextView expTv1 = (ExpandableTextView) findViewById(R.id.expand_text_view)
+                .findViewById(R.id.expand_text_view);*/
 
-        tv_countWorkInfo = (TextView) findViewById(R.id.tv_countWorkInfo);
+        // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
+        //expTv1.setText(getString(R.string.dummy_text1));
+        /*tv_countWorkInfo = (TextView) findViewById(R.id.tv_countWorkInfo);
 
         Database.getData("WorkInfos", new OnGetDataListener() {
             @Override
@@ -45,6 +39,6 @@ public class Test extends AppCompatActivity {
             public void onFailed(DatabaseError databaseError) {
 
             }
-        }, new Parameter("workDetail/salary", "5-7 triệu"));
+        }, new Parameter("workDetail/salary", "5-7 triệu"));*/
     }
 }

@@ -43,6 +43,7 @@
         <activity android:name=".UV.UVDiplomaActivity" />
         <activity android:name=".UV.UVProfileActivity" />
         <activity android:name=".UV.UVChangeProfileActivity"></activity>
+        <activity android:name=".Test"></activity>
     </application>
 
 </manifest>
