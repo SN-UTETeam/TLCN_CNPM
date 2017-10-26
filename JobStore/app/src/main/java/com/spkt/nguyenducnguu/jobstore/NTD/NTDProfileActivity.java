@@ -127,7 +127,7 @@ public class NTDProfileActivity extends AppCompatActivity {
         txt_changeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), NTDChangeProfileActivity.class);
+                Intent intent = new Intent(NTDProfileActivity.this, NTDChangeProfileActivity.class);
                 Bundle bndlanimation =
                         ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.anim_slide_in_right, R.anim.anim_slide_out_right).toBundle();
                 intent.putExtra("Key", Key);

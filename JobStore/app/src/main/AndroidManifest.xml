@@ -15,7 +15,11 @@
         <activity android:name=".UV.UVRegisterActivity" />
         <activity android:name=".NTD.NTDMainActivity" />
         <activity android:name=".WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".ADMIN.AdminMainActivity" />
         <activity android:name=".ResultRegisterActivity" />
@@ -31,20 +35,14 @@
         <activity android:name=".NTD.NTDViewWorkInfoActivity" />
         <activity android:name=".NTD.NTDEditWorkInfoActivity" />
         <activity android:name=".NTD.NTDViewListApplyActivity" />
-
         <activity android:name=".UV.UVMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".UV.UVViewProfileActivity"></activity>
-        
+        <activity android:name=".UV.UVViewProfileActivity" />
         <activity android:name=".UV.UVWorkExpActivity" />
-        <activity android:name=".UV.UVDiplomaActivity"></activity>
-        <activity android:name=".UV.UVProfileActivity"></activity>
-
+        <activity android:name=".UV.UVDiplomaActivity" />
+        <activity android:name=".UV.UVProfileActivity" />
+        <activity android:name=".UV.UVChangeProfileActivity"></activity>
     </application>
 
 </manifest>

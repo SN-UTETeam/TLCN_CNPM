@@ -11,4 +11,7 @@
     <color name="red">#ff0004</color>
     <color name="blue_custom">#169bd0ff</color>
     <color name="blue">#01ac29</color>
+
+    <color name="overlayBackground">#7f333639</color>
+    <color name="overlayActionBar">#0e0d0e</color>
 </resources>

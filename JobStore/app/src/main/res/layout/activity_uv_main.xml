@@ -22,8 +22,9 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
 
-        app:itemIconTint="@color/appcolor"
-        app:itemTextColor="@color/black"
+        android:background="@color/overlayBackground"
+        app:itemTextColor="@android:color/white"
+        app:itemIconTint="@android:color/white"
         app:menu="@menu/activity_uv_main_drawer"></android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
