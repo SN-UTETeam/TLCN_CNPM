@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.spkt.nguyenducnguu.jobstore"
         minSdkVersion 19
@@ -37,6 +37,7 @@ dependencies {
     compile 'com.github.mabbas007:TagsEditText:1.0.5'
     compile 'com.flaviofaria:kenburnsview:1.0.7'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'info.hoang8f:fbutton:1.0.5'
     testCompile 'junit:junit:4.12'
 
     compile 'com.ms-square:expandableTextView:0.1.4'

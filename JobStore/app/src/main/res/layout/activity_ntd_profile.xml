@@ -340,38 +340,54 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:layout_marginRight="5dp"
                             android:gravity="left|top"
                             android:text="@string/fa_info"
                             android:textColor="@color/appcolor"
-                            android:textSize="20dp" />
+                            android:textSize="20dp"/>
 
-                        <com.ms.square.android.expandabletextview.ExpandableTextView
-                            xmlns:android="http://schemas.android.com/apk/res/android"
-                            xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
-                            android:id="@+id/txt_Description"
+                        <TextView
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="8"
-                            expandableTextView:maxCollapsedLines="8"
-                            expandableTextView:animDuration="200">
-                            <TextView
-                                android:id="@id/expandable_text"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Giới thiệu công ty"
-                                android:textSize="15sp"/>
-                            <ImageButton
-                                android:id="@id/expand_collapse"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="16dp"
-                                android:layout_gravity="center|bottom"
-                                android:background="@android:color/transparent"/>
-                        </com.ms.square.android.expandabletextview.ExpandableTextView>
+                            android:gravity="center|left"
+                            android:text="Giới thiệu về công ty:"
+                            android:textSize="15sp" />
+
                     </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                    <com.ms.square.android.expandabletextview.ExpandableTextView
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/txt_Description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        expandableTextView:maxCollapsedLines="7"
+                        expandableTextView:animDuration="200"
+                        android:layout_marginLeft="5dp">
+                        <TextView
+                            android:id="@id/expandable_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Giới thiệu công ty"
+                            android:textSize="15sp"/>
+                        <ImageButton
+                            android:id="@id/expand_collapse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:layout_gravity="center|bottom"
+                            android:background="@android:color/transparent"/>
+                    </com.ms.square.android.expandabletextview.ExpandableTextView>
+                </LinearLayout>
+
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
-
     </ScrollView>
 </LinearLayout>

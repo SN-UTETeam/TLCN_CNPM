@@ -131,11 +131,8 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
             case R.id.navUV_search:
                 trannsFragment(new UVSearchFragment(), "Tìm kiếm");
                 break;
-            case R.id.navUV_save:
-                trannsFragment(new UVJobSavedFragment(), "Việc đã lưu");
-                break;
-            case R.id.navUV_apply:
-                trannsFragment(new UVJobAppliedFragment(), "Việc đã ứng tuyển");
+            case R.id.navUV_job:
+                trannsFragment(new UV_JobFragment(), "Công việc");
                 break;
             case R.id.navUV_notification:
                 trannsFragment(new UVNotificationFragment(), "Thông báo");

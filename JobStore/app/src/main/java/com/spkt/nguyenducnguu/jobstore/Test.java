@@ -1,44 +1,57 @@
 package com.spkt.nguyenducnguu.jobstore;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by TranAnhSon on 10/5/2017.
  */
 
 public class Test extends AppCompatActivity {
-    TextView tv_countWorkInfo;
-
+    Dialog dialogFollow;
+    Button btnFollow;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test);
-        // sample code snippet to set the text content on the ExpandableTextView
-       /* ExpandableTextView expTv1 = (ExpandableTextView) findViewById(R.id.expand_text_view)
-                .findViewById(R.id.expand_text_view);*/
 
-        // IMPORTANT - call setText on the ExpandableTextView to set the text content to display
-        //expTv1.setText(getString(R.string.dummy_text1));
-        /*tv_countWorkInfo = (TextView) findViewById(R.id.tv_countWorkInfo);
-
-        Database.getData("WorkInfos", new OnGetDataListener() {
+        btnFollow = (Button) findViewById(R.id.btnFollow);
+        btnFollow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(DataSnapshot dataSnapshot) {
-                List<WorkInfo> lstWorkInfo = new ArrayList<WorkInfo>();
-                for (DataSnapshot mdata : dataSnapshot.getChildren()) {
-                    WorkInfo w = mdata.getValue(WorkInfo.class);
-                    w.setKey(mdata.getKey());
-                    lstWorkInfo.add(w);
-                    Collections.sort(lstWorkInfo);
-                }
-                tv_countWorkInfo.setText(lstWorkInfo.size() + " WorkInfo");
+            public void onClick(View view) {
+                ShowPopup(view);
             }
-
-            @Override
-            public void onFailed(DatabaseError databaseError) {
-
-            }
-        }, new Parameter("workDetail/salary", "5-7 triệu"));*/
+        });
     }
+    private void ShowPopup(View view){
+        TextView txtClose;
+        Button btnFollow;
+        dialogFollow = new Dialog(this);
+        dialogFollow.setContentView(R.layout.test2);
+
+        txtClose = (TextView) dialogFollow.findViewById(R.id.txtClose);
+        btnFollow = (Button) dialogFollow.findViewById(R.id.btnFollow);
+
+        txtClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogFollow.dismiss();
+            }
+        });
+        btnFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Test.this, "You've follow", Toast.LENGTH_LONG).show();
+            }
+        });
+        dialogFollow.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogFollow.show();
+    }
+
 }
