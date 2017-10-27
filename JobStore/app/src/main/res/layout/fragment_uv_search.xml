@@ -6,18 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list_ntd"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:clipToPadding="false"
-        android:paddingTop="?attr/actionBarSize"
-        android:scrollbars="none">
-
-    </android.support.v7.widget.RecyclerView>
-
     <LinearLayout
         android:id="@+id/ln_filter"
         android:layout_width="match_parent"
@@ -31,6 +19,7 @@
             android:layout_weight="6">
 
             <EditText
+                android:id="@+id/txt_Search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
@@ -61,4 +50,16 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_WorkInfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:clipToPadding="false"
+        android:paddingTop="?attr/actionBarSize"
+        android:scrollbars="none">
+
+    </android.support.v7.widget.RecyclerView>
 </FrameLayout>

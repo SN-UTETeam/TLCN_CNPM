@@ -102,7 +102,7 @@ public class SelectWorkPlaceActivity extends AppCompatActivity {
         lv_WorkPlace.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ImageView img = (ImageView) view.findViewById(R.id.img_Check);
+                ImageView img = (ImageView) lv_WorkPlace.getChildAt(i).findViewById(R.id.img_Check);
                 if(img.getVisibility() == View.VISIBLE)
                 {
                     img.setVisibility(View.INVISIBLE);
