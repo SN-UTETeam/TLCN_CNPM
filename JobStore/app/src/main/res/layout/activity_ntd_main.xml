@@ -20,9 +20,9 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
 
-
-        app:itemIconTint="@color/appcolor"
-        app:itemTextColor="@android:color/black"
+        android:background="@color/overlayBackground"
+        app:itemTextColor="@android:color/white"
+        app:itemIconTint="@android:color/white"
         app:menu="@menu/activity_ntn_main_drawer"/>
 
 </android.support.v4.widget.DrawerLayout>

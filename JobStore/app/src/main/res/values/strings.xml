@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">Job Store</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -38,7 +39,7 @@
 
     <string name="fa_gender">&#xf224;</string>
 
-    <string name="fa_phone">&#xf10b;</string>
+    <string name="fa_phone">&#xf098;</string>
 
     <string name="fa_info">&#xf05a;</string>
 
@@ -68,8 +69,12 @@
 
     <string name="fa_heart_selected">&#xf004;</string>
     <string name="fa_heart_non_selected">&#xf08a;</string>
+    <string name="fa_facebook">&#xf082;</string>
+    <string name="fa_envelope">&#xf0e0;</string>
+    <string name="fa_birthday">&#xf1fd;</string>
+    <string name="icon_bookmark">&#xf097;</string>
 
-        <string-array name="work_types">
+    <string-array name="work_types">
         <item>Thực tập</item>
         <item>Nhân viên</item>
     </string-array>
