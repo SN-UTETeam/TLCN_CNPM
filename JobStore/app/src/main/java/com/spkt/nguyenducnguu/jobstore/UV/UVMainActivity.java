@@ -103,14 +103,14 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
                 this, drawer, toolbarUV, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         {
             public void onDrawerClosed(View view) {
-                //getSupportActionBar().setTitle("JobStore");
+                getSupportActionBar().setTitle(toolbarUV.getTitle());
                 //abc
                 // calling onPrepareOptionsMenu() to show action bar icons
                 invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
-                getSupportActionBar().setTitle("JobStore");
+                getSupportActionBar().setTitle(toolbarUV.getTitle());
                 // calling onPrepareOptionsMenu() to hide action bar icons
                 //loadData();
                 invalidateOptionsMenu();

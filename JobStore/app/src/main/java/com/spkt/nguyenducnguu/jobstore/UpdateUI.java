@@ -2,6 +2,7 @@ package com.spkt.nguyenducnguu.jobstore;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
@@ -34,7 +35,6 @@ public class UpdateUI {
                         Intent intent = null;
                         for (DataSnapshot mdata : dataSnapshot.getChildren()) {
                             Roles role = mdata.getValue(Roles.class);
-
                             if(role.getRole() == 0) { //NTD
                                 intent = new Intent(context, NTDMainActivity.class);
                                 break;
