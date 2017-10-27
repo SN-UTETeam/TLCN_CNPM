@@ -322,13 +322,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/edt_custom"
-                    android:cursorVisible="false"
                     android:gravity="center|top|left"
                     android:hint="Nhập mô tả"
                     android:inputType="textCapSentences|textMultiLine"
                     android:maxLength="2000"
-                    android:maxLines="10"
-                    android:scrollHorizontally="false"
                     android:textSize="15dp" />/>
             </LinearLayout>
 
