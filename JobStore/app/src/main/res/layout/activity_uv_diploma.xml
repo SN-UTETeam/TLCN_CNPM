@@ -217,7 +217,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/edt_custom"
                     android:hint="7.5"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxLength="2000"
                     android:maxLines="10"
                     android:textSize="15dp" />

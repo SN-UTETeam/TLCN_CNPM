@@ -234,7 +234,7 @@
                     android:background="@drawable/edt_custom"
                     android:cursorVisible="false"
                     android:gravity="center|top|left"
-                    android:hint="Giới thiệu ngắn về bản thân"
+                    android:hint="Giới thiệu về bản thân"
                     android:inputType="textCapSentences|textMultiLine"
                     android:maxLength="2000"
                     android:maxLines="10"
@@ -582,12 +582,21 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
-                    android:layout_weight="4"
+                    android:layout_weight="20"
                     android:background="@drawable/edt_custom"
                     android:focusable="false"
                     android:hint="Chọn CV của bạn"
                     android:inputType="textCapWords"
                     android:textSize="15dp" />
+
+                <ImageView
+                    android:id="@+id/imgv_RemoveCV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_close"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout

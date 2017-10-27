@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.storage.FirebaseStorage;
@@ -158,7 +159,7 @@ public class NTDProfileActivity extends AppCompatActivity {
         Uri selectedImage = data.getData();
 
         StorageReference ref = FirebaseStorage.getInstance().getReference()
-                .child(Key + "/" + (requestCode == RequestCode.PICK_AVATAR ? "Avatar" : "CoverPhoto"));
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/" + (requestCode == RequestCode.PICK_AVATAR ? "Avatar" : "CoverPhoto"));
 
         UploadTask uploadTask = ref.putFile(selectedImage);
 

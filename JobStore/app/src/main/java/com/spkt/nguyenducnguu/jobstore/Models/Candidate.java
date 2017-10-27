@@ -8,10 +8,10 @@ public class Candidate {
     private String FullName;
     private Long Birthday;
     private int Gender;
+    private String Description;
     private String Phone;
     private String FacebookURL;
     private Address Address;
-    private String Description;
     private String Avatar;
     private String CoverPhoto;
     private Long CreateAt;

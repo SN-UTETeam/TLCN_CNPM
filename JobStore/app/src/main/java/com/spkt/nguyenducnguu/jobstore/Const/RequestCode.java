@@ -11,4 +11,5 @@ public class RequestCode {
     public static final int PICK_COVERPHOTO = 8;
     public static final int ADD_WORKEXP = 9;
     public static final int ADD_DIPLOMA = 10;
+    public static final int FILE_SELECT_CODE = 11;
 }

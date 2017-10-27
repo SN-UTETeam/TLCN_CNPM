@@ -2,8 +2,11 @@ package com.spkt.nguyenducnguu.jobstore.UV;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,41 +15,70 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
 import com.spkt.nguyenducnguu.jobstore.Const.RequestCode;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
+import com.spkt.nguyenducnguu.jobstore.Models.Address;
+import com.spkt.nguyenducnguu.jobstore.Models.Candidate;
+import com.spkt.nguyenducnguu.jobstore.Models.CandidateDetail;
 import com.spkt.nguyenducnguu.jobstore.Models.Diploma;
 import com.spkt.nguyenducnguu.jobstore.Models.Experience;
+import com.spkt.nguyenducnguu.jobstore.Models.Parameter;
+import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
+import com.spkt.nguyenducnguu.jobstore.Models.Roles;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkExp;
+import com.spkt.nguyenducnguu.jobstore.NTD.NTDProfileActivity;
 import com.spkt.nguyenducnguu.jobstore.NTD.NTDRegisterActivity;
 import com.spkt.nguyenducnguu.jobstore.R;
+import com.spkt.nguyenducnguu.jobstore.ResultRegisterActivity;
 import com.spkt.nguyenducnguu.jobstore.SelectCarrerActivity;
 import com.spkt.nguyenducnguu.jobstore.SelectExperienceActivity;
 import com.spkt.nguyenducnguu.jobstore.SelectLevelActivity;
 import com.spkt.nguyenducnguu.jobstore.SelectSalaryActivity;
 import com.spkt.nguyenducnguu.jobstore.SelectWorkPlaceActivity;
 import com.spkt.nguyenducnguu.jobstore.SelectWorkTypeActivity;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import mabbas007.tagsedittext.TagsEditText;
 
 public class UVRegisterActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     public List<WorkExp> lstWorkExp = new ArrayList<WorkExp>();
     public List<Diploma> lstDiploma = new ArrayList<Diploma>();
+    private Uri CVUri = null;
+
     Calendar cal = Calendar.getInstance();
-    ImageView imgv_Back;
+    ImageView imgv_Back, imgv_RemoveCV;
     Button btn_Register;
-    TextView txt_BirthDay, txt_Gender;
+    EditText txt_Email, txt_Password, txt_ConfirmPassword, txt_FullName,
+            txt_BirthDay, txt_Gender, txt_Description, txt_Tag, txt_CV, txt_Phone, txt_FacebookURL, txt_Address;
     TagsEditText txt_WorkType, txt_Career, txt_Level, txt_Experience, txt_Salary, txt_WorkPlace;
     Button btn_AddWorkType, btn_AddCareer, btn_AddLevel, btn_AddExperience, btn_AddSalary, btn_AddWorkPlace;
     Button btn_AddWorkExps, btn_AddDiplomas;
@@ -63,12 +95,232 @@ public class UVRegisterActivity extends AppCompatActivity {
     }
     private boolean ValidateInputData()
     {
-        return false;
+        String email = txt_Email.getText().toString().trim();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        if (!email.matches(emailPattern))
+        {
+            Toast.makeText(this,"Địa chỉ email không hợp lệ!",Toast.LENGTH_SHORT).show();
+            txt_Email.requestFocus();
+            return false;
+        }
+
+        if(txt_Password.getText().length() < 6)
+        {
+            Toast.makeText(this,"Mật khẩu phải có ít nhất 6 ký tự!",Toast.LENGTH_SHORT).show();
+            txt_Password.requestFocus();
+            return false;
+        }
+
+        if(!txt_Password.getText().toString().equals(txt_ConfirmPassword.getText().toString()))
+        {
+            Toast.makeText(this,"Mật khẩu nhập lại không khớp!",Toast.LENGTH_SHORT).show();
+            txt_ConfirmPassword.setText("");
+            txt_ConfirmPassword.requestFocus();
+            return false;
+        }
+
+        if(txt_FullName.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(this,"Vui lòng nhập họ tên của bạn!",Toast.LENGTH_SHORT).show();
+            txt_FullName.requestFocus();
+            return false;
+        }
+        if(txt_BirthDay.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(this,"Vui lòng chọn ngày sinh của bạn!",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(txt_Gender.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(this,"Vui lòng chọn giới tính của bạn!",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(txt_Description.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(this,"Vui lòng giới thiệu một chút về bạn!",Toast.LENGTH_SHORT).show();
+            txt_Description.requestFocus();
+            return false;
+        }
+        if(txt_Tag.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(this,"Vui lòng nhập một thẻ tag để nhà tuyển dụng có thể dễ dàng tìm thấy bạn!",Toast.LENGTH_SHORT).show();
+            txt_Tag.requestFocus();
+            return false;
+        }
+        if (txt_WorkPlace.getTags().size() == 0) {
+            Toast.makeText(this, "Vui lòng chọn địa điểm làm việc!", Toast.LENGTH_SHORT).show();
+            txt_WorkPlace.requestFocus();
+            return false;
+        }
+        if (txt_WorkType.getTags().size() == 0) {
+            Toast.makeText(this, "Vui lòng chọn loại hình công việc!", Toast.LENGTH_SHORT).show();
+            txt_WorkType.requestFocus();
+            return false;
+        }
+        if (txt_Career.getTags().size() == 0) {
+            Toast.makeText(this, "Vui lòng chọn ngành nghề!", Toast.LENGTH_SHORT).show();
+            txt_Career.requestFocus();
+            return false;
+        }
+        if (txt_Level.getTags().size() == 0) {
+            Toast.makeText(this, "Vui lòng chọn trình độ!", Toast.LENGTH_SHORT).show();
+            txt_Level.requestFocus();
+            return false;
+        }
+        if (txt_Experience.getTags().size() == 0) {
+            Toast.makeText(this, "Vui lòng chọn kinh nghiệm!", Toast.LENGTH_SHORT).show();
+            txt_Experience.requestFocus();
+            return false;
+        }
+        if (txt_Salary.getTags().size() == 0) {
+            Toast.makeText(this, "Vui lòng chọn mức lương!", Toast.LENGTH_SHORT).show();
+            txt_Salary.requestFocus();
+            return false;
+        }
+        if(txt_CV.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(this,"Vui lòng chọn CV của bạn!",Toast.LENGTH_SHORT).show();
+            txt_CV.requestFocus();
+            return false;
+        }
+        if(txt_Phone.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(this,"Vui lòng nhập số điện thoại của bạn!",Toast.LENGTH_SHORT).show();
+            txt_Phone.requestFocus();
+            return false;
+        }
+        if(txt_Address.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(this,"Vui lòng nhập địa chỉ hiện tại của bạn!",Toast.LENGTH_SHORT).show();
+            txt_Address.requestFocus();
+            return false;
+        }
+        return true;
     }
     private void Register()
     {
         if(!ValidateInputData()) return;
 
+        final ProgressDialog dialog = ProgressDialog.show(this, "",
+                "Please wait...", true);
+
+        mAuth.createUserWithEmailAndPassword(txt_Email.getText().toString().trim(), txt_Password.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Candidate c = new Candidate();
+                            CandidateDetail cd = new CandidateDetail();
+
+                            c.setEmail(txt_Email.getText().toString());
+                            c.setFullName(txt_FullName.getText().toString());
+                            c.setBirthday(cal.getTime().getTime());
+                            c.setGender(txt_Gender.getText().toString() == "Nam"? 0 : 1);
+                            c.setDescription(txt_Description.getText().toString());
+                            c.setPhone(txt_Phone.getText().toString());
+                            c.setFacebookURL(txt_FacebookURL.getText().toString());
+                            c.setAddress(Address.getAddressFromLocationName(txt_Address.getText().toString(), UVRegisterActivity.this));
+                            c.setCreateAt((new Date()).getTime());
+                            c.setStatus(1);
+
+                            cd.setTag(txt_Tag.getText().toString());
+                            cd.setWorkPlaces(txt_WorkPlace.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1));
+                            cd.setWorkTypes(txt_WorkType.getTags().toString().substring(1, txt_WorkType.getTags().toString().length() - 1));
+                            cd.setCareers(txt_Career.getTags().toString().substring(1, txt_Career.getTags().toString().length() - 1));
+                            cd.setLevel(txt_Level.getTags().toString().substring(1, txt_Level.getTags().toString().length() - 1));
+                            cd.setExperience(txt_Experience.getTags().toString().substring(1, txt_Experience.getTags().toString().length() - 1));
+                            cd.setSalary(txt_Salary.getTags().toString().substring(1, txt_Salary.getTags().toString().length() - 1));
+                            HashMap<String, WorkExp> we = new HashMap<String, WorkExp>();
+                            for(WorkExp w : lstWorkExp)
+                                we.put(w.getId().toString(), w);
+                            HashMap<String, Diploma> di = new HashMap<String, Diploma>();
+                            for(Diploma d : lstDiploma)
+                                di.put(d.getId().toString(), d);
+                            cd.setWorkExps(we);
+                            cd.setDiplomas(di);
+
+                            c.setCandidateDetail(cd);
+                            //Thêm dữ liệu
+                            Database.addData(Node.CANDIDATES, c);
+                            //Phân quyền
+                            Roles role = new Roles(c.getEmail(), 1);
+                            Database.addData(Node.ROLES, role);
+                            if(CVUri != null)
+                            {
+                                uploadCV(txt_Email.getText().toString());
+                            }
+                            dialog.dismiss();
+                            //Thông báo
+                            showSuccessNotification();
+                        }
+                        else
+                        {
+                            dialog.dismiss();
+                            //Thông báo
+                            showFailedNotification();
+                        }
+                    }
+                });
+    }
+    private void showSuccessNotification()
+    {
+        Intent intent = new Intent(this, ResultRegisterActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "Congratulations");
+        bundle.putString("content", "Tài khoản của bạn đã được tạo thành công, bạn có thể đăng nhập ngay bây giờ." +
+                " Cảm ơn bạn đã sử dụng Jobstore!");
+        bundle.putString("team", "SN UTE Team");
+        bundle.putBoolean("success", true);
+        intent.putExtra("bundle", bundle);
+        startActivity(intent);
+    }
+    private void showFailedNotification()
+    {
+        Intent intent = new Intent(this, ResultRegisterActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "Failed");
+        bundle.putString("content", "Đã có lỗi trong quá trình đăng ký, có thể do tài khoản này đã được đăng ký " +
+                "trước đó. Bạn vui lòng kiểm tra lại, nếu quên mật khẩu bạn có thể lấy lại mật khẩu ở màn hình Login " +
+                "và chọn Quên mật khẩu. Cảm ơn bạn đã sử dụng Jobstore!");
+        bundle.putString("team", "SN UTE Team");
+        bundle.putBoolean("success", false);
+        intent.putExtra("bundle", bundle);
+        startActivity(intent);
+    }
+    private void uploadCV(final String email)
+    {
+        StorageReference ref = FirebaseStorage.getInstance().getReference()
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/" + txt_CV.getText().toString());
+
+        UploadTask uploadTask = ref.putFile(CVUri);
+
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(UVRegisterActivity.this, "Không thể lưu CV!", Toast.LENGTH_LONG).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                final Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                Database.getData(Node.CANDIDATES, new OnGetDataListener() {
+                    @Override
+                    public void onSuccess(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot mdata : dataSnapshot.getChildren())
+                        {
+                            Candidate c = mdata.getValue(Candidate.class);
+                            c.getCandidateDetail().setCV(downloadUrl.toString());
+                            Database.updateData(Node.CANDIDATES, mdata.getKey(), c);
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(DatabaseError databaseError) {
+
+                    }
+                }, new Parameter("email", email));
+            }
+        });
     }
     private void loadDiploma()
     {
@@ -223,10 +475,21 @@ public class UVRegisterActivity extends AppCompatActivity {
     private void addView()
     {
         imgv_Back = (ImageView) findViewById(R.id.imgv_Back);
+        imgv_RemoveCV = (ImageView) findViewById(R.id.imgv_RemoveCV);
         btn_Register = (Button) findViewById(R.id.btn_Register);
 
-        txt_BirthDay = (TextView) findViewById(R.id.txt_BirthDay);
-        txt_Gender = (TextView) findViewById(R.id.txt_Gender);
+        txt_BirthDay = (EditText) findViewById(R.id.txt_BirthDay);
+        txt_Gender = (EditText) findViewById(R.id.txt_Gender);
+        txt_Email = (EditText) findViewById(R.id.txt_Email);
+        txt_Password = (EditText) findViewById(R.id.txt_Password);
+        txt_ConfirmPassword = (EditText) findViewById(R.id.txt_ConfirmPassword);
+        txt_FullName = (EditText) findViewById(R.id.txt_FullName);
+        txt_Description = (EditText) findViewById(R.id.txt_Description);
+        txt_Tag = (EditText) findViewById(R.id.txt_Tag);
+        txt_CV = (EditText) findViewById(R.id.txt_CV);
+        txt_Phone = (EditText) findViewById(R.id.txt_Phone);
+        txt_FacebookURL = (EditText) findViewById(R.id.txt_FacebookURL);
+        txt_Address = (EditText) findViewById(R.id.txt_Address);
 
         txt_WorkType = (TagsEditText) findViewById(R.id.txt_WorkType);
         txt_Career = (TagsEditText) findViewById(R.id.txt_Career);
@@ -278,6 +541,12 @@ public class UVRegisterActivity extends AppCompatActivity {
                 showChoiceGenderDialog();
             }
         });
+        txt_CV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFileChooser();
+            }
+        });
         btn_Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -288,6 +557,14 @@ public class UVRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        imgv_RemoveCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CVUri = null;
+                txt_CV.setText("");
+                imgv_RemoveCV.setVisibility(View.GONE);
             }
         });
 
@@ -430,6 +707,19 @@ public class UVRegisterActivity extends AppCompatActivity {
                     loadDiploma();
                 }
                 break;
+            case RequestCode.FILE_SELECT_CODE:
+                if (resultCode == RESULT_OK) {
+                    imgv_RemoveCV.setVisibility(View.VISIBLE);
+                    // Get the Uri of the selected file
+                    CVUri = data.getData();
+                    Log.d("FileUri", "File Uri: " + CVUri.toString());
+                    // Get the path
+                    String path = CVUri.getPath();
+                    String[] arr = path.split("/");
+                    txt_CV.setText(arr[arr.length - 1]);
+                    Log.d("FilePath", "File Path: " + path);
+                }
+                break;
         }
     }
 
@@ -498,5 +788,16 @@ public class UVRegisterActivity extends AppCompatActivity {
         });
         // hiển thị dialog
         dialog.show();
+    }
+    private void showFileChooser() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        try {
+            startActivityForResult(Intent.createChooser(intent, "Select a File to Upload"), RequestCode.FILE_SELECT_CODE);
+        } catch (android.content.ActivityNotFoundException ex) {
+            // Potentially direct the user to the Market with a Dialog
+            Toast.makeText(this, "Please install a File Manager.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
