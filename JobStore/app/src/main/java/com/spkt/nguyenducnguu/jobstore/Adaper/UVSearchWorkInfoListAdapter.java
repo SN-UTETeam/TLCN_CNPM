@@ -2,9 +2,12 @@ package com.spkt.nguyenducnguu.jobstore.Adaper;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnFilterListener;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkInfo;
@@ -23,14 +27,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<WorkInfo> data;
+public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
+    private ItemFilter mFilter = new ItemFilter();
+    private List<WorkInfo> lstData;
     private List<String> lstKey;
+    public List<WorkInfo> filteredData;
+    private List<String> filteredKey;
     private Context context;
+    private OnFilterListener onFilterListener;
 
-    public UVSearchWorkInfoListAdapter(List<WorkInfo> data, List<String> lstKey) {
-        this.data = data;
+    public UVSearchWorkInfoListAdapter(List<WorkInfo> lstData, List<String> lstKey) {
+        this.lstData = lstData;
         this.lstKey = lstKey;
+        this.filteredData = lstData;
+        this.filteredKey = lstKey;
     }
 
     @Override
@@ -47,8 +57,9 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final WorkInfoViewHolder vh = (WorkInfoViewHolder) holder;
-        WorkInfo w = data.get(position);
-        vh.txt_WorkInfoKey.setText(lstKey.get(position));
+        Log.d("CheckPosition", "Position: " + position + " - Size: " + filteredData.size());
+        WorkInfo w = filteredData.get(position);
+        vh.txt_WorkInfoKey.setText(filteredKey.get(position));
         vh.txt_TitlePost.setText(w.getTitlePost());
         vh.txt_Career.setText(w.getWorkDetail().getCarrers());
         vh.txt_Salary.setText(w.getWorkDetail().getSalary());
@@ -62,7 +73,8 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
             public void onSuccess(DataSnapshot dataSnapshot) {
                 Recruiter r = dataSnapshot.getValue(Recruiter.class);
                 vh.txt_CompanyName.setText(r.getCompanyName());
-                Picasso.with(context).load(r.getAvatar()).into(vh.imgv_Avatar);
+                if(r.getAvatar() != null)
+                    Picasso.with(context).load(r.getAvatar()).into(vh.imgv_Avatar);
             }
 
             @Override
@@ -74,16 +86,64 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return filteredData.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        return mFilter;
+    }
+    public void setOnFilterListener(OnFilterListener onFilterListener)
+    {
+        this.onFilterListener = onFilterListener;
+    }
+    private class ItemFilter extends Filter{
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            String filterString = constraint.toString().toUpperCase();
+            String[] filterArr = filterString.split(" ");
+
+            FilterResults results = new FilterResults();
+            final List<WorkInfo> lstWorkInfo = lstData;
+            int count = lstWorkInfo.size();
+            List<WorkInfo> nlist = new ArrayList<WorkInfo>();
+
+            if(filterString.length() > 0){
+                for(int i=0; i < count; i++){
+                    WorkInfo w = lstWorkInfo.get(i);
+                    for (String str : filterArr) {
+                        if(str.trim().isEmpty() || str.trim() == "") continue;
+                        if (w.getTitlePost().toUpperCase().contains(str.trim())
+                                || w.getCompanyName().toUpperCase().contains(str.trim()))
+                        {
+                            nlist.add(w);
+                            filteredKey.add(lstKey.get(i));
+                            break;
+                        }
+                    }
+                }
+            } else {
+                nlist = lstWorkInfo;
+            }
+            results.values = nlist;
+            results.count = nlist.size();
+            return results;
+        }
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            filteredData = (ArrayList<WorkInfo>) results.values;
+            onFilterListener.onFilter(filteredData.size());
+            notifyDataSetChanged();
+        }
+    }
     public class WorkInfoViewHolder extends RecyclerView.ViewHolder {
         TextView txt_WorkInfoKey, txt_TitlePost, txt_CompanyName, txt_Career, txt_Salary, txt_WorkPlace, txt_ExpirationTime;
         ImageView imgv_Avatar;
 
         public WorkInfoViewHolder(View itemView) {
             super(itemView);
-            imgv_Avatar = (ImageView) itemView.findViewById(R.id.img_Avatar);
+            imgv_Avatar = (ImageView) itemView.findViewById(R.id.imgv_Avatar);
 
             txt_WorkInfoKey = (TextView) itemView.findViewById(R.id.txt_WorkInfoKey);
             txt_TitlePost = (TextView) itemView.findViewById(R.id.txt_TitlePost);

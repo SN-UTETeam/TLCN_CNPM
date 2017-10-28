@@ -38,62 +38,41 @@ public class NTDPostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_ntd_post, container, false);
-        Log.d("NTD", "POST");
-
         addView(rootView);
         addEvent();
-
-        //Method để sử dụng font awesome trong fragment
-       /* Typeface iconFont = FontManager.getTypeface(getContext(), FontManager.FONTAWESOME);
-        FontManager.markAsIconContainer(rootView.findViewById(R.id.Manage_Recruit), iconFont);*/
         loadData();
         lv_WorkInfo.setAdapter(new WorkInfoListAdapter(getActivity(), lstWorkInfo));
-
 
         return rootView;
     }
 
     private void loadData() {
-        Database.getData(Node.RECRUITERS, new OnGetDataListener() {
+        Database.getData(Node.WORKINFOS, new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
-                for (DataSnapshot mdata : dataSnapshot.getChildren())
+                lstWorkInfo.clear();
+                for(DataSnapshot mdata : dataSnapshot.getChildren())
                 {
-                    Database.getData(Node.WORKINFOS, new OnGetDataListener() {
-                        @Override
-                        public void onSuccess(DataSnapshot dataSnapshot) {
-                            lstWorkInfo.clear();
-                            for(DataSnapshot mdata : dataSnapshot.getChildren())
-                            {
-                                WorkInfo w = mdata.getValue(WorkInfo.class);
-                                if(w.getExpirationTime() < (new Date()).getTime())
-                                    continue;
-                                w.setKey(mdata.getKey());
-                                lstWorkInfo.add(w);
-                                Collections.sort(lstWorkInfo);
-                                ((BaseAdapter) lv_WorkInfo.getAdapter()).notifyDataSetChanged();
-                            }
-                            if(lstWorkInfo.size() > 0) ln_NonData.setVisibility(View.GONE);
-                            else ln_NonData.setVisibility(View.VISIBLE);
-                        }
-
-                        @Override
-                        public void onFailed(DatabaseError databaseError) {
-
-                        }
-                    }, new Parameter("userId", mdata.getKey()));
+                    WorkInfo w = mdata.getValue(WorkInfo.class);
+                    if(w.getExpirationTime() < (new Date()).getTime())
+                        continue;
+                    w.setKey(mdata.getKey());
+                    lstWorkInfo.add(w);
+                    Collections.sort(lstWorkInfo);
+                    ((BaseAdapter) lv_WorkInfo.getAdapter()).notifyDataSetChanged();
                 }
+                if(lstWorkInfo.size() > 0) ln_NonData.setVisibility(View.GONE);
+                else ln_NonData.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFailed(DatabaseError databaseError) {
 
             }
-        }, new Parameter("email", FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+        }, new Parameter("userId", FirebaseAuth.getInstance().getCurrentUser().getUid()));
     }
 
     private void addView(View rootView) {
-
         ln_NonData = (LinearLayout) rootView.findViewById(R.id.ln_NonData);
         lv_WorkInfo = (ListView) rootView.findViewById(R.id.lv_WorkInfo);
     }

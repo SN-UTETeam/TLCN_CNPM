@@ -16,6 +16,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.spkt.nguyenducnguu.jobstore.Adaper.SalaryListAdapter;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.Salary;
 
 import java.util.ArrayList;
@@ -42,9 +45,8 @@ public class SelectSalaryActivity extends AppCompatActivity {
         addEvent();
 
         Intent intent = getIntent();
-        if(intent != null){
-            if(!intent.getStringExtra("lstSalarySelected").isEmpty())
-            {
+        if (intent != null) {
+            if (!intent.getStringExtra("lstSalarySelected").isEmpty()) {
                 lstSalarySelected = Arrays.asList(intent.getStringExtra("lstSalarySelected").split(", "));
                 countItemSelected = lstSalarySelected.size();
                 txt_Title.setText("(" + countItemSelected + "/" + MAX_SELECT + ") " + TITLE);
@@ -55,12 +57,14 @@ public class SelectSalaryActivity extends AppCompatActivity {
 
         loadData();
     }
+
     private void addView() {
         btn_Finish = (Button) findViewById(R.id.btn_Finish);
         lv_Salary = (ListView) findViewById(R.id.lv_Salary);
         imgv_Back = (ImageView) findViewById(R.id.imgv_Back);
         txt_Title = (TextView) findViewById(R.id.txt_Title);
     }
+
     private void addEvent() {
         imgv_Back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,13 +77,10 @@ public class SelectSalaryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ImageView img = (ImageView) view.findViewById(R.id.img_Check);
-                if(img.getVisibility() == View.VISIBLE)
-                {
+                if (img.getVisibility() == View.VISIBLE) {
                     img.setVisibility(View.INVISIBLE);
                     txt_Title.setText("(" + (--countItemSelected) + "/" + MAX_SELECT + ") " + TITLE);
-                }
-                else if(countItemSelected < MAX_SELECT)
-                {
+                } else if (countItemSelected < MAX_SELECT) {
                     img.setVisibility(View.VISIBLE);
                     txt_Title.setText("(" + (++countItemSelected) + "/" + MAX_SELECT + ") " + TITLE);
                 }
@@ -103,32 +104,19 @@ public class SelectSalaryActivity extends AppCompatActivity {
             }
         });
     }
+
     private void loadData() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.getReference("Salaries").addChildEventListener(new ChildEventListener() {
+        Database.getData(Node.SALARIES, new OnGetDataListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                lstSalary.add(dataSnapshot.getValue(Salary.class));
-                ((BaseAdapter) lv_Salary.getAdapter()).notifyDataSetChanged();
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                for (DataSnapshot mdata : dataSnapshot.getChildren()) {
+                    lstSalary.add(mdata.getValue(Salary.class));
+                    ((BaseAdapter) lv_Salary.getAdapter()).notifyDataSetChanged();
+                }
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onFailed(DatabaseError databaseError) {
 
             }
         });

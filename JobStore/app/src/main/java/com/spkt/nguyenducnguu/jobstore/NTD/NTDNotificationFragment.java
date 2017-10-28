@@ -26,7 +26,6 @@ public class NTDNotificationFragment extends Fragment {
 
     List<Notification> lstNotification = new ArrayList<Notification>();
     List<String> lstKey = new ArrayList<String>();
-    RCVNotifiAdapter mRcvAdapter;
     RecyclerView mRecyclerView;
 
 
@@ -47,31 +46,27 @@ public class NTDNotificationFragment extends Fragment {
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_Notification);
     }
 
-    private void loadData()
-    {
-        Database.getData(Node.RECRUITERS, new OnGetDataListener() {
-            @Override
-            public void onSuccess(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot recruiterData : dataSnapshot.getChildren()) {
-                        if(recruiterData.child("notifications").getValue() != null)
-                        {
-                            for (DataSnapshot nData : recruiterData.child("notifications").getChildren())
-                            {
-                                lstKey.add(nData.getKey());
-                                lstNotification.add(nData.getValue(Notification.class));
-                                mRecyclerView.getAdapter().notifyDataSetChanged();
+    private void loadData() {
+        Database.getData(Node.RECRUITERS + "/" + FirebaseAuth.getInstance().getCurrentUser().getUid(),
+                new OnGetDataListener() {
+                    @Override
+                    public void onSuccess(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            if (dataSnapshot.child("notifications").getValue() != null) {
+                                for (DataSnapshot nData : dataSnapshot.child("notifications").getChildren()) {
+                                    lstKey.add(nData.getKey());
+                                    lstNotification.add(nData.getValue(Notification.class));
+                                    mRecyclerView.getAdapter().notifyDataSetChanged();
+                                }
                             }
                         }
                     }
-                }
-            }
 
-            @Override
-            public void onFailed(DatabaseError databaseError) {
+                    @Override
+                    public void onFailed(DatabaseError databaseError) {
 
-            }
-        }, new Parameter("email", FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                    }
+                });
     }
 
     private void setmRecyclerView() {

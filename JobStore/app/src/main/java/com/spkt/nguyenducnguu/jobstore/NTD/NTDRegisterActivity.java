@@ -93,65 +93,6 @@ public class NTDRegisterActivity extends AppCompatActivity {
             }
         });
     }
-    private void showDatePickerDialog()
-    {
-        DatePickerDialog.OnDateSetListener callback=new DatePickerDialog.OnDateSetListener() {
-            public void onDateSet(DatePicker view, int year,
-                                  int monthOfYear,
-                                  int dayOfMonth) {
-                //Mỗi lần thay đổi ngày tháng năm thì cập nhật lại TextView
-                txt_BirthDay.setText((dayOfMonth) +"/"+(monthOfYear+1)+"/"+year);
-                //Lưu vết lại biến ngày hoàn thành
-                cal.set(year, monthOfYear, dayOfMonth);
-            }
-        };
-        //các lệnh dưới này xử lý ngày giờ trong DatePickerDialog
-        //sẽ giống với trên TextView khi mở nó lên
-        if(txt_BirthDay.getText().length() == 0)
-        {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            txt_BirthDay.setText(sdf.format(new Date()));
-        }
-        String s= txt_BirthDay.getText()+"";
-        String strArrtmp[]=s.split("/");
-        int ngay=Integer.parseInt(strArrtmp[0]);
-        int thang=Integer.parseInt(strArrtmp[1])-1;
-        int nam=Integer.parseInt(strArrtmp[2]);
-        DatePickerDialog pic=new DatePickerDialog(
-                NTDRegisterActivity.this,
-                callback, nam, thang, ngay);
-        pic.setTitle("Chọn ngày sinh");
-        pic.show();
-    }
-    private void showChoiceGenderDialog()
-    {
-        // khởi tạo dialog
-        final Dialog dialog = new Dialog(NTDRegisterActivity.this);
-        // xét layout cho dialog
-        dialog.setContentView(R.layout.dialog_choice_gender);
-        // xét tiêu đề cho dialog
-        dialog.setTitle("Chọn giới tính của bạn");
-        // khai báo control trong dialog để bắt sự kiện
-        Button btn_Male = (Button) dialog.findViewById(R.id.btn_Male);
-        Button btn_Female = (Button) dialog.findViewById(R.id.btn_Female);
-        // bắt sự kiện
-        btn_Male.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                txt_Gender.setText("Nam");
-                dialog.dismiss();
-            }
-        });
-        btn_Female.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                txt_Gender.setText("Nữ");
-                dialog.dismiss();
-            }
-        });
-        // hiển thị dialog
-        dialog.show();
-    }
     private boolean ValidateInputData()
     {
         String email = txt_Email.getText().toString().trim();
@@ -234,11 +175,10 @@ public class NTDRegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //Thêm dữ liệu
-                            Database.addData(Node.RECRUITERS, r);
+                            Database.addDataWithKey(Node.RECRUITERS, mAuth.getCurrentUser().getUid(), r);
                             //Phân quyền
                             Roles role = new Roles(r.getEmail(), 0);
-                            Database.addData(Node.ROLES, role);
-                            dialog.dismiss();
+                            Database.addDataWithKey(Node.ROLES, mAuth.getCurrentUser().getUid(),role);
                             //Thông báo
                             Intent intent = new Intent(NTDRegisterActivity.this, ResultRegisterActivity.class);
                             Bundle bundle = new Bundle();
@@ -248,9 +188,9 @@ public class NTDRegisterActivity extends AppCompatActivity {
                             bundle.putString("team", "SN UTE Team");
                             bundle.putBoolean("success", true);
                             intent.putExtra("bundle", bundle);
+                            dialog.dismiss();
                             startActivity(intent);
                         } else {
-                            dialog.dismiss();
                             //Thông báo
                             Intent intent = new Intent(NTDRegisterActivity.this, ResultRegisterActivity.class);
                             Bundle bundle = new Bundle();
@@ -261,10 +201,69 @@ public class NTDRegisterActivity extends AppCompatActivity {
                             bundle.putString("team", "SN UTE Team");
                             bundle.putBoolean("success", false);
                             intent.putExtra("bundle", bundle);
+                            dialog.dismiss();
                             startActivity(intent);
                         }
                     }
                 });
     }
-
+    private void showDatePickerDialog()
+    {
+        DatePickerDialog.OnDateSetListener callback=new DatePickerDialog.OnDateSetListener() {
+            public void onDateSet(DatePicker view, int year,
+                                  int monthOfYear,
+                                  int dayOfMonth) {
+                //Mỗi lần thay đổi ngày tháng năm thì cập nhật lại TextView
+                txt_BirthDay.setText((dayOfMonth) +"/"+(monthOfYear+1)+"/"+year);
+                //Lưu vết lại biến ngày hoàn thành
+                cal.set(year, monthOfYear, dayOfMonth);
+            }
+        };
+        //các lệnh dưới này xử lý ngày giờ trong DatePickerDialog
+        //sẽ giống với trên TextView khi mở nó lên
+        if(txt_BirthDay.getText().length() == 0)
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            txt_BirthDay.setText(sdf.format(new Date()));
+        }
+        String s= txt_BirthDay.getText()+"";
+        String strArrtmp[]=s.split("/");
+        int ngay=Integer.parseInt(strArrtmp[0]);
+        int thang=Integer.parseInt(strArrtmp[1])-1;
+        int nam=Integer.parseInt(strArrtmp[2]);
+        DatePickerDialog pic=new DatePickerDialog(
+                NTDRegisterActivity.this,
+                callback, nam, thang, ngay);
+        pic.setTitle("Chọn ngày sinh");
+        pic.show();
+    }
+    private void showChoiceGenderDialog()
+    {
+        // khởi tạo dialog
+        final Dialog dialog = new Dialog(NTDRegisterActivity.this);
+        // xét layout cho dialog
+        dialog.setContentView(R.layout.dialog_choice_gender);
+        // xét tiêu đề cho dialog
+        dialog.setTitle("Chọn giới tính của bạn");
+        // khai báo control trong dialog để bắt sự kiện
+        Button btn_Male = (Button) dialog.findViewById(R.id.btn_Male);
+        Button btn_Female = (Button) dialog.findViewById(R.id.btn_Female);
+        // bắt sự kiện
+        btn_Male.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txt_Gender.setText("Nam");
+                dialog.dismiss();
+            }
+        });
+        btn_Female.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txt_Gender.setText("Nữ");
+                dialog.dismiss();
+            }
+        });
+        // hiển thị dialog
+        dialog.show();
+    }
 }

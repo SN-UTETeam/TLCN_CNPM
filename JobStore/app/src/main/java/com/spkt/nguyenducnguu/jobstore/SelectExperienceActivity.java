@@ -16,6 +16,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.spkt.nguyenducnguu.jobstore.Adaper.ExperienceListAdapter;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.Experience;
 
 import java.util.ArrayList;
@@ -104,31 +107,18 @@ public class SelectExperienceActivity extends AppCompatActivity {
         });
     }
     private void loadData() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.getReference("Experiences").addChildEventListener(new ChildEventListener() {
+        Database.getData(Node.EXPERIENCES, new OnGetDataListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                lstExperience.add(dataSnapshot.getValue(Experience.class));
-                ((BaseAdapter) lv_Experience.getAdapter()).notifyDataSetChanged();
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                for(DataSnapshot mdata : dataSnapshot.getChildren())
+                {
+                    lstExperience.add(mdata.getValue(Experience.class));
+                    ((BaseAdapter) lv_Experience.getAdapter()).notifyDataSetChanged();
+                }
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onFailed(DatabaseError databaseError) {
 
             }
         });

@@ -93,57 +93,49 @@ public class UVRegisterActivity extends AppCompatActivity {
         addEvent();
         setIcon();
     }
-    private boolean ValidateInputData()
-    {
+
+    private boolean ValidateInputData() {
         String email = txt_Email.getText().toString().trim();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-        if (!email.matches(emailPattern))
-        {
-            Toast.makeText(this,"Địa chỉ email không hợp lệ!",Toast.LENGTH_SHORT).show();
+        if (!email.matches(emailPattern)) {
+            Toast.makeText(this, "Địa chỉ email không hợp lệ!", Toast.LENGTH_SHORT).show();
             txt_Email.requestFocus();
             return false;
         }
 
-        if(txt_Password.getText().length() < 6)
-        {
-            Toast.makeText(this,"Mật khẩu phải có ít nhất 6 ký tự!",Toast.LENGTH_SHORT).show();
+        if (txt_Password.getText().length() < 6) {
+            Toast.makeText(this, "Mật khẩu phải có ít nhất 6 ký tự!", Toast.LENGTH_SHORT).show();
             txt_Password.requestFocus();
             return false;
         }
 
-        if(!txt_Password.getText().toString().equals(txt_ConfirmPassword.getText().toString()))
-        {
-            Toast.makeText(this,"Mật khẩu nhập lại không khớp!",Toast.LENGTH_SHORT).show();
+        if (!txt_Password.getText().toString().equals(txt_ConfirmPassword.getText().toString())) {
+            Toast.makeText(this, "Mật khẩu nhập lại không khớp!", Toast.LENGTH_SHORT).show();
             txt_ConfirmPassword.setText("");
             txt_ConfirmPassword.requestFocus();
             return false;
         }
 
-        if(txt_FullName.getText().toString().trim().length() == 0)
-        {
-            Toast.makeText(this,"Vui lòng nhập họ tên của bạn!",Toast.LENGTH_SHORT).show();
+        if (txt_FullName.getText().toString().trim().length() == 0) {
+            Toast.makeText(this, "Vui lòng nhập họ tên của bạn!", Toast.LENGTH_SHORT).show();
             txt_FullName.requestFocus();
             return false;
         }
-        if(txt_BirthDay.getText().toString().trim().length() == 0)
-        {
-            Toast.makeText(this,"Vui lòng chọn ngày sinh của bạn!",Toast.LENGTH_SHORT).show();
+        if (txt_BirthDay.getText().toString().trim().length() == 0) {
+            Toast.makeText(this, "Vui lòng chọn ngày sinh của bạn!", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(txt_Gender.getText().toString().trim().length() == 0)
-        {
-            Toast.makeText(this,"Vui lòng chọn giới tính của bạn!",Toast.LENGTH_SHORT).show();
+        if (txt_Gender.getText().toString().trim().length() == 0) {
+            Toast.makeText(this, "Vui lòng chọn giới tính của bạn!", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(txt_Description.getText().toString().trim().length() == 0)
-        {
-            Toast.makeText(this,"Vui lòng giới thiệu một chút về bạn!",Toast.LENGTH_SHORT).show();
+        if (txt_Description.getText().toString().trim().length() == 0) {
+            Toast.makeText(this, "Vui lòng giới thiệu một chút về bạn!", Toast.LENGTH_SHORT).show();
             txt_Description.requestFocus();
             return false;
         }
-        if(txt_Tag.getText().toString().trim().length() == 0)
-        {
-            Toast.makeText(this,"Vui lòng nhập một thẻ tag để nhà tuyển dụng có thể dễ dàng tìm thấy bạn!",Toast.LENGTH_SHORT).show();
+        if (txt_Tag.getText().toString().trim().length() == 0) {
+            Toast.makeText(this, "Vui lòng nhập một thẻ tag để nhà tuyển dụng có thể dễ dàng tìm thấy bạn!", Toast.LENGTH_SHORT).show();
             txt_Tag.requestFocus();
             return false;
         }
@@ -177,29 +169,26 @@ public class UVRegisterActivity extends AppCompatActivity {
             txt_Salary.requestFocus();
             return false;
         }
-        if(txt_CV.getText().toString().trim().length() == 0)
-        {
-            Toast.makeText(this,"Vui lòng chọn CV của bạn!",Toast.LENGTH_SHORT).show();
+        if (txt_CV.getText().toString().trim().length() == 0) {
+            Toast.makeText(this, "Vui lòng chọn CV của bạn!", Toast.LENGTH_SHORT).show();
             txt_CV.requestFocus();
             return false;
         }
-        if(txt_Phone.getText().toString().trim().length() == 0)
-        {
-            Toast.makeText(this,"Vui lòng nhập số điện thoại của bạn!",Toast.LENGTH_SHORT).show();
+        if (txt_Phone.getText().toString().trim().length() == 0) {
+            Toast.makeText(this, "Vui lòng nhập số điện thoại của bạn!", Toast.LENGTH_SHORT).show();
             txt_Phone.requestFocus();
             return false;
         }
-        if(txt_Address.getText().toString().trim().length() == 0)
-        {
-            Toast.makeText(this,"Vui lòng nhập địa chỉ hiện tại của bạn!",Toast.LENGTH_SHORT).show();
+        if (txt_Address.getText().toString().trim().length() == 0) {
+            Toast.makeText(this, "Vui lòng nhập địa chỉ hiện tại của bạn!", Toast.LENGTH_SHORT).show();
             txt_Address.requestFocus();
             return false;
         }
         return true;
     }
-    private void Register()
-    {
-        if(!ValidateInputData()) return;
+
+    private void Register() {
+        if (!ValidateInputData()) return;
 
         final ProgressDialog dialog = ProgressDialog.show(this, "",
                 "Please wait...", true);
@@ -215,7 +204,7 @@ public class UVRegisterActivity extends AppCompatActivity {
                             c.setEmail(txt_Email.getText().toString());
                             c.setFullName(txt_FullName.getText().toString());
                             c.setBirthday(cal.getTime().getTime());
-                            c.setGender(txt_Gender.getText().toString() == "Nam"? 0 : 1);
+                            c.setGender(txt_Gender.getText().toString() == "Nam" ? 0 : 1);
                             c.setDescription(txt_Description.getText().toString());
                             c.setPhone(txt_Phone.getText().toString());
                             c.setFacebookURL(txt_FacebookURL.getText().toString());
@@ -231,30 +220,28 @@ public class UVRegisterActivity extends AppCompatActivity {
                             cd.setExperience(txt_Experience.getTags().toString().substring(1, txt_Experience.getTags().toString().length() - 1));
                             cd.setSalary(txt_Salary.getTags().toString().substring(1, txt_Salary.getTags().toString().length() - 1));
                             HashMap<String, WorkExp> we = new HashMap<String, WorkExp>();
-                            for(WorkExp w : lstWorkExp)
+                            for (WorkExp w : lstWorkExp)
                                 we.put(w.getId().toString(), w);
                             HashMap<String, Diploma> di = new HashMap<String, Diploma>();
-                            for(Diploma d : lstDiploma)
+                            for (Diploma d : lstDiploma)
                                 di.put(d.getId().toString(), d);
                             cd.setWorkExps(we);
                             cd.setDiplomas(di);
 
                             c.setCandidateDetail(cd);
                             //Thêm dữ liệu
-                            Database.addData(Node.CANDIDATES, c);
+                            Database.addDataWithKey(Node.CANDIDATES, mAuth.getCurrentUser().getUid(), c);
                             //Phân quyền
                             Roles role = new Roles(c.getEmail(), 1);
-                            Database.addData(Node.ROLES, role);
-                            if(CVUri != null)
-                            {
-                                uploadCV(txt_Email.getText().toString());
+                            Database.addDataWithKey(Node.ROLES, mAuth.getCurrentUser().getUid(), role);
+
+                            if (CVUri != null) {
+                                uploadCV(mAuth.getCurrentUser().getUid());
                             }
                             dialog.dismiss();
                             //Thông báo
                             showSuccessNotification();
-                        }
-                        else
-                        {
+                        } else {
                             dialog.dismiss();
                             //Thông báo
                             showFailedNotification();
@@ -262,8 +249,8 @@ public class UVRegisterActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void showSuccessNotification()
-    {
+
+    private void showSuccessNotification() {
         Intent intent = new Intent(this, ResultRegisterActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("title", "Congratulations");
@@ -274,8 +261,8 @@ public class UVRegisterActivity extends AppCompatActivity {
         intent.putExtra("bundle", bundle);
         startActivity(intent);
     }
-    private void showFailedNotification()
-    {
+
+    private void showFailedNotification() {
         Intent intent = new Intent(this, ResultRegisterActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("title", "Failed");
@@ -287,8 +274,8 @@ public class UVRegisterActivity extends AppCompatActivity {
         intent.putExtra("bundle", bundle);
         startActivity(intent);
     }
-    private void uploadCV(final String email)
-    {
+
+    private void uploadCV(final String UserId) {
         StorageReference ref = FirebaseStorage.getInstance().getReference()
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/" + txt_CV.getText().toString());
 
@@ -303,30 +290,26 @@ public class UVRegisterActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 final Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                Database.getData(Node.CANDIDATES, new OnGetDataListener() {
+                Database.getData(Node.CANDIDATES + "/" + UserId, new OnGetDataListener() {
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
-                        for(DataSnapshot mdata : dataSnapshot.getChildren())
-                        {
-                            Candidate c = mdata.getValue(Candidate.class);
-                            c.getCandidateDetail().setCV(downloadUrl.toString());
-                            Database.updateData(Node.CANDIDATES, mdata.getKey(), c);
-                        }
+                        Candidate c = dataSnapshot.getValue(Candidate.class);
+                        c.getCandidateDetail().setCV(downloadUrl.toString());
+                        Database.updateData(Node.CANDIDATES, UserId, c);
                     }
 
                     @Override
                     public void onFailed(DatabaseError databaseError) {
 
                     }
-                }, new Parameter("email", email));
+                });
             }
         });
     }
-    private void loadDiploma()
-    {
+
+    private void loadDiploma() {
         vg_Diploma.removeAllViews();
-        for (int i = 0; i < lstDiploma.size(); i++)
-        {
+        for (int i = 0; i < lstDiploma.size(); i++) {
             LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = vi.inflate(R.layout.list_item_diploma_layout, null);
 
@@ -375,19 +358,15 @@ public class UVRegisterActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     LinearLayout parent = (LinearLayout) v.getParent();
                     TextView txt_Id = (TextView) parent.findViewById(R.id.txt_Id);
-                    try
-                    {
+                    try {
                         Long Id = Long.parseLong(txt_Id.getText().toString());
                         for (int i = 0; i < lstDiploma.size(); i++)
-                            if(lstDiploma.get(i).getId().equals(Id))
-                            {
+                            if (lstDiploma.get(i).getId().equals(Id)) {
                                 lstDiploma.remove(i);
                                 break;
                             }
                         loadDiploma();
-                    }
-                    catch (Exception ex)
-                    {
+                    } catch (Exception ex) {
 
                     }
                 }
@@ -396,11 +375,10 @@ public class UVRegisterActivity extends AppCompatActivity {
                     ViewGroup.LayoutParams.MATCH_PARENT));
         }
     }
-    private void loadWorkExp()
-    {
+
+    private void loadWorkExp() {
         vg_WorkExp.removeAllViews();
-        for (int i = 0; i < lstWorkExp.size(); i++)
-        {
+        for (int i = 0; i < lstWorkExp.size(); i++) {
             LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = vi.inflate(R.layout.list_item_workexp_layout, null);
 
@@ -414,8 +392,8 @@ public class UVRegisterActivity extends AppCompatActivity {
             TextView txt_Time = (TextView) view.findViewById(R.id.txt_Time);
             TextView txt_Title = (TextView) view.findViewById(R.id.txt_Title);
 
-            float YEAR=365*24*60*60*1000;
-            btn_YearNumber.setText((lstWorkExp.get(i).getFinish()- lstWorkExp.get(i).getBegin())/YEAR + "");
+            float YEAR = 365 * 24 * 60 * 60 * 1000;
+            btn_YearNumber.setText((lstWorkExp.get(i).getFinish() - lstWorkExp.get(i).getBegin()) / YEAR + "");
             txt_Id.setText(lstWorkExp.get(i).getId() + "");
             txt_Begin.setText(lstWorkExp.get(i).getBegin() + "");
             txt_Finish.setText(lstWorkExp.get(i).getFinish() + "");
@@ -451,19 +429,15 @@ public class UVRegisterActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     LinearLayout parent = (LinearLayout) v.getParent();
                     TextView txt_Id = (TextView) parent.findViewById(R.id.txt_Id);
-                    try
-                    {
+                    try {
                         Long Id = Long.parseLong(txt_Id.getText().toString());
                         for (int i = 0; i < lstWorkExp.size(); i++)
-                            if(lstWorkExp.get(i).getId().equals(Id))
-                            {
+                            if (lstWorkExp.get(i).getId().equals(Id)) {
                                 lstWorkExp.remove(i);
                                 break;
                             }
                         loadWorkExp();
-                    }
-                    catch (Exception ex)
-                    {
+                    } catch (Exception ex) {
 
                     }
                 }
@@ -472,8 +446,8 @@ public class UVRegisterActivity extends AppCompatActivity {
                     ViewGroup.LayoutParams.MATCH_PARENT));
         }
     }
-    private void addView()
-    {
+
+    private void addView() {
         imgv_Back = (ImageView) findViewById(R.id.imgv_Back);
         imgv_RemoveCV = (ImageView) findViewById(R.id.imgv_RemoveCV);
         btn_Register = (Button) findViewById(R.id.btn_Register);
@@ -511,8 +485,8 @@ public class UVRegisterActivity extends AppCompatActivity {
         btn_AddDiplomas = (Button) findViewById(R.id.btn_AddDiplomas);
         vg_Diploma = (ViewGroup) findViewById(R.id.ln_Diplomas);
     }
-    private void addEvent()
-    {
+
+    private void addEvent() {
         btn_AddWorkExps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -605,12 +579,14 @@ public class UVRegisterActivity extends AppCompatActivity {
             }
         });
     }
+
     private void startActivitySelectForResult(Class selectScreen, TagsEditText tags, String keyData, int requestCode) {
         Intent intent = new Intent(this, selectScreen);
         String data = tags.getTags().toString().substring(1, tags.getTags().toString().length() - 1);
         intent.putExtra(keyData, data);
         startActivityForResult(intent, requestCode);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -655,11 +631,9 @@ public class UVRegisterActivity extends AppCompatActivity {
             case RequestCode.ADD_WORKEXP:
                 if (data != null) {
                     boolean isUpdate = data.getBooleanExtra(UVWorkExpActivity.IS_UPDATE, false);
-                    if(isUpdate)
-                    {
+                    if (isUpdate) {
                         Long Id = data.getLongExtra(UVWorkExpActivity.ID, -1L);
-                        if(Id != -1L)
-                        {
+                        if (Id != -1L) {
                             for (int i = 0; i < lstWorkExp.size(); i++) {
                                 if (lstWorkExp.get(i).getId().equals(Id)) {
                                     lstWorkExp.remove(i);
@@ -682,11 +656,9 @@ public class UVRegisterActivity extends AppCompatActivity {
             case RequestCode.ADD_DIPLOMA:
                 if (data != null) {
                     boolean isUpdate = data.getBooleanExtra(UVDiplomaActivity.IS_UPDATE, false);
-                    if(isUpdate)
-                    {
+                    if (isUpdate) {
                         Long Id = data.getLongExtra(UVDiplomaActivity.ID, -1L);
-                        if(Id != -1L)
-                        {
+                        if (Id != -1L) {
                             for (int i = 0; i < lstDiploma.size(); i++) {
                                 if (lstDiploma.get(i).getId().equals(Id)) {
                                     lstDiploma.remove(i);
@@ -760,8 +732,8 @@ public class UVRegisterActivity extends AppCompatActivity {
         pic.setTitle("Chọn ngày sinh của bạn");
         pic.show();
     }
-    private void showChoiceGenderDialog()
-    {
+
+    private void showChoiceGenderDialog() {
         // khởi tạo dialog
         final Dialog dialog = new Dialog(this);
         // xét layout cho dialog
@@ -789,6 +761,7 @@ public class UVRegisterActivity extends AppCompatActivity {
         // hiển thị dialog
         dialog.show();
     }
+
     private void showFileChooser() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");

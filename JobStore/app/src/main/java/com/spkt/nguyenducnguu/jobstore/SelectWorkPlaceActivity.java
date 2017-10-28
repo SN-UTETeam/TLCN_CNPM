@@ -16,7 +16,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.spkt.nguyenducnguu.jobstore.Adaper.WorkPlaceListAdapter;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkPlace;
+import com.spkt.nguyenducnguu.jobstore.Models.WorkType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,31 +59,18 @@ public class SelectWorkPlaceActivity extends AppCompatActivity {
         loadData();
     }
     private void loadData() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.getReference("WorkPlaces").addChildEventListener(new ChildEventListener() {
+        Database.getData(Node.WORKPLACES, new OnGetDataListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                lstWorkPlace.add(dataSnapshot.getValue(WorkPlace.class));
-                ((BaseAdapter) lv_WorkPlace.getAdapter()).notifyDataSetChanged();
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                for(DataSnapshot mdata : dataSnapshot.getChildren())
+                {
+                    lstWorkPlace.add(mdata.getValue(WorkPlace.class));
+                    ((BaseAdapter) lv_WorkPlace.getAdapter()).notifyDataSetChanged();
+                }
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onFailed(DatabaseError databaseError) {
 
             }
         });

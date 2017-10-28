@@ -70,52 +70,38 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
 
     private void loadData() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Database.getData(Node.RECRUITERS, new OnGetDataListener() {
+        Database.getData(Node.RECRUITERS + "/" + FirebaseAuth.getInstance().getCurrentUser().getUid(), new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
-                for (DataSnapshot mdata : dataSnapshot.getChildren()) {
-                    Recruiter r = mdata.getValue(Recruiter.class);
+                Recruiter r = dataSnapshot.getValue(Recruiter.class);
 
-                    if (r == null) return;
+                if (r == null) return;
 
-                    txt_CompanyName.setText(r.getCompanyName());
-                    txt_Email.setText(r.getEmail());
+                txt_CompanyName.setText(r.getCompanyName());
+                txt_Email.setText(r.getEmail());
 
+                if (r.getAvatar() != null)
                     Picasso.with(getBaseContext()).load(r.getAvatar()).into(img_Avatar);
+                if (r.getCoverPhoto() != null)
                     Picasso.with(getBaseContext()).load(r.getCoverPhoto()).into(img_CoverPhoto);
-                }
             }
 
             @Override
             public void onFailed(DatabaseError databaseError) {
 
             }
-        }, new Parameter("email", user.getEmail()));
+        });
     }
 
     private void addEvent() {
         rl_headerNav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Database.getData(Node.RECRUITERS, new OnGetDataListener() {
-                    @Override
-                    public void onSuccess(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot mdata : dataSnapshot.getChildren()) {
-                            Log.d("Key", mdata.getKey());
-                            Intent myIntent = new Intent(NTDMainActivity.this, NTDProfileActivity.class);
-                            myIntent.putExtra("Key", mdata.getKey());
-                            Bundle bndlanimation =
-                                    ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.anim_slide_in_right, R.anim.anim_slide_out_right).toBundle();
-                            startActivity(myIntent, bndlanimation);
-                        }
-                    }
-
-                    @Override
-                    public void onFailed(DatabaseError databaseError) {
-
-                    }
-                }, new Parameter("email", user.getEmail()));
+                Intent myIntent = new Intent(NTDMainActivity.this, NTDProfileActivity.class);
+                myIntent.putExtra("Key", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                Bundle bndlanimation =
+                        ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.anim_slide_in_right, R.anim.anim_slide_out_right).toBundle();
+                startActivity(myIntent, bndlanimation);
             }
         });
     }
@@ -153,8 +139,7 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
         //Thiet lap drawer trong navigation khi dong, mo
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        {
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             public void onDrawerClosed(View view) {
                 getSupportActionBar().setTitle(toolbar.getTitle());
                 //getSupportActionBar().setTitle("JobStore");

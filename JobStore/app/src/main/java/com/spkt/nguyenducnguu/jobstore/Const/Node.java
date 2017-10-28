@@ -6,6 +6,7 @@ public final class Node {
     public static String CAREERS = "Careers";
     public static String LEVELS = "Levels";
     public static String ROLES = "Roles";
+    public static String EXPERIENCES = "Experiences";
     public static String SALARIES = "Salaries";
     public static String WORKINFOS = "WorkInfos";
     public static String WORKPLACES = "WorkPlaces";

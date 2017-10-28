@@ -42,6 +42,7 @@ public class NTDChangeProfileActivity extends AppCompatActivity {
     Button btn_Finish;
     TextView txt_Back;
     private String Key = "";
+    private Recruiter recruiter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +83,7 @@ public class NTDChangeProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void loadData()
-    {
+    private void loadData() {
         Intent intent = getIntent();
         if (intent != null) {
             if (!intent.getStringExtra("Key").isEmpty()) {
@@ -94,21 +94,21 @@ public class NTDChangeProfileActivity extends AppCompatActivity {
             Database.getData(Node.RECRUITERS + "/" + Key, new OnGetDataListener() {
                 @Override
                 public void onSuccess(DataSnapshot dataSnapshot) {
-                    Recruiter r = dataSnapshot.getValue(Recruiter.class);
-                    if(r == null) {
+                    recruiter = dataSnapshot.getValue(Recruiter.class);
+                    if (recruiter == null) {
                         btn_Finish.setEnabled(false);
                         return;
                     }
 
-                    txt_FullName.setText(r.getFullName());
+                    txt_FullName.setText(recruiter.getFullName());
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    txt_BirthDay.setText(sdf.format(new Date(r.getBirthDay())));
-                    txt_Gender.setText(r.getGender() == 0 ? "Nữ" : "Nam");
-                    txt_CompanyName.setText(r.getCompanyName());
-                    txt_Description.setText(r.getDescription());
-                    txt_Phone.setText(r.getPhone());
-                    txt_Website.setText(r.getWebsite());
-                    txt_Address.setText(r.getAddress().getAddressStr());
+                    txt_BirthDay.setText(sdf.format(new Date(recruiter.getBirthDay())));
+                    txt_Gender.setText(recruiter.getGender() == 0 ? "Nữ" : "Nam");
+                    txt_CompanyName.setText(recruiter.getCompanyName());
+                    txt_Description.setText(recruiter.getDescription());
+                    txt_Phone.setText(recruiter.getPhone());
+                    txt_Website.setText(recruiter.getWebsite());
+                    txt_Address.setText(recruiter.getAddress().getAddressStr());
                 }
 
                 @Override
@@ -118,6 +118,7 @@ public class NTDChangeProfileActivity extends AppCompatActivity {
             });
         }
     }
+
     private void addView() {
         btn_Finish = (Button) findViewById(R.id.btn_Finish);
         txt_Back = (TextView) findViewById(R.id.txt_back);
@@ -138,51 +139,37 @@ public class NTDChangeProfileActivity extends AppCompatActivity {
 
     private void update() {
         //Phần update thông tin
-        if(!ValidateInputData()) return;
+        if (!ValidateInputData()) return;
         final ProgressDialog dialogUpdateInformation = ProgressDialog.show(this, "Update information",
                 "Please wait...", true);
         dialogUpdateInformation.show();
-        Database.getData(Node.RECRUITERS + "/" + Key, new OnGetDataListener() {
-            @Override
-            public void onSuccess(DataSnapshot dataSnapshot) {
-                Recruiter r = dataSnapshot.getValue(Recruiter.class);
-                if(r != null)
-                {
-                    r.setFullName(txt_FullName.getText().toString().trim());
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    try {
-                        r.setBirthDay(sdf.parse(txt_BirthDay.getText().toString()).getTime());
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    r.setGender(txt_Gender.getText().toString() == "Nam"? 0 : 1);
-                    r.setCompanyName(txt_CompanyName.getText().toString().trim());
-                    r.setDescription(txt_Description.getText().toString());
-                    r.setPhone(txt_Phone.getText().toString());
-                    r.setWebsite(txt_Website.getText().toString());
-                    r.setAddress(Address.getAddressFromLocationName(txt_Address.getText().toString(), NTDChangeProfileActivity.this));
-
-                    Database.updateData(Node.RECRUITERS, Key, r);
-
-                    dialogUpdateInformation.dismiss();
-                    Toast.makeText(NTDChangeProfileActivity.this, "Thông tin đã được cập nhật!", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    dialogUpdateInformation.dismiss();
-                    Toast.makeText(NTDChangeProfileActivity.this, "Không thể cập nhật thông tin!", Toast.LENGTH_SHORT).show();
-                }
+        if (recruiter != null) {
+            recruiter.setFullName(txt_FullName.getText().toString().trim());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                recruiter.setBirthDay(sdf.parse(txt_BirthDay.getText().toString()).getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
+            recruiter.setGender(txt_Gender.getText().toString() == "Nam" ? 0 : 1);
+            recruiter.setCompanyName(txt_CompanyName.getText().toString().trim());
+            recruiter.setDescription(txt_Description.getText().toString());
+            recruiter.setPhone(txt_Phone.getText().toString());
+            recruiter.setWebsite(txt_Website.getText().toString());
+            recruiter.setAddress(Address.getAddressFromLocationName(txt_Address.getText().toString(), NTDChangeProfileActivity.this));
 
-            @Override
-            public void onFailed(DatabaseError databaseError) {
-                dialogUpdateInformation.dismiss();
-                Toast.makeText(NTDChangeProfileActivity.this, "Không thể cập nhật thông tin!", Toast.LENGTH_SHORT).show();
-            }
-        });
+            Database.updateData(Node.RECRUITERS, Key, recruiter);
+
+            dialogUpdateInformation.dismiss();
+            Toast.makeText(NTDChangeProfileActivity.this, "Thông tin đã được cập nhật!", Toast.LENGTH_SHORT).show();
+        } else {
+            dialogUpdateInformation.dismiss();
+            Toast.makeText(NTDChangeProfileActivity.this, "Không thể cập nhật thông tin!", Toast.LENGTH_SHORT).show();
+        }
 
         //Phần đổi mật khẩu
-        if(txt_OldPassword.getText().toString().isEmpty() || txt_OldPassword.getText().toString() == "") return;
+        if (txt_OldPassword.getText().toString().isEmpty() || txt_OldPassword.getText().toString() == "")
+            return;
         final ProgressDialog dialogChangePassword = ProgressDialog.show(this, "Change password",
                 "Please wait...", true);
         dialogChangePassword.show();
@@ -215,8 +202,7 @@ public class NTDChangeProfileActivity extends AppCompatActivity {
 
     private boolean ValidateInputData() {
 
-        if(!txt_OldPassword.getText().toString().isEmpty() && txt_OldPassword.getText().toString() != "")
-        {
+        if (!txt_OldPassword.getText().toString().isEmpty() && txt_OldPassword.getText().toString() != "") {
             if (txt_OldPassword.getText().length() < 6) {
                 Toast.makeText(this, "Mật khẩu phải có ít nhất 6 ký tự!", Toast.LENGTH_SHORT).show();
                 txt_OldPassword.requestFocus();

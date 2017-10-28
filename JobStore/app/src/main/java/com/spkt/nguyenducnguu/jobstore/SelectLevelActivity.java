@@ -16,6 +16,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.spkt.nguyenducnguu.jobstore.Adaper.LevelListAdapter;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.Level;
 
 import java.util.ArrayList;
@@ -105,31 +108,18 @@ public class SelectLevelActivity extends AppCompatActivity {
         });
     }
     private void loadData() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.getReference("Levels").addChildEventListener(new ChildEventListener() {
+        Database.getData(Node.LEVELS, new OnGetDataListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                lstLevel.add(dataSnapshot.getValue(Level.class));
-                ((BaseAdapter) lv_Level.getAdapter()).notifyDataSetChanged();
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                for(DataSnapshot mdata : dataSnapshot.getChildren())
+                {
+                    lstLevel.add(mdata.getValue(Level.class));
+                    ((BaseAdapter) lv_Level.getAdapter()).notifyDataSetChanged();
+                }
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onFailed(DatabaseError databaseError) {
 
             }
         });

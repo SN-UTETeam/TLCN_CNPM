@@ -64,19 +64,18 @@ public class NTDPostRecruitmentFragment extends Fragment {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         txt_Email.setText(mAuth.getCurrentUser().getEmail());
 
-        Database.getData(Node.RECRUITERS, new OnGetDataListener() {
-            @Override
-            public void onSuccess(DataSnapshot dataSnapshot) {
-                for (DataSnapshot mdata : dataSnapshot.getChildren()) {
-                    txt_CompanyName.setText(mdata.getValue(Recruiter.class).getCompanyName());
-                }
-            }
+        Database.getData(Node.RECRUITERS + "/" + mAuth.getCurrentUser().getUid(),
+                new OnGetDataListener() {
+                    @Override
+                    public void onSuccess(DataSnapshot dataSnapshot) {
+                        txt_CompanyName.setText(dataSnapshot.getValue(Recruiter.class).getCompanyName());
+                    }
 
-            @Override
-            public void onFailed(DatabaseError databaseError) {
+                    @Override
+                    public void onFailed(DatabaseError databaseError) {
 
-            }
-        }, new Parameter("email", mAuth.getCurrentUser().getEmail()));
+                    }
+                });
     }
 
     private void addView(View rootView) {
@@ -173,50 +172,39 @@ public class NTDPostRecruitmentFragment extends Fragment {
 
     private void addData() {
         try {
-            Database.getData(Node.RECRUITERS, new OnGetDataListener() {
-                @Override
-                public void onSuccess(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot mdata : dataSnapshot.getChildren()) {
-                        WorkInfo wf = new WorkInfo();
+            WorkInfo wf = new WorkInfo();
 
-                        wf.setUserId(mdata.getKey());
-                        wf.setCompanyName(txt_CompanyName.getText().toString());
-                        wf.setTitlePost(txt_TitlePost.getText().toString());
-                        wf.setViews(0);
-                        wf.setPostTime((new Date()).getTime());
-                        wf.setExpirationTime(cal.getTime().getTime());
-                        wf.setWorkPlace(txt_WorkPlace.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1));
-                        wf.setStatus(0);
+            wf.setUserId(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            wf.setCompanyName(txt_CompanyName.getText().toString());
+            wf.setTitlePost(txt_TitlePost.getText().toString());
+            wf.setViews(0);
+            wf.setPostTime((new Date()).getTime());
+            wf.setExpirationTime(cal.getTime().getTime());
+            wf.setWorkPlace(txt_WorkPlace.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1));
+            wf.setStatus(0);
 
-                        WorkDetail wd = new WorkDetail();
-                        wd.setWorkTypes(txt_WorkType.getTags().toString().substring(1, txt_WorkType.getTags().toString().length() - 1));
-                        wd.setCarrers(txt_Career.getTags().toString().substring(1, txt_Career.getTags().toString().length() - 1));
-                        wd.setLevel(txt_Level.getTags().toString().substring(1, txt_Level.getTags().toString().length() - 1));
-                        wd.setExperience(txt_Experience.getTags().toString().substring(1, txt_Experience.getTags().toString().length() - 1));
-                        wd.setTitle(txt_Title.getText().toString());
-                        try {
-                            wd.setNumber(Integer.parseInt(txt_Number.getText().toString()));
-                        } catch (Exception e) {
-                            Toast.makeText(getActivity(), "Số lượng phải là số nguyên!", Toast.LENGTH_LONG).show();
-                            txt_Number.requestFocus();
-                        }
-                        wd.setJobDescription(txt_JobDescription.getText().toString());
-                        wd.setJobRequired(txt_JobRequired.getText().toString());
-                        wd.setWelfare(txt_Welfare.getText().toString());
-                        wd.setSalary(txt_Salary.getTags().toString().substring(1, txt_Salary.getTags().toString().length() - 1));
+            WorkDetail wd = new WorkDetail();
+            wd.setWorkTypes(txt_WorkType.getTags().toString().substring(1, txt_WorkType.getTags().toString().length() - 1));
+            wd.setCarrers(txt_Career.getTags().toString().substring(1, txt_Career.getTags().toString().length() - 1));
+            wd.setLevel(txt_Level.getTags().toString().substring(1, txt_Level.getTags().toString().length() - 1));
+            wd.setExperience(txt_Experience.getTags().toString().substring(1, txt_Experience.getTags().toString().length() - 1));
+            wd.setTitle(txt_Title.getText().toString());
+            try {
+                wd.setNumber(Integer.parseInt(txt_Number.getText().toString()));
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), "Số lượng phải là số nguyên!", Toast.LENGTH_LONG).show();
+                txt_Number.requestFocus();
+            }
+            wd.setJobDescription(txt_JobDescription.getText().toString());
+            wd.setJobRequired(txt_JobRequired.getText().toString());
+            wd.setWelfare(txt_Welfare.getText().toString());
+            wd.setSalary(txt_Salary.getTags().toString().substring(1, txt_Salary.getTags().toString().length() - 1));
 
-                        wf.setWorkDetail(wd);
+            wf.setWorkDetail(wd);
 
-                        Database.addData(Node.WORKINFOS, wf);
-                    }
-                }
-
-                @Override
-                public void onFailed(DatabaseError databaseError) {
-
-                }
-            }, new Parameter("email", FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+            Database.addData(Node.WORKINFOS, wf);
         } catch (Exception e) {
+
         }
     }
 

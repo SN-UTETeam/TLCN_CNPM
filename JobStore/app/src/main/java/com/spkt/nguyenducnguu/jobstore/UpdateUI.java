@@ -22,31 +22,22 @@ public class UpdateUI {
     public UpdateUI() {
     }
 
-    public void updateUI(final Activity context, FirebaseUser user)
-    {
+    public void updateUI(final Activity context, FirebaseUser user) {
         //Đã xác thực tài khoản
-        if(user != null)
-        {
+        if (user != null) {
             //Kiểm tra quyền của tài khoản
-            Database.getData(Node.ROLES, new OnGetDataListener() {
+            Database.getData(Node.ROLES + "/" + user.getUid(), new OnGetDataListener() {
                 @Override
                 public void onSuccess(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         Intent intent = null;
-                        for (DataSnapshot mdata : dataSnapshot.getChildren()) {
-                            Roles role = mdata.getValue(Roles.class);
-                            if(role.getRole() == 0) { //NTD
-                                intent = new Intent(context, NTDMainActivity.class);
-                                break;
-                            }
-                            else if(role.getRole() == 1) {//UV
-                                intent = new Intent(context, UVMainActivity.class);
-                                break;
-                            }
-                            else { //Admin
-                                intent = new Intent(context, AdminMainActivity.class);
-                                break;
-                            }
+                        Roles role = dataSnapshot.getValue(Roles.class);
+                        if (role.getRole() == 0) { //NTD
+                            intent = new Intent(context, NTDMainActivity.class);
+                        } else if (role.getRole() == 1) {//UV
+                            intent = new Intent(context, UVMainActivity.class);
+                        } else { //Admin
+                            intent = new Intent(context, AdminMainActivity.class);
                         }
                         context.finish();
                         context.startActivity(intent);
@@ -58,10 +49,8 @@ public class UpdateUI {
                     Toast.makeText(context, "Authentication role failed.",
                             Toast.LENGTH_SHORT).show();
                 }
-            }, new Parameter("email", user.getEmail()));
-        }
-        else
-        {
+            });
+        } else {
             Intent intent = new Intent(context, LoginActivity.class);
             context.finish();
             context.startActivity(intent);

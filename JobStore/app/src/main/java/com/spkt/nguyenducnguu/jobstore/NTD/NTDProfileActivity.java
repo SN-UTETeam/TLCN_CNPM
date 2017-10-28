@@ -39,7 +39,7 @@ public class NTDProfileActivity extends AppCompatActivity {
     KenBurnsView img_CoverPhoto;
     CircleImageView img_Avatar;
 
-    TextView txt_icon1, txt_icon2, txt_icon3, txt_icon4, txt_icon5, txt_icon6, txt_icon7;
+    TextView txt_icon1, txt_icon2, txt_icon3, txt_icon4, txt_icon5;
     private String Key = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +76,10 @@ public class NTDProfileActivity extends AppCompatActivity {
                     txt_Website.setText(r.getWebsite());
                     txt_Description.setText(r.getDescription());
 
-                    Picasso.with(getBaseContext()).load(r.getAvatar()).into(img_Avatar);
-                    Picasso.with(getBaseContext()).load(r.getCoverPhoto()).into(img_CoverPhoto);
+                    if(r.getAvatar() != null)
+                        Picasso.with(getBaseContext()).load(r.getAvatar()).into(img_Avatar);
+                    if(r.getCoverPhoto() != null)
+                        Picasso.with(getBaseContext()).load(r.getCoverPhoto()).into(img_CoverPhoto);
                 }
 
                 @Override
@@ -160,9 +162,13 @@ public class NTDProfileActivity extends AppCompatActivity {
         final ProgressDialog dialog = ProgressDialog.show(this, "",
                 "Please wait...", true);
         Uri selectedImage = data.getData();
+        String[] arrString = selectedImage.toString().split(".");
+        String ExtendImage = "";
+        if(arrString.length > 0)
+            ExtendImage = "." + arrString[arrString.length - 1];
 
         StorageReference ref = FirebaseStorage.getInstance().getReference()
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/" + (requestCode == RequestCode.PICK_AVATAR ? "Avatar" : "CoverPhoto"));
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/" + (requestCode == RequestCode.PICK_AVATAR ? "Avatar" : "CoverPhoto") + ExtendImage);
 
         UploadTask uploadTask = ref.putFile(selectedImage);
 

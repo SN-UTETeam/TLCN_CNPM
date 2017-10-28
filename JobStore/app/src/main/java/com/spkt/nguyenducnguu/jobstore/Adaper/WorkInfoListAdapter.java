@@ -82,7 +82,8 @@ public class WorkInfoListAdapter extends BaseAdapter {
             Database.getData(Node.RECRUITERS + "/" + this.listData.get(i).getUserId(), new OnGetDataListener() {
                 @Override
                 public void onSuccess(DataSnapshot dataSnapshot) {
-                    Picasso.with(context).load(dataSnapshot.getValue(Recruiter.class).getAvatar()).into(holder.imgv_Avatar);
+                    if(dataSnapshot.getValue(Recruiter.class).getAvatar() != null)
+                        Picasso.with(context).load(dataSnapshot.getValue(Recruiter.class).getAvatar()).into(holder.imgv_Avatar);
                 }
 
                 @Override

@@ -38,58 +38,39 @@ public class NTDPostExpiredFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_ntd_post_expired, container, false);
-        Log.d("NTD", "EXPIRED");
         addView(rootView);
         addEvent();
-        //Method để sử dụng font awesome trong fragment
-       /* Typeface iconFont = FontManager.getTypeface(getContext(), FontManager.FONTAWESOME);
-        FontManager.markAsIconContainer(rootView.findViewById(R.id.Manage_Recruit), iconFont);*/
-
         lv_WorkInfoExpired.setAdapter(new WorkInfoListAdapter(getActivity(), lstWorkInfoExpired));
         loadData();
         return rootView;
     }
     private void loadData()
     {
-        Database.getData(Node.RECRUITERS, new OnGetDataListener() {
+        Database.getData(Node.WORKINFOS, new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
-                for (DataSnapshot mdata : dataSnapshot.getChildren())
+                lstWorkInfoExpired.clear();
+                for(DataSnapshot mdata : dataSnapshot.getChildren())
                 {
-                    Database.getData(Node.WORKINFOS, new OnGetDataListener() {
-                        @Override
-                        public void onSuccess(DataSnapshot dataSnapshot) {
-                            lstWorkInfoExpired.clear();
-                            for(DataSnapshot mdata : dataSnapshot.getChildren())
-                            {
-                                WorkInfo w = mdata.getValue(WorkInfo.class);
-                                if(w.getExpirationTime() > (new Date()).getTime())
-                                    continue;
-                                w.setKey(mdata.getKey());
-                                lstWorkInfoExpired.add(w);
-                                Collections.sort(lstWorkInfoExpired);
-                                ((BaseAdapter) lv_WorkInfoExpired.getAdapter()).notifyDataSetChanged();
-                            }
-                            if(lstWorkInfoExpired.size() > 0) ln_NonData.setVisibility(View.GONE);
-                            else ln_NonData.setVisibility(View.VISIBLE);
-                        }
-
-                        @Override
-                        public void onFailed(DatabaseError databaseError) {
-
-                        }
-                    }, new Parameter("userId", mdata.getKey()));
+                    WorkInfo w = mdata.getValue(WorkInfo.class);
+                    if(w.getExpirationTime() > (new Date()).getTime())
+                        continue;
+                    w.setKey(mdata.getKey());
+                    lstWorkInfoExpired.add(w);
+                    Collections.sort(lstWorkInfoExpired);
+                    ((BaseAdapter) lv_WorkInfoExpired.getAdapter()).notifyDataSetChanged();
                 }
+                if(lstWorkInfoExpired.size() > 0) ln_NonData.setVisibility(View.GONE);
+                else ln_NonData.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onFailed(DatabaseError databaseError) {
 
             }
-        }, new Parameter("email", FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+        }, new Parameter("userId", FirebaseAuth.getInstance().getCurrentUser().getUid()));
     }
     private void addView(View rootView){
-
         ln_NonData = (LinearLayout) rootView.findViewById(R.id.ln_NonData);
         lv_WorkInfoExpired = (ListView) rootView.findViewById(R.id.lv_WorkInfoExpired);
     }

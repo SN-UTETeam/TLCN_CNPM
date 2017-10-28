@@ -29,9 +29,16 @@ public class Address {
             ad = coder.getFromLocationName(addressStr, 1);
             if (ad == null)
                 return null;
-            android.location.Address location=ad.get(0);
-            address.setLat(location.getLatitude());
-            address.setLng(location.getLongitude());
+            if(ad.size() >= 1) {
+                android.location.Address location = ad.get(0);
+                address.setLat(location.getLatitude());
+                address.setLng(location.getLongitude());
+            }
+            else
+            {
+                address.setLat(-1);
+                address.setLng(-1);
+            }
             return address;
         }
         catch (IOException e)

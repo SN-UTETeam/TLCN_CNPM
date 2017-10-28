@@ -45,6 +45,7 @@ public class NTDEditWorkInfoActivity extends AppCompatActivity {
             txt_Title, txt_Number, txt_JobDescription, txt_JobRequired, txt_Welfare;
     Button btn_AddWorkType, btn_AddCareer, btn_AddLevel, btn_AddExperience, btn_AddSalary, btn_AddWorkPlace;
     private String Key = "";
+    private WorkInfo wf = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,26 +69,28 @@ public class NTDEditWorkInfoActivity extends AppCompatActivity {
             Database.getData(Node.WORKINFOS + "/" + Key, new OnGetDataListener() {
                 @Override
                 public void onSuccess(DataSnapshot dataSnapshot) {
-                    WorkInfo w = dataSnapshot.getValue(WorkInfo.class);
+                    wf = dataSnapshot.getValue(WorkInfo.class);
 
-                    txt_TitlePost.setText(w.getTitlePost());
+                    if (wf == null) return;
+
+                    txt_TitlePost.setText(wf.getTitlePost());
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    txt_ExpirationTime.setText(sdf.format(new Date(w.getExpirationTime())));
+                    txt_ExpirationTime.setText(sdf.format(new Date(wf.getExpirationTime())));
                     String strArrtmp[] = txt_ExpirationTime.getText().toString().split("/");
                     cal.set(Integer.parseInt(strArrtmp[2]), Integer.parseInt(strArrtmp[1]), Integer.parseInt(strArrtmp[0]));
-                    txt_WorkPlace.setTags(w.getWorkPlace().split(","));
-                    txt_WorkType.setTags(w.getWorkDetail().getWorkTypes().split(","));
-                    txt_Career.setTags(w.getWorkDetail().getCarrers().split(","));
-                    txt_Level.setTags(w.getWorkDetail().getLevel().split(","));
-                    txt_Experience.setTags(w.getWorkDetail().getExperience().split(","));
-                    txt_Salary.setTags(w.getWorkDetail().getSalary().split(","));
-                    txt_Title.setText(w.getWorkDetail().getTitle());
-                    txt_Number.setText(w.getWorkDetail().getNumber() + "");
-                    txt_JobDescription.setText(w.getWorkDetail().getJobDescription());
-                    txt_JobRequired.setText(w.getWorkDetail().getJobRequired());
-                    txt_Welfare.setText(w.getWorkDetail().getWelfare());
+                    txt_WorkPlace.setTags(wf.getWorkPlace().split(","));
+                    txt_WorkType.setTags(wf.getWorkDetail().getWorkTypes().split(","));
+                    txt_Career.setTags(wf.getWorkDetail().getCarrers().split(","));
+                    txt_Level.setTags(wf.getWorkDetail().getLevel().split(","));
+                    txt_Experience.setTags(wf.getWorkDetail().getExperience().split(","));
+                    txt_Salary.setTags(wf.getWorkDetail().getSalary().split(","));
+                    txt_Title.setText(wf.getWorkDetail().getTitle());
+                    txt_Number.setText(wf.getWorkDetail().getNumber() + "");
+                    txt_JobDescription.setText(wf.getWorkDetail().getJobDescription());
+                    txt_JobRequired.setText(wf.getWorkDetail().getJobRequired());
+                    txt_Welfare.setText(wf.getWorkDetail().getWelfare());
 
-                    Database.getData(Node.RECRUITERS + "/" + w.getUserId(), new OnGetDataListener() {
+                    Database.getData(Node.RECRUITERS + "/" + wf.getUserId(), new OnGetDataListener() {
                         @Override
                         public void onSuccess(DataSnapshot dataSnapshot) {
                             Recruiter r = dataSnapshot.getValue(Recruiter.class);
@@ -207,42 +210,33 @@ public class NTDEditWorkInfoActivity extends AppCompatActivity {
 
     private void update() {
         try {
-            Database.getData(Node.WORKINFOS + "/" + Key, new OnGetDataListener() {
-                @Override
-                public void onSuccess(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot == null) return;
+            if (wf == null) {
+                Toast.makeText(this, "Không thể cập nhật thông tin tuyển dụng!", Toast.LENGTH_LONG).show();
+                return;
+            }
 
-                    WorkInfo wf = dataSnapshot.getValue(WorkInfo.class);
+            wf.setCompanyName(txt_CompanyName.getText().toString());
+            wf.setTitlePost(txt_TitlePost.getText().toString());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                wf.setExpirationTime(sdf.parse(txt_ExpirationTime.getText().toString()).getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            wf.setWorkPlace(txt_WorkPlace.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1));
 
-                    wf.setCompanyName(txt_CompanyName.getText().toString());
-                    wf.setTitlePost(txt_TitlePost.getText().toString());
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    try {
-                        wf.setExpirationTime(sdf.parse(txt_ExpirationTime.getText().toString()).getTime());
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    wf.setWorkPlace(txt_WorkPlace.getTags().toString().substring(1, txt_WorkPlace.getTags().toString().length() - 1));
+            wf.getWorkDetail().setWorkTypes(txt_WorkType.getTags().toString().substring(1, txt_WorkType.getTags().toString().length() - 1));
+            wf.getWorkDetail().setCarrers(txt_Career.getTags().toString().substring(1, txt_Career.getTags().toString().length() - 1));
+            wf.getWorkDetail().setLevel(txt_Level.getTags().toString().substring(1, txt_Level.getTags().toString().length() - 1));
+            wf.getWorkDetail().setExperience(txt_Experience.getTags().toString().substring(1, txt_Experience.getTags().toString().length() - 1));
+            wf.getWorkDetail().setTitle(txt_Title.getText().toString());
+            wf.getWorkDetail().setNumber(Integer.parseInt(txt_Number.getText().toString()));
+            wf.getWorkDetail().setJobDescription(txt_JobDescription.getText().toString());
+            wf.getWorkDetail().setJobRequired(txt_JobRequired.getText().toString());
+            wf.getWorkDetail().setWelfare(txt_Welfare.getText().toString());
+            wf.getWorkDetail().setSalary(txt_Salary.getTags().toString().substring(1, txt_Salary.getTags().toString().length() - 1));
 
-                    wf.getWorkDetail().setWorkTypes(txt_WorkType.getTags().toString().substring(1, txt_WorkType.getTags().toString().length() - 1));
-                    wf.getWorkDetail().setCarrers(txt_Career.getTags().toString().substring(1, txt_Career.getTags().toString().length() - 1));
-                    wf.getWorkDetail().setLevel(txt_Level.getTags().toString().substring(1, txt_Level.getTags().toString().length() - 1));
-                    wf.getWorkDetail().setExperience(txt_Experience.getTags().toString().substring(1, txt_Experience.getTags().toString().length() - 1));
-                    wf.getWorkDetail().setTitle(txt_Title.getText().toString());
-                    wf.getWorkDetail().setNumber(Integer.parseInt(txt_Number.getText().toString()));
-                    wf.getWorkDetail().setJobDescription(txt_JobDescription.getText().toString());
-                    wf.getWorkDetail().setJobRequired(txt_JobRequired.getText().toString());
-                    wf.getWorkDetail().setWelfare(txt_Welfare.getText().toString());
-                    wf.getWorkDetail().setSalary(txt_Salary.getTags().toString().substring(1, txt_Salary.getTags().toString().length() - 1));
-
-                    Database.updateData(Node.WORKINFOS, Key, wf);
-                }
-
-                @Override
-                public void onFailed(DatabaseError databaseError) {
-
-                }
-            });
+            Database.updateData(Node.WORKINFOS, Key, wf);
         } catch (Exception e) {
 
         }

@@ -47,6 +47,10 @@ public class Database {
     {
         mdatabase.getReference(node).push().setValue(object);
     }
+    public static void addDataWithKey(String node, String Key, Object object)
+    {
+        mdatabase.getReference(node).child(Key).setValue(object);
+    }
     public static void updateData(String node, String key, Object object)
     {
         mdatabase.getReference(node).child(key).setValue(object);
