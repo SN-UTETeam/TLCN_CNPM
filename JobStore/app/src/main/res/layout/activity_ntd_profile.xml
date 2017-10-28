@@ -310,7 +310,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="left"
-                            android:text="@string/fa_link"
+                            android:text="@string/fa_globe"
                             android:textColor="@color/appcolor"
                             android:textSize="20dp" />
 

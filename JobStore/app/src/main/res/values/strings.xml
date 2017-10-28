@@ -73,6 +73,7 @@
     <string name="fa_envelope">&#xf0e0;</string>
     <string name="fa_birthday">&#xf1fd;</string>
     <string name="icon_bookmark">&#xf097;</string>
+    <string name="fa_globe">&#xf0ac;</string>
 
     <string-array name="work_types">
         <item>Thực tập</item>
