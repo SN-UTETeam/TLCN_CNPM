@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.spkt.nguyenducnguu.jobstore.Const.RequestCode;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
@@ -18,8 +17,6 @@ import com.spkt.nguyenducnguu.jobstore.SelectLevelActivity;
 import com.spkt.nguyenducnguu.jobstore.SelectSalaryActivity;
 import com.spkt.nguyenducnguu.jobstore.SelectWorkPlaceActivity;
 import com.spkt.nguyenducnguu.jobstore.SelectWorkTypeActivity;
-
-import java.util.Arrays;
 
 import mabbas007.tagsedittext.TagsEditText;
 
@@ -43,7 +40,7 @@ public class UVFilterSearchActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        mSetting = UVSearchFragment.mSettingSearch;
+        mSetting = UVMainFragment.mSettingSearch;
 
         txt_WorkType.setTags(mSetting.getWorkTypes().toString().substring(1, mSetting.getWorkTypes().toString().length() - 1).split(", "));
         txt_WorkPlace.setTags(mSetting.getWorkPlaces().toString().substring(1, mSetting.getWorkPlaces().toString().length() - 1).split(", "));
@@ -90,7 +87,7 @@ public class UVFilterSearchActivity extends AppCompatActivity {
                 mSetting.setExperience(txt_Experience.getTags().toString().substring(1, txt_Experience.getTags().toString().length() - 1));
                 mSetting.setSalary(txt_Salary.getTags().toString().substring(1, txt_Salary.getTags().toString().length() - 1));
 
-                UVSearchFragment.mSettingSearch = mSetting;
+                UVMainFragment.mSettingSearch = mSetting;
                 finish();
             }
         });

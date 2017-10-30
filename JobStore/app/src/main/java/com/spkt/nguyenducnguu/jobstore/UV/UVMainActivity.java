@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.spkt.nguyenducnguu.jobstore.LoginActivity;
+import com.spkt.nguyenducnguu.jobstore.NTD.NTDMainFragment;
 import com.spkt.nguyenducnguu.jobstore.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -44,8 +45,6 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
 
         addView();
         addEvent();
-        //Thiet lap fragment ban dau
-        setFragment();
 
         //Thiet lap toolBar
         setSupportActionBar(toolbarUV);
@@ -55,6 +54,9 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
 
         navigationViewUV.addHeaderView(contentView);
         navigationViewUV.setNavigationItemSelectedListener(this);
+
+        //Thiet lap fragment ban dau
+        trannsFragment(new UVMainFragment(), "Job Store");
     }
     public void addView() {
         rl_UV_headerNav = (RelativeLayout) contentView.findViewById(R.id.rl_UV_headerNav);
@@ -87,15 +89,6 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
         }
     }
 
-    public void setFragment() {
-        //Thiet lap fragment ban dau //Framelayout
-        UVMainFragment fragment = new UVMainFragment();
-        android.support.v4.app.FragmentTransaction fragmentTransaction =
-                getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_containerUV, fragment);
-        fragmentTransaction.commit();
-    }
-
     public void setNavigationOpenClose() {
         //Thiet lap drawer trong navigation khi dong, mo
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layoutUV);
@@ -126,7 +119,7 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
         int id = item.getItemId();
         switch (id) {
             case R.id.navUV_home:
-                trannsFragment(new UVMainFragment(), "Trang chủ");
+                trannsFragment(new UVMainFragment(), "Job Store");
                 break;
             case R.id.navUV_search:
                 trannsFragment(new UVSearchFragment(), "Tìm kiếm");
