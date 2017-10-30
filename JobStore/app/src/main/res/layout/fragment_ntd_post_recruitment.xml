@@ -750,7 +750,5 @@
                     android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
-
-
     </ScrollView>
 </LinearLayout>

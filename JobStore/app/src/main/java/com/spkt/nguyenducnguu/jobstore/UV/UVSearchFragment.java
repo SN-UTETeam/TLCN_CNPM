@@ -1,5 +1,6 @@
 package com.spkt.nguyenducnguu.jobstore.UV;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.spkt.nguyenducnguu.jobstore.Adaper.UVSearchWorkInfoListAdapter;
 import com.spkt.nguyenducnguu.jobstore.Adaper.WorkInfoListAdapter;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Const.RequestCode;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnFilterListener;
@@ -51,7 +54,6 @@ public class UVSearchFragment extends Fragment {
     TextView txt_Filter, txt_NumberResult;
     EditText txt_Query;
     List<WorkInfo> lstData = new ArrayList<WorkInfo>();
-    List<String> lstKey = new ArrayList<String>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_uv_search, container, false);
@@ -89,7 +91,7 @@ public class UVSearchFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 mSettingSearch.setQuery(txt_Query.getText().toString());
-                mRcvAdapter.getFilter().filter(mSettingSearch.getQuery());
+                mRcvAdapter.FilterData(mSettingSearch);
             }
         });
         mRcvAdapter.setOnFilterListener(new OnFilterListener() {
@@ -98,22 +100,30 @@ public class UVSearchFragment extends Fragment {
                 txt_NumberResult.setText(numberResult + "/" + lstData.size());
             }
         });
+        txt_Filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), UVFilterSearchActivity.class);
+                startActivityForResult(intent, RequestCode.FILTER);
+            }
+        });
     }
+
     private void loadDefaultData()
     {
         lstData.clear();
-        lstKey.clear();
         Database.getData(Node.WORKINFOS, new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
                 for (DataSnapshot mdata : dataSnapshot.getChildren())
                 {
                     WorkInfo w = mdata.getValue(WorkInfo.class);
+                    w.setKey(mdata.getKey());
                     if(w.getExpirationTime() < (new Date()).getTime())
                         continue;
                     lstData.add(w);
-                    lstKey.add(mdata.getKey());
                     mRcvAdapter.notifyDataSetChanged();
+                    mRcvAdapter.FilterData(mSettingSearch);
                     txt_NumberResult.setText(lstData.size() + "/" + lstData.size());
                 }
             }
@@ -124,29 +134,17 @@ public class UVSearchFragment extends Fragment {
             }
         });
     }
-    private void filterData()
-    {
-        lstData.clear();
-        lstKey.clear();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Node.WORKINFOS);
-        Query query = ref.orderByChild("titlePost").startAt(mSettingSearch.getQuery()).endAt(mSettingSearch.getQuery() + "\uf8ff");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot mdata : dataSnapshot.getChildren())
-                {
-                    lstData.add(mdata.getValue(WorkInfo.class));
-                    lstKey.add(mdata.getKey());
-                    mRcvAdapter.notifyDataSetChanged();
-                }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-            }
-        });
+        if(requestCode == RequestCode.FILTER)
+        {
+            mRcvAdapter.FilterData(mSettingSearch);
+        }
     }
+
     private void addOnScrolled(){
 
         rv_WorkInfo.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -178,7 +176,7 @@ public class UVSearchFragment extends Fragment {
         linearLayout.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
     }
     private void setmRecyclerView(){
-        mRcvAdapter = new UVSearchWorkInfoListAdapter(lstData, lstKey);
+        mRcvAdapter = new UVSearchWorkInfoListAdapter(lstData);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
