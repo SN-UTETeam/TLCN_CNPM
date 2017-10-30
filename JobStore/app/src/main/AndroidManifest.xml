@@ -16,13 +16,7 @@
         <activity android:name=".NTD.NTDRegisterActivity" />
         <activity android:name=".UV.UVRegisterActivity" />
         <activity android:name=".NTD.NTDMainActivity" />
-        <activity android:name=".WelcomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".WelcomeActivity"></activity>
         <activity android:name=".ADMIN.AdminMainActivity" />
         <activity android:name=".ResultRegisterActivity" />
         <activity android:name=".NTD.NTDSelectFilterActivity" />
@@ -43,8 +37,19 @@
         <activity android:name=".UV.UVDiplomaActivity" />
         <activity android:name=".UV.UVProfileActivity" />
         <activity android:name=".UV.UVChangeProfileActivity" />
+<<<<<<< HEAD
         <activity android:name=".Test"></activity>
         <activity android:name=".UV.UVFilterSearchActivity"></activity>
+=======
+        <activity android:name=".Test">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UV.UVSeeDetailActivity"></activity>
+>>>>>>> edf818a9b30028898a1cfafa3e696df626c2d261
     </application>
 
 </manifest>
