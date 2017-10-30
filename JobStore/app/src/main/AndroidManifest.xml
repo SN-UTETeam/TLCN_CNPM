@@ -3,8 +3,8 @@
     package="com.spkt.nguyenducnguu.jobstore">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,13 +16,7 @@
         <activity android:name=".NTD.NTDRegisterActivity" />
         <activity android:name=".UV.UVRegisterActivity" />
         <activity android:name=".NTD.NTDMainActivity" />
-        <activity android:name=".WelcomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".WelcomeActivity"></activity>
         <activity android:name=".ADMIN.AdminMainActivity" />
         <activity android:name=".ResultRegisterActivity" />
         <activity android:name=".NTD.NTDSelectFilterActivity" />
@@ -37,17 +31,20 @@
         <activity android:name=".NTD.NTDViewWorkInfoActivity" />
         <activity android:name=".NTD.NTDEditWorkInfoActivity" />
         <activity android:name=".NTD.NTDViewListApplyActivity" />
-        <activity android:name=".UV.UVMainActivity">
-
-        </activity>
+        <activity android:name=".UV.UVMainActivity"></activity>
         <activity android:name=".UV.UVViewProfileActivity" />
         <activity android:name=".UV.UVWorkExpActivity" />
         <activity android:name=".UV.UVDiplomaActivity" />
         <activity android:name=".UV.UVProfileActivity" />
-        <activity android:name=".UV.UVChangeProfileActivity"></activity>
+        <activity android:name=".UV.UVChangeProfileActivity" />
         <activity android:name=".Test">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity android:name=".UV.UVSeeDetailActivity"></activity>
     </application>
 
 </manifest>
