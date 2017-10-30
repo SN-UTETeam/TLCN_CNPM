@@ -18,6 +18,7 @@ import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnFilterListener;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
+import com.spkt.nguyenducnguu.jobstore.Models.SearchWorkInfoSetting;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkInfo;
 import com.spkt.nguyenducnguu.jobstore.R;
 import com.squareup.picasso.Picasso;
@@ -30,17 +31,15 @@ import java.util.List;
 public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
     private ItemFilter mFilter = new ItemFilter();
     private List<WorkInfo> lstData;
-    private List<String> lstKey;
-    public List<WorkInfo> filteredData;
-    private List<String> filteredKey;
+    private List<WorkInfo> filteredData = new ArrayList<WorkInfo>();
     private Context context;
     private OnFilterListener onFilterListener;
+    private SearchWorkInfoSetting mSetting;
 
-    public UVSearchWorkInfoListAdapter(List<WorkInfo> lstData, List<String> lstKey) {
+    public UVSearchWorkInfoListAdapter(List<WorkInfo> lstData) {
+        mSetting = new SearchWorkInfoSetting();
         this.lstData = lstData;
-        this.lstKey = lstKey;
-        this.filteredData = lstData;
-        this.filteredKey = lstKey;
+        this.filteredData.addAll(lstData);
     }
 
     @Override
@@ -59,7 +58,7 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
         final WorkInfoViewHolder vh = (WorkInfoViewHolder) holder;
         Log.d("CheckPosition", "Position: " + position + " - Size: " + filteredData.size());
         WorkInfo w = filteredData.get(position);
-        vh.txt_WorkInfoKey.setText(filteredKey.get(position));
+        vh.txt_WorkInfoKey.setText(w.getKey());
         vh.txt_TitlePost.setText(w.getTitlePost());
         vh.txt_Career.setText(w.getWorkDetail().getCarrers());
         vh.txt_Salary.setText(w.getWorkDetail().getSalary());
@@ -75,6 +74,8 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
                 vh.txt_CompanyName.setText(r.getCompanyName());
                 if(r.getAvatar() != null)
                     Picasso.with(context).load(r.getAvatar()).into(vh.imgv_Avatar);
+                else
+                    Picasso.with(context).load(R.drawable.ic_default_avatar).into(vh.imgv_Avatar);
             }
 
             @Override
@@ -97,42 +98,64 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
     {
         this.onFilterListener = onFilterListener;
     }
+    public void FilterData(SearchWorkInfoSetting searchWorkInfoSetting)
+    {
+        mSetting = searchWorkInfoSetting;
+        String Query = "";
+        Query += mSetting.getWorkTypes().toString().substring(1, mSetting.getWorkTypes().toString().length() - 1);
+        Query += " " + mSetting.getWorkPlaces().toString().substring(1, mSetting.getWorkPlaces().toString().length() - 1);
+        Query += " " + mSetting.getCareers().toString().substring(1, mSetting.getCareers().toString().length() - 1);
+        Query += " " + mSetting.getSalary();
+        Query += " " + mSetting.getExperience();
+        Query += " " + mSetting.getLevel();
+        Query += " " + mSetting.getQuery();
+
+        mFilter.filter(Query);
+    }
     private class ItemFilter extends Filter{
+
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            String filterString = constraint.toString().toUpperCase();
+            Log.d("ABCDEF", "Query: '" + constraint.toString().trim().toUpperCase() + "'");
+            String filterString = constraint.toString().trim().toUpperCase();
             String[] filterArr = filterString.split(" ");
+            filteredData.clear();
 
-            FilterResults results = new FilterResults();
-            final List<WorkInfo> lstWorkInfo = lstData;
-            int count = lstWorkInfo.size();
-            List<WorkInfo> nlist = new ArrayList<WorkInfo>();
+            FilterResults filterResults = new FilterResults();
 
             if(filterString.length() > 0){
-                for(int i=0; i < count; i++){
-                    WorkInfo w = lstWorkInfo.get(i);
+                for(int i=0; i < lstData.size(); i++){
+                    WorkInfo w = lstData.get(i);
                     for (String str : filterArr) {
-                        if(str.trim().isEmpty() || str.trim() == "") continue;
-                        if (w.getTitlePost().toUpperCase().contains(str.trim())
-                                || w.getCompanyName().toUpperCase().contains(str.trim()))
+                        str = str.trim();
+                        if(str.isEmpty() || str == "") continue;
+                        if (w.getTitlePost().toUpperCase().contains(str)
+                                || w.getCompanyName().toUpperCase().contains(str)
+                                || w.getWorkPlace().toUpperCase().contains(str)
+                                || w.getWorkDetail().getCarrers().toUpperCase().contains(str)
+                                || w.getWorkDetail().getWorkTypes().toUpperCase().contains(str)
+                                || w.getWorkDetail().getSalary().toUpperCase().contains(str)
+                                || w.getWorkDetail().getExperience().toUpperCase().contains(str)
+                                || w.getWorkDetail().getLevel().toUpperCase().contains(str))
                         {
-                            nlist.add(w);
-                            filteredKey.add(lstKey.get(i));
+                            filteredData.add(w);
                             break;
                         }
                     }
                 }
             } else {
-                nlist = lstWorkInfo;
+                filteredData.addAll(lstData);
             }
-            results.values = nlist;
-            results.count = nlist.size();
-            return results;
+
+            filterResults.values = filteredData;
+            filterResults.count = filteredData.size();
+
+            return filterResults;
         }
+
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            filteredData = (ArrayList<WorkInfo>) results.values;
             onFilterListener.onFilter(filteredData.size());
             notifyDataSetChanged();
         }

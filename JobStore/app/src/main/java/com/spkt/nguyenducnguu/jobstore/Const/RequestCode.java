@@ -12,4 +12,5 @@ public class RequestCode {
     public static final int ADD_WORKEXP = 9;
     public static final int ADD_DIPLOMA = 10;
     public static final int FILE_SELECT_CODE = 11;
+    public static final int FILTER = 12;
 }

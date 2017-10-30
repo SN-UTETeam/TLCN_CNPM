@@ -16,6 +16,7 @@
         <activity android:name=".NTD.NTDRegisterActivity" />
         <activity android:name=".UV.UVRegisterActivity" />
         <activity android:name=".NTD.NTDMainActivity" />
+
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ADMIN.AdminMainActivity" />
         <activity android:name=".ResultRegisterActivity" />
         <activity android:name=".NTD.NTDSelectFilterActivity" />
@@ -43,7 +45,8 @@
         <activity android:name=".UV.UVDiplomaActivity" />
         <activity android:name=".UV.UVProfileActivity" />
         <activity android:name=".UV.UVChangeProfileActivity" />
+        <activity android:name=".Test"></activity>
+        <activity android:name=".UV.UVFilterSearchActivity"></activity>
         <activity android:name=".UV.UVSeeDetailActivity"></activity>
     </application>
-
 </manifest>

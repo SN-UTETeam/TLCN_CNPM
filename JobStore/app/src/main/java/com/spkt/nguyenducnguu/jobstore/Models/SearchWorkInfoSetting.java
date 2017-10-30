@@ -3,6 +3,13 @@ package com.spkt.nguyenducnguu.jobstore.Models;
 import java.util.ArrayList;
 
 public class SearchWorkInfoSetting {
+    public static final String WORKPLACES = "WorkPlaces";
+    public static final String CAREERS = "Careers";
+    public static final String WORKTYPES = "WorkTypes";
+    public static final String SALARY = "Salary";
+    public static final String EXPERIENCE = "Experience";
+    public static final String LEVEL = "Level";
+
     private String Query;
     private ArrayList<String> WorkPlaces;
     private ArrayList<String> Careers;
@@ -37,6 +44,14 @@ public class SearchWorkInfoSetting {
         WorkPlaces = workPlaces;
     }
 
+    public void setWorkPlaces(String workPlaces) {
+        WorkPlaces.clear();
+        String[] arrStr = workPlaces.split(", ");
+        for (String str : arrStr) {
+            WorkPlaces.add(str);
+        }
+    }
+
     public ArrayList<String> getCareers() {
         return Careers;
     }
@@ -45,12 +60,28 @@ public class SearchWorkInfoSetting {
         Careers = careers;
     }
 
+    public void setCareers(String careers) {
+        Careers.clear();
+        String[] arrStr = careers.split(", ");
+        for (String str : arrStr) {
+            Careers.add(str);
+        }
+    }
+
     public ArrayList<String> getWorkTypes() {
         return WorkTypes;
     }
 
     public void setWorkTypes(ArrayList<String> workTypes) {
         WorkTypes = workTypes;
+    }
+
+    public void setWorkTypes(String workTypes) {
+        WorkTypes.clear();
+        String[] arrStr = workTypes.split(", ");
+        for (String str : arrStr) {
+            WorkTypes.add(str);
+        }
     }
 
     public String getSalary() {
