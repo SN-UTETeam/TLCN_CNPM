@@ -22,33 +22,33 @@
         </activity>
 
         <activity android:name=".LoginActivity" />
-        <activity android:name=".NTD.NTDRegisterActivity" />
-        <activity android:name=".UV.UVRegisterActivity" />
-        <activity android:name=".NTD.NTDMainActivity" />
-        <activity android:name=".ADMIN.AdminMainActivity" />
+        <activity android:name=".NTD.activities.NTDRegisterActivity" />
+        <activity android:name=".UV.activities.UVRegisterActivity" />
+        <activity android:name=".NTD.activities.NTDMainActivity" />
+        <activity android:name=".ADMIN.activities.AdminMainActivity" />
         <activity android:name=".ResultRegisterActivity" />
-        <activity android:name=".NTD.NTDSelectFilterActivity" />
-        <activity android:name=".NTD.NTDChangeProfileActivity" />
-        <activity android:name=".SelectWorkTypeActivity" />
-        <activity android:name=".SelectCarrerActivity" />
-        <activity android:name=".SelectLevelActivity" />
-        <activity android:name=".SelectExperienceActivity" />
-        <activity android:name=".SelectSalaryActivity" />
-        <activity android:name=".SelectWorkPlaceActivity" />
-        <activity android:name=".NTD.NTDProfileActivity" />
-        <activity android:name=".NTD.NTDViewWorkInfoActivity" />
-        <activity android:name=".NTD.NTDEditWorkInfoActivity" />
-        <activity android:name=".NTD.NTDViewListApplyActivity" />
-        <activity android:name=".UV.UVMainActivity" />
-        <activity android:name=".UV.UVViewProfileActivity" />
-        <activity android:name=".UV.UVWorkExpActivity" />
-        <activity android:name=".UV.UVDiplomaActivity" />
-        <activity android:name=".UV.UVProfileActivity" />
-        <activity android:name=".UV.UVChangeProfileActivity" />
+        <activity android:name=".NTD.activities.NTDSelectFilterActivity" />
+        <activity android:name=".NTD.activities.NTDChangeProfileActivity" />
+        <activity android:name=".Select.activities.SelectWorkTypeActivity" />
+        <activity android:name=".Select.activities.SelectCarrerActivity" />
+        <activity android:name=".Select.activities.SelectLevelActivity" />
+        <activity android:name=".Select.activities.SelectExperienceActivity" />
+        <activity android:name=".Select.activities.SelectSalaryActivity" />
+        <activity android:name=".Select.activities.SelectWorkPlaceActivity" />
+        <activity android:name=".NTD.activities.NTDProfileActivity" />
+        <activity android:name=".NTD.activities.NTDViewWorkInfoActivity" />
+        <activity android:name=".NTD.activities.NTDEditWorkInfoActivity" />
+        <activity android:name=".NTD.activities.NTDViewListApplyActivity" />
+        <activity android:name=".UV.activities.UVMainActivity" />
+        <activity android:name=".UV.activities.UVViewProfileActivity" />
+        <activity android:name=".UV.activities.UVWorkExpActivity" />
+        <activity android:name=".UV.activities.UVDiplomaActivity" />
+        <activity android:name=".UV.activities.UVProfileActivity" />
+        <activity android:name=".UV.activities.UVChangeProfileActivity" />
         <activity android:name=".Test" />
-        <activity android:name=".UV.UVFilterSearchActivity" />
-        <activity android:name=".UV.UVSeeDetailActivity" />
-        <activity android:name=".UV.UVViewWorkInfoActivity"></activity>
+        <activity android:name=".UV.activities.UVFilterSearchActivity" />
+        <activity android:name=".UV.activities.UVSeeDetailActivity" />
+        <activity android:name=".UV.activities.UVViewWorkInfoActivity"></activity>
     </application>
 
 </manifest>

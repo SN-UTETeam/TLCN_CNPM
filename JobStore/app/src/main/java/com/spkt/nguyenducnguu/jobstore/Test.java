@@ -11,8 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
-import com.spkt.nguyenducnguu.jobstore.UV.UVSeeDetailActivity;
+import com.spkt.nguyenducnguu.jobstore.UV.activities.UVSeeDetailActivity;
 
 /**
  * Created by TranAnhSon on 10/5/2017.

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.spkt.nguyenducnguu.jobstore.NTD.NTDMainFragment">
+    tools:context="com.spkt.nguyenducnguu.jobstore.NTD.fragments.NTDMainFragment">
 
 
     <android.support.v7.widget.RecyclerView

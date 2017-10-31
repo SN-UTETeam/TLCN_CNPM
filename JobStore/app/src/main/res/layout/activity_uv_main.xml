@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layoutUV"
-    tools:context="com.spkt.nguyenducnguu.jobstore.UV.UVMainActivity"
+    tools:context="com.spkt.nguyenducnguu.jobstore.UV.activities.UVMainActivity"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 

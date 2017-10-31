@@ -2,20 +2,18 @@ package com.spkt.nguyenducnguu.jobstore;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.spkt.nguyenducnguu.jobstore.ADMIN.AdminMainActivity;
+import com.spkt.nguyenducnguu.jobstore.ADMIN.activities.AdminMainActivity;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
-import com.spkt.nguyenducnguu.jobstore.Models.Parameter;
 import com.spkt.nguyenducnguu.jobstore.Models.Roles;
-import com.spkt.nguyenducnguu.jobstore.NTD.NTDMainActivity;
-import com.spkt.nguyenducnguu.jobstore.UV.UVMainActivity;
+import com.spkt.nguyenducnguu.jobstore.NTD.activities.NTDMainActivity;
+import com.spkt.nguyenducnguu.jobstore.UV.activities.UVMainActivity;
 
 public class UpdateUI {
 

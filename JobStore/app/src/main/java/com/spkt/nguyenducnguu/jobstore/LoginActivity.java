@@ -17,8 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.spkt.nguyenducnguu.jobstore.NTD.NTDRegisterActivity;
-import com.spkt.nguyenducnguu.jobstore.UV.UVRegisterActivity;
+import com.spkt.nguyenducnguu.jobstore.NTD.activities.NTDRegisterActivity;
+import com.spkt.nguyenducnguu.jobstore.UV.activities.UVRegisterActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
