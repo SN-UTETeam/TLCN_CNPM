@@ -16,17 +16,19 @@ public class WorkInfo implements Comparable<WorkInfo>{
     private WorkDetail WorkDetail;
     private HashMap<String, Apply> Applies;
     private HashMap<String, Share> Shares;
+    private HashMap<String, Save> Saves;
     private int Status;
 
     public WorkInfo(){
         Applies = new HashMap<>();
         Shares = new HashMap<>();
+        Saves = new HashMap<>();
     }
 
-    public WorkInfo(String userId, String companyName, String titlePost, int views, Long postTime,
-                    Long expirationTime, String workPlace,
-                    com.spkt.nguyenducnguu.jobstore.Models.WorkDetail workDetail,
-                    HashMap<String, Apply> applies, HashMap<String, Share> shares, int status) {
+    public WorkInfo(String key, String userId, String companyName, String titlePost, int views, Long postTime,
+                    Long expirationTime, String workPlace, com.spkt.nguyenducnguu.jobstore.Models.WorkDetail workDetail,
+                    HashMap<String, Apply> applies, HashMap<String, Share> shares, HashMap<String, Save> saves, int status) {
+        Key = key;
         UserId = userId;
         CompanyName = companyName;
         TitlePost = titlePost;
@@ -37,6 +39,7 @@ public class WorkInfo implements Comparable<WorkInfo>{
         WorkDetail = workDetail;
         Applies = applies;
         Shares = shares;
+        Saves = saves;
         Status = status;
     }
 
@@ -120,6 +123,14 @@ public class WorkInfo implements Comparable<WorkInfo>{
         Shares = shares;
     }
 
+    public HashMap<String, Save> getSaves() {
+        return Saves;
+    }
+
+    public void setSaves(HashMap<String, Save> saves) {
+        Saves = saves;
+    }
+
     public int getStatus() {
         return Status;
     }
@@ -139,5 +150,30 @@ public class WorkInfo implements Comparable<WorkInfo>{
     @Override
     public int compareTo(@NonNull WorkInfo workInfo) {
         return workInfo.getExpirationTime().compareTo(this.ExpirationTime);
+    }
+
+    public boolean checkApply(String userId)
+    {
+        for (Apply ap : Applies.values())
+        {
+            if(ap.getUserId().equals(userId)) return true;
+        }
+        return false;
+    }
+    public boolean checkShare(String userId)
+    {
+        for (Share sh : Shares.values())
+        {
+            if(sh.getUserId().equals(userId)) return true;
+        }
+        return false;
+    }
+    public boolean checkSave(String userId)
+    {
+        for (Save sa : Saves.values())
+        {
+            if(sa.getUserId().equals(userId)) return true;
+        }
+        return false;
     }
 }

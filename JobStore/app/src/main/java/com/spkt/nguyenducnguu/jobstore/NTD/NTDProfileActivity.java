@@ -41,6 +41,8 @@ public class NTDProfileActivity extends AppCompatActivity {
 
     TextView txt_icon1, txt_icon2, txt_icon3, txt_icon4, txt_icon5;
     private String Key = "";
+    private Recruiter recruiter = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +69,8 @@ public class NTDProfileActivity extends AppCompatActivity {
                     Recruiter r = dataSnapshot.getValue(Recruiter.class);
                     if (r == null) return;
 
+                    recruiter = r;
+
                     txt_CompanyName.setText(r.getCompanyName());
                     txt_Address.setText(r.getAddress().getAddressStr());
                     txt_NumberFollow.setText(r.getFollows().size() + "");
@@ -76,9 +80,9 @@ public class NTDProfileActivity extends AppCompatActivity {
                     txt_Website.setText(r.getWebsite());
                     txt_Description.setText(r.getDescription());
 
-                    if(r.getAvatar() != null)
+                    if (r.getAvatar() != null)
                         Picasso.with(getBaseContext()).load(r.getAvatar()).into(img_Avatar);
-                    if(r.getCoverPhoto() != null)
+                    if (r.getCoverPhoto() != null)
                         Picasso.with(getBaseContext()).load(r.getCoverPhoto()).into(img_CoverPhoto);
                 }
 
@@ -164,7 +168,7 @@ public class NTDProfileActivity extends AppCompatActivity {
         Uri selectedImage = data.getData();
         String[] arrString = selectedImage.toString().split(".");
         String ExtendImage = "";
-        if(arrString.length > 0)
+        if (arrString.length > 0)
             ExtendImage = "." + arrString[arrString.length - 1];
 
         StorageReference ref = FirebaseStorage.getInstance().getReference()
@@ -182,27 +186,16 @@ public class NTDProfileActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 final Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                Database.getData(Node.RECRUITERS + "/" + Key, new OnGetDataListener() {
-                    @Override
-                    public void onSuccess(DataSnapshot dataSnapshot) {
-                        Recruiter r = dataSnapshot.getValue(Recruiter.class);
-                        if(requestCode == RequestCode.PICK_AVATAR)
-                            r.setAvatar(downloadUrl.toString());
-                        else if(requestCode == RequestCode.PICK_COVERPHOTO)
-                            r.setCoverPhoto(downloadUrl.toString());
+                if (requestCode == RequestCode.PICK_AVATAR)
+                    recruiter.setAvatar(downloadUrl.toString());
+                else if (requestCode == RequestCode.PICK_COVERPHOTO)
+                    recruiter.setCoverPhoto(downloadUrl.toString());
 
-                        Picasso.with(getBaseContext()).load(downloadUrl.toString())
-                                .into(requestCode == RequestCode.PICK_AVATAR ? img_Avatar : img_CoverPhoto);
+                Picasso.with(getBaseContext()).load(downloadUrl.toString())
+                        .into(requestCode == RequestCode.PICK_AVATAR ? img_Avatar : img_CoverPhoto);
 
-                        Database.updateData(Node.RECRUITERS, Key, r);
-                        dialog.dismiss();
-                    }
-
-                    @Override
-                    public void onFailed(DatabaseError databaseError) {
-
-                    }
-                });
+                Database.updateData(Node.RECRUITERS, Key, recruiter);
+                dialog.dismiss();
             }
         });
 

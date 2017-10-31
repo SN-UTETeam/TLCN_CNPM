@@ -59,6 +59,7 @@ public class NTDViewListApplyActivity extends AppCompatActivity {
                     if (w == null) return;
 
                     for (Apply ap : w.getApplies().values()) {
+                        lstCandidate.clear();
                         Database.getData(Node.CANDIDATES + "/" + ap.getUserId(), new OnGetDataListener() {
                             @Override
                             public void onSuccess(DataSnapshot dataSnapshot) {

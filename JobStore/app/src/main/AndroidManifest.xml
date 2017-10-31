@@ -30,14 +30,14 @@
         <activity android:name=".NTD.NTDViewWorkInfoActivity" />
         <activity android:name=".NTD.NTDEditWorkInfoActivity" />
         <activity android:name=".NTD.NTDViewListApplyActivity" />
-        <activity android:name=".UV.UVMainActivity"></activity>
+        <activity android:name=".UV.UVMainActivity" />
         <activity android:name=".UV.UVViewProfileActivity" />
         <activity android:name=".UV.UVWorkExpActivity" />
         <activity android:name=".UV.UVDiplomaActivity" />
         <activity android:name=".UV.UVProfileActivity" />
         <activity android:name=".UV.UVChangeProfileActivity" />
-        <activity android:name=".Test"></activity>
-        <activity android:name=".UV.UVFilterSearchActivity"></activity>
+        <activity android:name=".Test" />
+        <activity android:name=".UV.UVFilterSearchActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +45,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UV.UVSeeDetailActivity"></activity>
+        <activity android:name=".UV.UVSeeDetailActivity" />
+        <activity android:name=".UV.UVViewWorkInfoActivity"></activity>
     </application>
+
 </manifest>

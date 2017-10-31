@@ -53,6 +53,8 @@ public class NTDNotificationFragment extends Fragment {
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             if (dataSnapshot.child("notifications").getValue() != null) {
+                                lstKey.clear();
+                                lstNotification.clear();
                                 for (DataSnapshot nData : dataSnapshot.child("notifications").getChildren()) {
                                     lstKey.add(nData.getKey());
                                     lstNotification.add(nData.getValue(Notification.class));

@@ -1,13 +1,13 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
-public class Share {
+public class Save {
     private String UserId;
     private Long Time;
 
-    public Share() {
+    public Save() {
     }
 
-    public Share(String userId, Long time) {
+    public Save(String userId, Long time) {
         UserId = userId;
         Time = time;
     }

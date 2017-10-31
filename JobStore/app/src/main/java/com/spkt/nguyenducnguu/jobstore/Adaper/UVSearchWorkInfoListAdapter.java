@@ -1,6 +1,7 @@
 package com.spkt.nguyenducnguu.jobstore.Adaper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +23,7 @@ import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
 import com.spkt.nguyenducnguu.jobstore.Models.SearchWorkInfoSetting;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkInfo;
 import com.spkt.nguyenducnguu.jobstore.R;
+import com.spkt.nguyenducnguu.jobstore.UV.UVViewWorkInfoActivity;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -83,6 +86,15 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
 
             }
         });
+        vh.ln_WorkInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView txt = (TextView) v.findViewById(R.id.txt_WorkInfoKey);
+                Intent intent = new Intent(context, UVViewWorkInfoActivity.class);
+                intent.putExtra("Key", txt.getText().toString());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -94,12 +106,12 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
     public Filter getFilter() {
         return mFilter;
     }
-    public void setOnFilterListener(OnFilterListener onFilterListener)
-    {
+
+    public void setOnFilterListener(OnFilterListener onFilterListener){
         this.onFilterListener = onFilterListener;
     }
-    public void FilterData(SearchWorkInfoSetting searchWorkInfoSetting)
-    {
+
+    public void FilterData(SearchWorkInfoSetting searchWorkInfoSetting){
         mSetting = searchWorkInfoSetting;
         String Query = "";
         Query += mSetting.getWorkTypes().toString().substring(1, mSetting.getWorkTypes().toString().length() - 1);
@@ -112,6 +124,7 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
 
         mFilter.filter(Query);
     }
+
     private class ItemFilter extends Filter{
 
         @Override
@@ -160,12 +173,15 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
             notifyDataSetChanged();
         }
     }
+
     public class WorkInfoViewHolder extends RecyclerView.ViewHolder {
         TextView txt_WorkInfoKey, txt_TitlePost, txt_CompanyName, txt_Career, txt_Salary, txt_WorkPlace, txt_ExpirationTime;
         ImageView imgv_Avatar;
+        LinearLayout ln_WorkInfo;
 
         public WorkInfoViewHolder(View itemView) {
             super(itemView);
+            ln_WorkInfo = (LinearLayout) itemView.findViewById(R.id.ln_WorkInfo);
             imgv_Avatar = (ImageView) itemView.findViewById(R.id.imgv_Avatar);
 
             txt_WorkInfoKey = (TextView) itemView.findViewById(R.id.txt_WorkInfoKey);
