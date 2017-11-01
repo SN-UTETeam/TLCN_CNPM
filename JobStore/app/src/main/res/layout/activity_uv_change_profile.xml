@@ -268,6 +268,30 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/txt_Career"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edt_custom"
+                    android:cursorVisible="false"
+                    android:gravity="center|top|left"
+                    android:hint="Nghề nghiệp"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="2000"
+                    android:maxLines="10"
+                    android:scrollHorizontally="false"
+                    android:textSize="15dp" />/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <EditText
                     android:id="@+id/txt_Description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

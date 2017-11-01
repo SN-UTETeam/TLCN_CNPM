@@ -56,17 +56,17 @@ public class NTDChangeProfileActivity extends AppCompatActivity {
     }
 
     private void addEvent() {
-        btn_Finish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                update();
-            }
-        });
         txt_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NTDChangeProfileActivity.this.overridePendingTransition(R.anim.anim_slide_out_right, R.anim.anim_slide_out_right);
                 finish();
+            }
+        });
+        btn_Finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                update();
             }
         });
         txt_BirthDay.setOnClickListener(new View.OnClickListener() {

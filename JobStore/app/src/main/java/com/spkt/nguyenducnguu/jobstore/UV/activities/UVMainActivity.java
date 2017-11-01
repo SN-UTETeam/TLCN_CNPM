@@ -19,12 +19,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.LoginActivity;
+import com.spkt.nguyenducnguu.jobstore.Models.Candidate;
 import com.spkt.nguyenducnguu.jobstore.R;
+import com.spkt.nguyenducnguu.jobstore.UV.fragments.UVJobFragment;
 import com.spkt.nguyenducnguu.jobstore.UV.fragments.UVMainFragment;
 import com.spkt.nguyenducnguu.jobstore.UV.fragments.UVNotificationFragment;
 import com.spkt.nguyenducnguu.jobstore.UV.fragments.UVSearchFragment;
-import com.spkt.nguyenducnguu.jobstore.UV.fragments.UVJobFragment;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -61,6 +69,30 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
         //Thiet lap fragment ban dau
         trannsFragment(new UVMainFragment(), "Job Store");
     }
+    private void loadData() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Database.getData(Node.CANDIDATES + "/" + FirebaseAuth.getInstance().getCurrentUser().getUid(), new OnGetDataListener() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                Candidate c = dataSnapshot.getValue(Candidate.class);
+
+                if (c == null) return;
+
+                txt_NameUV.setText(c.getFullName());
+                txt_EmailUV.setText(c.getEmail());
+
+                if (c.getAvatar() != null)
+                    Picasso.with(getBaseContext()).load(c.getAvatar()).into(img_AvatarUV);
+                if (c.getCoverPhoto() != null)
+                    Picasso.with(getBaseContext()).load(c.getCoverPhoto()).into(img_CoverPhotoUV);
+            }
+
+            @Override
+            public void onFailed(DatabaseError databaseError) {
+
+            }
+        });
+    }
     public void addView() {
         rl_UV_headerNav = (RelativeLayout) contentView.findViewById(R.id.rl_UV_headerNav);
         toolbarUV = (Toolbar) findViewById(R.id.toolbarUV);
@@ -75,6 +107,7 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(UVMainActivity.this, UVProfileActivity.class);
+                myIntent.putExtra("Email", FirebaseAuth.getInstance().getCurrentUser().getUid());
                 Bundle bndlanimation =
                         ActivityOptions.makeCustomAnimation(UVMainActivity.this, R.anim.anim_slide_in_right, R.anim.anim_slide_out_right).toBundle();
                 startActivity(myIntent, bndlanimation);
@@ -108,7 +141,7 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
             public void onDrawerOpened(View drawerView) {
                 getSupportActionBar().setTitle(toolbarUV.getTitle());
                 // calling onPrepareOptionsMenu() to hide action bar icons
-                //loadData();
+                loadData();
                 invalidateOptionsMenu();
             }
         };
@@ -145,6 +178,7 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     private void trannsFragment(Fragment fragment, String title) {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 

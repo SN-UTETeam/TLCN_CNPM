@@ -339,12 +339,12 @@
                             android:id="@+id/txt_icon5"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
                             android:layout_marginRight="5dp"
+                            android:layout_weight="1"
                             android:gravity="left|top"
                             android:text="@string/fa_info"
                             android:textColor="@color/appcolor"
-                            android:textSize="20dp"/>
+                            android:textSize="20dp" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -356,35 +356,37 @@
 
                     </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-                    <com.ms.square.android.expandabletextview.ExpandableTextView
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/txt_Description"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        expandableTextView:maxCollapsedLines="7"
-                        expandableTextView:animDuration="200"
-                        android:layout_marginLeft="5dp">
-                        <TextView
-                            android:id="@id/expandable_text"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/txt_Description"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Giới thiệu công ty"
-                            android:textSize="15sp"/>
-                        <ImageButton
-                            android:id="@id/expand_collapse"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="16dp"
-                            android:layout_gravity="center|bottom"
-                            android:background="@android:color/transparent"/>
-                    </com.ms.square.android.expandabletextview.ExpandableTextView>
-                </LinearLayout>
+                            android:layout_marginLeft="5dp"
+                            expandableTextView:animDuration="200"
+                            expandableTextView:maxCollapsedLines="7">
+
+                            <TextView
+                                android:id="@id/expandable_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Giới thiệu công ty"
+                                android:textSize="15sp" />
+
+                            <ImageButton
+                                android:id="@id/expand_collapse"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|bottom"
+                                android:background="@android:color/transparent"
+                                android:padding="16dp" />
+                        </com.ms.square.android.expandabletextview.ExpandableTextView>
+                    </LinearLayout>
 
                 </LinearLayout>
             </RelativeLayout>
