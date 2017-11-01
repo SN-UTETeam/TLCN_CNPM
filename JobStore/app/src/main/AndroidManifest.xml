@@ -40,7 +40,6 @@
         <activity android:name=".NTD.activities.NTDEditWorkInfoActivity" />
         <activity android:name=".NTD.activities.NTDViewListApplyActivity" />
         <activity android:name=".UV.activities.UVMainActivity" />
-        <activity android:name=".UV.activities.UVViewProfileActivity" />
         <activity android:name=".UV.activities.UVWorkExpActivity" />
         <activity android:name=".UV.activities.UVDiplomaActivity" />
         <activity android:name=".UV.activities.UVProfileActivity" />

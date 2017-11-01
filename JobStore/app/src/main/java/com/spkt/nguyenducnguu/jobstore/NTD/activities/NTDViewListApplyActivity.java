@@ -22,7 +22,7 @@ import com.spkt.nguyenducnguu.jobstore.Models.Apply;
 import com.spkt.nguyenducnguu.jobstore.Models.Candidate;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkInfo;
 import com.spkt.nguyenducnguu.jobstore.R;
-import com.spkt.nguyenducnguu.jobstore.UV.activities.UVViewProfileActivity;
+import com.spkt.nguyenducnguu.jobstore.UV.activities.UVProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,7 +107,7 @@ public class NTDViewListApplyActivity extends AppCompatActivity {
         lv_CandidateApply.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(NTDViewListApplyActivity.this, UVViewProfileActivity.class);
+                Intent intent = new Intent(NTDViewListApplyActivity.this, UVProfileActivity.class);
                 TextView txt_Email = (TextView) view.findViewById(R.id.txt_Email);
                 intent.putExtra("Email", txt_Email.getText().toString());
                 startActivity(intent);

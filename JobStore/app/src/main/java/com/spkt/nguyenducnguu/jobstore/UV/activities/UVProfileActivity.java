@@ -25,10 +25,19 @@ public class UVProfileActivity extends AppCompatActivity {
     TextView txt_icon1, txt_icon2, txt_icon3, txt_icon4, txt_icon5, txt_icon6, txt_iconCareer;
 
     TextView txt_Back;
+    private String Email = "";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uv_profile);
+
+        Intent intent = getIntent();
+        if(intent != null){
+            if(!intent.getStringExtra("Email").isEmpty())
+            {
+                Email = intent.getStringExtra("Email");
+            }
+        }
 
         addView();
         addEvent();
