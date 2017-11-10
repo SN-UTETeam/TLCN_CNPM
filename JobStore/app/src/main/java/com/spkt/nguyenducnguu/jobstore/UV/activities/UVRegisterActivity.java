@@ -269,8 +269,11 @@ public class UVRegisterActivity extends AppCompatActivity {
     }
 
     private void uploadCV(final String UserId) {
+        String[] arr = txt_CV.getText().toString().split("\\.");
+        if(arr.length == 0) return;
+
         StorageReference ref = FirebaseStorage.getInstance().getReference()
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/" + txt_CV.getText().toString());
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid() + "/CV." + arr[arr.length - 1]);
 
         UploadTask uploadTask = ref.putFile(CVUri);
 

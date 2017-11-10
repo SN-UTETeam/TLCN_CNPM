@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public class Candidate {
 
+    private String Key;
     private String Email;
     private String FullName;
     private Long Birthday;
@@ -48,6 +49,14 @@ public class Candidate {
         this.CandidateDetail = candidateDetail;
         this.Notifications = notifications;
         this.Follows = follows;
+    }
+
+    public String getKey() {
+        return Key;
+    }
+
+    public void setKey(String key) {
+        Key = key;
     }
 
     public String getEmail() {

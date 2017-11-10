@@ -11,6 +11,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.Parameter;
 
@@ -58,5 +60,10 @@ public class Database {
     public static void deleteData(String node, String key)
     {
         mdatabase.getReference(node).child(key).removeValue();
+    }
+    public static void deleteFileFromUrl(String Url)
+    {
+        StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(Url);
+        storageReference.delete();
     }
 }

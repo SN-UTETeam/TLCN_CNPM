@@ -45,7 +45,7 @@ public class NTDCandidateListAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.list_item_candidate_layout, null);
             holder = new ViewHolder();
             holder.imgv_Avatar = (ImageView) view.findViewById(R.id.imgv_Avatar);
-            holder.txt_Email = (TextView) view.findViewById(R.id.txt_Email);
+            holder.txt_Key = (TextView) view.findViewById(R.id.txt_Key);
             holder.txt_FullName = (TextView) view.findViewById(R.id.txt_FullName);
             holder.txt_Tag = (TextView) view.findViewById(R.id.txt_Tag);
             holder.txt_Experience = (TextView) view.findViewById(R.id.txt_Experience);
@@ -54,7 +54,7 @@ public class NTDCandidateListAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) view.getTag();
         }
-        holder.txt_Email.setText(this.listData.get(i).getEmail());
+        holder.txt_Key.setText(this.listData.get(i).getKey());
         holder.txt_FullName.setText(this.listData.get(i).getFullName());
         holder.txt_Tag.setText(this.listData.get(i).getCandidateDetail().getTag());
         holder.txt_Experience.setText(this.listData.get(i).getCandidateDetail().getExperience());
@@ -63,7 +63,7 @@ public class NTDCandidateListAdapter extends BaseAdapter {
     }
     static class ViewHolder {
         ImageView imgv_Avatar;
-        TextView txt_Email;
+        TextView txt_Key;
         TextView txt_FullName;
         TextView txt_Tag;
         TextView txt_Experience;

@@ -66,6 +66,7 @@ public class NTDViewListApplyActivity extends AppCompatActivity {
                                 Candidate can = dataSnapshot.getValue(Candidate.class);
                                 Log.d("candidate", can == null ? "candidate null" : can.getFullName().toString());
                                 if (can == null) return;
+                                can.setKey(dataSnapshot.getKey());
                                 lstCandidate.add(can);
                                 ((BaseAdapter) lv_CandidateApply.getAdapter()).notifyDataSetChanged();
                             }
@@ -108,8 +109,8 @@ public class NTDViewListApplyActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(NTDViewListApplyActivity.this, UVProfileActivity.class);
-                TextView txt_Email = (TextView) view.findViewById(R.id.txt_Email);
-                intent.putExtra("Email", txt_Email.getText().toString());
+                TextView txt_Key = (TextView) view.findViewById(R.id.txt_Key);
+                intent.putExtra("Key", txt_Key.getText().toString());
                 startActivity(intent);
             }
         });

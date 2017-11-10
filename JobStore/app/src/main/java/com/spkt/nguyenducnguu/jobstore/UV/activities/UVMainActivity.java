@@ -107,7 +107,7 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(UVMainActivity.this, UVProfileActivity.class);
-                myIntent.putExtra("Email", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                myIntent.putExtra("Key", FirebaseAuth.getInstance().getCurrentUser().getUid());
                 Bundle bndlanimation =
                         ActivityOptions.makeCustomAnimation(UVMainActivity.this, R.anim.anim_slide_in_right, R.anim.anim_slide_out_right).toBundle();
                 startActivity(myIntent, bndlanimation);
