@@ -169,7 +169,8 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            onFilterListener.onFilter(filteredData.size());
+            if(onFilterListener != null)
+                onFilterListener.onFilter(filteredData.size());
             notifyDataSetChanged();
         }
     }

@@ -3,6 +3,7 @@ package com.spkt.nguyenducnguu.jobstore.Models;
 import java.util.HashMap;
 
 public class Recruiter {
+    private String Key;
     private String Email;
     private String FullName;
     private Long BirthDay;
@@ -47,6 +48,14 @@ public class Recruiter {
     public Recruiter() {
         Notifications = new HashMap<>();
         Follows = new HashMap<>();
+    }
+
+    public String getKey() {
+        return Key;
+    }
+
+    public void setKey(String key) {
+        Key = key;
     }
 
     public String getEmail() {
@@ -183,5 +192,14 @@ public class Recruiter {
 
     public void setFollows(HashMap<String, Follow> follows) {
         Follows = follows;
+    }
+
+    public boolean checkFollow(String userId)
+    {
+        for (Follow p : Follows.values())
+        {
+            if(p.getUserId().equals(userId)) return true;
+        }
+        return false;
     }
 }
