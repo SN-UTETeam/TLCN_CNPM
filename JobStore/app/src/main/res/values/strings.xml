@@ -74,6 +74,11 @@
     <string name="fa_birthday">&#xf1fd;</string>
     <string name="icon_bookmark">&#xf097;</string>
     <string name="fa_globe">&#xf0ac;</string>
+    <string name="fa_leaf">&#xf06c;</string>
+    <string name="fa_mortar_board">&#xf19d;</string>
+    <string name="fa_dollar">&#xf155;</string>
+    <string name="fa_suitcase">&#xf0f2;</string>
+    <string name="fa_license">&#xf2c2;</string>
 
     <string-array name="work_types">
         <item>Thực tập</item>

@@ -84,8 +84,7 @@
                         android:id="@+id/img_CoverPhotoUV"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/diagonallayout_background" />
+                        android:scaleType="centerCrop" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -110,7 +109,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="105dp"
                             android:fontFamily="sans-serif-condensed"
-                            android:text="IT-Phần mềm"
+                            android:text=""
                             android:textColor="@color/white"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -125,7 +124,7 @@
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="70dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="TRẦN ANH SƠN"
+                        android:text=""
                         android:textColor="@android:color/white"
                         android:textSize="25sp" />
 
@@ -339,7 +338,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="left"
-                            android:text="@string/fa_facebook"
+                            android:text="@string/fa_link"
                             android:textColor="@color/appcolor"
                             android:textSize="22dp" />
 
@@ -462,9 +461,9 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="left"
-                            android:text="@string/fa_facebook"
+                            android:text="@string/fa_briefcase"
                             android:textColor="@color/appcolor"
-                            android:textSize="22dp" />
+                            android:textSize="20dp" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -515,9 +514,9 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="left"
-                            android:text="@string/fa_facebook"
+                            android:text="@string/fa_leaf"
                             android:textColor="@color/appcolor"
-                            android:textSize="22dp" />
+                            android:textSize="20dp" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -568,9 +567,9 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="left"
-                            android:text="@string/fa_facebook"
+                            android:text="@string/fa_badge"
                             android:textColor="@color/appcolor"
-                            android:textSize="22dp" />
+                            android:textSize="23dp" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -621,9 +620,9 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="left"
-                            android:text="@string/fa_facebook"
+                            android:text="@string/fa_mortar_board"
                             android:textColor="@color/appcolor"
-                            android:textSize="22dp" />
+                            android:textSize="20dp" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -674,9 +673,9 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="left"
-                            android:text="@string/fa_facebook"
+                            android:text="@string/fa_star"
                             android:textColor="@color/appcolor"
-                            android:textSize="22dp" />
+                            android:textSize="21dp" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -698,7 +697,7 @@
                             android:layout_weight="1"
                             android:gravity="left"
                             android:textColor="@color/appcolor"
-                            android:textSize="22dp" />
+                            android:textSize="20dp" />
 
                         <TextView
                             android:id="@+id/txt_Experience"
@@ -727,7 +726,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="left"
-                            android:text="@string/fa_facebook"
+                            android:text="@string/fa_dollar"
                             android:textColor="@color/appcolor"
                             android:textSize="22dp" />
 
@@ -785,9 +784,9 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="left"
-                                android:text="@string/fa_facebook"
+                                android:text="@string/fa_suitcase"
                                 android:textColor="@color/appcolor"
-                                android:textSize="22dp" />
+                                android:textSize="20dp" />
 
                             <TextView
                                 android:layout_width="0dp"
@@ -828,9 +827,9 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="left"
-                                android:text="@string/fa_facebook"
+                                android:text="@string/fa_license"
                                 android:textColor="@color/appcolor"
-                                android:textSize="22dp" />
+                                android:textSize="20dp" />
 
                             <TextView
                                 android:layout_width="0dp"
