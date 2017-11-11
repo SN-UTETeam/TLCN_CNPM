@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ln_Recruiter"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/txt_Key"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+            <ImageView
+                android:id="@+id/imgv_Avatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/img_avatar"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/txt_CompanyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VNG COOPARATION"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/txt_Email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="jobstore.ad@gmail.com"
+                android:textSize="14dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/txt_Website"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="jobstore.com"
+                android:textSize="14dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/txt_Address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số 1, Võ Văn Ngân, Thủ Đức, TP HCM"
+                android:textSize="14dp"
+                android:textColor="@color/appcolor"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/appcolor"></View>
+</LinearLayout>

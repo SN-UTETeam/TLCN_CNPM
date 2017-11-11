@@ -3,11 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="300dp"
-    android:layout_height="450dp"
+    android:layout_height="500dp"
     android:background="@color/overlayBackground"
     android:padding="5dp"
     android:layout_gravity="center"
     android:id="@+id/diagonalLayoutFollow">
+
     <TextView
         android:id="@+id/txtClose"
         android:layout_width="30dp"
@@ -24,16 +25,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imgv_Avatar"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/img_avatar"
+            android:src="@drawable/ic_default_avatar"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-
             app:border_color="@color/black"/>
 
         <TextView
+            android:id="@+id/txt_CompanyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="VNG - Coroperation"
@@ -44,19 +47,43 @@
             android:layout_marginTop="5dp"/>
 
         <TextView
+            android:id="@+id/txt_Email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="vngcoroperation.vng@gmail.com"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/txt_Website"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="vngcoroperation.com"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/txt_Address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="182 Lê Đại Hành, Phường 15, Quận 11, TP HCM"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="100dp"
@@ -64,12 +91,15 @@
             android:orientation="vertical"
             android:gravity="center"
             android:background="@color/orange">
+
             <TextView
+                android:id="@+id/txt_NumberFollow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1000"
                 android:textColor="@color/white"
                 android:textSize="18sp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,6 +107,7 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="100dp"
@@ -84,12 +115,15 @@
             android:orientation="vertical"
             android:gravity="center"
             android:background="@color/blue">
+
             <TextView
+                android:id="@+id/txt_NunberApply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="500"
                 android:textColor="@color/white"
                 android:textSize="18sp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,6 +131,7 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="100dp"
@@ -104,12 +139,15 @@
             android:orientation="vertical"
             android:gravity="center"
             android:background="@color/bluelight">
+
             <TextView
+                android:id="@+id/txt_NumberPost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="50"
                 android:textColor="@color/white"
                 android:textSize="18sp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -118,11 +156,13 @@
                 android:textSize="18sp"/>
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="8dp">
+
         <Button
             android:id="@+id/btnFollow"
             android:layout_width="0dp"
@@ -136,6 +176,7 @@
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/btn_followme"/>
+
         <Button
             android:id="@+id/btnSeeDetail"
             android:layout_width="0dp"

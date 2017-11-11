@@ -10,11 +10,11 @@ public class Follow {
     public Follow() {
     }
 
-    public String getEmail() {
+    public String getUserId() {
         return UserId;
     }
 
-    public void setEmail(String userId) {
+    public void setUserId(String userId) {
         UserId = userId;
     }
 }

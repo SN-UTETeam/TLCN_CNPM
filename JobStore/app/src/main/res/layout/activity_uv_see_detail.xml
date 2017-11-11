@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,7 +23,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
-                android:id="@+id/img_CoverPhoto"
+                android:id="@+id/imgv_CoverPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/diagonallayout_background"
@@ -65,12 +66,12 @@
                     android:gravity="center">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/img_Avatar"
+                        android:id="@+id/imgv_Avatar"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:background="@drawable/diagonallayout_circle"
                         android:elevation="15dp"
-                        android:src="@drawable/img_avatar" />
+                        android:src="@drawable/ic_default_avatar" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -94,6 +95,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/txt_NumberPost"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="50"
@@ -116,6 +118,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/txt_NumberFollow"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="1000"
@@ -138,6 +141,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/txt_NumberApply"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="500"
@@ -154,6 +158,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/txt_Follow"
                         android:layout_width="200dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="25dp"
@@ -167,192 +172,49 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                app:cardElevation="5dp"
-                app:cardUseCompatPadding="true">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="8dp">
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/txt_icon1"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="left|center"
-                        android:text="@string/fa_address"
-                        android:textColor="@color/appcolor"
-                        android:textSize="20dp" />
-
-                    <TextView
-                        android:id="@+id/txt_Email"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="8"
-                        android:padding="12dp"
-                        android:gravity="center|left"
-                        android:text="jobstore.ad@gmail.com"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardElevation="5dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="8dp">
-
-                    <TextView
-                        android:id="@+id/txt_icon2"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="left|center_vertical"
-                        android:text="@string/fa_phone"
-                        android:textColor="@color/appcolor"
-                        android:textSize="20dp" />
-
-                    <TextView
-                        android:id="@+id/txt_Phone"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="8"
-                        android:padding="12dp"
-                        android:gravity="center|left"
-                        android:text="01694043472"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardElevation="5dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="8dp">
-
-                    <TextView
-                        android:id="@+id/txt_icon3"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="left|center_vertical"
-                        android:text="@string/fa_globe"
-                        android:textColor="@color/appcolor"
-                        android:textSize="20dp" />
-
-                    <TextView
-                        android:id="@+id/txt_Website"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="8"
-                        android:padding="12dp"
-                        android:gravity="center|left"
-                        android:text="https://vngcorporation.com"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardElevation="5dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="8dp">
-
-                    <TextView
-                        android:id="@+id/txt_icon4"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="left|center_vertical"
-                        android:text="@string/fa_info"
-                        android:textColor="@color/appcolor"
-                        android:textSize="20dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="8"
-                        android:padding="12dp"
-                        android:gravity="center|left"
-                        android:text="Giới thiệu về công ty:"
-                        android:textSize="18sp"/>
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardElevation="5dp"
-                app:cardUseCompatPadding="true"
-                android:layout_marginLeft="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <com.ms.square.android.expandabletextview.ExpandableTextView
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/txt_Description"
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/tab_layout"
+                        style="@style/MyCustomTabLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        expandableTextView:maxCollapsedLines="7"
-                        expandableTextView:animDuration="200"
-                        android:layout_marginLeft="5dp">
-                        <TextView
-                            android:id="@id/expandable_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="12dp"
-                            android:text="Giới thiệu công ty"
-                            android:textSize="20sp"/>
-                        <ImageButton
-                            android:id="@id/expand_collapse"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="16dp"
-                            android:layout_gravity="center|bottom"
-                            android:background="@android:color/transparent"/>
-                    </com.ms.square.android.expandabletextview.ExpandableTextView>
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/dark"
+                        app:tabIndicatorColor="@null"
+                        app:tabMode="fixed"
+                        app:tabSelectedTextColor="@color/appcolor"
+                        app:tabTextColor="@color/black">
+
+                    </android.support.design.widget.TabLayout>
+
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            </android.support.v7.widget.CardView>
-
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/view_Pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/toolbar"
+                        android:layout_centerHorizontal="true" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
