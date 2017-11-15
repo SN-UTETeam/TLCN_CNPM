@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.spkt.nguyenducnguu.jobstore.NTD.adapters.NTDNotificationListAdapter;
+import com.spkt.nguyenducnguu.jobstore.NTD.adapters.NTDNotificationAdapter;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
@@ -24,7 +24,6 @@ import java.util.List;
 public class NTDNotificationFragment extends Fragment {
 
     List<Notification> lstNotification = new ArrayList<Notification>();
-    List<String> lstKey = new ArrayList<String>();
     RecyclerView mRecyclerView;
 
 
@@ -35,8 +34,6 @@ public class NTDNotificationFragment extends Fragment {
 
         addView(rootView);
         setmRecyclerView();
-
-        mRecyclerView.setAdapter(new NTDNotificationListAdapter(lstNotification, lstKey));
         loadData();
         return rootView;
     }
@@ -46,20 +43,16 @@ public class NTDNotificationFragment extends Fragment {
     }
 
     private void loadData() {
-        Database.getData(Node.RECRUITERS + "/" + FirebaseAuth.getInstance().getCurrentUser().getUid(),
+        Database.getData(Node.RECRUITERS + "/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/notifications",
                 new OnGetDataListener() {
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            if (dataSnapshot.child("notifications").getValue() != null) {
-                                lstKey.clear();
-                                lstNotification.clear();
-                                for (DataSnapshot nData : dataSnapshot.child("notifications").getChildren()) {
-                                    lstKey.add(nData.getKey());
-                                    lstNotification.add(nData.getValue(Notification.class));
-                                    mRecyclerView.getAdapter().notifyDataSetChanged();
-                                }
-                            }
+                        lstNotification.clear();
+                        for (DataSnapshot mData : dataSnapshot.getChildren()) {
+                            Notification n = mData.getValue(Notification.class);
+                            n.setKey(mData.getKey());
+                            lstNotification.add(n);
+                            mRecyclerView.getAdapter().notifyDataSetChanged();
                         }
                     }
 
@@ -77,6 +70,6 @@ public class NTDNotificationFragment extends Fragment {
         mRecyclerView.setLayoutManager(layoutManager);
         // ta sẽ set setHasFixedSize bằng True để tăng performance
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(new NTDNotificationListAdapter(lstNotification, lstKey));
+        mRecyclerView.setAdapter(new NTDNotificationAdapter(lstNotification));
     }
 }

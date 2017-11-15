@@ -16,11 +16,15 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
 import com.spkt.nguyenducnguu.jobstore.Const.RequestCode;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
+import com.spkt.nguyenducnguu.jobstore.Models.Follow;
+import com.spkt.nguyenducnguu.jobstore.Models.Notification;
 import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkDetail;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkInfo;
@@ -46,7 +50,7 @@ public class NTDPostRecruitmentFragment extends Fragment {
     TextView txt_Email, txt_CompanyName, txt_ExpirationTime, txt_TitlePost,
             txt_Title, txt_Number, txt_JobDescription, txt_JobRequired, txt_Welfare;
     Button btn_AddWorkType, btn_AddCareer, btn_AddLevel, btn_AddExperience, btn_AddSalary, btn_AddWorkPlace;
-
+    private Recruiter recruiter = null;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,7 +71,9 @@ public class NTDPostRecruitmentFragment extends Fragment {
                 new OnGetDataListener() {
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
-                        txt_CompanyName.setText(dataSnapshot.getValue(Recruiter.class).getCompanyName());
+                        recruiter = dataSnapshot.getValue(Recruiter.class);
+                        recruiter.setKey(dataSnapshot.getKey());
+                        txt_CompanyName.setText(recruiter.getCompanyName());
                     }
 
                     @Override
@@ -201,7 +207,25 @@ public class NTDPostRecruitmentFragment extends Fragment {
 
             wf.setWorkDetail(wd);
 
-            Database.addData(Node.WORKINFOS, wf);
+
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Node.WORKINFOS).push();
+            Database.addDataWithKey(Node.WORKINFOS, ref.getKey(), wf);
+
+            if(recruiter != null)
+            {
+                Notification n = new Notification();
+                n.setTitle(wf.getTitlePost());
+                n.setContent(recruiter.getCompanyName() + " đã đăng một thông tin tuyển dụng mới.");
+                n.setSendTime(wf.getPostTime());
+                n.setStatus(0);
+                n.setUserId(recruiter.getKey());
+                n.setWorkInfoKey(ref.getKey());
+
+                for(Follow fl : recruiter.getFollows().values())
+                {
+                    Database.addData(Node.CANDIDATES + "/" + fl.getUserId() + "/notifications", n);
+                }
+            }
         } catch (Exception e) {
 
         }

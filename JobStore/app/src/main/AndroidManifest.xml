@@ -46,6 +46,8 @@
         <activity android:name=".UV.activities.UVFilterSearchActivity" />
         <activity android:name=".UV.activities.UVSeeDetailActivity" />
         <activity android:name=".UV.activities.UVViewWorkInfoActivity" />
+        <activity android:name=".UV.activities.UVViewNotificationActivity" />
+        <activity android:name=".NTD.activities.NTDViewNotificationActivity"></activity>
     </application>
 
 </manifest>
