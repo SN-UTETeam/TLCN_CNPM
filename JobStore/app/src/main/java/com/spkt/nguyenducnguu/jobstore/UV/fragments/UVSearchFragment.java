@@ -16,6 +16,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -103,9 +104,12 @@ public class UVSearchFragment extends Fragment {
         txt_Filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), SelectCarrerActivity.class);
-                intent.putExtra("lstCareerSelected", mSettingSearch.getCareers().toString().substring(1, mSettingSearch.getCareers().toString().length() - 1).trim());
-                startActivityForResult(intent, RequestCode.SELECT_CAREER);
+                Toast.makeText(getContext(), "Chưa lọc được :))", Toast.LENGTH_LONG).show();
+                return;
+
+                //Intent intent = new Intent(getContext(), SelectCarrerActivity.class);
+                //intent.putExtra("lstCareerSelected", mSettingSearch.getCareers().toString().substring(1, mSettingSearch.getCareers().toString().length() - 1).trim());
+                //startActivityForResult(intent, RequestCode.SELECT_CAREER);
             }
         });
     }

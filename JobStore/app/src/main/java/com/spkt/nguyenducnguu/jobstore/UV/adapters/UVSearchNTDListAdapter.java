@@ -247,7 +247,8 @@ public class UVSearchNTDListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         @SuppressWarnings("unchecked")
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            onFilterListener.onFilter(filteredData.size());
+            if(onFilterListener != null)
+                onFilterListener.onFilter(filteredData.size());
             notifyDataSetChanged();
         }
 
