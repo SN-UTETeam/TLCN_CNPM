@@ -12,11 +12,15 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.Apply;
+import com.spkt.nguyenducnguu.jobstore.Models.Candidate;
+import com.spkt.nguyenducnguu.jobstore.Models.Notification;
 import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
 import com.spkt.nguyenducnguu.jobstore.Models.Save;
 import com.spkt.nguyenducnguu.jobstore.Models.Share;
@@ -40,6 +44,7 @@ public class UVViewWorkInfoActivity extends AppCompatActivity {
     private String Key = "";
     private WorkInfo workInfo = null;
     private Recruiter recruiter = null;
+    private Candidate candidate = null;
 
     private boolean Applied = false;
     private boolean Saved = false;
@@ -104,16 +109,54 @@ public class UVViewWorkInfoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(workInfo != null)
                 {
+                    if(workInfo.getExpirationTime() < (new Date()).getTime())
+                    {
+                        Toast.makeText(UVViewWorkInfoActivity.this, "Thông tin tuyển dụng đã hết hạn!",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    String NotificationKey = FirebaseDatabase.getInstance().getReference(Node.RECRUITERS
+                            + "/" + FirebaseAuth.getInstance().getCurrentUser().getUid()
+                            + "/notifications").push().getKey();
+
+                    Notification n = new Notification();
+                    n.setKey(NotificationKey);
+                    n.setTitle(workInfo.getTitlePost());
+                    if(candidate != null)
+                        n.setContent(candidate.getFullName() + " đã ứng tuyển.");
+                    else n.setContent(FirebaseAuth.getInstance().getCurrentUser().getEmail() + " đã ứng tuyển.");
+                    n.setStatus(0);
+                    n.setSendTime((new Date()).getTime());
+                    n.setUserId(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                    n.setWorkInfoKey(workInfo.getKey());
+
                     if(Applied) //Đã ứng tuyển
                     {
                         workInfo.getApplies().remove(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                        if(recruiter != null)
+                        {
+                            for(Notification notification : recruiter.getNotifications().values())
+                            {
+                                if(notification.getUserId().equals(n.getUserId())
+                                        && notification.getWorkInfoKey().equals(n.getWorkInfoKey()))
+                                {
+                                    recruiter.getNotifications().remove(notification.getKey());
+                                    break;
+                                }
+                            }
+                        }
                     }
                     else //Chưa ứng tuyển
                     {
                         Apply ap = new Apply(FirebaseAuth.getInstance().getCurrentUser().getUid(), (new Date()).getTime());
                         workInfo.getApplies().put(FirebaseAuth.getInstance().getCurrentUser().getUid(), ap);
+
+                        if(recruiter != null)
+                            recruiter.getNotifications().put(NotificationKey, n);
                     }
                     Database.updateData(Node.WORKINFOS, Key, workInfo);
+                    Database.updateData(Node.RECRUITERS, recruiter.getKey(), recruiter);
                 }
             }
         });
@@ -293,6 +336,7 @@ public class UVViewWorkInfoActivity extends AppCompatActivity {
 
                             if(r == null) return;
 
+                            r.setKey(dataSnapshot.getKey());
                             recruiter = r;
 
                             if (r.getGender() == 0)
@@ -317,6 +361,18 @@ public class UVViewWorkInfoActivity extends AppCompatActivity {
                 }
             });
         }
+
+        Database.getData(Node.CANDIDATES + "/" + FirebaseAuth.getInstance().getCurrentUser().getUid(), new OnGetDataListener() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                candidate = dataSnapshot.getValue(Candidate.class);
+            }
+
+            @Override
+            public void onFailed(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override

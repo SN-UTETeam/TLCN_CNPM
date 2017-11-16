@@ -53,6 +53,10 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+<<<<<<< HEAD
+=======
+            android:id="@+id/container"
+>>>>>>> 45ea796f9732c52207722ce36337322cff276e8d
             android:orientation="vertical">
 
             <LinearLayout
@@ -175,9 +179,14 @@
             <LinearLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="50dp"
                 android:orientation="vertical"
                 android:visibility="visible">
+=======
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+>>>>>>> 45ea796f9732c52207722ce36337322cff276e8d
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tab_layout"
@@ -187,8 +196,11 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:background="@color/dark"
+<<<<<<< HEAD
                     app:tabIndicatorColor="@null"
                     app:tabMode="fixed"
+=======
+>>>>>>> 45ea796f9732c52207722ce36337322cff276e8d
                     app:tabSelectedTextColor="@color/appcolor"
                     app:tabTextColor="@color/black">
 
@@ -199,13 +211,21 @@
             <LinearLayout
                 android:id="@+id/viewpager"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="300dp">
+=======
+                android:layout_height="400dp">
+>>>>>>> 45ea796f9732c52207722ce36337322cff276e8d
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/view_Pager"
                     android:layout_width="match_parent"
+<<<<<<< HEAD
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true" />
+=======
+                    android:layout_height="match_parent" />
+>>>>>>> 45ea796f9732c52207722ce36337322cff276e8d
             </LinearLayout>
         </LinearLayout>
 

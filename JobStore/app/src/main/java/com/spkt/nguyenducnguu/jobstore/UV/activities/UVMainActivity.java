@@ -28,6 +28,7 @@ import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.LoginActivity;
 import com.spkt.nguyenducnguu.jobstore.Models.Candidate;
 import com.spkt.nguyenducnguu.jobstore.R;
+import com.spkt.nguyenducnguu.jobstore.UV.fragments.UVFollowFragment;
 import com.spkt.nguyenducnguu.jobstore.UV.fragments.UVJobFragment;
 import com.spkt.nguyenducnguu.jobstore.UV.fragments.UVMainFragment;
 import com.spkt.nguyenducnguu.jobstore.UV.fragments.UVNotificationFragment;
@@ -159,6 +160,9 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
                 break;
             case R.id.navUV_search:
                 trannsFragment(new UVSearchFragment(), "Tìm kiếm");
+                break;
+            case R.id.navUV_follow:
+                trannsFragment(new UVFollowFragment(), "Theo dõi");
                 break;
             case R.id.navUV_job:
                 trannsFragment(new UVJobFragment(), "Công việc");

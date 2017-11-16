@@ -5,229 +5,242 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.spkt.nguyenducnguu.jobstore.UV.fragments.RecruiterInfoFragment">
+<<<<<<< HEAD
     <LinearLayout
+=======
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+>>>>>>> 45ea796f9732c52207722ce36337322cff276e8d
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dark"></View>
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txt_icon1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="@string/fa_user"
-                android:textColor="@color/appcolor"
-                android:textSize="20dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dark"></View>
 
-            <TextView
-                android:id="@+id/txt_FullName"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:gravity="center|left"
-                android:text="Trần Anh Sơn"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dark"></View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txt_icon2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="@string/fa_address"
-                android:textColor="@color/appcolor"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/txt_Email"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:gravity="center|left"
-                android:text="jobstore.ad@gmail.com"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dark"></View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txt_icon3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="@string/fa_phone"
-                android:textColor="@color/appcolor"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/txt_Phone"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:gravity="center|left"
-                android:text="01694043472"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dark"></View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txt_icon4"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="@string/fa_globe"
-                android:textColor="@color/appcolor"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/txt_Website"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:gravity="center|left"
-                android:text="https://hbbsolution.com"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dark"></View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txt_icon5"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:text="@string/fa_address"
-                android:textColor="@color/appcolor"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/txt_Address"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:gravity="center|left"
-                android:text="Số 1, Võ Văn Ngân, Thủ Đức, TP HCM"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dark"></View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txt_icon6"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:gravity="left|top"
-                android:text="@string/fa_info"
-                android:textColor="@color/appcolor"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:gravity="center|left"
-                android:text="Giới thiệu về công ty:"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/txt_Description"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                expandableTextView:animDuration="200"
-                expandableTextView:maxCollapsedLines="7">
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@id/expandable_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Giới thiệu công ty"
+                    android:id="@+id/txt_icon1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/fa_user"
+                    android:textColor="@color/appcolor"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/txt_FullName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:gravity="center|left"
+                    android:text="Trần Anh Sơn"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dark"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_icon2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/fa_address"
+                    android:textColor="@color/appcolor"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/txt_Email"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:gravity="center|left"
+                    android:text="jobstore.ad@gmail.com"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dark"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_icon3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/fa_phone"
+                    android:textColor="@color/appcolor"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/txt_Phone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:gravity="center|left"
+                    android:text="01694043472"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dark"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_icon4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/fa_globe"
+                    android:textColor="@color/appcolor"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/txt_Website"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:gravity="center|left"
+                    android:text="https://hbbsolution.com"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dark"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_icon5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="@string/fa_address"
+                    android:textColor="@color/appcolor"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/txt_Address"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:gravity="center|left"
+                    android:text="Số 1, Võ Văn Ngân, Thủ Đức, TP HCM"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dark"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_icon6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:text="@string/fa_info"
+                    android:textColor="@color/appcolor"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:gravity="center|left"
+                    android:text="Giới thiệu về công ty:"
                     android:textSize="15sp" />
 
-                <ImageButton
-                    android:id="@id/expand_collapse"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|bottom"
-                    android:background="@android:color/transparent"
-                    android:padding="16dp" />
-            </com.ms.square.android.expandabletextview.ExpandableTextView>
-        </LinearLayout>
+            </LinearLayout>
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <com.ms.square.android.expandabletextview.ExpandableTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/txt_Description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    expandableTextView:animDuration="200"
+                    expandableTextView:maxCollapsedLines="7">
+
+                    <TextView
+                        android:id="@id/expandable_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Giới thiệu công ty"
+                        android:textSize="15sp" />
+
+                    <ImageButton
+                        android:id="@id/expand_collapse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|bottom"
+                        android:background="@android:color/transparent"
+                        android:padding="16dp" />
+                </com.ms.square.android.expandabletextview.ExpandableTextView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
 public class Notification {
+    private String Key;
     private String UserId;
     private String WorkInfoKey;
     private String Title;
@@ -18,6 +19,14 @@ public class Notification {
     }
 
     public Notification() {
+    }
+
+    public String getKey() {
+        return Key;
+    }
+
+    public void setKey(String key) {
+        Key = key;
     }
 
     public String getUserId() {
