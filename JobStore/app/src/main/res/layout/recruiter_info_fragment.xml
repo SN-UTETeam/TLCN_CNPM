@@ -5,13 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.spkt.nguyenducnguu.jobstore.UV.fragments.RecruiterInfoFragment">
-<<<<<<< HEAD
-    <LinearLayout
-=======
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
->>>>>>> 45ea796f9732c52207722ce36337322cff276e8d
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
