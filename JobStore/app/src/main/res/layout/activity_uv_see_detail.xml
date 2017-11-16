@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -51,8 +50,9 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -173,48 +173,41 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:visibility="visible">
 
-                <LinearLayout
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_layout"
+                    style="@style/MyCustomTabLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:background="@color/dark"
+                    app:tabIndicatorColor="@null"
+                    app:tabMode="fixed"
+                    app:tabSelectedTextColor="@color/appcolor"
+                    app:tabTextColor="@color/black">
 
-                    <android.support.design.widget.TabLayout
-                        android:id="@+id/tab_layout"
-                        style="@style/MyCustomTabLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:background="@color/dark"
-                        app:tabIndicatorColor="@null"
-                        app:tabMode="fixed"
-                        app:tabSelectedTextColor="@color/appcolor"
-                        app:tabTextColor="@color/black">
+                </android.support.design.widget.TabLayout>
 
-                    </android.support.design.widget.TabLayout>
+            </LinearLayout>
 
-                </LinearLayout>
+            <LinearLayout
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
 
-                <LinearLayout
-                    android:id="@+id/viewpager"
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/view_Pager"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/view_Pager"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_below="@+id/toolbar"
-                        android:layout_centerHorizontal="true" />
-                </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true" />
             </LinearLayout>
         </LinearLayout>
+
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
