@@ -98,9 +98,10 @@ public class ListenNewWorkInfoService extends Service {
         builder.setAutoCancel(true)
                 .setDefaults(android.app.Notification.DEFAULT_ALL)
                 .setTicker("JobStore")
-                .setContentInfo(notification.getTitle())
+                .setContentTitle(notification.getTitle())
                 .setContentText(notification.getContent())
-                .setSmallIcon(R.mipmap.ic_launcher);
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentIntent(pendingIntent);
         NotificationManager manager = (NotificationManager) getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
         int randomInt = new Random().nextInt(9999 - 1) + 1;
         manager.notify(randomInt, builder.build());

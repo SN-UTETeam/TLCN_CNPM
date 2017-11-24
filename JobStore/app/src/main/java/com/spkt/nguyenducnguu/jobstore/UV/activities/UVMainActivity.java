@@ -53,10 +53,6 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uv_main);
 
-        //Register Service
-        Intent service = new Intent(UVMainActivity.this, ListenNewWorkInfoService.class);
-        startService(service);
-
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         contentView = inflater.inflate(R.layout.activity_uv_nav_header_main, null);
 

@@ -13,6 +13,7 @@ import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.Roles;
 import com.spkt.nguyenducnguu.jobstore.NTD.activities.NTDMainActivity;
+import com.spkt.nguyenducnguu.jobstore.Service.ListenNewWorkInfoService;
 import com.spkt.nguyenducnguu.jobstore.UV.activities.UVMainActivity;
 
 public class UpdateUI {
@@ -34,6 +35,9 @@ public class UpdateUI {
                             intent = new Intent(context, NTDMainActivity.class);
                         } else if (role.getRole() == 1) {//UV
                             intent = new Intent(context, UVMainActivity.class);
+                            //Register Service
+                            Intent service = new Intent(context, ListenNewWorkInfoService.class);
+                            context.startService(service);
                         } else { //Admin
                             intent = new Intent(context, AdminMainActivity.class);
                         }
