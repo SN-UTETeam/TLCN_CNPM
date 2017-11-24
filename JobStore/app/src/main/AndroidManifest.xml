@@ -47,7 +47,16 @@
         <activity android:name=".UV.activities.UVSeeDetailActivity" />
         <activity android:name=".UV.activities.UVViewWorkInfoActivity" />
         <activity android:name=".UV.activities.UVViewNotificationActivity" />
-        <activity android:name=".NTD.activities.NTDViewNotificationActivity"></activity>
+        <activity android:name=".NTD.activities.NTDViewNotificationActivity" />
+
+        <service
+            android:name=".Service.ListenNewWorkInfoService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".Service.ListenNewApplyService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

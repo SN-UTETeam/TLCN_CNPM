@@ -28,6 +28,7 @@ import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.LoginActivity;
 import com.spkt.nguyenducnguu.jobstore.Models.Candidate;
 import com.spkt.nguyenducnguu.jobstore.R;
+import com.spkt.nguyenducnguu.jobstore.Service.ListenNewWorkInfoService;
 import com.spkt.nguyenducnguu.jobstore.UV.fragments.UVFollowFragment;
 import com.spkt.nguyenducnguu.jobstore.UV.fragments.UVJobFragment;
 import com.spkt.nguyenducnguu.jobstore.UV.fragments.UVMainFragment;
@@ -51,6 +52,10 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uv_main);
+
+        //Register Service
+        Intent service = new Intent(UVMainActivity.this, ListenNewWorkInfoService.class);
+        startService(service);
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         contentView = inflater.inflate(R.layout.activity_uv_nav_header_main, null);

@@ -117,7 +117,7 @@ public class UVViewWorkInfoActivity extends AppCompatActivity {
                     }
 
                     String NotificationKey = FirebaseDatabase.getInstance().getReference(Node.RECRUITERS
-                            + "/" + FirebaseAuth.getInstance().getCurrentUser().getUid()
+                            + "/" + workInfo.getUserId()
                             + "/notifications").push().getKey();
 
                     Notification n = new Notification();
@@ -126,7 +126,7 @@ public class UVViewWorkInfoActivity extends AppCompatActivity {
                     if(candidate != null)
                         n.setContent(candidate.getFullName() + " đã ứng tuyển.");
                     else n.setContent(FirebaseAuth.getInstance().getCurrentUser().getEmail() + " đã ứng tuyển.");
-                    n.setStatus(0);
+                    n.setStatus(Notification.NOTIFY);
                     n.setSendTime((new Date()).getTime());
                     n.setUserId(FirebaseAuth.getInstance().getCurrentUser().getUid());
                     n.setWorkInfoKey(workInfo.getKey());

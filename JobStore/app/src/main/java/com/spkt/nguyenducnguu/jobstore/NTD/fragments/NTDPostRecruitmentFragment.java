@@ -217,7 +217,7 @@ public class NTDPostRecruitmentFragment extends Fragment {
                 n.setTitle(wf.getTitlePost());
                 n.setContent(recruiter.getCompanyName() + " đã đăng một thông tin tuyển dụng mới.");
                 n.setSendTime(wf.getPostTime());
-                n.setStatus(0);
+                n.setStatus(Notification.NOTIFY);
                 n.setUserId(recruiter.getKey());
                 n.setWorkInfoKey(ref.getKey());
 

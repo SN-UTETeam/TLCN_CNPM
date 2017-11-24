@@ -3,6 +3,9 @@ package com.spkt.nguyenducnguu.jobstore.Models;
 import android.support.annotation.NonNull;
 
 public class Notification implements Comparable<Notification> {
+    public static int NOT_SEEN = 0;
+    public static int SEEN = 1;
+    public static int NOTIFY = 2;
     private String Key;
     private String UserId;
     private String WorkInfoKey;
