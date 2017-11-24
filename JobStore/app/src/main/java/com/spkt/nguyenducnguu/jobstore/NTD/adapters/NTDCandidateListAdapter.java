@@ -10,8 +10,11 @@ import android.widget.TextView;
 
 import com.spkt.nguyenducnguu.jobstore.Models.Candidate;
 import com.spkt.nguyenducnguu.jobstore.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NTDCandidateListAdapter extends BaseAdapter {
     private List<Candidate> listData;
@@ -44,7 +47,7 @@ public class NTDCandidateListAdapter extends BaseAdapter {
         if (view == null) {
             view = layoutInflater.inflate(R.layout.list_item_candidate_layout, null);
             holder = new ViewHolder();
-            holder.imgv_Avatar = (ImageView) view.findViewById(R.id.imgv_Avatar);
+            holder.imgv_Avatar = (CircleImageView) view.findViewById(R.id.imgv_Avatar);
             holder.txt_Key = (TextView) view.findViewById(R.id.txt_Key);
             holder.txt_FullName = (TextView) view.findViewById(R.id.txt_FullName);
             holder.txt_Tag = (TextView) view.findViewById(R.id.txt_Tag);
@@ -59,10 +62,15 @@ public class NTDCandidateListAdapter extends BaseAdapter {
         holder.txt_Tag.setText(this.listData.get(i).getCandidateDetail().getTag());
         holder.txt_Experience.setText(this.listData.get(i).getCandidateDetail().getExperience());
         holder.txt_WorkPlace.setText(this.listData.get(i).getCandidateDetail().getWorkPlaces());
+
+        if(this.listData.get(i).getAvatar() != null)
+            Picasso.with(context).load(this.listData.get(i).getAvatar()).into(holder.imgv_Avatar);
+        else Picasso.with(context).load(R.drawable.ic_default_avatar).into(holder.imgv_Avatar);
+
         return view;
     }
     static class ViewHolder {
-        ImageView imgv_Avatar;
+        CircleImageView imgv_Avatar;
         TextView txt_Key;
         TextView txt_FullName;
         TextView txt_Tag;

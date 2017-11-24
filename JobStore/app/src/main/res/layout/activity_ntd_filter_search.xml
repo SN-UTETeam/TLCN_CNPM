@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.spkt.nguyenducnguu.jobstore.NTD.activities.NTDRegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/appcolor"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7">
+
+            <ImageView
+                android:id="@+id/imgv_Back"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_back_24dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:gravity="left|center"
+                android:text="Bộ lọc tìm kiếm"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <Button
+                android:id="@+id/btn_Finish"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/appcolor"
+                android:text="Xong"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="Khu vực:"
+                        android:textColor="@color/appcolor"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7">
+
+                    <mabbas007.tagsedittext.TagsEditText
+                        android:id="@+id/txt_WorkPlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_custom"
+                        android:focusable="false"
+                        android:maxLength="2000"
+                        android:maxLines="10"
+                        android:textSize="12sp"
+                        app:allowSpaceInTag="true"
+                        app:tagsBackground="@drawable/square"
+                        app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
+                        app:tagsCloseImageRight="@drawable/tag_close"
+                        app:tagsTextColor="@color/white"
+                        app:tagsTextSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="5dp">
+
+                    <Button
+                        android:id="@+id/btn_AddWorkPlace"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/btn_plus"
+                        android:text="@string/fa_plus"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="Loại hình: "
+                        android:textColor="@color/appcolor"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7">
+
+                    <mabbas007.tagsedittext.TagsEditText
+                        android:id="@+id/txt_WorkType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_custom"
+                        android:focusable="false"
+                        android:maxLength="2000"
+                        android:maxLines="10"
+                        android:textSize="12sp"
+                        app:allowSpaceInTag="true"
+                        app:tagsBackground="@drawable/square"
+                        app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
+                        app:tagsCloseImageRight="@drawable/tag_close"
+                        app:tagsTextColor="@color/white"
+                        app:tagsTextSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="5dp">
+
+                    <Button
+                        android:id="@+id/btn_AddWorkType"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/btn_plus"
+                        android:text="@string/fa_plus"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="Ngành nghề: "
+                        android:textColor="@color/appcolor"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7">
+
+                    <mabbas007.tagsedittext.TagsEditText
+                        android:id="@+id/txt_Career"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_custom"
+                        android:focusable="false"
+                        android:maxLength="2000"
+                        android:maxLines="10"
+                        android:textSize="12sp"
+                        app:allowSpaceInTag="true"
+                        app:tagsBackground="@drawable/square"
+                        app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
+                        app:tagsCloseImageRight="@drawable/tag_close"
+                        app:tagsTextColor="@color/white"
+                        app:tagsTextSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="5dp">
+
+                    <Button
+                        android:id="@+id/btn_AddCareer"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/btn_plus"
+                        android:text="@string/fa_plus"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="Trình độ:"
+                        android:textColor="@color/appcolor"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7">
+
+                    <mabbas007.tagsedittext.TagsEditText
+                        android:id="@+id/txt_Level"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_custom"
+                        android:focusable="false"
+                        android:maxLength="2000"
+                        android:maxLines="10"
+                        android:textSize="12sp"
+                        app:allowSpaceInTag="true"
+                        app:tagsBackground="@drawable/square"
+                        app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
+                        app:tagsCloseImageRight="@drawable/tag_close"
+                        app:tagsTextColor="@color/white"
+                        app:tagsTextSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp">
+
+                    <Button
+                        android:id="@+id/btn_AddLevel"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/btn_plus"
+                        android:text="@string/fa_plus"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="Kinh nghiệm:"
+                        android:textColor="@color/appcolor"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7">
+
+                    <mabbas007.tagsedittext.TagsEditText
+                        android:id="@+id/txt_Experience"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_custom"
+                        android:focusable="false"
+                        android:maxLength="2000"
+                        android:maxLines="10"
+                        android:textSize="12sp"
+                        app:allowSpaceInTag="true"
+                        app:tagsBackground="@drawable/square"
+                        app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
+                        app:tagsCloseImageRight="@drawable/tag_close"
+                        app:tagsTextColor="@color/white"
+                        app:tagsTextSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp">
+
+                    <Button
+                        android:id="@+id/btn_AddExperience"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/btn_plus"
+                        android:text="@string/fa_plus"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|left"
+                        android:text="Lương:"
+                        android:textColor="@color/appcolor"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7">
+
+                    <mabbas007.tagsedittext.TagsEditText
+                        android:id="@+id/txt_Salary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_custom"
+                        android:focusable="false"
+                        android:maxLength="2000"
+                        android:maxLines="10"
+                        android:textSize="12sp"
+                        app:allowSpaceInTag="true"
+                        app:tagsBackground="@drawable/square"
+                        app:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
+                        app:tagsCloseImageRight="@drawable/tag_close"
+                        app:tagsTextColor="@color/white"
+                        app:tagsTextSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp">
+
+                    <Button
+                        android:id="@+id/btn_AddSalary"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/btn_plus"
+                        android:text="@string/fa_plus"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

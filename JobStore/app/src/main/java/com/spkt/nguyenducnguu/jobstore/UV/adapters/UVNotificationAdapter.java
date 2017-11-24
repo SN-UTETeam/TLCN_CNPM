@@ -29,6 +29,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class UVNotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Notification> listData;
@@ -131,7 +133,7 @@ public class UVNotificationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     public class NotificationHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-        ImageView imgv_Avatar;
+        CircleImageView imgv_Avatar;
         TextView txt_Title, txt_Content, txt_SendTime, txt_icon1, txt_Key, txt_UserId, txt_WorkInfoKey;
         LinearLayout ln_notification;
         private ItemClickListener clickListener;
@@ -139,7 +141,7 @@ public class UVNotificationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         public NotificationHolder(View itemView) {
             super(itemView);
 
-            imgv_Avatar = (ImageView) itemView.findViewById(R.id.imgv_Avatar);
+            imgv_Avatar = (CircleImageView) itemView.findViewById(R.id.imgv_Avatar);
             txt_Title = (TextView) itemView.findViewById(R.id.txt_Title);
             txt_Content = (TextView) itemView.findViewById(R.id.txt_Content);
             txt_SendTime = (TextView) itemView.findViewById(R.id.txt_SendTime);

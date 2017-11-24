@@ -23,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class NTDWorkInfoListAdapter extends BaseAdapter {
     private List<WorkInfo> listData;
     private LayoutInflater layoutInflater;
@@ -54,7 +56,7 @@ public class NTDWorkInfoListAdapter extends BaseAdapter {
         if (view == null) {
             view = layoutInflater.inflate(R.layout.list_item_post_layout, null);
             holder = new NTDWorkInfoListAdapter.ViewHolder();
-            holder.imgv_Avatar = (ImageView) view.findViewById(R.id.imgv_Avatar);
+            holder.imgv_Avatar = (CircleImageView) view.findViewById(R.id.imgv_Avatar);
             holder.txt_Key = (TextView) view.findViewById(R.id.txt_Key);
             holder.txt_Title = (TextView) view.findViewById(R.id.txt_Title);
             holder.txt_WorkPlace = (TextView) view.findViewById(R.id.txt_WorkPlace);
@@ -84,6 +86,7 @@ public class NTDWorkInfoListAdapter extends BaseAdapter {
                 public void onSuccess(DataSnapshot dataSnapshot) {
                     if(dataSnapshot.getValue(Recruiter.class).getAvatar() != null)
                         Picasso.with(context).load(dataSnapshot.getValue(Recruiter.class).getAvatar()).into(holder.imgv_Avatar);
+                    else Picasso.with(context).load(R.drawable.ic_default_avatar).into(holder.imgv_Avatar);
                 }
 
                 @Override
@@ -104,7 +107,7 @@ public class NTDWorkInfoListAdapter extends BaseAdapter {
         return view;
     }
     static class ViewHolder {
-        ImageView imgv_Avatar;
+        CircleImageView imgv_Avatar;
         TextView txt_Title;
         TextView txt_WorkPlace;
         TextView txt_Views;

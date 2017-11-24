@@ -6,17 +6,28 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.spkt.nguyenducnguu.jobstore.NTD.activities.NTDSelectFilterActivity;
-import com.spkt.nguyenducnguu.jobstore.NTD.adapters.SearchListAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Const.RequestCode;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnFilterListener;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
+import com.spkt.nguyenducnguu.jobstore.Models.Candidate;
+import com.spkt.nguyenducnguu.jobstore.Models.SearchCandidateSetting;
+import com.spkt.nguyenducnguu.jobstore.NTD.activities.NTDFilterSearchActivity;
+import com.spkt.nguyenducnguu.jobstore.NTD.adapters.NTDSearchListAdapter;
 import com.spkt.nguyenducnguu.jobstore.FontManager.FontManager;
 import com.spkt.nguyenducnguu.jobstore.R;
 
@@ -30,41 +41,104 @@ public class NTDSearchFilterFragment extends Fragment {
 
     LinearLayout linearLayout;
     RecyclerView mRecyclerView;
-    ScrollView scrollView;
-    SearchListAdapter mRcvAdapter;
-    TextView txt_Filter;
-    List<String> data;
+    NTDSearchListAdapter mAdapter;
+    TextView txt_Filter, txt_NumberResult;
+    EditText txt_Query;
+    List<Candidate> lstData = new ArrayList<>();
+    public static SearchCandidateSetting mSettingSearch;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_ntd_search_filer, container, false);
 
+        mSettingSearch = new SearchCandidateSetting();
+        mAdapter = new NTDSearchListAdapter(lstData);
         //Method để sử dụng font awesome trong fragment
         Typeface iconFont = FontManager.getTypeface(getContext(), FontManager.FONTAWESOME);
         FontManager.markAsIconContainer(rootView.findViewById(R.id.txt_Filter), iconFont);
 
         addView(rootView);
         addOnScrolled();
-        addData();
         addEvent();
-        setmRecyclerView();
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
+        // ta sẽ set setHasFixedSize bằng True để tăng performance
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setAdapter(mAdapter);
+
+        loadDefaultData();
 
         return rootView;
     }
+
+    private void loadDefaultData() {
+        Database.getData(Node.CANDIDATES, new OnGetDataListener() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                lstData.clear();
+                for(DataSnapshot mdata : dataSnapshot.getChildren())
+                {
+                    Candidate can = mdata.getValue(Candidate.class);
+                    if(can == null) continue;
+                    can.setKey(mdata.getKey());
+                    lstData.add(can);
+                    mAdapter.notifyDataSetChanged();
+                    mAdapter.FilterData(mSettingSearch);
+                    txt_NumberResult.setText(lstData.size() + "/" + lstData.size());
+                }
+            }
+
+            @Override
+            public void onFailed(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private void addView(View rootView){
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_list_uv);
         linearLayout = (LinearLayout) rootView.findViewById(R.id.ln_filter);
         txt_Filter = (TextView) rootView.findViewById(R.id.txt_Filter);
+        txt_NumberResult = (TextView) rootView.findViewById(R.id.txt_NumberResult);
+        txt_Query = (EditText) rootView.findViewById(R.id.txt_Query);
     }
+
     private void addEvent(){
+        txt_Query.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mSettingSearch.setQuery(txt_Query.getText().toString());
+                mAdapter.FilterData(mSettingSearch);
+            }
+        });
+        mAdapter.setOnFilterListener(new OnFilterListener() {
+            @Override
+            public void onFilter(int numberResult) {
+                txt_NumberResult.setText(numberResult + "/" + lstData.size());
+            }
+        });
         txt_Filter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(getActivity(), NTDSelectFilterActivity.class);
-                startActivity(myIntent);
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), NTDFilterSearchActivity.class);
+                startActivityForResult(intent, RequestCode.FILTER);
             }
         });
     }
+
     private void addOnScrolled(){
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -89,6 +163,7 @@ public class NTDSearchFilterFragment extends Fragment {
         });
 
     }
+
     private void hideViews() {
         linearLayout.animate().translationY(-linearLayout.getHeight()).setInterpolator(new AccelerateInterpolator(2));
     }
@@ -96,29 +171,14 @@ public class NTDSearchFilterFragment extends Fragment {
     private void showViews() {
         linearLayout.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
     }
-    private void addData() {
-        data = new ArrayList<>();
 
-        data.add("Sang Sang Nguyễn");
-        data.add("Hoàng Minh Lợi");
-        data.add("Nguyễn Duy Bảo");
-        data.add("Nguyễn Ngọc Doanh");
-        data.add("Nguyễn Phạm Thế Hà");
-        data.add("Trần Anh Đức");
-        data.add("Trần Minh Hải");
-        data.add("Trần Minh Hải");
-        data.add("Trần Minh Hải");
-        data.add("Trần Minh Hải");
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        mRcvAdapter = new SearchListAdapter(data);
-    }
-    private void setmRecyclerView(){
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
-        mRecyclerView.setLayoutManager(layoutManager);
-        // ta sẽ set setHasFixedSize bằng True để tăng performance
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(mRcvAdapter);
+        if(requestCode == RequestCode.FILTER)
+        {
+            mAdapter.FilterData(mSettingSearch);
+        }
     }
 }

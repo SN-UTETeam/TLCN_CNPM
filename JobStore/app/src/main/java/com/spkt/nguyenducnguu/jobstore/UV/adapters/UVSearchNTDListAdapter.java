@@ -278,13 +278,13 @@ public class UVSearchNTDListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     public class RecruiterViewHolder extends RecyclerView.ViewHolder {
         TextView txt_Key, txt_CompanyName, txt_Email, txt_Website, txt_Address;
-        ImageView imgv_Avatar;
+        CircleImageView imgv_Avatar;
         LinearLayout ln_Recruiter;
 
         public RecruiterViewHolder(View itemView) {
             super(itemView);
             ln_Recruiter = (LinearLayout) itemView.findViewById(R.id.ln_Recruiter);
-            imgv_Avatar = (ImageView) itemView.findViewById(R.id.imgv_Avatar);
+            imgv_Avatar = (CircleImageView) itemView.findViewById(R.id.imgv_Avatar);
 
             txt_Key = (TextView) itemView.findViewById(R.id.txt_Key);
             txt_CompanyName = (TextView) itemView.findViewById(R.id.txt_CompanyName);

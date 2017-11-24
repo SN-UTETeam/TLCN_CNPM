@@ -1,4 +1,4 @@
-package com.spkt.nguyenducnguu.jobstore.UV.adapters;
+package com.spkt.nguyenducnguu.jobstore.NTD.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,10 +19,13 @@ import com.spkt.nguyenducnguu.jobstore.Const.Node;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnFilterListener;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
+import com.spkt.nguyenducnguu.jobstore.Models.Candidate;
 import com.spkt.nguyenducnguu.jobstore.Models.Recruiter;
+import com.spkt.nguyenducnguu.jobstore.Models.SearchCandidateSetting;
 import com.spkt.nguyenducnguu.jobstore.Models.SearchWorkInfoSetting;
 import com.spkt.nguyenducnguu.jobstore.Models.WorkInfo;
 import com.spkt.nguyenducnguu.jobstore.R;
+import com.spkt.nguyenducnguu.jobstore.UV.activities.UVProfileActivity;
 import com.spkt.nguyenducnguu.jobstore.UV.activities.UVViewWorkInfoActivity;
 import com.squareup.picasso.Picasso;
 
@@ -33,16 +36,16 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
+public class NTDSearchListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
     private ItemFilter mFilter = new ItemFilter();
-    private List<WorkInfo> lstData;
-    private List<WorkInfo> filteredData = new ArrayList<WorkInfo>();
+    private List<Candidate> lstData;
+    private List<Candidate> filteredData = new ArrayList<Candidate>();
     private Context context;
     private OnFilterListener onFilterListener;
-    private SearchWorkInfoSetting mSetting;
+    private SearchCandidateSetting mSetting;
 
-    public UVSearchWorkInfoListAdapter(List<WorkInfo> lstData) {
-        mSetting = new SearchWorkInfoSetting();
+    public NTDSearchListAdapter(List<Candidate> lstData) {
+        mSetting = new SearchCandidateSetting();
         this.lstData = lstData;
         this.filteredData.addAll(lstData);
     }
@@ -52,47 +55,33 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
         context = parent.getContext();
         RecyclerView.ViewHolder viewHolder;
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.list_item_workinfo_layout, parent, false);
-        viewHolder = new WorkInfoViewHolder(v);
+        View v = inflater.inflate(R.layout.list_item_candidate_layout, parent, false);
+        viewHolder = new CandidateViewHolder(v);
 
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final WorkInfoViewHolder vh = (WorkInfoViewHolder) holder;
+        final CandidateViewHolder vh = (CandidateViewHolder) holder;
         Log.d("CheckPosition", "Position: " + position + " - Size: " + filteredData.size());
-        WorkInfo w = filteredData.get(position);
-        vh.txt_WorkInfoKey.setText(w.getKey());
-        vh.txt_TitlePost.setText(w.getTitlePost());
-        vh.txt_Career.setText(w.getWorkDetail().getCarrers());
-        vh.txt_Salary.setText(w.getWorkDetail().getSalary());
-        vh.txt_WorkPlace.setText(w.getWorkPlace());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String ExpirationTime = sdf.format(new Date(w.getExpirationTime()));
-        vh.txt_ExpirationTime.setText(ExpirationTime);
+        Candidate can = filteredData.get(position);
+        vh.txt_Key.setText(can.getKey());
+        vh.txt_FullName.setText(can.getFullName());
+        vh.txt_Tag.setText(can.getCandidateDetail().getTag());
+        vh.txt_Experience.setText(can.getCandidateDetail().getExperience());
+        vh.txt_WorkPlace.setText(can.getCandidateDetail().getWorkPlaces());
 
-        Database.getData(Node.RECRUITERS + "/" + w.getUserId(), new OnGetDataListener() {
-            @Override
-            public void onSuccess(DataSnapshot dataSnapshot) {
-                Recruiter r = dataSnapshot.getValue(Recruiter.class);
-                vh.txt_CompanyName.setText(r.getCompanyName());
-                if(r.getAvatar() != null)
-                    Picasso.with(context).load(r.getAvatar()).into(vh.imgv_Avatar);
-                else
-                    Picasso.with(context).load(R.drawable.ic_default_avatar).into(vh.imgv_Avatar);
-            }
+        if(can.getAvatar() != null)
+            Picasso.with(context).load(can.getAvatar()).into(vh.imgv_Avatar);
+        else
+            Picasso.with(context).load(R.drawable.ic_default_avatar).into(vh.imgv_Avatar);
 
-            @Override
-            public void onFailed(DatabaseError databaseError) {
-
-            }
-        });
-        vh.ln_WorkInfo.setOnClickListener(new View.OnClickListener() {
+        vh.ln_Candidate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView txt = (TextView) v.findViewById(R.id.txt_WorkInfoKey);
-                Intent intent = new Intent(context, UVViewWorkInfoActivity.class);
+                TextView txt = (TextView) v.findViewById(R.id.txt_Key);
+                Intent intent = new Intent(context, UVProfileActivity.class);
                 intent.putExtra("Key", txt.getText().toString());
                 context.startActivity(intent);
             }
@@ -113,8 +102,8 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
         this.onFilterListener = onFilterListener;
     }
 
-    public void FilterData(SearchWorkInfoSetting searchWorkInfoSetting){
-        mSetting = searchWorkInfoSetting;
+    public void FilterData(SearchCandidateSetting searchCandidateSetting){
+        mSetting = searchCandidateSetting;
         String Query = "";
         Query += mSetting.getWorkTypes().toString().substring(1, mSetting.getWorkTypes().toString().length() - 1);
         Query += " " + mSetting.getWorkPlaces().toString().substring(1, mSetting.getWorkPlaces().toString().length() - 1);
@@ -131,7 +120,6 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            Log.d("ABCDEF", "Query: '" + constraint.toString().trim().toUpperCase() + "'");
             String filterString = constraint.toString().trim().toUpperCase();
             String[] filterArr = filterString.split(" ");
             filteredData.clear();
@@ -140,20 +128,20 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
 
             if(filterString.length() > 0){
                 for(int i=0; i < lstData.size(); i++){
-                    WorkInfo w = lstData.get(i);
+                    Candidate can = lstData.get(i);
                     for (String str : filterArr) {
                         str = str.trim();
                         if(str.isEmpty() || str == "") continue;
-                        if (w.getTitlePost().toUpperCase().contains(str)
-                                || w.getCompanyName().toUpperCase().contains(str)
-                                || w.getWorkPlace().toUpperCase().contains(str)
-                                || w.getWorkDetail().getCarrers().toUpperCase().contains(str)
-                                || w.getWorkDetail().getWorkTypes().toUpperCase().contains(str)
-                                || w.getWorkDetail().getSalary().toUpperCase().contains(str)
-                                || w.getWorkDetail().getExperience().toUpperCase().contains(str)
-                                || w.getWorkDetail().getLevel().toUpperCase().contains(str))
+                        if (can.getFullName().toUpperCase().contains(str)
+                                || can.getCandidateDetail().getTag().toUpperCase().contains(str)
+                                || can.getCandidateDetail().getWorkPlaces().toUpperCase().contains(str)
+                                || can.getCandidateDetail().getCareers().toUpperCase().contains(str)
+                                || can.getCandidateDetail().getWorkTypes().toUpperCase().contains(str)
+                                || can.getCandidateDetail().getSalary().toUpperCase().contains(str)
+                                || can.getCandidateDetail().getExperience().toUpperCase().contains(str)
+                                || can.getCandidateDetail().getLevel().toUpperCase().contains(str))
                         {
-                            filteredData.add(w);
+                            filteredData.add(can);
                             break;
                         }
                     }
@@ -177,23 +165,21 @@ public class UVSearchWorkInfoListAdapter extends RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    public class WorkInfoViewHolder extends RecyclerView.ViewHolder {
-        TextView txt_WorkInfoKey, txt_TitlePost, txt_CompanyName, txt_Career, txt_Salary, txt_WorkPlace, txt_ExpirationTime;
+    public class CandidateViewHolder extends RecyclerView.ViewHolder {
+        TextView txt_Key, txt_FullName, txt_Tag, txt_Experience, txt_WorkPlace;
         CircleImageView imgv_Avatar;
-        LinearLayout ln_WorkInfo;
+        LinearLayout ln_Candidate;
 
-        public WorkInfoViewHolder(View itemView) {
+        public CandidateViewHolder(View itemView) {
             super(itemView);
-            ln_WorkInfo = (LinearLayout) itemView.findViewById(R.id.ln_WorkInfo);
             imgv_Avatar = (CircleImageView) itemView.findViewById(R.id.imgv_Avatar);
+            ln_Candidate = (LinearLayout) itemView.findViewById(R.id.ln_Candidate);
 
-            txt_WorkInfoKey = (TextView) itemView.findViewById(R.id.txt_WorkInfoKey);
-            txt_TitlePost = (TextView) itemView.findViewById(R.id.txt_TitlePost);
-            txt_CompanyName = (TextView) itemView.findViewById(R.id.txt_CompanyName);
-            txt_Career = (TextView) itemView.findViewById(R.id.txt_Career);
-            txt_Salary = (TextView) itemView.findViewById(R.id.txt_Salary);
+            txt_Key = (TextView) itemView.findViewById(R.id.txt_Key);
+            txt_FullName = (TextView) itemView.findViewById(R.id.txt_FullName);
+            txt_Tag = (TextView) itemView.findViewById(R.id.txt_Tag);
+            txt_Experience = (TextView) itemView.findViewById(R.id.txt_Experience);
             txt_WorkPlace = (TextView) itemView.findViewById(R.id.txt_WorkPlace);
-            txt_ExpirationTime = (TextView) itemView.findViewById(R.id.txt_ExpirationTime);
         }
     }
 }
