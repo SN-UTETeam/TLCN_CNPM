@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v7.app.NotificationCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,6 +52,8 @@ public class ListenNewWorkInfoService extends Service {
                     Notification notification = dataSnapshot.getValue(Notification.class);
                     if (notification.getStatus() == Notification.NOTIFY) {
                         showNotification(dataSnapshot.getKey(), notification);
+                        notification.setStatus(Notification.NOT_SEEN);
+                        refNotification.child(dataSnapshot.getKey()).setValue(notification);
                     }
                 }
 
@@ -81,16 +84,20 @@ public class ListenNewWorkInfoService extends Service {
 
     private void showNotification(String key, Notification notification) {
         Intent intent;
+        Log.d("KEY_DEBUG","key = " + key);
+
         if (notification.getWorkInfoKey() != null && !notification.getWorkInfoKey().isEmpty()
                 && !notification.getWorkInfoKey().trim().equals("")) {
             intent = new Intent(getBaseContext(), UVViewWorkInfoActivity.class);
             intent.putExtra("Key", notification.getWorkInfoKey());
+            Log.d("KEY_DEBUG", "WorkInfoKey = " + notification.getWorkInfoKey());
         } else {
             intent = new Intent(getBaseContext(), UVViewNotificationActivity.class);
             intent.putExtra("Key", key);
         }
+        int randomInt = new Random().nextInt(9999 - 1) + 1;
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(getBaseContext(), 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getBaseContext(), randomInt, intent, 0);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getBaseContext());
 
         builder.setAutoCancel(true)
@@ -101,7 +108,6 @@ public class ListenNewWorkInfoService extends Service {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pendingIntent);
         NotificationManager manager = (NotificationManager) getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        int randomInt = new Random().nextInt(9999 - 1) + 1;
         manager.notify(randomInt, builder.build());
     }
 
