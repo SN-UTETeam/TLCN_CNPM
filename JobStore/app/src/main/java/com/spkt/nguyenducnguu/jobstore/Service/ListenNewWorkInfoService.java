@@ -100,7 +100,7 @@ public class ListenNewWorkInfoService extends Service {
                 .setTicker("JobStore")
                 .setContentInfo(notification.getTitle())
                 .setContentText(notification.getContent())
-                .setSmallIcon(R.drawable.icon);
+                .setSmallIcon(R.mipmap.ic_launcher);
         NotificationManager manager = (NotificationManager) getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
         int randomInt = new Random().nextInt(9999 - 1) + 1;
         manager.notify(randomInt, builder.build());
