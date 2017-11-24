@@ -19,6 +19,7 @@ import com.spkt.nguyenducnguu.jobstore.Models.Notification;
 import com.spkt.nguyenducnguu.jobstore.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class NTDNotificationFragment extends Fragment {
@@ -52,6 +53,7 @@ public class NTDNotificationFragment extends Fragment {
                             Notification n = mData.getValue(Notification.class);
                             n.setKey(mData.getKey());
                             lstNotification.add(n);
+                            Collections.sort(lstNotification);
                             mRecyclerView.getAdapter().notifyDataSetChanged();
                         }
                     }

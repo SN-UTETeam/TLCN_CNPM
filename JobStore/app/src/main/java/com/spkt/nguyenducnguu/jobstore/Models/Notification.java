@@ -1,6 +1,8 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
-public class Notification {
+import android.support.annotation.NonNull;
+
+public class Notification implements Comparable<Notification> {
     private String Key;
     private String UserId;
     private String WorkInfoKey;
@@ -75,5 +77,10 @@ public class Notification {
 
     public void setStatus(int status) {
         Status = status;
+    }
+
+    @Override
+    public int compareTo(@NonNull Notification o) {
+        return o.getSendTime().compareTo(this.getSendTime());
     }
 }

@@ -20,6 +20,7 @@ import com.spkt.nguyenducnguu.jobstore.R;
 import com.spkt.nguyenducnguu.jobstore.UV.adapters.UVNotificationAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class UVNotificationFragment extends Fragment {
@@ -56,6 +57,7 @@ public class UVNotificationFragment extends Fragment {
                     Notification n = mdata.getValue(Notification.class);
                     n.setKey(mdata.getKey());
                     lstData.add(n);
+                    Collections.sort(lstData);
                     mAdapter.notifyDataSetChanged();
                 }
             }

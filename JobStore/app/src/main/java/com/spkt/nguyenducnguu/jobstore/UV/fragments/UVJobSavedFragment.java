@@ -31,6 +31,7 @@ import com.spkt.nguyenducnguu.jobstore.UV.activities.UVFilterSearchActivity;
 import com.spkt.nguyenducnguu.jobstore.UV.adapters.UVSearchWorkInfoListAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -75,6 +76,7 @@ public class UVJobSavedFragment extends Fragment {
                     if(!w.checkSave(FirebaseAuth.getInstance().getCurrentUser().getUid()))
                         continue;
                     lstData.add(w);
+                    Collections.sort(lstData);
                     mAdapter.notifyDataSetChanged();
                     mAdapter.FilterData(mSettingSearch);
                     txt_NumberResult.setText(lstData.size() + "/" + lstData.size());
