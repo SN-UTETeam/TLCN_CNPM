@@ -48,7 +48,7 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
     ImageView img_CoverPhotoUV;
     Toolbar toolbarUV = null;
     View contentView;
-    Intent service = new Intent(this, ListenNewWorkInfoService.class);
+    Intent service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,7 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
         setContentView(R.layout.activity_uv_main);
 
         //Register Service
+        service = new Intent(this, ListenNewWorkInfoService.class);
         startService(service);
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
