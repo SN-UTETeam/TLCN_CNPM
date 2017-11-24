@@ -31,13 +31,10 @@ public class UpdateUI {
                     if (dataSnapshot.exists()) {
                         Intent intent = null;
                         Roles role = dataSnapshot.getValue(Roles.class);
-                        if (role.getRole() == 0) { //NTD
+                        if (role.getRole() == Roles.RECRUITER) { //NTD
                             intent = new Intent(context, NTDMainActivity.class);
-                        } else if (role.getRole() == 1) {//UV
+                        } else if (role.getRole() == Roles.CANDIDATE) {//UV
                             intent = new Intent(context, UVMainActivity.class);
-                            //Register Service
-                            Intent service = new Intent(context, ListenNewWorkInfoService.class);
-                            context.startService(service);
                         } else { //Admin
                             intent = new Intent(context, AdminMainActivity.class);
                         }

@@ -1,6 +1,10 @@
 package com.spkt.nguyenducnguu.jobstore.Models;
 
 public class Roles {
+    public static int RECRUITER = 0;
+    public static int CANDIDATE = 1;
+    public static int ADMIN = 2;
+
     private String Email;
     private int Role;
 

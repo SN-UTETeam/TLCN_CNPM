@@ -16,7 +16,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.Notification;
+import com.spkt.nguyenducnguu.jobstore.Models.Roles;
 import com.spkt.nguyenducnguu.jobstore.R;
 import com.spkt.nguyenducnguu.jobstore.UV.activities.UVViewNotificationActivity;
 import com.spkt.nguyenducnguu.jobstore.UV.activities.UVViewWorkInfoActivity;
@@ -32,8 +35,7 @@ public class ListenNewWorkInfoService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        if(FirebaseAuth.getInstance().getCurrentUser() != null)
-        {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             auth = FirebaseAuth.getInstance();
             db = FirebaseDatabase.getInstance();
             refNotification = db.getReference(Node.CANDIDATES + "/" + auth.getCurrentUser().getUid() + "/notifications");
@@ -42,14 +44,12 @@ public class ListenNewWorkInfoService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if(refNotification != null)
-        {
+        if (refNotification != null) {
             refNotification.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     Notification notification = dataSnapshot.getValue(Notification.class);
-                    if(notification.getStatus() == Notification.NOTIFY)
-                    {
+                    if (notification.getStatus() == Notification.NOTIFY) {
                         showNotification(dataSnapshot.getKey(), notification);
                     }
                 }
@@ -74,20 +74,18 @@ public class ListenNewWorkInfoService extends Service {
 
                 }
             });
-        }
-        else Toast.makeText(getBaseContext(), "refNotification is null", Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(getBaseContext(), "refNotification is null", Toast.LENGTH_LONG).show();
         return super.onStartCommand(intent, flags, startId);
     }
 
     private void showNotification(String key, Notification notification) {
         Intent intent;
         if (notification.getWorkInfoKey() != null && !notification.getWorkInfoKey().isEmpty()
-                && !notification.getWorkInfoKey().equals("")) {
+                && !notification.getWorkInfoKey().trim().equals("")) {
             intent = new Intent(getBaseContext(), UVViewWorkInfoActivity.class);
             intent.putExtra("Key", notification.getWorkInfoKey());
-        }
-        else
-        {
+        } else {
             intent = new Intent(getBaseContext(), UVViewNotificationActivity.class);
             intent.putExtra("Key", key);
         }

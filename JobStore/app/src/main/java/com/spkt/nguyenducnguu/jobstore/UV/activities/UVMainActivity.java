@@ -27,6 +27,7 @@ import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.LoginActivity;
 import com.spkt.nguyenducnguu.jobstore.Models.Candidate;
+import com.spkt.nguyenducnguu.jobstore.Models.Roles;
 import com.spkt.nguyenducnguu.jobstore.R;
 import com.spkt.nguyenducnguu.jobstore.Service.ListenNewWorkInfoService;
 import com.spkt.nguyenducnguu.jobstore.UV.fragments.UVFollowFragment;
@@ -47,11 +48,15 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
     ImageView img_CoverPhotoUV;
     Toolbar toolbarUV = null;
     View contentView;
+    Intent service = new Intent(this, ListenNewWorkInfoService.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uv_main);
+
+        //Register Service
+        startService(service);
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         contentView = inflater.inflate(R.layout.activity_uv_nav_header_main, null);
@@ -174,6 +179,7 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
             case R.id.navUV_logout:
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                 firebaseAuth.signOut();
+                stopService(service);
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 finish();
