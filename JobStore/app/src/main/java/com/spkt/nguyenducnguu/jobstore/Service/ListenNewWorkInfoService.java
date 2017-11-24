@@ -102,10 +102,10 @@ public class ListenNewWorkInfoService extends Service {
 
         builder.setAutoCancel(true)
                 .setDefaults(android.app.Notification.DEFAULT_ALL)
-                .setTicker("JobStore")
+                .setTicker("New Job")
                 .setContentTitle(notification.getTitle())
                 .setContentText(notification.getContent())
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.mipmap.icon)
                 .setContentIntent(pendingIntent);
         NotificationManager manager = (NotificationManager) getBaseContext().getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(randomInt, builder.build());

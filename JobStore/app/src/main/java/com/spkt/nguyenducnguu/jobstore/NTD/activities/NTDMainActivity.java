@@ -33,6 +33,8 @@ import com.spkt.nguyenducnguu.jobstore.NTD.fragments.NTDPostManagerFragment;
 import com.spkt.nguyenducnguu.jobstore.NTD.fragments.NTDPostRecruitmentFragment;
 import com.spkt.nguyenducnguu.jobstore.NTD.fragments.NTDSearchFilterFragment;
 import com.spkt.nguyenducnguu.jobstore.R;
+import com.spkt.nguyenducnguu.jobstore.Service.ListenNewApplyService;
+import com.spkt.nguyenducnguu.jobstore.Service.ListenNewWorkInfoService;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -46,11 +48,16 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
     ImageView img_CoverPhoto;
     Toolbar toolbar = null;
     View contentView;
+    Intent service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ntd_main);
+
+        //Register Service
+        service = new Intent(this, ListenNewApplyService.class);
+        startService(service);
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         contentView = inflater.inflate(R.layout.activity_ntd_nav_header_main, null);
@@ -184,6 +191,7 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
             case R.id.nav_logout:
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                 firebaseAuth.signOut();
+                stopService(service);
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 finish();

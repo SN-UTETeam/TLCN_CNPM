@@ -73,9 +73,9 @@ public class UVNotificationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         vh.txt_SendTime.setText(SendTime);
 
         vh.txt_icon1.setTypeface(FontManager.getTypeface(context, FontManager.FONTAWESOME));
-        if (notification.getStatus() == 0)//chưa xem
-            vh.ln_notification.setBackgroundColor(context.getResources().getColor(R.color.dark1));
-        else vh.ln_notification.setBackgroundColor(context.getResources().getColor(R.color.white));
+        if (notification.getStatus() == Notification.SEEN)//đã xem
+            vh.ln_notification.setBackgroundColor(context.getResources().getColor(R.color.white));
+        else vh.ln_notification.setBackgroundColor(context.getResources().getColor(R.color.dark1));
 
         if (userNotification) {
             try {
@@ -103,7 +103,7 @@ public class UVNotificationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 final TextView txt_WorkInfoKey = (TextView) view.findViewById(R.id.txt_WorkInfoKey);
 
                 Notification n = listData.get(position);
-                n.setStatus(1);
+                n.setStatus(Notification.SEEN);
                 Database.updateData(Node.CANDIDATES + "/" + FirebaseAuth.getInstance().getCurrentUser().getUid()
                         + "/notifications", txt_Key.getText().toString(), n);
 
