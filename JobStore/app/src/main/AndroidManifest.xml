@@ -56,7 +56,9 @@
         <service
             android:name=".Service.ListenNewApplyService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".ADMIN.activities.AdminProfileActivity"></activity>
     </application>
 
 </manifest>
