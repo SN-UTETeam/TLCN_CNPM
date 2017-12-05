@@ -87,9 +87,9 @@
                                 android:id="@+id/txt_icon1"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:background="@drawable/ic_eye"
+                                android:text="@string/fa_eye"
                                 android:gravity="center"
-                                android:textColor="@color/dark1" />
+                                android:textColor="@color/orange" />
 
 
                             <TextView
@@ -112,9 +112,9 @@
                                 android:id="@+id/txt_icon2"
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:background="@drawable/ic_apply"
+                                android:text="@string/fa_userapply"
                                 android:gravity="center"
-                                android:textColor="@color/dark1" />
+                                android:textColor="@color/orange" />
 
                             <TextView
                                 android:id="@+id/txt_NumberApply"
@@ -125,7 +125,6 @@
                                 android:text="0"
                                 android:textColor="@color/appcolor" />
                         </LinearLayout>
-
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -134,11 +133,11 @@
 
                             <TextView
                                 android:id="@+id/txt_icon3"
-                                android:layout_width="10dp"
-                                android:layout_height="10dp"
-                                android:background="@drawable/ic_expirationtime"
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:text="@string/fa_clock"
                                 android:gravity="center"
-                                android:textColor="@color/dark1" />
+                                android:textColor="@color/orange" />
 
                             <TextView
                                 android:id="@+id/txt_ExpirationTime"
@@ -146,7 +145,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="5dp"
                                 android:gravity="center"
-                                android:text="30/10/2017"
+                                android:text="06/08/2018"
                                 android:textColor="@color/appcolor" />
                         </LinearLayout>
                     </LinearLayout>
@@ -239,7 +238,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="\tNhân viên chính thức"
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -268,7 +266,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="\tIT-Phần mềm"
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -297,7 +294,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="\tTP. HCM"
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -326,7 +322,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="\tDesigner, Dev"
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -356,7 +351,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="- Tham gia nghiên cứu và lập trình phát triển ứng dụng mobile trên các nền tảng Android cho các sản phẩm Zalo, ZaloPay, 360Live, TalkTV,..."
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -386,7 +380,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="- Sinh viên dự kiến tốt nghiệp 2017, 2018 chuyên ngành Công nghệ thông tin.\n- Nắm vững kiến thức nền tảng về cấu trúc dữ liệu, giải thuật &amp; thuật toán.\n- Đã thực hiện 1 dự án thực tế là một lợi thế\n- Tư duy logic rõ ràng.\n- Có khả năng học hỏi nhanh, tinh thần cầu tiến, không ngại thử thách.\n- Yêu thích mảng lập trình mobile và định hướng sẽ theo nhánh nghề nghiệp này."
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -415,8 +408,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="Đại học"
-                        android:textColor="@color/appcolor"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -444,7 +436,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="1 - 2 năm"
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -474,7 +465,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="- Thu nhập hấp dẫn &amp; hỗ trợ cơm trưa, trà café miễn phí.\n- Được đào tạo bài bản về chuyên môn, và làm việc thực tế với các dự án đầy thử thách, hàng chục triệu người dùng.\n- Được hướng dẫn, học hỏi từ các chuyên gia hàng đầu về Technical.\n- Được sử dụng miễn phí phòng gym hiện đại, hỗ trợ chi phí tham gia các hoạt động văn hóa, thể dục – thể thao hữu ích.\n- Cơ hội trở thành nhân viên chính thức tại VNG."
-                        android:textColor="@color/appcolor"
+
                         android:textSize="15dp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -503,7 +494,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="\tThỏa thuận"
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -532,7 +522,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="\t10 người"
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -562,7 +551,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="VNG CORORATION"
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -571,7 +559,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="Nguyễn Đức Ngưu"
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -580,7 +567,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="jobstore.ad@gmail.com"
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -589,7 +575,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="0969 741 193"
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
 
                     <TextView
@@ -598,7 +583,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="182 Lê Đại Hành, Phường 15, Quận 11, TP HCM"
-                        android:textColor="@color/appcolor"
                         android:textSize="15dp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>

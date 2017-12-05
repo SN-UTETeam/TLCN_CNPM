@@ -576,7 +576,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="8"
                             android:gravity="center|left"
-                            android:text="Nghành nghề"
+                            android:text="Ngành nghề"
                             android:textSize="15sp" />
                     </LinearLayout>
 

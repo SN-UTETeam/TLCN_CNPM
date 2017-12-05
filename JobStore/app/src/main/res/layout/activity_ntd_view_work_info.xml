@@ -100,7 +100,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="@string/fa_eye"
-                            android:textColor="@color/dark1"/>
+                            android:textColor="@color/orange"/>
 
 
                         <TextView
@@ -123,8 +123,8 @@
                             android:layout_width="20dp"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="@string/fa_comments"
-                            android:textColor="@color/dark1"/>
+                            android:text="@string/fa_userapply"
+                            android:textColor="@color/orange"/>
 
                         <TextView
                             android:id="@+id/txt_NumberApply"
@@ -147,7 +147,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="@string/fa_clock"
-                            android:textColor="@color/dark1"/>
+                            android:textColor="@color/orange"/>
 
                         <TextView
                             android:id="@+id/txt_ExpirationTime"
