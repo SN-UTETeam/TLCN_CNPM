@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public class Recruiter {
     private String Key;
+    private String Tags;
     private String Email;
     private String FullName;
     private Long BirthDay;
@@ -19,13 +20,15 @@ public class Recruiter {
     private String DeviceToken;
     private Long LastLogin;
     private int Status;
+    private Block Blocked;
     private HashMap<String, Notification> Notifications;
     private HashMap<String, Follow> Follows;
 
-    public Recruiter(String email, String fullName, Long birthDay, int gender, String companyName,
+    public Recruiter(String tags, String email, String fullName, Long birthDay, int gender, String companyName,
                      String description, String phone, String website, Address address, String avatar,
                      String coverPhoto, Long createAt, String deviceToken, Long lastLogin, int status,
                      HashMap<String, Notification> notifications, HashMap<String, Follow> follows) {
+        Tags = tags;
         Email = email;
         FullName = fullName;
         BirthDay = birthDay;
@@ -56,6 +59,26 @@ public class Recruiter {
 
     public void setKey(String key) {
         Key = key;
+    }
+
+    public String getTags() {
+        return Tags;
+    }
+
+    public void setTags(String tags) {
+        Tags = tags;
+    }
+
+    public void addTags(String tags) {
+        if(Tags == null || Tags.isEmpty() || Tags.trim().length() == 0)
+            Tags += tags.trim();
+        else
+        {
+            String[] arr = Tags.split(",");
+            for(String str : arr)
+                if(str.toUpperCase().equals(tags.toUpperCase())) return;
+            Tags += "," + tags.trim();
+        }
     }
 
     public String getEmail() {
@@ -176,6 +199,14 @@ public class Recruiter {
 
     public void setStatus(int status) {
         Status = status;
+    }
+
+    public Block getBlocked() {
+        return Blocked;
+    }
+
+    public void setBlocked(Block blocked) {
+        Blocked = blocked;
     }
 
     public HashMap<String, Notification> getNotifications() {

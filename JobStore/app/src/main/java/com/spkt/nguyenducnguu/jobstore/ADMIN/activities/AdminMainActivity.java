@@ -1,4 +1,4 @@
-package com.spkt.nguyenducnguu.jobstore.ADMIN.activities;
+package com.spkt.nguyenducnguu.jobstore.Admin.activities;
 
 import android.app.ActivityOptions;
 import android.content.Context;
@@ -19,11 +19,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.spkt.nguyenducnguu.jobstore.ADMIN.fragments.ManageAccountFragment;
-import com.spkt.nguyenducnguu.jobstore.ADMIN.fragments.ManageInfoFragment;
-import com.spkt.nguyenducnguu.jobstore.ADMIN.fragments.NotificationFragment;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.spkt.nguyenducnguu.jobstore.Admin.fragments.ManageAccountFragment;
+import com.spkt.nguyenducnguu.jobstore.Admin.fragments.ManageWorkInfoFragment;
+import com.spkt.nguyenducnguu.jobstore.Admin.fragments.NotificationFragment;
+import com.spkt.nguyenducnguu.jobstore.Const.Node;
+import com.spkt.nguyenducnguu.jobstore.Database.Database;
+import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.LoginActivity;
+import com.spkt.nguyenducnguu.jobstore.Models.Admin;
 import com.spkt.nguyenducnguu.jobstore.R;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -120,12 +128,38 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationVi
             public void onDrawerOpened(View drawerView) {
                 getSupportActionBar().setTitle(toolbar.getTitle());
                 // calling onPrepareOptionsMenu() to hide action bar icons
-                //loadData();
+                loadData();
                 invalidateOptionsMenu();
             }
         };
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+    }
+
+    private void loadData() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Database.getData(Node.ADMIN + "/" + user.getUid(), new OnGetDataListener() {
+            @Override
+            public void onSuccess(DataSnapshot dataSnapshot) {
+                Admin admin = dataSnapshot.getValue(Admin.class);
+
+                if (admin == null) return;
+                admin.setKey(dataSnapshot.getKey());
+
+                txt_AdminName.setText(admin.getFullName());
+                txt_Email.setText(admin.getEmail());
+
+                if (admin.getAvatar() != null)
+                    Picasso.with(getBaseContext()).load(admin.getAvatar()).into(img_Avatar);
+                if (admin.getCoverPhoto() != null)
+                    Picasso.with(getBaseContext()).load(admin.getCoverPhoto()).into(img_CoverPhoto);
+            }
+
+            @Override
+            public void onFailed(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -137,7 +171,7 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationVi
                 trannsFragment(new ManageAccountFragment(), "Quản lý tài khoản");
                 break;
             case R.id.nav_manage:
-                trannsFragment(new ManageInfoFragment(), "Quản lý thông tin tuyển dụng");
+                trannsFragment(new ManageWorkInfoFragment(), "Quản lý thông tin tuyển dụng");
                 break;
             case R.id.nav_notification:
                 trannsFragment(new NotificationFragment(), "Thông báo");

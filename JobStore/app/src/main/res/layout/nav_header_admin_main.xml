@@ -4,6 +4,7 @@
     android:layout_height="190dp"
     android:background="@color/appcolor"
     android:orientation="vertical">
+
     <RelativeLayout
         android:id="@+id/rl_headerNav"
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/diagonallayout_background"/>
+            android:src="@drawable/diagonallayout_background" />
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/img_Avatar"
@@ -25,8 +26,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
-            app:border_color="@android:color/black"
-            android:src="@drawable/avatar_male"/>
+            android:src="@drawable/avatar_male"
+            app:border_color="@android:color/black" />
 
         <TextView
             android:id="@+id/txt_AdminName"
@@ -36,6 +37,7 @@
             android:layout_below="@+id/img_Avatar"
             android:gravity="left"
             android:paddingBottom="4dp"
+            android:text="-- Chưa cập nhật --"
             android:textColor="#FFF"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -49,6 +51,7 @@
             android:layout_alignStart="@+id/txt_AdminName"
             android:layout_marginBottom="8dp"
             android:gravity="left"
+            android:text="-- Chưa cập nhật --"
             android:textColor="#fff"
             android:textSize="14sp" />
     </RelativeLayout>

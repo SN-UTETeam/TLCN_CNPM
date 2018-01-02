@@ -3,6 +3,7 @@ package com.spkt.nguyenducnguu.jobstore.Const;
 public final class Node {
     public static String RECRUITERS = "Recruiters";
     public static String CANDIDATES = "Candidates";
+    public static String ADMIN = "Admins";
     public static String CAREERS = "Careers";
     public static String LEVELS = "Levels";
     public static String ROLES = "Roles";

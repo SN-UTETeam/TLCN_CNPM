@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.spkt.nguyenducnguu.jobstore.UV.fragments.RecruiterWorkInfoFragment">
+    tools:context="com.spkt.nguyenducnguu.jobstore.Candidate.fragments.RecruiterWorkInfoFragment">
 
     <LinearLayout
         android:id="@+id/ln_NonData"

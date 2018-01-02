@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.spkt.nguyenducnguu.jobstore.NTD.activities.NTDRegisterActivity">
+    tools:context="com.spkt.nguyenducnguu.jobstore.Recruiter.activities.NTDRegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -232,7 +232,6 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/edt_custom"
-                    android:cursorVisible="false"
                     android:gravity="center|top|left"
                     android:hint="Giới thiệu về bản thân"
                     android:inputType="textCapSentences|textMultiLine"
@@ -284,7 +283,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edt_custom"
-                    android:cursorVisible="false"
                     android:gravity="center|top|left"
                     android:hint="Nhập thẻ Tag để NTD có thể tìm thấy bạn"
                     android:inputType="textCapSentences|textMultiLine"

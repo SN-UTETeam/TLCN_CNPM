@@ -2,6 +2,7 @@ package com.spkt.nguyenducnguu.jobstore.Models;
 
 import android.support.annotation.NonNull;
 
+import java.util.Date;
 import java.util.HashMap;
 
 public class WorkInfo implements Comparable<WorkInfo>{
@@ -152,28 +153,33 @@ public class WorkInfo implements Comparable<WorkInfo>{
         return workInfo.getExpirationTime().compareTo(this.ExpirationTime);
     }
 
-    public boolean checkApply(String userId)
-    {
+    public boolean checkApply(String userId) {
         for (Apply ap : Applies.values())
         {
             if(ap.getUserId().equals(userId)) return true;
         }
         return false;
     }
-    public boolean checkShare(String userId)
-    {
+
+    public boolean checkShare(String userId) {
         for (Share sh : Shares.values())
         {
             if(sh.getUserId().equals(userId)) return true;
         }
         return false;
     }
-    public boolean checkSave(String userId)
-    {
+
+    public boolean checkSave(String userId) {
         for (Save sa : Saves.values())
         {
             if(sa.getUserId().equals(userId)) return true;
         }
+        return false;
+    }
+
+    public boolean isExpired()
+    {
+        if((ExpirationTime - (new Date()).getTime()) <= 0) return true;
         return false;
     }
 }

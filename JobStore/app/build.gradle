@@ -41,5 +41,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     compile 'com.ms-square:expandableTextView:0.1.4'
+    compile 'com.jaredrummler:material-spinner:1.2.2'
 }
 apply plugin: 'com.google.gms.google-services'

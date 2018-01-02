@@ -3,7 +3,6 @@ package com.spkt.nguyenducnguu.jobstore.Models;
 import java.util.HashMap;
 
 public class Candidate {
-
     private String Key;
     private String Email;
     private String FullName;
@@ -19,6 +18,7 @@ public class Candidate {
     private String DeviceToken;
     private Long LastLogin;
     private int Status;
+    private Block Blocked;
     private CandidateDetail CandidateDetail;
     private HashMap<String, Notification> Notifications;
     private HashMap<String, Follow> Follows;
@@ -169,6 +169,14 @@ public class Candidate {
 
     public void setStatus(int status) {
         Status = status;
+    }
+
+    public Block getBlocked() {
+        return Blocked;
+    }
+
+    public void setBlocked(Block blocked) {
+        Blocked = blocked;
     }
 
     public com.spkt.nguyenducnguu.jobstore.Models.CandidateDetail getCandidateDetail() {

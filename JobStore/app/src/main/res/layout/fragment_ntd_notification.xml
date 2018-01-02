@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.spkt.nguyenducnguu.jobstore.NTD.fragments.NTDNotificationFragment">
+    tools:context="com.spkt.nguyenducnguu.jobstore.Recruiter.fragments.NTDNotificationFragment">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_Notification"
         android:layout_width="match_parent"

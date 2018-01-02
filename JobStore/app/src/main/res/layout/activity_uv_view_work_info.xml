@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.spkt.nguyenducnguu.jobstore.UV.activities.UVViewWorkInfoActivity">
+    tools:context="com.spkt.nguyenducnguu.jobstore.Candidate.activities.UVViewWorkInfoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

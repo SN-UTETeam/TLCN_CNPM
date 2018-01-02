@@ -2,9 +2,11 @@ package com.spkt.nguyenducnguu.jobstore;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.spkt.nguyenducnguu.jobstore.NTD.activities.NTDRegisterActivity;
-import com.spkt.nguyenducnguu.jobstore.UV.activities.UVRegisterActivity;
+import com.spkt.nguyenducnguu.jobstore.Recruiter.activities.NTDRegisterActivity;
+import com.spkt.nguyenducnguu.jobstore.Candidate.activities.UVRegisterActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -39,8 +41,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         addEvent();
 
     }
-    public void addView()
-    {
+
+    public void addView() {
         txt_Email = (EditText) findViewById(R.id.txt_Email);
         txt_Password = (EditText) findViewById(R.id.txt_Password);
 
@@ -49,14 +51,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tv_ForgotPassword = (TextView) findViewById(R.id.tv_ForgotPassword);
         tv_Register = (TextView) findViewById(R.id.tv_Register);
     }
-    public void addEvent()
-    {
+
+    public void addEvent() {
         btn_Login.setOnClickListener(this);
         tv_ForgotPassword.setOnClickListener(this);
         tv_Register.setOnClickListener(this);
     }
-    private boolean ValidateInputData()
-    {
+
+    private boolean ValidateInputData() {
         if(txt_Email.getText().toString().trim().length() == 0)
         {
             Toast.makeText(LoginActivity.this,"Vui lòng nhập email!",Toast.LENGTH_SHORT).show();
@@ -81,8 +83,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         return true;
     }
-    private void Login()
-    {
+
+    private void Login() {
         if(!ValidateInputData()) return;
 
         String email = txt_Email.getText().toString();
@@ -109,42 +111,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     }
                 });
     }
+
     @Override
     public void onClick(View view) {
-        Intent intent;
         switch (view.getId())
         {
             case R.id.btn_Login:
                 Login();
                 break;
-            case R.id.btn_UngVien:
-                dialog.dismiss();
-                intent = new Intent(this, UVRegisterActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.btn_NhaTuyenDung:
-                dialog.dismiss();
-                intent = new Intent(this, NTDRegisterActivity.class);
-                startActivity(intent);
-                break;
             case R.id.tv_ForgotPassword:
-
+                Intent intent;
+                intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_Register:
-                // khởi tạo dialog
-                dialog = new Dialog(LoginActivity.this);
-                // xét layout cho dialog
-                dialog.setContentView(R.layout.dialog_before_register);
-                // xét tiêu đề cho dialog
-                dialog.setTitle("Bạn là ai?");
-                // khai báo control trong dialog để bắt sự kiện
-                btn_UngVien = (Button) dialog.findViewById(R.id.btn_UngVien);
-                btn_NhaTuyenDung = (Button) dialog.findViewById(R.id.btn_NhaTuyenDung);
-                // bắt sự kiện
-                btn_UngVien.setOnClickListener(this);
-                btn_NhaTuyenDung.setOnClickListener(this);
-                // hiển thị dialog
-                dialog.show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setMessage("Bạn là ai?")
+                        .setPositiveButton("Nhà tuyển dụng", new DialogInterface.OnClickListener() {
+                            public void onClick(final DialogInterface dialog, int id) {
+                                Intent intent;
+                                intent = new Intent(LoginActivity.this, NTDRegisterActivity.class);
+                                startActivity(intent);
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton("Ứng viên", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent;
+                                intent = new Intent(LoginActivity.this, UVRegisterActivity.class);
+                                startActivity(intent);
+                                dialog.dismiss();
+                            }
+                        }).create().show();
                 break;
         }
     }

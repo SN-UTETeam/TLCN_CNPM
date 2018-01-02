@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,11 +17,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
 import com.spkt.nguyenducnguu.jobstore.Models.Notification;
-import com.spkt.nguyenducnguu.jobstore.NTD.activities.NTDViewNotificationActivity;
-import com.spkt.nguyenducnguu.jobstore.NTD.activities.NTDViewWorkInfoActivity;
+import com.spkt.nguyenducnguu.jobstore.Recruiter.activities.NTDViewNotificationActivity;
+import com.spkt.nguyenducnguu.jobstore.Recruiter.activities.NTDViewWorkInfoActivity;
 import com.spkt.nguyenducnguu.jobstore.R;
-import com.spkt.nguyenducnguu.jobstore.UV.activities.UVViewNotificationActivity;
-import com.spkt.nguyenducnguu.jobstore.UV.activities.UVViewWorkInfoActivity;
 
 import java.util.Random;
 
@@ -100,7 +97,7 @@ public class ListenNewApplyService extends Service {
 
         builder.setAutoCancel(true)
                 .setDefaults(android.app.Notification.DEFAULT_ALL)
-                .setTicker("New Apply")
+                .setTicker(notification.getTitle())
                 .setContentTitle(notification.getTitle())
                 .setContentText(notification.getContent())
                 .setSmallIcon(R.mipmap.icon)

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.spkt.nguyenducnguu.jobstore.NTD.fragments.NTDPostRecruitmentFragment">
+    tools:context="com.spkt.nguyenducnguu.jobstore.Recruiter.fragments.NTDPostRecruitmentFragment">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -20,34 +20,34 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".NTD.activities.NTDRegisterActivity" />
-        <activity android:name=".UV.activities.UVRegisterActivity" />
-        <activity android:name=".NTD.activities.NTDMainActivity" />
-        <activity android:name=".ADMIN.activities.AdminMainActivity" />
+        <activity android:name=".Recruiter.activities.NTDRegisterActivity" />
+        <activity android:name=".Candidate.activities.UVRegisterActivity" />
+        <activity android:name=".Recruiter.activities.NTDMainActivity" />
+        <activity android:name=".Admin.activities.AdminMainActivity" />
         <activity android:name=".ResultRegisterActivity" />
-        <activity android:name=".NTD.activities.NTDFilterSearchActivity" />
-        <activity android:name=".NTD.activities.NTDChangeProfileActivity" />
+        <activity android:name=".Recruiter.activities.NTDFilterSearchActivity" />
+        <activity android:name=".Recruiter.activities.NTDChangeProfileActivity" />
         <activity android:name=".Select.activities.SelectWorkTypeActivity" />
         <activity android:name=".Select.activities.SelectCarrerActivity" />
         <activity android:name=".Select.activities.SelectLevelActivity" />
         <activity android:name=".Select.activities.SelectExperienceActivity" />
         <activity android:name=".Select.activities.SelectSalaryActivity" />
         <activity android:name=".Select.activities.SelectWorkPlaceActivity" />
-        <activity android:name=".NTD.activities.NTDProfileActivity" />
-        <activity android:name=".NTD.activities.NTDViewWorkInfoActivity" />
-        <activity android:name=".NTD.activities.NTDEditWorkInfoActivity" />
-        <activity android:name=".NTD.activities.NTDViewListApplyActivity" />
-        <activity android:name=".UV.activities.UVMainActivity" />
-        <activity android:name=".UV.activities.UVWorkExpActivity" />
-        <activity android:name=".UV.activities.UVDiplomaActivity" />
-        <activity android:name=".UV.activities.UVProfileActivity" />
-        <activity android:name=".UV.activities.UVChangeProfileActivity" />
+        <activity android:name=".Recruiter.activities.NTDProfileActivity" />
+        <activity android:name=".Recruiter.activities.NTDViewWorkInfoActivity" />
+        <activity android:name=".Recruiter.activities.NTDEditWorkInfoActivity" />
+        <activity android:name=".Recruiter.activities.NTDViewListApplyActivity" />
+        <activity android:name=".Candidate.activities.UVMainActivity" />
+        <activity android:name=".Candidate.activities.UVWorkExpActivity" />
+        <activity android:name=".Candidate.activities.UVDiplomaActivity" />
+        <activity android:name=".Candidate.activities.UVProfileActivity" />
+        <activity android:name=".Candidate.activities.UVChangeProfileActivity" />
         <activity android:name=".Test" />
-        <activity android:name=".UV.activities.UVFilterSearchActivity" />
-        <activity android:name=".UV.activities.UVSeeDetailActivity" />
-        <activity android:name=".UV.activities.UVViewWorkInfoActivity" />
-        <activity android:name=".UV.activities.UVViewNotificationActivity" />
-        <activity android:name=".NTD.activities.NTDViewNotificationActivity" />
+        <activity android:name=".Candidate.activities.UVFilterSearchActivity" />
+        <activity android:name=".Candidate.activities.UVSeeDetailActivity" />
+        <activity android:name=".Candidate.activities.UVViewWorkInfoActivity" />
+        <activity android:name=".Candidate.activities.UVViewNotificationActivity" />
+        <activity android:name=".Recruiter.activities.NTDViewNotificationActivity" />
 
         <service
             android:name=".Service.ListenNewWorkInfoService"
@@ -58,7 +58,15 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".ADMIN.activities.AdminProfileActivity"></activity>
+        <activity android:name=".Admin.activities.AdminProfileActivity" />
+        <activity android:name=".Admin.activities.AdminFilterAccountActivity" />
+        <activity android:name=".Admin.activities.AdminViewRecruiterAccountActivity" />
+        <activity android:name=".Admin.activities.AdminViewCandidateAccountActivity" />
+        <activity android:name=".Admin.activities.AdminWarningActivity" />
+        <activity android:name=".Admin.activities.AdminViewWorkInfoActivity" />
+        <activity android:name=".Admin.activities.AdminFilterWorkInfoActivity" />
+        <activity android:name=".Admin.activities.AdminChangeProfileActivity" />
+        <activity android:name=".ResetPasswordActivity"></activity>
     </application>
 
 </manifest>

@@ -17,13 +17,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
-import com.spkt.nguyenducnguu.jobstore.Database.Database;
-import com.spkt.nguyenducnguu.jobstore.Interface.OnGetDataListener;
 import com.spkt.nguyenducnguu.jobstore.Models.Notification;
-import com.spkt.nguyenducnguu.jobstore.Models.Roles;
 import com.spkt.nguyenducnguu.jobstore.R;
-import com.spkt.nguyenducnguu.jobstore.UV.activities.UVViewNotificationActivity;
-import com.spkt.nguyenducnguu.jobstore.UV.activities.UVViewWorkInfoActivity;
+import com.spkt.nguyenducnguu.jobstore.Candidate.activities.UVViewNotificationActivity;
+import com.spkt.nguyenducnguu.jobstore.Candidate.activities.UVViewWorkInfoActivity;
 
 import java.util.Random;
 
@@ -102,7 +99,7 @@ public class ListenNewWorkInfoService extends Service {
 
         builder.setAutoCancel(true)
                 .setDefaults(android.app.Notification.DEFAULT_ALL)
-                .setTicker("New Job")
+                .setTicker(notification.getTitle())
                 .setContentTitle(notification.getTitle())
                 .setContentText(notification.getContent())
                 .setSmallIcon(R.mipmap.icon)

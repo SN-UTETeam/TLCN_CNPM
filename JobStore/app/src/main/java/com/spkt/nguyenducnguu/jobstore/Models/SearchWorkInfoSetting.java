@@ -48,7 +48,8 @@ public class SearchWorkInfoSetting {
         WorkPlaces.clear();
         String[] arrStr = workPlaces.split(", ");
         for (String str : arrStr) {
-            WorkPlaces.add(str);
+            if(str.trim().length() == 0) continue;
+            WorkPlaces.add(str.trim());
         }
     }
 
@@ -64,7 +65,8 @@ public class SearchWorkInfoSetting {
         Careers.clear();
         String[] arrStr = careers.split(", ");
         for (String str : arrStr) {
-            Careers.add(str);
+            if(str.trim().length() == 0) continue;
+            Careers.add(str.trim());
         }
     }
 
@@ -80,7 +82,8 @@ public class SearchWorkInfoSetting {
         WorkTypes.clear();
         String[] arrStr = workTypes.split(", ");
         for (String str : arrStr) {
-            WorkTypes.add(str);
+            if(str.trim().length() == 0) continue;
+            WorkTypes.add(str.trim());
         }
     }
 

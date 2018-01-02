@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ln_Recruiter"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txt_Key"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imgv_Avatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/img_avatar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="4"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_CompanyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VNG COOPARATION"
+                android:textColor="@color/appcolor"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_Email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="jobstore.ad@gmail.com"
+                android:textColor="@color/appcolor"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txt_Website"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="jobstore.com"
+                android:textColor="@color/appcolor"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txt_Address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số 1, Võ Văn Ngân, Thủ Đức, TP HCM"
+                android:textColor="@color/appcolor"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txt_CreateAt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01/12/2017"
+                android:textColor="@color/appcolor"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/txt_Status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chờ xác nhận"
+                android:textColor="@color/appcolor"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/appcolor"></View>
+</LinearLayout>

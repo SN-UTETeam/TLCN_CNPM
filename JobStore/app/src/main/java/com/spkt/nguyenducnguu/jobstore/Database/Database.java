@@ -19,6 +19,7 @@ import com.spkt.nguyenducnguu.jobstore.Models.Parameter;
 public class Database {
 
     public static FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
+
     public Database() {
 
     }
@@ -45,24 +46,24 @@ public class Database {
             }
         });
     }
-    public static void addData(String node, Object object)
-    {
+
+    public static void addData(String node, Object object) {
         mdatabase.getReference(node).push().setValue(object);
     }
-    public static void addDataWithKey(String node, String Key, Object object)
-    {
+
+    public static void addDataWithKey(String node, String Key, Object object) {
         mdatabase.getReference(node).child(Key).setValue(object);
     }
-    public static void updateData(String node, String key, Object object)
-    {
+
+    public static void updateData(String node, String key, Object object) {
         mdatabase.getReference(node).child(key).setValue(object);
     }
-    public static void deleteData(String node, String key)
-    {
+
+    public static void deleteData(String node, String key) {
         mdatabase.getReference(node).child(key).removeValue();
     }
-    public static void deleteFileFromUrl(String Url)
-    {
+
+    public static void deleteFileFromUrl(String Url) {
         StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(Url);
         storageReference.delete();
     }

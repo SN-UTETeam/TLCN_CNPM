@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.spkt.nguyenducnguu.jobstore.UV.activities.UVSeeDetailActivity;
+import com.spkt.nguyenducnguu.jobstore.Candidate.activities.UVSeeDetailActivity;
 
 /**
  * Created by TranAnhSon on 10/5/2017.
