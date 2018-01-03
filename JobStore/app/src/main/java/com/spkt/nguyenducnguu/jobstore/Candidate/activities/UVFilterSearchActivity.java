@@ -17,7 +17,7 @@ import com.spkt.nguyenducnguu.jobstore.Select.activities.SelectLevelActivity;
 import com.spkt.nguyenducnguu.jobstore.Select.activities.SelectSalaryActivity;
 import com.spkt.nguyenducnguu.jobstore.Select.activities.SelectWorkPlaceActivity;
 import com.spkt.nguyenducnguu.jobstore.Select.activities.SelectWorkTypeActivity;
-import com.spkt.nguyenducnguu.jobstore.Candidate.fragments.UVMainFragment;
+import com.spkt.nguyenducnguu.jobstore.Candidate.fragments.UVSearchWorkInfoFragment;
 
 import mabbas007.tagsedittext.TagsEditText;
 
@@ -41,7 +41,7 @@ public class UVFilterSearchActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        mSetting = UVMainFragment.mSettingSearch;
+        mSetting = UVSearchWorkInfoFragment.mSettingSearch;
 
         txt_WorkType.setTags(mSetting.getWorkTypes().toString().substring(1, mSetting.getWorkTypes().toString().length() - 1).split(", "));
         txt_WorkPlace.setTags(mSetting.getWorkPlaces().toString().substring(1, mSetting.getWorkPlaces().toString().length() - 1).split(", "));
@@ -88,7 +88,7 @@ public class UVFilterSearchActivity extends AppCompatActivity {
                 mSetting.setExperience(txt_Experience.getTags().toString().substring(1, txt_Experience.getTags().toString().length() - 1));
                 mSetting.setSalary(txt_Salary.getTags().toString().substring(1, txt_Salary.getTags().toString().length() - 1));
 
-                UVMainFragment.mSettingSearch = mSetting;
+                UVSearchWorkInfoFragment.mSettingSearch = mSetting;
                 finish();
             }
         });

@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.spkt.nguyenducnguu.jobstore.Candidate.fragments.UVMainFragment;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
 import com.spkt.nguyenducnguu.jobstore.Const.Status;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
@@ -37,9 +38,9 @@ import com.spkt.nguyenducnguu.jobstore.R;
 import com.spkt.nguyenducnguu.jobstore.Service.ListenNewWorkInfoService;
 import com.spkt.nguyenducnguu.jobstore.Candidate.fragments.UVFollowFragment;
 import com.spkt.nguyenducnguu.jobstore.Candidate.fragments.UVJobFragment;
-import com.spkt.nguyenducnguu.jobstore.Candidate.fragments.UVMainFragment;
+import com.spkt.nguyenducnguu.jobstore.Candidate.fragments.UVSearchWorkInfoFragment;
 import com.spkt.nguyenducnguu.jobstore.Candidate.fragments.UVNotificationFragment;
-import com.spkt.nguyenducnguu.jobstore.Candidate.fragments.UVSearchFragment;
+import com.spkt.nguyenducnguu.jobstore.Candidate.fragments.UVSearchRecruiterFragment;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -81,9 +82,7 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
         navigationViewUV.setNavigationItemSelectedListener(this);
 
         //Thiet lap fragment ban dau
-        if(checkStatus())
-            trannsFragment(new UVMainFragment(), "Job Store");
-        else trannsFragment(new UVNotificationFragment(), "Thông báo");
+        trannsFragment(new UVMainFragment(), "Job Store");
     }
 
     private void loadData() {
@@ -179,9 +178,13 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
                 if(checkStatus())
                     trannsFragment(new UVMainFragment(), "Job Store");
                 break;
-            case R.id.navUV_search:
+            case R.id.navUV_searchWorkInfo:
                 if(checkStatus())
-                    trannsFragment(new UVSearchFragment(), "Tìm kiếm");
+                    trannsFragment(new UVSearchWorkInfoFragment(), "Tìm kiếm công việc");
+                break;
+            case R.id.navUV_searchRecruiter:
+                if(checkStatus())
+                    trannsFragment(new UVSearchRecruiterFragment(), "Tìm kiếm nhà tuyển dụng");
                 break;
             case R.id.navUV_follow:
                 if(checkStatus())
