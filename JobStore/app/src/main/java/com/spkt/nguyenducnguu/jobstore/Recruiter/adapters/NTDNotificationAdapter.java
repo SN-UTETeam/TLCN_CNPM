@@ -71,17 +71,6 @@ public class NTDNotificationAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             vh.ln_notification.setBackgroundColor(context.getResources().getColor(R.color.white));
         else vh.ln_notification.setBackgroundColor(context.getResources().getColor(R.color.dark1));
 
-        if(notification.isDelete() || notification.isLock())
-        {
-            vh.txt_Title.setTextColor(context.getResources().getColor(R.color.red));
-            vh.txt_Content.setTextColor(context.getResources().getColor(R.color.red));
-        }
-        else if(notification.isWarning())
-        {
-            vh.txt_Title.setTextColor(context.getResources().getColor(R.color.orange));
-            vh.txt_Content.setTextColor(context.getResources().getColor(R.color.orange));
-        }
-
         Picasso.with(context).load(R.drawable.ic_default_avatar).into(vh.imgv_Avatar);
 
         if (notification.isNewApply()) {
