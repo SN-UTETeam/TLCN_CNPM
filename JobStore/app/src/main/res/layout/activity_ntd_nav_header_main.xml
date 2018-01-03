@@ -38,7 +38,8 @@
             android:paddingBottom="4dp"
             android:textColor="#FFF"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="-- Chưa cập nhật --"/>
 
         <TextView
             android:id="@+id/txt_Email"
@@ -50,7 +51,8 @@
             android:layout_marginBottom="8dp"
             android:gravity="left"
             android:textColor="#fff"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:text="-- Chưa cập nhật --"/>
     </RelativeLayout>
 
 </RelativeLayout>
