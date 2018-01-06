@@ -65,24 +65,38 @@ public class UVSearchWorkInfoAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final WorkInfoViewHolder vh = (WorkInfoViewHolder) holder;
-        Log.d("CheckPosition", "Position: " + position + " - Size: " + filteredData.size());
         WorkInfo w = filteredData.get(position);
-        vh.txt_WorkInfoKey.setText(w.getKey());
-        vh.txt_TitlePost.setText(w.getTitlePost());
-        vh.txt_Career.setText(w.getWorkDetail().getCarrers());
-        vh.txt_Salary.setText(w.getWorkDetail().getSalary());
-        vh.txt_WorkPlace.setText(w.getWorkPlace());
+        if(w == null) return;
+        vh.txt_WorkInfoKey.setText(w.getKey() == null ? "" : w.getKey());
+        vh.txt_TitlePost.setText(w.getTitlePost() == null ? "-- Chưa cập nhật --" : w.getTitlePost());
+        if(w.getWorkDetail() != null) {
+            vh.txt_Career.setText(w.getWorkDetail().getCarrers() == null ? "-- Chưa cập nhật --" : w.getWorkDetail().getCarrers());
+            vh.txt_Salary.setText(w.getWorkDetail().getSalary() == null ? "-- Chưa cập nhật --" : w.getWorkDetail().getSalary());
+        }
+        vh.txt_WorkPlace.setText(w.getWorkPlace() == null ? "-- Chưa cập nhật --" : w.getWorkPlace());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String ExpirationTime = sdf.format(new Date(w.getExpirationTime()));
-        vh.txt_ExpirationTime.setText(ExpirationTime);
-        String PostTime = sdf.format(new Date(w.getPostTime()));
-        vh.txt_PostTime.setText(PostTime);
+        if(w.getExpirationTime() != null) {
+            String ExpirationTime = sdf.format(new Date(w.getExpirationTime()));
+            vh.txt_ExpirationTime.setText(ExpirationTime);
+        }
+        else vh.txt_ExpirationTime.setText("null");
+
+        if(w.getPostTime() != null) {
+            String PostTime = sdf.format(new Date(w.getPostTime()));
+            vh.txt_PostTime.setText(PostTime);
+        }
+        else vh.txt_PostTime.setText("null");
 
         Database.getData(Node.RECRUITERS + "/" + w.getUserId(), new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
                 Recruiter r = dataSnapshot.getValue(Recruiter.class);
-                vh.txt_CompanyName.setText(r.getCompanyName());
+                if(r == null){
+                    vh.txt_CompanyName.setText("-- Chưa cập nhật --");
+                    Picasso.with(context).load(R.drawable.ic_default_avatar).into(vh.imgv_Avatar);
+                    return;
+                }
+                vh.txt_CompanyName.setText(r.getCompanyName() == null ? "-- Chưa cập nhật --" : r.getCompanyName());
                 if (r.getAvatar() != null)
                     Picasso.with(context).load(r.getAvatar()).into(vh.imgv_Avatar);
                 else

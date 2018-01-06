@@ -73,29 +73,48 @@ public class NTDEditWorkInfoActivity extends AppCompatActivity {
 
                     if (wf == null) return;
 
-                    txt_TitlePost.setText(wf.getTitlePost());
+                    txt_TitlePost.setText(wf.getTitlePost() == null ? "" : wf.getTitlePost());
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    txt_ExpirationTime.setText(sdf.format(new Date(wf.getExpirationTime())));
+                    if(wf.getExpirationTime() != null)
+                        txt_ExpirationTime.setText(sdf.format(new Date(wf.getExpirationTime())));
+                    else txt_ExpirationTime.setText("");
                     String strArrtmp[] = txt_ExpirationTime.getText().toString().split("/");
-                    cal.set(Integer.parseInt(strArrtmp[2]), Integer.parseInt(strArrtmp[1]), Integer.parseInt(strArrtmp[0]));
-                    txt_WorkPlace.setTags(wf.getWorkPlace().split(","));
-                    txt_WorkType.setTags(wf.getWorkDetail().getWorkTypes().split(","));
-                    txt_Career.setTags(wf.getWorkDetail().getCarrers().split(","));
-                    txt_Level.setTags(wf.getWorkDetail().getLevel().split(","));
-                    txt_Experience.setTags(wf.getWorkDetail().getExperience().split(","));
-                    txt_Salary.setTags(wf.getWorkDetail().getSalary().split(","));
-                    txt_Title.setText(wf.getWorkDetail().getTitle());
-                    txt_Number.setText(wf.getWorkDetail().getNumber() + "");
-                    txt_JobDescription.setText(wf.getWorkDetail().getJobDescription());
-                    txt_JobRequired.setText(wf.getWorkDetail().getJobRequired());
-                    txt_Welfare.setText(wf.getWorkDetail().getWelfare());
+                    if(strArrtmp.length >= 3)
+                        cal.set(Integer.parseInt(strArrtmp[2]), Integer.parseInt(strArrtmp[1]), Integer.parseInt(strArrtmp[0]));
+                    if(wf.getWorkPlace() != null)
+                        txt_WorkPlace.setTags(wf.getWorkPlace().split(","));
+                    if(wf.getWorkDetail() != null && wf.getWorkDetail().getWorkTypes() != null)
+                        txt_WorkType.setTags(wf.getWorkDetail().getWorkTypes().split(","));
+                    if(wf.getWorkDetail() != null && wf.getWorkDetail().getCarrers() != null)
+                        txt_Career.setTags(wf.getWorkDetail().getCarrers().split(","));
+                    if(wf.getWorkDetail() != null && wf.getWorkDetail().getLevel() != null)
+                        txt_Level.setTags(wf.getWorkDetail().getLevel().split(","));
+                    if(wf.getWorkDetail() != null && wf.getWorkDetail().getExperience() != null)
+                        txt_Experience.setTags(wf.getWorkDetail().getExperience().split(","));
+                    if(wf.getWorkDetail() != null && wf.getWorkDetail().getSalary() != null)
+                        txt_Salary.setTags(wf.getWorkDetail().getSalary().split(","));
+                    if(wf.getWorkDetail() != null && wf.getWorkDetail().getTitle() != null)
+                        txt_Title.setText(wf.getWorkDetail().getTitle());
+                    if(wf.getWorkDetail() != null)
+                        txt_Number.setText(wf.getWorkDetail().getNumber() + "");
+                    if(wf.getWorkDetail() != null && wf.getWorkDetail().getJobDescription() != null)
+                        txt_JobDescription.setText(wf.getWorkDetail().getJobDescription());
+                    if(wf.getWorkDetail() != null && wf.getWorkDetail().getJobRequired() != null)
+                        txt_JobRequired.setText(wf.getWorkDetail().getJobRequired());
+                    if(wf.getWorkDetail() != null && wf.getWorkDetail().getWelfare() != null)
+                        txt_Welfare.setText(wf.getWorkDetail().getWelfare());
 
                     Database.getData(Node.RECRUITERS + "/" + wf.getUserId(), new OnGetDataListener() {
                         @Override
                         public void onSuccess(DataSnapshot dataSnapshot) {
                             Recruiter r = dataSnapshot.getValue(Recruiter.class);
-                            txt_Email.setText(r.getEmail());
-                            txt_CompanyName.setText(r.getCompanyName());
+                            if(r == null){
+                                txt_Email.setText("");
+                                txt_CompanyName.setText("");
+                                return;
+                            }
+                            txt_Email.setText(r.getEmail() == null ? "" : r.getEmail());
+                            txt_CompanyName.setText(r.getCompanyName() == null ? "" : r.getCompanyName());
                         }
 
                         @Override

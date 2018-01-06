@@ -33,8 +33,7 @@ public class UVViewNotificationActivity extends AppCompatActivity {
         loadData();
     }
 
-    private void addView()
-    {
+    private void addView() {
         imgv_Back = (ImageView) findViewById(R.id.imgv_Back);
         txt_TitleToolbar = (TextView) findViewById(R.id.txt_TitleToolbar);
         txt_Title = (TextView) findViewById(R.id.txt_Title);
@@ -42,8 +41,7 @@ public class UVViewNotificationActivity extends AppCompatActivity {
         txt_SendTime = (TextView) findViewById(R.id.txt_SendTime);
     }
 
-    private void addEvent()
-    {
+    private void addEvent() {
         imgv_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,8 +56,7 @@ public class UVViewNotificationActivity extends AppCompatActivity {
         return titlePost.substring(0, count - 3) + "...";
     }
 
-    private void loadData()
-    {
+    private void loadData() {
         Intent intent = getIntent();
         if (intent != null) {
             if (!intent.getStringExtra("Key").isEmpty()) {
@@ -72,13 +69,16 @@ public class UVViewNotificationActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(DataSnapshot dataSnapshot) {
                     Notification n = dataSnapshot.getValue(Notification.class);
-
-                    txt_TitleToolbar.setText(createTitleToolbar(n.getTitle()));
-                    txt_Title.setText(n.getTitle());
-                    txt_Content.setText(n.getContent());
+                    if(n == null) return;
+                    txt_TitleToolbar.setText(n.getTitle() == null ? "-- Chưa cập nhật --" : createTitleToolbar(n.getTitle()));
+                    txt_Title.setText(n.getTitle() == null ? "-- Chưa cập nhật --" : n.getTitle());
+                    txt_Content.setText(n.getContent() == null ? "-- Chưa cập nhật --" : n.getContent());
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                    String SendTime = sdf.format(new Date(n.getSendTime()));
-                    txt_SendTime.setText(SendTime);
+                    if(n.getSendTime() != null) {
+                        String SendTime = sdf.format(new Date(n.getSendTime()));
+                        txt_SendTime.setText(SendTime);
+                    }
+                    else txt_SendTime.setText("-- Chưa cập nhật --");
                 }
 
                 @Override

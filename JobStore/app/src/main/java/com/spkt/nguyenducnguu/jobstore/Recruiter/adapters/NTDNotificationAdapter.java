@@ -53,18 +53,21 @@ public class NTDNotificationAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         final NotificationHolder vh = (NotificationHolder) holder;
         Notification notification = listData.get(position);
-
+        if(notification == null) return;
         if (notification.isNewApply() || (notification.isWarning() && notification.getWorkInfoKey() != null)) {
             vh.txt_UserId.setText(notification.getUserId() == null ? "" : notification.getUserId());
-            vh.txt_WorkInfoKey.setText(notification.getWorkInfoKey());
+            vh.txt_WorkInfoKey.setText(notification.getWorkInfoKey() == null ? "" : notification.getWorkInfoKey());
         }
 
-        vh.txt_Key.setText(notification.getKey());
-        vh.txt_Title.setText(notification.getTitle());
-        vh.txt_Content.setText(notification.getContent());
+        vh.txt_Key.setText(notification.getKey() == null ? "" : notification.getKey());
+        vh.txt_Title.setText(notification.getTitle() == null ? "-- Chưa cập nhật --" : notification.getTitle());
+        vh.txt_Content.setText(notification.getContent() == null ? "-- Chưa cập nhật --" : notification.getContent());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        String SendTime = sdf.format(new Date(notification.getSendTime()));
-        vh.txt_SendTime.setText(SendTime);
+        if(notification.getSendTime() != null) {
+            String SendTime = sdf.format(new Date(notification.getSendTime()));
+            vh.txt_SendTime.setText(SendTime);
+        }
+        else vh.txt_SendTime.setText("null");
         vh.txt_icon1.setTypeface(FontManager.getTypeface(context, FontManager.FONTAWESOME));
 
         if (notification.getStatus() == Notification.SEEN)//đã xem
@@ -78,7 +81,7 @@ public class NTDNotificationAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 @Override
                 public void onSuccess(DataSnapshot dataSnapshot) {
                     Candidate c = dataSnapshot.getValue(Candidate.class);
-                    if (c != null)
+                    if (c != null && c.getAvatar() != null)
                         Picasso.with(context).load(c.getAvatar()).into(vh.imgv_Avatar);
                 }
 

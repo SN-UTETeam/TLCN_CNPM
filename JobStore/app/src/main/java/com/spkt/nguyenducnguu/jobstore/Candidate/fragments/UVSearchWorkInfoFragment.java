@@ -48,7 +48,7 @@ public class UVSearchWorkInfoFragment extends Fragment {
     List<WorkInfo> lstData = new ArrayList<WorkInfo>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_uv_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_uv_search_workinfo, container, false);
 
         mSettingSearch = new SearchWorkInfoSetting();
         addView(rootView);
@@ -68,6 +68,7 @@ public class UVSearchWorkInfoFragment extends Fragment {
         txt_NumberResult = (TextView) rootView.findViewById(R.id.txt_NumberResult);
         txt_Query = (EditText) rootView.findViewById(R.id.txt_Query);
     }
+
     private void addEvent(){
         txt_Query.addTextChangedListener(new TextWatcher() {
             @Override
@@ -101,8 +102,7 @@ public class UVSearchWorkInfoFragment extends Fragment {
         });
     }
 
-    private void loadDefaultData()
-    {
+    private void loadDefaultData() {
         lstData.clear();
         Database.getData(Node.WORKINFOS, new OnGetDataListener() {
             @Override
@@ -111,6 +111,7 @@ public class UVSearchWorkInfoFragment extends Fragment {
                 for (DataSnapshot mdata : dataSnapshot.getChildren())
                 {
                     WorkInfo w = mdata.getValue(WorkInfo.class);
+                    if(w == null || w.getExpirationTime() == null) continue;
                     w.setKey(mdata.getKey());
                     if(w.getExpirationTime() < (new Date()).getTime())
                         continue;
@@ -162,12 +163,15 @@ public class UVSearchWorkInfoFragment extends Fragment {
         });
 
     }
+
     private void hideViews() {
         linearLayout.animate().translationY(-linearLayout.getHeight()).setInterpolator(new AccelerateInterpolator(2));
     }
+
     private void showViews() {
         linearLayout.animate().translationY(0).setInterpolator(new DecelerateInterpolator(2));
     }
+
     private void setmRecyclerView(){
         mRcvAdapter = new UVSearchWorkInfoAdapter(lstData);
 
@@ -179,6 +183,7 @@ public class UVSearchWorkInfoFragment extends Fragment {
         rv_WorkInfo.setHasFixedSize(true);
         rv_WorkInfo.setAdapter(mRcvAdapter);
     }
+
     private void setIcon(){
         txt_Filter.setTypeface(FontManager.getTypeface(getContext(), FontManager.FONTAWESOME));
     }

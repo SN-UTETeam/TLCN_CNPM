@@ -95,8 +95,8 @@ public class NTDMainActivity extends AppCompatActivity implements NavigationView
                 r.setKey(dataSnapshot.getKey());
                 recruiter = r;
 
-                txt_CompanyName.setText(r.getCompanyName());
-                txt_Email.setText(r.getEmail());
+                txt_CompanyName.setText(r.getCompanyName() == null ? "-- Chưa cập nhật --" : r.getCompanyName());
+                txt_Email.setText(r.getEmail() == null ? "-- Chưa cập nhật --" : r.getEmail());
 
                 if (r.getAvatar() != null)
                     Picasso.with(getBaseContext()).load(r.getAvatar()).into(img_Avatar);

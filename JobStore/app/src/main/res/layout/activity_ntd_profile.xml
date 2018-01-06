@@ -95,7 +95,7 @@
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="70dp"
                         android:fontFamily="sans-serif-light"
-                        android:text="HHB SOLUTION"
+                        android:text="-- Chưa cập nhật --"
                         android:textColor="@android:color/white"
                         android:textSize="25sp" />
 
@@ -107,7 +107,7 @@
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="105dp"
                         android:fontFamily="sans-serif-condensed"
-                        android:text="244 Cống Quỳnh, Phường Phạm Ngũ Lão, Quận 1, TP HCM"
+                        android:text="-- Chưa cập nhật --"
                         android:textColor="@color/white"
                         android:textSize="10sp"
                         android:textStyle="bold" />
@@ -227,7 +227,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="8"
                             android:gravity="center|left"
-                            android:text="Trần Anh Sơn"
+                            android:text="-- Chưa cập nhật --"
                             android:textSize="15sp" />
                     </LinearLayout>
 
@@ -258,7 +258,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="8"
                             android:gravity="center|left"
-                            android:text="jobstore.ad@gmail.com"
+                            android:text="-- Chưa cập nhật --"
                             android:textSize="15sp" />
                     </LinearLayout>
 
@@ -289,7 +289,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="8"
                             android:gravity="center|left"
-                            android:text="01694043472"
+                            android:text="-- Chưa cập nhật --"
                             android:textSize="15sp" />
                     </LinearLayout>
 
@@ -320,7 +320,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="8"
                             android:gravity="center|left"
-                            android:text="https://hbbsolution.com"
+                            android:text="-- Chưa cập nhật --"
                             android:textSize="15sp" />
                     </LinearLayout>
 
@@ -375,7 +375,7 @@
                                 android:id="@id/expandable_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Giới thiệu công ty"
+                                android:text="-- Chưa cập nhật --"
                                 android:textSize="15sp" />
 
                             <ImageButton

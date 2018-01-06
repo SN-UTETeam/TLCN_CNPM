@@ -3,9 +3,11 @@ package com.spkt.nguyenducnguu.jobstore.Recruiter.activities;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.spkt.nguyenducnguu.jobstore.Admin.activities.AdminChangeProfileActivity;
 import com.spkt.nguyenducnguu.jobstore.Const.Node;
 import com.spkt.nguyenducnguu.jobstore.Database.Database;
 import com.spkt.nguyenducnguu.jobstore.Models.Address;
@@ -239,31 +242,19 @@ public class NTDRegisterActivity extends AppCompatActivity {
     }
 
     private void showChoiceGenderDialog() {
-        // khởi tạo dialog
-        final Dialog dialog = new Dialog(NTDRegisterActivity.this);
-        // xét layout cho dialog
-        dialog.setContentView(R.layout.dialog_choice_gender);
-        // xét tiêu đề cho dialog
-        dialog.setTitle("Chọn giới tính của bạn");
-        // khai báo control trong dialog để bắt sự kiện
-        Button btn_Male = (Button) dialog.findViewById(R.id.btn_Male);
-        Button btn_Female = (Button) dialog.findViewById(R.id.btn_Female);
-        // bắt sự kiện
-        btn_Male.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                txt_Gender.setText("Nam");
-                dialog.dismiss();
-            }
-        });
-        btn_Female.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                txt_Gender.setText("Nữ");
-                dialog.dismiss();
-            }
-        });
-        // hiển thị dialog
-        dialog.show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(NTDRegisterActivity.this);
+        builder.setMessage("Giới tính của bạn là gì?")
+                .setPositiveButton("Nam", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, int id) {
+                        txt_Gender.setText("Nam");
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("Nữ", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        txt_Gender.setText("Nữ");
+                        dialog.dismiss();
+                    }
+                }).create().show();
     }
 }

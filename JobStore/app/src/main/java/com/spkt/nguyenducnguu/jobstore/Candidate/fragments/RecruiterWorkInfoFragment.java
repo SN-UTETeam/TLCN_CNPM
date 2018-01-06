@@ -45,13 +45,13 @@ public class RecruiterWorkInfoFragment extends Fragment {
         loadData();
         return rootView;
     }
-    private void addView(View view)
-    {
+
+    private void addView(View view) {
         rv_WorkInfo = (RecyclerView) view.findViewById(R.id.rv_WorkInfo);
         ln_NonData = (LinearLayout) view.findViewById(R.id.ln_NonData);
     }
-    private void loadData()
-    {
+
+    private void loadData() {
         Database.getData(Node.WORKINFOS, new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
@@ -59,6 +59,7 @@ public class RecruiterWorkInfoFragment extends Fragment {
                 for(DataSnapshot mdata : dataSnapshot.getChildren())
                 {
                     WorkInfo w = mdata.getValue(WorkInfo.class);
+                    if(w == null || w.getExpirationTime() == null) continue;
                     if(w.getExpirationTime() < (new Date()).getTime())
                         continue;
                     w.setKey(mdata.getKey());
@@ -77,6 +78,7 @@ public class RecruiterWorkInfoFragment extends Fragment {
             }
         }, new Parameter("userId", Key));
     }
+
     private void setmRecyclerView(){
         mRcvAdapter = new UVSearchWorkInfoAdapter(lstWorkInfo);
 

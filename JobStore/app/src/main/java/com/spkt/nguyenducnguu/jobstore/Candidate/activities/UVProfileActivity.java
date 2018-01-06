@@ -95,25 +95,32 @@ public class UVProfileActivity extends AppCompatActivity {
 
                     candidate = c;
 
-                    txt_UVName.setText(c.getFullName());
-                    txt_Tags.setText(c.getCandidateDetail().getTag());
+                    txt_UVName.setText(c.getFullName() == null ? "-- Chưa cập nhật --" : c.getFullName());
+                    txt_Tags.setText(c.getCandidateDetail().getTag() == null ? "-- Chưa cập nhật --" : c.getCandidateDetail().getTag());
                     if (c.getGender() == 0)
                         txt_Gender.setText("Nữ");
                     else
                         txt_Gender.setText("Nam");
+
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    txt_BirthDay.setText(sdf.format(new Date(c.getBirthday())));
-                    txt_Phone.setText(c.getPhone());
-                    txt_Email.setText(c.getEmail());
-                    txt_FacebookURL.setText(c.getFacebookURL());
-                    txt_Address.setText(c.getAddress().getAddressStr());
-                    txt_Description.setText(c.getDescription());
-                    txt_WorkPlace.setText(c.getCandidateDetail().getWorkPlaces());
-                    txt_WorkType.setText(c.getCandidateDetail().getWorkTypes());
-                    txt_Career.setText(c.getCandidateDetail().getCareers());
-                    txt_Level.setText(c.getCandidateDetail().getLevel());
-                    txt_Experience.setText(c.getCandidateDetail().getExperience());
-                    txt_Salary.setText(c.getCandidateDetail().getSalary());
+                    if(c.getBirthday() != null)
+                        txt_BirthDay.setText(sdf.format(new Date(c.getBirthday())));
+                    else txt_BirthDay.setText("-- Chưa cập nhật --");
+                    txt_Phone.setText(c.getPhone() == null ? "-- Chưa cập nhật --" : c.getPhone());
+                    txt_Email.setText(c.getEmail() == null ? "-- Chưa cập nhật --" : c.getEmail());
+                    txt_FacebookURL.setText(c.getFacebookURL() == null ? "-- Chưa cập nhật --" : c.getFacebookURL());
+                    if(c.getAddress() != null)
+                        txt_Address.setText(c.getAddress().getAddressStr() == null ? "-- Chưa cập nhật --" : c.getAddress().getAddressStr());
+                    else txt_Address.setText("-- Chưa cập nhật --");
+                    txt_Description.setText(c.getDescription() == null ? "-- Chưa cập nhật --" : c.getDescription());
+                    if(c.getCandidateDetail() != null) {
+                        txt_WorkPlace.setText(c.getCandidateDetail().getWorkPlaces() == null ? "-- Chưa cập nhật --" : c.getCandidateDetail().getWorkPlaces());
+                        txt_WorkType.setText(c.getCandidateDetail().getWorkTypes() == null ? "-- Chưa cập nhật --" : c.getCandidateDetail().getWorkTypes());
+                        txt_Career.setText(c.getCandidateDetail().getCareers() == null ? "-- Chưa cập nhật --" : c.getCandidateDetail().getCareers());
+                        txt_Level.setText(c.getCandidateDetail().getLevel() == null ? "-- Chưa cập nhật --" : c.getCandidateDetail().getLevel());
+                        txt_Experience.setText(c.getCandidateDetail().getExperience() == null ? "-- Chưa cập nhật --" : c.getCandidateDetail().getExperience());
+                        txt_Salary.setText(c.getCandidateDetail().getSalary() == null ? "-- Chưa cập nhật --" : c.getCandidateDetail().getSalary());
+                    }
 
                     loadWorkExp();
                     loadDiploma();

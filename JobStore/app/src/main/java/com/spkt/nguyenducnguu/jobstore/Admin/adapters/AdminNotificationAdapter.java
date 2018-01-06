@@ -43,13 +43,16 @@ public class AdminNotificationAdapter extends RecyclerView.Adapter<RecyclerView.
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         final NotificationHolder vh = (NotificationHolder) holder;
         Notification notification = listData.get(position);
-
-        vh.txt_Key.setText(notification.getKey());
-        vh.txt_Title.setText(notification.getTitle());
-        vh.txt_Content.setText(notification.getContent());
+        if(notification == null) return;
+        vh.txt_Key.setText(notification.getKey() == null ? "" : notification.getKey());
+        vh.txt_Title.setText(notification.getTitle() == null ? "-- Chưa cập nhật --" : notification.getTitle());
+        vh.txt_Content.setText(notification.getContent() == null ? "-- Chưa cập nhật --" : notification.getContent());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        String SendTime = sdf.format(new Date(notification.getSendTime()));
-        vh.txt_SendTime.setText(SendTime);
+        if(notification.getSendTime() != null) {
+            String SendTime = sdf.format(new Date(notification.getSendTime()));
+            vh.txt_SendTime.setText(SendTime);
+        }
+        else vh.txt_SendTime.setText("null");
         vh.txt_icon1.setTypeface(FontManager.getTypeface(context, FontManager.FONTAWESOME));
 
         vh.ln_notification.setBackgroundColor(context.getResources().getColor(R.color.white));

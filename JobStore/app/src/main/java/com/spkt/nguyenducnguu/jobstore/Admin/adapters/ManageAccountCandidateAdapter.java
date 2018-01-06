@@ -73,14 +73,21 @@ public class ManageAccountCandidateAdapter extends RecyclerView.Adapter<Recycler
                 Database.updateData(Node.CANDIDATES, can.getKey(), can);
             }
 
-            vh2.txt_Key.setText(can.getKey());
-            vh2.txt_FullName.setText(can.getFullName());
-            vh2.txt_Tag.setText(can.getCandidateDetail().getTag());
-            vh2.txt_Email.setText(can.getEmail());
-            vh2.txt_Address.setText(can.getAddress().getAddressStr());
+            vh2.txt_Key.setText(can.getKey() == null ? "" : can.getKey());
+            vh2.txt_FullName.setText(can.getFullName() == null ? "-- Chưa cập nhật --" : can.getFullName());
+            if(can.getCandidateDetail() != null)
+                vh2.txt_Tag.setText(can.getCandidateDetail().getTag() == null ? "-- Chưa cập nhật --" : can.getCandidateDetail().getTag());
+            else vh2.txt_Tag.setText("-- Chưa cập nhật --");
+            vh2.txt_Email.setText(can.getEmail() == null ? "-- Chưa cập nhật --" : can.getEmail());
+            if(can.getAddress() != null)
+                vh2.txt_Address.setText(can.getAddress().getAddressStr() == null ? "-- Chưa cập nhật --" : can.getAddress().getAddressStr());
+            else vh2.txt_Address.setText("-- Chưa cập nhật --");
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            String CreateAt = sdf.format(new Date(can.getCreateAt()));
-            vh2.txt_CreateAt.setText(CreateAt);
+            if(can.getCreateAt() != null) {
+                String CreateAt = sdf.format(new Date(can.getCreateAt()));
+                vh2.txt_CreateAt.setText(CreateAt);
+            }
+            else vh2.txt_CreateAt.setText("null");
 
             if (can.getStatus() == Status.ACTIVE)
                 vh2.txt_Status.setText("Đang hoạt động");

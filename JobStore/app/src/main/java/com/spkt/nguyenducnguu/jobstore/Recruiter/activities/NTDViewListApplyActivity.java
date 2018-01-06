@@ -56,7 +56,7 @@ public class NTDViewListApplyActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(DataSnapshot dataSnapshot) {
                     WorkInfo w = dataSnapshot.getValue(WorkInfo.class);
-                    if (w == null) return;
+                    if (w == null || w.getApplies() == null) return;
 
                     for (Apply ap : w.getApplies().values()) {
                         lstCandidate.clear();
@@ -64,7 +64,6 @@ public class NTDViewListApplyActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(DataSnapshot dataSnapshot) {
                                 Candidate can = dataSnapshot.getValue(Candidate.class);
-                                Log.d("candidate", can == null ? "candidate null" : can.getFullName().toString());
                                 if (can == null) return;
                                 can.setKey(dataSnapshot.getKey());
                                 lstCandidate.add(can);

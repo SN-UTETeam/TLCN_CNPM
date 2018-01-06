@@ -58,8 +58,8 @@ public class UVJobSavedFragment extends Fragment {
 
         return rootView;
     }
-    private void loadData()
-    {
+
+    private void loadData() {
         lstData.clear();
         Database.getData(Node.WORKINFOS, new OnGetDataListener() {
             @Override
@@ -68,6 +68,7 @@ public class UVJobSavedFragment extends Fragment {
                 for (DataSnapshot mdata : dataSnapshot.getChildren())
                 {
                     WorkInfo w = mdata.getValue(WorkInfo.class);
+                    if(w == null) continue;
                     w.setKey(mdata.getKey());
                     if(!w.checkSave(FirebaseAuth.getInstance().getCurrentUser().getUid()))
                         continue;
@@ -86,16 +87,14 @@ public class UVJobSavedFragment extends Fragment {
         });
     }
 
-    private void addView(View rootView)
-    {
+    private void addView(View rootView) {
         rv_WorkInfoSaved = (RecyclerView) rootView.findViewById(R.id.rv_WorkInfoSaved);
         ln_filter = (LinearLayout) rootView.findViewById(R.id.ln_filter);
         txt_NumberResult = (TextView) rootView.findViewById(R.id.txt_NumberResult);
         txt_Query = (EditText) rootView.findViewById(R.id.txt_Query);
     }
 
-    private void addEvent()
-    {
+    private void addEvent() {
         txt_Query.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

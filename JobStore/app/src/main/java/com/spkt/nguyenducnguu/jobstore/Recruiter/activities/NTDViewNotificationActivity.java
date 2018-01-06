@@ -71,12 +71,15 @@ public class NTDViewNotificationActivity extends AppCompatActivity {
                     Notification n = dataSnapshot.getValue(Notification.class);
                     if(n == null) return;
 
-                    txt_TitleToolbar.setText(createTitleToolbar(n.getTitle()));
-                    txt_Title.setText(n.getTitle());
-                    txt_Content.setText(n.getContent());
+                    txt_TitleToolbar.setText(n.getTitle() == null ? "-- Chưa cập nhật --" : createTitleToolbar(n.getTitle()));
+                    txt_Title.setText(n.getTitle() == null ? "-- Chưa cập nhật --" : n.getTitle());
+                    txt_Content.setText(n.getContent() == null ? "-- Chưa cập nhật --" : n.getContent());
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                    String SendTime = sdf.format(new Date(n.getSendTime()));
-                    txt_SendTime.setText(SendTime);
+                    if(n.getSendTime() != null) {
+                        String SendTime = sdf.format(new Date(n.getSendTime()));
+                        txt_SendTime.setText(SendTime);
+                    }
+                    else txt_SendTime.setText("-- Chưa cập nhật --");
                 }
 
                 @Override

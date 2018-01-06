@@ -59,13 +59,16 @@ public class NTDSearchListAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final CandidateViewHolder vh = (CandidateViewHolder) holder;
-        Log.d("CheckPosition", "Position: " + position + " - Size: " + filteredData.size());
         Candidate can = filteredData.get(position);
-        vh.txt_Key.setText(can.getKey());
-        vh.txt_FullName.setText(can.getFullName());
-        vh.txt_Tag.setText(can.getCandidateDetail().getTag());
-        vh.txt_Experience.setText(can.getCandidateDetail().getExperience());
-        vh.txt_WorkPlace.setText(can.getCandidateDetail().getWorkPlaces());
+        if(can == null) return;
+
+        vh.txt_Key.setText(can.getKey() == null ? "" : can.getKey());
+        vh.txt_FullName.setText(can.getFullName() == null ? "-- Chưa cập nhật --" : can.getFullName());
+        if(can.getCandidateDetail() != null) {
+            vh.txt_Tag.setText(can.getCandidateDetail().getTag() == null ? "-- Chưa cập nhật --" : can.getCandidateDetail().getTag());
+            vh.txt_Experience.setText(can.getCandidateDetail().getExperience() == null ? "-- Chưa cập nhật --" : can.getCandidateDetail().getExperience());
+            vh.txt_WorkPlace.setText(can.getCandidateDetail().getWorkPlaces() == null ? "-- Chưa cập nhật --" : can.getCandidateDetail().getWorkPlaces());
+        }
 
         if (can.getAvatar() != null)
             Picasso.with(context).load(can.getAvatar()).into(vh.imgv_Avatar);

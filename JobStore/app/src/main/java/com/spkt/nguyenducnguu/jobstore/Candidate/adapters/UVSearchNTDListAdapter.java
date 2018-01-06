@@ -67,11 +67,14 @@ public class UVSearchNTDListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final RecruiterViewHolder vh = (RecruiterViewHolder) holder;
         final Recruiter r = filteredData.get(position);
-        vh.txt_Key.setText(r.getKey());
-        vh.txt_CompanyName.setText(r.getCompanyName());
-        vh.txt_Email.setText(r.getEmail());
-        vh.txt_Website.setText(r.getWebsite());
-        vh.txt_Address.setText(r.getAddress().getAddressStr());
+        if(r == null) return;
+        vh.txt_Key.setText(r.getKey() == null ? "" : r.getKey());
+        vh.txt_CompanyName.setText(r.getCompanyName() == null ? "-- Chưa cập nhật --" : r.getCompanyName());
+        vh.txt_Email.setText(r.getEmail() == null ? "-- Chưa cập nhật --" : r.getEmail());
+        vh.txt_Website.setText(r.getWebsite() == null ? "-- Chưa cập nhật --" : r.getWebsite());
+        if(r.getAddress() != null)
+            vh.txt_Address.setText(r.getAddress().getAddressStr() == null ? "-- Chưa cập nhật --" : r.getAddress().getAddressStr());
+        else vh.txt_Address.setText("-- Chưa cập nhật --");
 
         if(r.getAvatar() != null)
             Picasso.with(context).load(r.getAvatar()).into(vh.imgv_Avatar);
@@ -87,6 +90,7 @@ public class UVSearchNTDListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
     private void ShowPopup(final Recruiter r){
+        if(r == null) return;
         final Dialog dialogFollow;
         CircleImageView imgv_Avatar;
         final TextView txtClose, txt_CompanyName, txt_Email, txt_Website, txt_Address,
@@ -107,11 +111,15 @@ public class UVSearchNTDListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         btnFollow = (Button) dialogFollow.findViewById(R.id.btnFollow);
         btnSeeDetail = (Button) dialogFollow.findViewById(R.id.btnSeeDetail);
 
-        txt_CompanyName.setText(r.getCompanyName());
-        txt_Email.setText(r.getEmail());
-        txt_Website.setText(r.getWebsite());
-        txt_Address.setText(r.getAddress().getAddressStr());
-        txt_NumberFollow.setText(r.getFollows().size() + "");
+        txt_CompanyName.setText(r.getCompanyName() == null ? "-- Chưa cập nhật --" : r.getCompanyName());
+        txt_Email.setText(r.getEmail() == null ? "-- Chưa cập nhật --" : r.getEmail());
+        txt_Website.setText(r.getWebsite() == null ? "-- Chưa cập nhật --" : r.getWebsite());
+        if(r.getAddress() != null)
+            txt_Address.setText(r.getAddress().getAddressStr() == null ? "-- Chưa cập nhật --" : r.getAddress().getAddressStr());
+        else txt_Address.setText("-- Chưa cập nhật --");
+        if(r.getFollows() != null)
+            txt_NumberFollow.setText(r.getFollows().size() + "");
+        else txt_NumberFollow.setText("-- Chưa cập nhật --");
 
         Database.getData(Node.WORKINFOS, new OnGetDataListener() {
             @Override

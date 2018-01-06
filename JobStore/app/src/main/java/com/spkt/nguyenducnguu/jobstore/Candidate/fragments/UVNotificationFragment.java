@@ -44,8 +44,7 @@ public class UVNotificationFragment extends Fragment {
         return rootView;
     }
 
-    private void loadData()
-    {
+    private void loadData() {
         Database.getData(Node.CANDIDATES + "/" + FirebaseAuth.getInstance().getCurrentUser().getUid()
                 + "/notifications", new OnGetDataListener() {
             @Override
@@ -54,6 +53,7 @@ public class UVNotificationFragment extends Fragment {
                 for(DataSnapshot mdata : dataSnapshot.getChildren())
                 {
                     Notification n = mdata.getValue(Notification.class);
+                    if(n == null) continue;
                     n.setKey(mdata.getKey());
                     lstData.add(n);
                     Collections.sort(lstData);

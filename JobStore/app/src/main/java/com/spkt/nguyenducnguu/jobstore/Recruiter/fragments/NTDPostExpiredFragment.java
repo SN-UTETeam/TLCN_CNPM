@@ -44,8 +44,7 @@ public class NTDPostExpiredFragment extends Fragment {
         loadData();
         return rootView;
     }
-    private void loadData()
-    {
+    private void loadData() {
         Database.getData(Node.WORKINFOS, new OnGetDataListener() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
@@ -53,6 +52,7 @@ public class NTDPostExpiredFragment extends Fragment {
                 for(DataSnapshot mdata : dataSnapshot.getChildren())
                 {
                     WorkInfo w = mdata.getValue(WorkInfo.class);
+                    if(w == null || w.getExpirationTime() == null) continue;
                     if(w.getExpirationTime() > (new Date()).getTime())
                         continue;
                     w.setKey(mdata.getKey());
@@ -70,12 +70,13 @@ public class NTDPostExpiredFragment extends Fragment {
             }
         }, new Parameter("userId", FirebaseAuth.getInstance().getCurrentUser().getUid()));
     }
+
     private void addView(View rootView){
         ln_NonData = (LinearLayout) rootView.findViewById(R.id.ln_NonData);
         lv_WorkInfoExpired = (ListView) rootView.findViewById(R.id.lv_WorkInfoExpired);
     }
-    private void addEvent()
-    {
+
+    private void addEvent() {
         lv_WorkInfoExpired.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

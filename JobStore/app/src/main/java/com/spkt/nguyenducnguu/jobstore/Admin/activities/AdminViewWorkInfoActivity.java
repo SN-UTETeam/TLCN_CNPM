@@ -138,24 +138,41 @@ public class AdminViewWorkInfoActivity extends AppCompatActivity {
                     w.setKey(Key);
                     workInfo = w;
 
-                    txt_TitlePostToolbar.setText(createTitleToolbar(w.getTitlePost()));
-                    txt_TitlePost.setText(w.getTitlePost());
+                    txt_TitlePostToolbar.setText(w.getTitlePost() == null ? "-- Chưa cập nhật --" : createTitleToolbar(w.getTitlePost()));
+                    txt_TitlePost.setText(w.getTitlePost() == null ? "-- Chưa cập nhật --" : w.getTitlePost());
                     txt_Views.setText((w.getViews() + 1) + "");
-                    txt_NumberApply.setText(w.getApplies().size() + "");
+                    if(w.getApplies() != null)
+                        txt_NumberApply.setText(w.getApplies().size() + "");
+                    else txt_NumberApply.setText("0");
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    txt_ExpirationTime.setText(sdf.format(new Date(w.getExpirationTime())));
-                    txt_Title.setText(w.getWorkDetail().getTitle());
-                    txt_JobDescription.setText(w.getWorkDetail().getJobDescription());
-                    txt_JobRequired.setText(w.getWorkDetail().getJobRequired());
-                    txt_Level.setText(w.getWorkDetail().getLevel());
-                    txt_Experience.setText(w.getWorkDetail().getExperience());
-                    txt_Welfare.setText(w.getWorkDetail().getWelfare());
-                    txt_Salary.setText(w.getWorkDetail().getSalary());
-                    txt_Number.setText(w.getWorkDetail().getNumber() + "");
-                    txt_CompanyName.setText(w.getCompanyName());
-                    txt_WorkType.setText(w.getWorkDetail().getWorkTypes());
-                    txt_Career.setText(w.getWorkDetail().getCarrers());
-                    txt_WorkPlace.setText(w.getWorkPlace());
+                    if(w.getExpirationTime() != null)
+                        txt_ExpirationTime.setText(sdf.format(new Date(w.getExpirationTime())));
+                    else txt_ExpirationTime.setText("-- Chưa cập nhật --");
+                    txt_Title.setText(w.getWorkDetail().getTitle() == null ? "-- Chưa cập nhật --" : w.getWorkDetail().getTitle());
+                    if(w.getWorkDetail() != null) {
+                        txt_JobDescription.setText(w.getWorkDetail().getJobDescription() == null ? "-- Chưa cập nhật --" : w.getWorkDetail().getJobDescription());
+                        txt_JobRequired.setText(w.getWorkDetail().getJobRequired() == null ? "-- Chưa cập nhật --" : w.getWorkDetail().getJobRequired());
+                        txt_Level.setText(w.getWorkDetail().getLevel() == null ? "-- Chưa cập nhật --" : w.getWorkDetail().getLevel());
+                        txt_Experience.setText(w.getWorkDetail().getExperience() == null ? "-- Chưa cập nhật --" : w.getWorkDetail().getExperience());
+                        txt_Welfare.setText(w.getWorkDetail().getWelfare() == null ? "-- Chưa cập nhật --" : w.getWorkDetail().getWelfare());
+                        txt_Salary.setText(w.getWorkDetail().getSalary() == null ? "-- Chưa cập nhật --" : w.getWorkDetail().getSalary());
+                        txt_Number.setText(w.getWorkDetail().getNumber() + "");
+                        txt_WorkType.setText(w.getWorkDetail().getWorkTypes() == null ? "-- Chưa cập nhật --" : w.getWorkDetail().getWorkTypes());
+                        txt_Career.setText(w.getWorkDetail().getCarrers() == null ? "-- Chưa cập nhật --" : w.getWorkDetail().getCarrers());
+                    }
+                    else {
+                        txt_JobDescription.setText("-- Chưa cập nhật --");
+                        txt_JobRequired.setText("-- Chưa cập nhật --");
+                        txt_Level.setText("-- Chưa cập nhật --");
+                        txt_Experience.setText("-- Chưa cập nhật --");
+                        txt_Welfare.setText("-- Chưa cập nhật --");
+                        txt_Salary.setText("-- Chưa cập nhật --");
+                        txt_Number.setText("0");
+                        txt_WorkType.setText("-- Chưa cập nhật --");
+                        txt_Career.setText("-- Chưa cập nhật --");
+                    }
+                    txt_CompanyName.setText(w.getCompanyName() == null ? "-- Chưa cập nhật --" : w.getCompanyName());
+                    txt_WorkPlace.setText(w.getWorkPlace() == null ? "-- Chưa cập nhật --" : w.getWorkPlace());
 
                     Database.getData(Node.RECRUITERS + "/" + w.getUserId(), new OnGetDataListener() {
                         @Override
@@ -168,12 +185,14 @@ public class AdminViewWorkInfoActivity extends AppCompatActivity {
                             recruiter = r;
 
                             if (r.getGender() == 0)
-                                txt_Name.setText("Ms. " + r.getFullName());
-                            else txt_Name.setText("Mr." + r.getFullName());
+                                txt_Name.setText("Ms. " + (r.getFullName() == null ? "-- Chưa cập nhật --" : r.getFullName()));
+                            else txt_Name.setText("Mr." + (r.getFullName() == null ? "-- Chưa cập nhật --" : r.getFullName()));
 
-                            txt_Email.setText(r.getEmail());
-                            txt_Phone.setText(r.getPhone());
-                            txt_Address.setText(r.getAddress().getAddressStr());
+                            txt_Email.setText(r.getEmail() == null ? "-- Chưa cập nhật --" : r.getEmail());
+                            txt_Phone.setText(r.getPhone() == null ? "-- Chưa cập nhật --" : r.getPhone());
+                            if(r.getAddress() != null)
+                                txt_Address.setText(r.getAddress().getAddressStr() == null ? "-- Chưa cập nhật --" : r.getAddress().getAddressStr());
+                            else txt_Address.setText("-- Chưa cập nhật --");
                         }
 
                         @Override

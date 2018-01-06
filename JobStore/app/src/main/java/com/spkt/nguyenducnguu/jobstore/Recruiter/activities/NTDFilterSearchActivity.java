@@ -41,6 +41,7 @@ public class NTDFilterSearchActivity extends AppCompatActivity {
 
     private void loadData() {
         mSetting = NTDSearchFilterFragment.mSettingSearch;
+        if(mSetting == null) mSetting = new SearchCandidateSetting();
 
         txt_WorkType.setTags(mSetting.getWorkTypes().toString().substring(1, mSetting.getWorkTypes().toString().length() - 1).split(", "));
         txt_WorkPlace.setTags(mSetting.getWorkPlaces().toString().substring(1, mSetting.getWorkPlaces().toString().length() - 1).split(", "));

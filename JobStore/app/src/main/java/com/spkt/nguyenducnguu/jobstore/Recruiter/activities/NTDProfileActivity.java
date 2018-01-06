@@ -71,14 +71,16 @@ public class NTDProfileActivity extends AppCompatActivity {
 
                     recruiter = r;
 
-                    txt_CompanyName.setText(r.getCompanyName());
-                    txt_Address.setText(r.getAddress().getAddressStr());
-                    txt_NumberFollow.setText(r.getFollows().size() + "");
-                    txt_FullName.setText(r.getFullName());
-                    txt_Email.setText(r.getEmail());
-                    txt_Phone.setText(r.getPhone());
-                    txt_Website.setText(r.getWebsite());
-                    txt_Description.setText(r.getDescription());
+                    txt_CompanyName.setText(r.getCompanyName() == null ? "-- Chưa cập nhật --" : r.getCompanyName());
+                    if(r.getAddress() != null)
+                        txt_Address.setText(r.getAddress().getAddressStr() == null ? "-- Chưa cập nhật --" : r.getAddress().getAddressStr());
+                    else txt_Address.setText("-- Chưa cập nhật --");
+                    txt_NumberFollow.setText(r.getFollows() == null ? "0" : (r.getFollows().size() + ""));
+                    txt_FullName.setText(r.getFullName() == null ? "-- Chưa cập nhật --" : r.getFullName());
+                    txt_Email.setText(r.getEmail() == null ? "-- Chưa cập nhật --" : r.getEmail());
+                    txt_Phone.setText(r.getPhone() == null ? "-- Chưa cập nhật --" : r.getPhone());
+                    txt_Website.setText(r.getWebsite() == null ? "-- Chưa cập nhật --" : r.getWebsite());
+                    txt_Description.setText(r.getDescription() == null ? "-- Chưa cập nhật --" : r.getDescription());
 
                     if (r.getAvatar() != null)
                         Picasso.with(getBaseContext()).load(r.getAvatar()).into(img_Avatar);

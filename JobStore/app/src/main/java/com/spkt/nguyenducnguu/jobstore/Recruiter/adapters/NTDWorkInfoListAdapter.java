@@ -52,6 +52,7 @@ public class NTDWorkInfoListAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         final ViewHolder holder;
+        if(this.listData.get(i) == null) return null;
         if (view == null) {
             view = layoutInflater.inflate(R.layout.list_item_post_layout, null);
             holder = new NTDWorkInfoListAdapter.ViewHolder();
@@ -70,13 +71,19 @@ public class NTDWorkInfoListAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) view.getTag();
         }
-        holder.txt_Key.setText(this.listData.get(i).getKey());
-        holder.txt_Title.setText(this.listData.get(i).getTitlePost());
-        holder.txt_WorkPlace.setText("Tại: " + this.listData.get(i).getWorkPlace());
+        holder.txt_Key.setText(this.listData.get(i).getKey() == null ? "" : this.listData.get(i).getKey());
+        holder.txt_Title.setText(this.listData.get(i).getTitlePost() == null ? "-- Chưa cập nhật --" : this.listData.get(i).getTitlePost());
+        if(this.listData.get(i).getWorkPlace() != null)
+            holder.txt_WorkPlace.setText("Tại: " + this.listData.get(i).getWorkPlace());
+        else holder.txt_WorkPlace.setText("-- Chưa cập nhật --");
         holder.txt_Views.setText(this.listData.get(i).getViews() + "");
-        holder.txt_NumberApply.setText(this.listData.get(i).getApplies().size() + "");
+        if(this.listData.get(i).getApplies() != null)
+            holder.txt_NumberApply.setText(this.listData.get(i).getApplies().size() + "");
+        else holder.txt_NumberApply.setText("0");
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        holder.txt_ExpirationTime.setText(sdf.format(new Date(this.listData.get(i).getExpirationTime())));
+        if(this.listData.get(i).getExpirationTime() != null)
+            holder.txt_ExpirationTime.setText(sdf.format(new Date(this.listData.get(i).getExpirationTime())));
+        else holder.txt_ExpirationTime.setText("-- Chưa cập nhật --");
 
         try
         {

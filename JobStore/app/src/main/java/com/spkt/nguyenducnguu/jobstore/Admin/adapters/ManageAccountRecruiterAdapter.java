@@ -70,14 +70,19 @@ public class ManageAccountRecruiterAdapter extends RecyclerView.Adapter<Recycler
                 Database.updateData(Node.RECRUITERS, r.getKey(), r);
             }
 
-            vh1.txt_Key.setText(r.getKey());
-            vh1.txt_CompanyName.setText(r.getCompanyName());
-            vh1.txt_Email.setText(r.getEmail());
-            vh1.txt_Website.setText(r.getWebsite());
-            vh1.txt_Address.setText(r.getAddress().getAddressStr());
+            vh1.txt_Key.setText(r.getKey() == null ? "" : r.getKey());
+            vh1.txt_CompanyName.setText(r.getCompanyName() == null ? "-- Chưa cập nhật --" : r.getCompanyName());
+            vh1.txt_Email.setText(r.getEmail() == null ? "-- Chưa cập nhật --" : r.getEmail());
+            vh1.txt_Website.setText(r.getWebsite() == null ? "-- Chưa cập nhật --" : r.getWebsite());
+            if(r.getAddress() != null)
+                vh1.txt_Address.setText(r.getAddress().getAddressStr() == null ? "-- Chưa cập nhật --" : r.getAddress().getAddressStr());
+            else vh1.txt_Address.setText("-- Chưa cập nhật --");
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            String CreateAt = sdf.format(new Date(r.getCreateAt()));
-            vh1.txt_CreateAt.setText(CreateAt);
+            if(r.getCreateAt() != null) {
+                String CreateAt = sdf.format(new Date(r.getCreateAt()));
+                vh1.txt_CreateAt.setText(CreateAt);
+            }
+            else vh1.txt_CreateAt.setText("null");
 
             if (r.getStatus() == Status.ACTIVE)
                 vh1.txt_Status.setText("Đang hoạt động");

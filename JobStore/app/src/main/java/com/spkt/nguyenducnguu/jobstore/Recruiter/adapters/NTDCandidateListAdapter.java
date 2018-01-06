@@ -43,6 +43,7 @@ public class NTDCandidateListAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
+        if(this.listData.get(i) == null) return null;
         if (view == null) {
             view = layoutInflater.inflate(R.layout.list_item_candidate_layout, null);
             holder = new ViewHolder();
@@ -56,12 +57,13 @@ public class NTDCandidateListAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) view.getTag();
         }
-        holder.txt_Key.setText(this.listData.get(i).getKey());
-        holder.txt_FullName.setText(this.listData.get(i).getFullName());
-        holder.txt_Tag.setText(this.listData.get(i).getCandidateDetail().getTag());
-        holder.txt_Experience.setText(this.listData.get(i).getCandidateDetail().getExperience());
-        holder.txt_WorkPlace.setText(this.listData.get(i).getCandidateDetail().getWorkPlaces());
-
+        holder.txt_Key.setText(this.listData.get(i).getKey() == null ? "" : this.listData.get(i).getKey());
+        holder.txt_FullName.setText(this.listData.get(i).getFullName() == null ? "-- Chưa cập nhật --" : this.listData.get(i).getFullName());
+        if(this.listData.get(i).getCandidateDetail() != null) {
+            holder.txt_Tag.setText(this.listData.get(i).getCandidateDetail().getTag() == null ? "-- Chưa cập nhật --" : this.listData.get(i).getCandidateDetail().getTag());
+            holder.txt_Experience.setText(this.listData.get(i).getCandidateDetail().getExperience() == null ? "-- Chưa cập nhật --" : this.listData.get(i).getCandidateDetail().getExperience());
+            holder.txt_WorkPlace.setText(this.listData.get(i).getCandidateDetail().getWorkPlaces() == null ? "-- Chưa cập nhật --" : this.listData.get(i).getCandidateDetail().getWorkPlaces());
+        }
         if(this.listData.get(i).getAvatar() != null)
             Picasso.with(context).load(this.listData.get(i).getAvatar()).into(holder.imgv_Avatar);
         else Picasso.with(context).load(R.drawable.ic_default_avatar).into(holder.imgv_Avatar);

@@ -153,25 +153,42 @@ public class AdminViewCandidateAccountActivity extends AppCompatActivity impleme
                     if(candidate == null) return;
                     candidate.setKey(dataSnapshot.getKey());
 
-                    txt_FullName.setText(candidate.getFullName());
-                    txt_Tag.setText(candidate.getCandidateDetail().getTag());
-                    txt_Email.setText(candidate.getEmail());
-                    txt_Address.setText(candidate.getAddress().getAddressStr());
+                    txt_FullName.setText(candidate.getFullName() == null ? "-- Chưa cập nhật --" : candidate.getFullName());
+                    if(candidate.getCandidateDetail() != null)
+                        txt_Tag.setText(candidate.getCandidateDetail().getTag() == null ? "-- Chưa cập nhật --" : candidate.getCandidateDetail().getTag());
+                    else txt_Tag.setText("-- Chưa cập nhật --");
+                    txt_Email.setText(candidate.getEmail() == null ? "-- Chưa cập nhật --" : candidate.getEmail());
+                    if(candidate.getAddress() != null)
+                        txt_Address.setText(candidate.getAddress().getAddressStr() == null ? "-- Chưa cập nhật --" : candidate.getAddress().getAddressStr());
+                    else txt_Address.setText("-- Chưa cập nhật --");
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    txt_CreateAt.setText(sdf.format(new Date(candidate.getCreateAt())));
+                    if(candidate.getCreateAt() != null)
+                        txt_CreateAt.setText(sdf.format(new Date(candidate.getCreateAt())));
+                    else txt_CreateAt.setText("-- Chưa cập nhật --");
                     checkStatus(candidate.getStatus());
                     txt_Gender.setText(candidate.getGender() == 1 ? "Nam" : "Nữ");
-                    txt_BirthDay.setText(sdf.format(new Date(candidate.getBirthday())));
-                    txt_Phone.setText(candidate.getPhone());
+                    if(candidate.getBirthday() != null)
+                        txt_BirthDay.setText(sdf.format(new Date(candidate.getBirthday())));
+                    else txt_BirthDay.setText("-- Chưa cập nhật --");
+                    txt_Phone.setText(candidate.getPhone() == null ? "-- Chưa cập nhật --" : candidate.getPhone());
                     txt_FacebookURL.setText(candidate.getFacebookURL() == null ? "--- Chưa cập nhật ---" : candidate.getFacebookURL());
-                    txt_Description.setText(candidate.getDescription());
-                    txt_WorkPlace.setText(candidate.getCandidateDetail().getWorkPlaces());
-                    txt_WorkType.setText(candidate.getCandidateDetail().getWorkTypes());
-                    txt_Career.setText(candidate.getCandidateDetail().getCareers());
-                    txt_Level.setText(candidate.getCandidateDetail().getLevel());
-                    txt_Experience.setText(candidate.getCandidateDetail().getExperience());
-                    txt_Salary.setText(candidate.getCandidateDetail().getSalary());
-
+                    txt_Description.setText(candidate.getDescription() == null ? "-- Chưa cập nhật --" : candidate.getDescription());
+                    if(candidate.getCandidateDetail() != null) {
+                        txt_WorkPlace.setText(candidate.getCandidateDetail().getWorkPlaces() == null ? "-- Chưa cập nhật --" : candidate.getCandidateDetail().getWorkPlaces());
+                        txt_WorkType.setText(candidate.getCandidateDetail().getWorkTypes() == null ? "-- Chưa cập nhật --" : candidate.getCandidateDetail().getWorkTypes());
+                        txt_Career.setText(candidate.getCandidateDetail().getCareers() == null ? "-- Chưa cập nhật --" : candidate.getCandidateDetail().getCareers());
+                        txt_Level.setText(candidate.getCandidateDetail().getLevel() == null ? "-- Chưa cập nhật --" : candidate.getCandidateDetail().getLevel());
+                        txt_Experience.setText(candidate.getCandidateDetail().getExperience() == null ? "-- Chưa cập nhật --" : candidate.getCandidateDetail().getExperience());
+                        txt_Salary.setText(candidate.getCandidateDetail().getSalary() == null ? "-- Chưa cập nhật --" : candidate.getCandidateDetail().getSalary());
+                    }
+                    else {
+                        txt_WorkPlace.setText("-- Chưa cập nhật --");
+                        txt_WorkType.setText("-- Chưa cập nhật --");
+                        txt_Career.setText("-- Chưa cập nhật --");
+                        txt_Level.setText("-- Chưa cập nhật --");
+                        txt_Experience.setText("-- Chưa cập nhật --");
+                        txt_Salary.setText("-- Chưa cập nhật --");
+                    }
                     loadWorkExp();
                     loadDiploma();
                 }

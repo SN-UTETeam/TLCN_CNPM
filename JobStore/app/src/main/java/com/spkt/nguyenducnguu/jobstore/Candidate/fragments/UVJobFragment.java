@@ -48,6 +48,7 @@ public class UVJobFragment extends Fragment {
         tabLayout = (TabLayout) rootView.findViewById(R.id.tab_layout);
         viewPager = (ViewPager) rootView.findViewById(R.id.view_Pager);
     }
+
     private void addEvent() {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             //Hàm tab được chọn

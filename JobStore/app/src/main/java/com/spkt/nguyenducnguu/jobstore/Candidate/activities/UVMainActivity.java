@@ -96,8 +96,8 @@ public class UVMainActivity extends AppCompatActivity implements NavigationView.
                 c.setKey(dataSnapshot.getKey());
                 candidate = c;
 
-                txt_NameUV.setText(c.getFullName());
-                txt_EmailUV.setText(c.getEmail());
+                txt_NameUV.setText(c.getFullName() == null ? "-- Chưa cập nhật --" : c.getFullName());
+                txt_EmailUV.setText(c.getEmail() == null ? "-- Chưa cập nhật --" : c.getEmail());
 
                 if (c.getAvatar() != null)
                     Picasso.with(getBaseContext()).load(c.getAvatar()).into(img_AvatarUV);

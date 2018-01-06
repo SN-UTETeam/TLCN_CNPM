@@ -33,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="9"
                 android:gravity="left|center"
-                android:text="Dang sách ứng tuyển"
+                android:text="Danh sách ứng tuyển"
                 android:textColor="@color/white"
                 android:textSize="16dp" />
         </LinearLayout>

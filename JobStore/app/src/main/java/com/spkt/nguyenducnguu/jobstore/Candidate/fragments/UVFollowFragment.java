@@ -130,6 +130,7 @@ public class UVFollowFragment extends Fragment {
                 for(DataSnapshot mdata : dataSnapshot.getChildren())
                 {
                     Recruiter r = mdata.getValue(Recruiter.class);
+                    if(r == null) continue;
                     r.setKey(mdata.getKey());
                     if(r.checkFollow(FirebaseAuth.getInstance().getCurrentUser().getUid()))
                     {

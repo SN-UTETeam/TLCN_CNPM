@@ -73,8 +73,8 @@ public class NTDPostRecruitmentFragment extends Fragment {
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         recruiter = dataSnapshot.getValue(Recruiter.class);
-                        recruiter.setKey(dataSnapshot.getKey());
-                        txt_CompanyName.setText(recruiter.getCompanyName());
+                        recruiter.setKey(dataSnapshot.getKey() == null ? "" : dataSnapshot.getKey());
+                        txt_CompanyName.setText(recruiter.getCompanyName() == null ? "-- Chưa cập nhật --" : recruiter.getCompanyName());
                     }
 
                     @Override

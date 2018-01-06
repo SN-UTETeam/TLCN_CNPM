@@ -133,7 +133,7 @@ public class AdminWarningActivity extends AppCompatActivity {
                 public void onSuccess(DataSnapshot dataSnapshot) {
                     if(Account.equals(Node.RECRUITERS)) {
                         Recruiter r = dataSnapshot.getValue(Recruiter.class);
-                        if (r == null) return;
+                        if (r == null || r.getNotifications() == null) return;
                         r.setKey(dataSnapshot.getKey());
                         recruiter = r;
                         lstData.clear();
@@ -147,7 +147,7 @@ public class AdminWarningActivity extends AppCompatActivity {
                     }
                     else if(Account.equals(Node.CANDIDATES)) {
                         Candidate can = dataSnapshot.getValue(Candidate.class);
-                        if (can == null) return;
+                        if (can == null || can.getNotifications() == null) return;
                         can.setKey(dataSnapshot.getKey());
                         candidate = can;
                         lstData.clear();

@@ -76,8 +76,7 @@ public class UVDiplomaActivity extends AppCompatActivity {
         return true;
     }
 
-    private void addView()
-    {
+    private void addView() {
         imgv_Back = (ImageView) findViewById(R.id.imgv_Back);
         btn_Finish = (Button) findViewById(R.id.btn_Finish);
         txt_Name = (EditText) findViewById(R.id.txt_Name);
@@ -86,8 +85,8 @@ public class UVDiplomaActivity extends AppCompatActivity {
         txt_Ranking = (EditText) findViewById(R.id.txt_Ranking);
         txt_IssuedDate = (TextView) findViewById(R.id.txt_IssuedDate);
     }
-    private void addEvent()
-    {
+
+    private void addEvent() {
         imgv_Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,8 +123,8 @@ public class UVDiplomaActivity extends AppCompatActivity {
             }
         });
     }
-    private void loadData()
-    {
+
+    private void loadData() {
         Intent intent = getIntent();
         if (intent != null) {
             try {
@@ -176,6 +175,7 @@ public class UVDiplomaActivity extends AppCompatActivity {
             isUpdate = true;
         }
     }
+
     private void showDatePickerDialog() {
         DatePickerDialog.OnDateSetListener callback = new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker view, int year,

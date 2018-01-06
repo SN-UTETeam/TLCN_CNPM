@@ -58,6 +58,7 @@ public class UVSeeDetailActivity extends AppCompatActivity {
         addEvent();
         loadData();
     }
+
     private void addView(){
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         view_Pager = (ViewPager) findViewById(R.id.view_Pager);
@@ -115,8 +116,7 @@ public class UVSeeDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void loadData()
-    {
+    private void loadData() {
         if(Key.isEmpty() || Key.trim() == "") return;
 
         Database.getData(Node.RECRUITERS + "/" + Key, new OnGetDataListener() {
@@ -126,8 +126,10 @@ public class UVSeeDetailActivity extends AppCompatActivity {
                 if(r == null) return;
                 recruiter = r;
 
-                toolbar.setTitle(r.getCompanyName());
-                txt_NumberFollow.setText(r.getFollows().size() + "");
+                toolbar.setTitle(r.getCompanyName() == null ? "-- Chưa cập nhật --" : r.getCompanyName());
+                if(r.getFollows() != null)
+                    txt_NumberFollow.setText(r.getFollows().size() + "");
+                else txt_NumberFollow.setText("0");
 
                 if(r.checkFollow(FirebaseAuth.getInstance().getCurrentUser().getUid()))
                     txt_Follow.setText("Unfollow");

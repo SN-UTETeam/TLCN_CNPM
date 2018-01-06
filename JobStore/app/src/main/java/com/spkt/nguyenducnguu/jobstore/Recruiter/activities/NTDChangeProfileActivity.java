@@ -100,15 +100,19 @@ public class NTDChangeProfileActivity extends AppCompatActivity {
                         return;
                     }
 
-                    txt_FullName.setText(recruiter.getFullName());
+                    txt_FullName.setText(recruiter.getFullName() == null ? "" : recruiter.getFullName());
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    txt_BirthDay.setText(sdf.format(new Date(recruiter.getBirthDay())));
+                    if(recruiter.getBirthDay() != null)
+                        txt_BirthDay.setText(sdf.format(new Date(recruiter.getBirthDay())));
+                    else txt_BirthDay.setText("");
                     txt_Gender.setText(recruiter.getGender() == 0 ? "Nữ" : "Nam");
-                    txt_CompanyName.setText(recruiter.getCompanyName());
-                    txt_Description.setText(recruiter.getDescription());
-                    txt_Phone.setText(recruiter.getPhone());
-                    txt_Website.setText(recruiter.getWebsite());
-                    txt_Address.setText(recruiter.getAddress().getAddressStr());
+                    txt_CompanyName.setText(recruiter.getCompanyName() == null ? "" : recruiter.getCompanyName());
+                    txt_Description.setText(recruiter.getDescription() == null ? "" : recruiter.getDescription());
+                    txt_Phone.setText(recruiter.getPhone() == null ? "" : recruiter.getPhone());
+                    txt_Website.setText(recruiter.getWebsite() == null ? "" : recruiter.getWebsite());
+                    if(recruiter.getAddress() != null)
+                        txt_Address.setText(recruiter.getAddress().getAddressStr() == null ? "" : recruiter.getAddress().getAddressStr());
+                    else txt_Address.setText("");
                 }
 
                 @Override

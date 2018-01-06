@@ -54,6 +54,7 @@ public class NTDPostFragment extends Fragment {
                 for(DataSnapshot mdata : dataSnapshot.getChildren())
                 {
                     WorkInfo w = mdata.getValue(WorkInfo.class);
+                    if(w == null || w.getExpirationTime() == null)
                     if(w.getExpirationTime() < (new Date()).getTime())
                         continue;
                     w.setKey(mdata.getKey());

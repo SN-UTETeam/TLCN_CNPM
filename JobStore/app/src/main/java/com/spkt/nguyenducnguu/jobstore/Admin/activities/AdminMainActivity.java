@@ -146,8 +146,8 @@ public class AdminMainActivity extends AppCompatActivity implements NavigationVi
                 if (admin == null) return;
                 admin.setKey(dataSnapshot.getKey());
 
-                txt_AdminName.setText(admin.getFullName());
-                txt_Email.setText(admin.getEmail());
+                txt_AdminName.setText(admin.getFullName() == null ? "-- Chưa cập nhật --" : admin.getFullName());
+                txt_Email.setText(admin.getEmail() == null ? "-- Chưa cập nhật --" : admin.getEmail());
 
                 if (admin.getAvatar() != null)
                     Picasso.with(getBaseContext()).load(admin.getAvatar()).into(img_Avatar);

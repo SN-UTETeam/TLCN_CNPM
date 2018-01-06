@@ -145,28 +145,34 @@ public class UVChangeProfileActivity extends AppCompatActivity {
                     if (candidate == null) return;
 
                     try {
-                        txt_FullName.setText(candidate.getFullName());
+                        txt_FullName.setText(candidate.getFullName() == null ? "" : candidate.getFullName());
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                        txt_BirthDay.setText(sdf.format(new Date(candidate.getBirthday())));
+                        if(candidate.getBirthday() != null)
+                            txt_BirthDay.setText(sdf.format(new Date(candidate.getBirthday())));
+                        else txt_BirthDay.setText("");
                         txt_Gender.setText(candidate.getGender() == 1 ? "Nam" : "Nữ");
-                        txt_Description.setText(candidate.getDescription());
-                        txt_Tag.setText(candidate.getCandidateDetail().getTag());
-                        txt_WorkPlace.setTags(candidate.getCandidateDetail().getWorkPlaces().split(","));
-                        txt_WorkType.setTags(candidate.getCandidateDetail().getWorkTypes().split(","));
-                        txt_Career.setTags(candidate.getCandidateDetail().getCareers().split(","));
-                        txt_Level.setTags(candidate.getCandidateDetail().getLevel().split(","));
-                        txt_Experience.setTags(candidate.getCandidateDetail().getExperience().split(","));
-                        txt_Salary.setTags(candidate.getCandidateDetail().getSalary().split(","));
-                        lstWorkExp.clear();
-                        lstDiploma.clear();
-                        lstWorkExp.addAll(candidate.getCandidateDetail().getWorkExps().values());
-                        lstDiploma.addAll(candidate.getCandidateDetail().getDiplomas().values());
-                        if(candidate.getCandidateDetail().getCV() == null || candidate.getCandidateDetail().getCV().isEmpty())
-                            txt_CV.setText("--- Chưa có CV ---");
-                        else txt_CV.setText(candidate.getCandidateDetail().getCV());
-                        txt_Phone.setText(candidate.getPhone());
-                        txt_FacebookURL.setText(candidate.getFacebookURL());
-                        txt_Address.setText(candidate.getAddress().getAddressStr());
+                        txt_Description.setText(candidate.getDescription() == null ? "" : candidate.getDescription());
+                        if(candidate.getCandidateDetail() != null) {
+                            txt_Tag.setText(candidate.getCandidateDetail().getTag() == null ? "" : candidate.getCandidateDetail().getTag());
+                            txt_WorkPlace.setTags(candidate.getCandidateDetail().getWorkPlaces().split(","));
+                            txt_WorkType.setTags(candidate.getCandidateDetail().getWorkTypes().split(","));
+                            txt_Career.setTags(candidate.getCandidateDetail().getCareers().split(","));
+                            txt_Level.setTags(candidate.getCandidateDetail().getLevel().split(","));
+                            txt_Experience.setTags(candidate.getCandidateDetail().getExperience().split(","));
+                            txt_Salary.setTags(candidate.getCandidateDetail().getSalary().split(","));
+                            lstWorkExp.clear();
+                            lstDiploma.clear();
+                            lstWorkExp.addAll(candidate.getCandidateDetail().getWorkExps().values());
+                            lstDiploma.addAll(candidate.getCandidateDetail().getDiplomas().values());
+                            if (candidate.getCandidateDetail().getCV() == null || candidate.getCandidateDetail().getCV().isEmpty())
+                                txt_CV.setText("--- Chưa có CV ---");
+                            else txt_CV.setText(candidate.getCandidateDetail().getCV());
+                        }
+                        txt_Phone.setText(candidate.getPhone() == null ? "" : candidate.getPhone());
+                        txt_FacebookURL.setText(candidate.getFacebookURL() == null ? "" : candidate.getFacebookURL());
+                        if(candidate.getAddress() != null)
+                            txt_Address.setText(candidate.getAddress().getAddressStr() == null ? "" : candidate.getAddress().getAddressStr());
+                        else txt_Address.setText("");
 
                         loadWorkExp();
                         loadDiploma();

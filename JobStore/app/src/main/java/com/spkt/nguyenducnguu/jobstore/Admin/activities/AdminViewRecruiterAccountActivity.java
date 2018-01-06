@@ -129,13 +129,19 @@ public class AdminViewRecruiterAccountActivity extends AppCompatActivity impleme
                     r.setKey(dataSnapshot.getKey());
                     recruiter = r;
 
-                    txt_CompanyName.setText(recruiter.getCompanyName());
-                    txt_Email.setText(recruiter.getEmail());
-                    txt_Address.setText(recruiter.getAddress().getAddressStr());
+                    txt_CompanyName.setText(recruiter.getCompanyName() == null ? "-- Chưa cập nhật --" : recruiter.getCompanyName());
+                    txt_Email.setText(recruiter.getEmail() == null ? "-- Chưa cập nhật --" : recruiter.getEmail());
+                    if(recruiter.getAddress() != null)
+                        txt_Address.setText(recruiter.getAddress().getAddressStr() == null ? "-- Chưa cập nhật --" : recruiter.getAddress().getAddressStr());
+                    else txt_Address.setText("-- Chưa cập nhật --");
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    txt_CreateAt.setText(sdf.format(new Date(recruiter.getCreateAt())));
+                    if(recruiter.getCreateAt() != null)
+                        txt_CreateAt.setText(sdf.format(new Date(recruiter.getCreateAt())));
+                    else txt_CreateAt.setText("-- Chưa cập nhật --");
                     checkStatus(recruiter.getStatus());
-                    txt_NumberFollow.setText(recruiter.getFollows().size() + "");
+                    if(recruiter.getFollows() != null)
+                        txt_NumberFollow.setText(recruiter.getFollows().size() + "");
+                    else txt_NumberFollow.setText("0");
                     Database.getData(Node.WORKINFOS, new OnGetDataListener() {
                         @Override
                         public void onSuccess(DataSnapshot dataSnapshot) {
@@ -156,12 +162,14 @@ public class AdminViewRecruiterAccountActivity extends AppCompatActivity impleme
 
                         }
                     }, new Parameter("userId", r.getKey()));
-                    txt_FullName.setText(recruiter.getFullName());
-                    txt_BirthDay.setText(sdf.format(new Date(recruiter.getBirthDay())));
+                    txt_FullName.setText(recruiter.getFullName() == null ? "-- Chưa cập nhật --" : recruiter.getFullName());
+                    if(recruiter.getBirthDay() != null)
+                        txt_BirthDay.setText(sdf.format(new Date(recruiter.getBirthDay())));
+                    else txt_BirthDay.setText("-- Chưa cập nhật --");
                     txt_Gender.setText(recruiter.getGender() == 1 ? "Nam" : "Nữ");
-                    txt_Phone.setText(recruiter.getPhone());
-                    txt_Website.setText(recruiter.getWebsite());
-                    txt_Description.setText(recruiter.getDescription());
+                    txt_Phone.setText(recruiter.getPhone() == null ? "-- Chưa cập nhật --" : recruiter.getPhone());
+                    txt_Website.setText(recruiter.getWebsite() == null ? "-- Chưa cập nhật --" : recruiter.getWebsite());
+                    txt_Description.setText(recruiter.getDescription() == null ? "-- Chưa cập nhật --" : recruiter.getDescription());
                     if(recruiter.getLastLogin() != null)
                     {
                         sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

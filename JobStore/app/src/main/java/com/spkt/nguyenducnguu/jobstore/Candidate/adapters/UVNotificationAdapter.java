@@ -54,17 +54,22 @@ public class UVNotificationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         final NotificationHolder vh = (NotificationHolder) holder;
         Notification notification = listData.get(position);
 
+        if(notification == null) return;
+
         if (notification.isNewWorkInfo()) {
             vh.txt_UserId.setText(notification.getUserId() == null ? "" : notification.getUserId());
-            vh.txt_WorkInfoKey.setText(notification.getWorkInfoKey());
+            vh.txt_WorkInfoKey.setText(notification.getWorkInfoKey() == null ? "" : notification.getWorkInfoKey());
         }
 
-        vh.txt_Key.setText(notification.getKey());
-        vh.txt_Title.setText(notification.getTitle());
-        vh.txt_Content.setText(notification.getContent());
+        vh.txt_Key.setText(notification.getKey() == null ? "" : notification.getKey());
+        vh.txt_Title.setText(notification.getTitle() == null ? "-- Chưa cập nhật --" : notification.getTitle());
+        vh.txt_Content.setText(notification.getContent() == null ? "-- Chưa cập nhật --" : notification.getContent());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        String SendTime = sdf.format(new Date(notification.getSendTime()));
-        vh.txt_SendTime.setText(SendTime);
+        if(notification.getSendTime() != null) {
+            String SendTime = sdf.format(new Date(notification.getSendTime()));
+            vh.txt_SendTime.setText(SendTime);
+        }
+        else vh.txt_SendTime.setText("null");
         vh.txt_icon1.setTypeface(FontManager.getTypeface(context, FontManager.FONTAWESOME));
 
         if (notification.getStatus() == Notification.SEEN)//đã xem
@@ -79,7 +84,7 @@ public class UVNotificationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     @Override
                     public void onSuccess(DataSnapshot dataSnapshot) {
                         Recruiter r = dataSnapshot.getValue(Recruiter.class);
-                        if(r != null)
+                        if(r != null && r.getAvatar() != null)
                             Picasso.with(context).load(r.getAvatar()).into(vh.imgv_Avatar);
                     }
 
